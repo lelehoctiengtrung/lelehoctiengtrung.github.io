@@ -6,31 +6,32 @@
 
 // ── CONFIG ────────────────────────────────────────────────
 const SHEET_ID   = '1n62ZrrUJlnf8CDU2gSxW3jPCxdkwE1GFpBBDJQLEg0o';
-const SHEET_NAME = 'books'; // Tab chứa dữ liệu sách
-// ─────────────────────────────────────────────────────────
+const SHEET_NAME = 'books';
 
 // Columns trong tab books (row 1 = keys, row 2 = labels, row 3+ = data)
-// sku | order | title | subtitle_zh | desc | tags | price | badge | badge_type
-// stars | cover_url | buy_shopee | buy_fahasa | buy_tiki | review | pros | cons | who_for
 const COL = {
-  sku:         0,
-  order:       1,
-  title:       2,
-  subtitle_zh: 3,
-  desc:        4,
-  tags:        5,
-  price:       6,
-  badge:       7,
-  badge_type:  8,
-  stars:       9,
-  cover_url:   10,
-  buy_shopee:  11,
-  buy_fahasa:  12,
-  buy_tiki:    13,
-  review:      14,
-  pros:        15,
-  cons:        16,
-  who_for:     17,
+  sku:            0,
+  order:          1,
+  title:          2,
+  subtitle_zh:    3,
+  desc:           4,
+  tags:           5,
+  price:          6,
+  badge:          7,
+  badge_type:     8,
+  stars:          9,
+  cover_url:      10,
+  buy_shopee:     11,
+  buy_fahasa:     12,
+  buy_tiki:       13,
+  buy_lazada:     14,
+  review:         15,
+  pros:           16,
+  cons:           17,
+  who_for:        18,
+  shop_images:    19,
+  review_images:  20,
+  sku_folder_url: 21,
 };
 
 // ── INIT ──────────────────────────────────────────────────
@@ -43,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── Load từ Google Sheets ─────────────────────────────────
 function loadBook(sku) {
   const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}&headers=2`;
-
   const script = document.createElement('script');
   script.src = url + '&callback=onSheetData';
   window.onSheetData = (data) => parseAndRender(data, sku);
@@ -55,12 +55,10 @@ function loadBook(sku) {
 function parseAndRender(data, targetSku) {
   try {
     const rows = data.table.rows;
-    // Bỏ qua 2 header rows → tìm row có sku khớp
-    const row = rows.find(r => {
+    const row  = rows.find(r => {
       const cell = r.c[COL.sku];
       return cell && String(cell.v).trim() === targetSku.trim();
     });
-
     if (!row) { showError(); return; }
 
     const get = (col) => {
@@ -69,25 +67,28 @@ function parseAndRender(data, targetSku) {
     };
 
     renderReview({
-      sku:         get(COL.sku),
-      title:       get(COL.title),
-      subtitle_zh: get(COL.subtitle_zh),
-      desc:        get(COL.desc),
-      tags:        get(COL.tags),
-      price:       get(COL.price),
-      badge:       get(COL.badge),
-      badge_type:  get(COL.badge_type),
-      stars:       get(COL.stars),
-      cover_url:   get(COL.cover_url),
-      buy_shopee:  get(COL.buy_shopee),
-      buy_fahasa:  get(COL.buy_fahasa),
-      buy_tiki:    get(COL.buy_tiki),
-      review:      get(COL.review),
-      pros:        get(COL.pros),
-      cons:        get(COL.cons),
-      who_for:     get(COL.who_for),
+      sku:            get(COL.sku),
+      title:          get(COL.title),
+      subtitle_zh:    get(COL.subtitle_zh),
+      desc:           get(COL.desc),
+      tags:           get(COL.tags),
+      price:          get(COL.price),
+      badge:          get(COL.badge),
+      badge_type:     get(COL.badge_type),
+      stars:          get(COL.stars),
+      cover_url:      get(COL.cover_url),
+      buy_shopee:     get(COL.buy_shopee),
+      buy_fahasa:     get(COL.buy_fahasa),
+      buy_tiki:       get(COL.buy_tiki),
+      buy_lazada:     get(COL.buy_lazada),
+      review:         get(COL.review),
+      pros:           get(COL.pros),
+      cons:           get(COL.cons),
+      who_for:        get(COL.who_for),
+      shop_images:    get(COL.shop_images),
+      review_images:  get(COL.review_images),
+      sku_folder_url: get(COL.sku_folder_url),
     });
-
   } catch (e) {
     console.error('Parse error:', e);
     showError();
@@ -99,9 +100,9 @@ function renderReview(book) {
   // SEO
   const pageTitle = `Review: ${book.title} – Lê Lê học tiếng Trung`;
   document.title = pageTitle;
-  setMeta('og-title',  pageTitle);
-  setMeta('og-desc',   book.desc || '');
-  setMeta('og-image',  book.cover_url || '');
+  setMeta('og-title', pageTitle);
+  setMeta('og-desc',  book.desc || '');
+  setMeta('og-image', book.cover_url || '');
 
   // Cover
   const cover = document.getElementById('rv-cover');
@@ -110,16 +111,16 @@ function renderReview(book) {
 
   // Badge
   if (book.badge) {
-    const badgeWrap = document.getElementById('rv-badge-wrap');
     const type = book.badge_type === 'new' ? 'badge-new' : 'badge-hot';
-    badgeWrap.innerHTML = `<span class="badge ${type}">${book.badge}</span>`;
+    document.getElementById('rv-badge-wrap').innerHTML =
+      `<span class="badge ${type}">${book.badge}</span>`;
   }
 
   // Stars
   const starsNum = parseInt(book.stars) || 5;
-  document.getElementById('rv-stars').innerHTML =
-    '★'.repeat(starsNum) + '☆'.repeat(5 - starsNum);
-  document.getElementById('rv-stars').setAttribute('aria-label', `${starsNum} sao`);
+  const starsEl  = document.getElementById('rv-stars');
+  starsEl.innerHTML  = '★'.repeat(starsNum) + '☆'.repeat(5 - starsNum);
+  starsEl.setAttribute('aria-label', `${starsNum} sao`);
 
   // Title & subtitle
   document.getElementById('rv-title').textContent    = book.title;
@@ -127,39 +128,36 @@ function renderReview(book) {
   if (!book.subtitle_zh) document.getElementById('rv-subtitle').style.display = 'none';
 
   // Tags
-  const tagsEl = document.getElementById('rv-tags');
   if (book.tags) {
-    tagsEl.innerHTML = book.tags.split(',')
-      .map(t => `<span class="tag">${t.trim()}</span>`)
-      .join('');
+    document.getElementById('rv-tags').innerHTML = book.tags
+      .split(',').map(t => `<span class="tag">${t.trim()}</span>`).join('');
   }
 
   // Price
   const priceVal = parseInt(book.price);
   document.getElementById('rv-price').textContent = priceVal
-    ? `~${priceVal.toLocaleString('vi-VN')}₫`
-    : 'Liên hệ';
+    ? `~${priceVal.toLocaleString('vi-VN')}₫` : 'Liên hệ';
 
-  // Buy buttons (hero + bottom CTA)
+  // Buy buttons
   const btns = buildBuyButtons(book);
   document.getElementById('rv-buy-group').innerHTML        = btns;
-  document.getElementById('rv-buy-group-bottom').innerHTML = btns.replace(/btn-platform"/g, 'btn-platform btn-platform-lg"');
+  document.getElementById('rv-buy-group-bottom').innerHTML =
+    btns.replace(/btn-platform"/g, 'btn-platform btn-platform-lg"');
 
   // Review body
   const reviewEl = document.getElementById('rv-review-body');
-  if (book.review) {
-    reviewEl.innerHTML = formatReview(book.review);
-  } else {
-    reviewEl.innerHTML = `<em style="opacity:.5">Review đang được cập nhật… 🌸</em>`;
-  }
+  reviewEl.innerHTML = book.review
+    ? formatReview(book.review)
+    : `<em style="opacity:.5">Review đang được cập nhật… 🌸</em>`;
+
+  // Review image gallery (ảnh từ Drive folder review/)
+  renderReviewGallery(book.review_images);
 
   // Pros
   const prosList = document.getElementById('rv-pros');
   if (book.pros) {
-    prosList.innerHTML = book.pros.split('|')
-      .filter(Boolean)
-      .map(p => `<li>${p.trim()}</li>`)
-      .join('');
+    prosList.innerHTML = book.pros.split('|').filter(Boolean)
+      .map(p => `<li>${p.trim()}</li>`).join('');
   } else {
     prosList.closest('.pros-box').style.display = 'none';
   }
@@ -167,10 +165,8 @@ function renderReview(book) {
   // Cons
   const consList = document.getElementById('rv-cons');
   if (book.cons) {
-    consList.innerHTML = book.cons.split('|')
-      .filter(Boolean)
-      .map(c => `<li>${c.trim()}</li>`)
-      .join('');
+    consList.innerHTML = book.cons.split('|').filter(Boolean)
+      .map(c => `<li>${c.trim()}</li>`).join('');
   } else {
     consList.closest('.cons-box').style.display = 'none';
   }
@@ -183,45 +179,113 @@ function renderReview(book) {
     whoEl.closest('.who-section').style.display = 'none';
   }
 
-  // Show / hide
+  // Show
   document.getElementById('review-loading').classList.add('hidden');
   document.getElementById('review-main').classList.remove('hidden');
 }
 
+// ── Review Image Gallery ──────────────────────────────────
+function renderReviewGallery(reviewImagesStr) {
+  const galleryEl = document.getElementById('rv-gallery');
+  if (!galleryEl) return;
+
+  if (!reviewImagesStr || !reviewImagesStr.trim()) {
+    galleryEl.style.display = 'none';
+    return;
+  }
+
+  const urls = reviewImagesStr.split(',').map(u => u.trim()).filter(Boolean);
+  if (!urls.length) { galleryEl.style.display = 'none'; return; }
+
+  galleryEl.innerHTML = `
+    <div class="section-pill"><span>📸</span> Ảnh trong sách</div>
+    <div class="gallery-grid" id="gallery-grid">
+      ${urls.map((url, i) => `
+        <button class="gallery-thumb" onclick="openLightbox(${i})"
+                aria-label="Xem ảnh ${i+1}">
+          <img src="${url}" alt="Ảnh sách trang ${i+1}" loading="lazy" />
+        </button>`).join('')}
+    </div>
+  `;
+
+  // Store urls for lightbox
+  window._galleryUrls = urls;
+}
+
+// ── Lightbox ──────────────────────────────────────────────
+function openLightbox(index) {
+  const urls = window._galleryUrls || [];
+  if (!urls.length) return;
+
+  // Tạo lightbox nếu chưa có
+  let lb = document.getElementById('rv-lightbox');
+  if (!lb) {
+    lb = document.createElement('div');
+    lb.id = 'rv-lightbox';
+    lb.innerHTML = `
+      <div class="lb-backdrop" onclick="closeLightbox()"></div>
+      <div class="lb-content">
+        <button class="lb-close" onclick="closeLightbox()" aria-label="Đóng">✕</button>
+        <button class="lb-prev"  onclick="shiftLightbox(-1)" aria-label="Ảnh trước">‹</button>
+        <img id="lb-img" src="" alt="Ảnh phóng to" />
+        <button class="lb-next"  onclick="shiftLightbox(1)"  aria-label="Ảnh tiếp">›</button>
+        <p class="lb-counter" id="lb-counter"></p>
+      </div>`;
+    document.body.appendChild(lb);
+  }
+
+  window._lbIndex = index;
+  updateLightbox();
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function updateLightbox() {
+  const urls  = window._galleryUrls || [];
+  const i     = window._lbIndex;
+  document.getElementById('lb-img').src         = urls[i];
+  document.getElementById('lb-counter').textContent = `${i + 1} / ${urls.length}`;
+}
+
+function shiftLightbox(dir) {
+  const urls = window._galleryUrls || [];
+  window._lbIndex = (window._lbIndex + dir + urls.length) % urls.length;
+  updateLightbox();
+}
+
+function closeLightbox() {
+  const lb = document.getElementById('rv-lightbox');
+  if (lb) lb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Keyboard nav
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape')      closeLightbox();
+  if (e.key === 'ArrowLeft')   shiftLightbox(-1);
+  if (e.key === 'ArrowRight')  shiftLightbox(1);
+});
+
 // ── Helpers ───────────────────────────────────────────────
 function buildBuyButtons(book) {
-  let html = '';
-  if (book.buy_shopee) {
-    html += `<a href="${book.buy_shopee}" class="btn-platform btn-shopee"
-              target="_blank" rel="noopener sponsored"
-              id="buy-shopee-${book.sku}">
-              🛒 Shopee
-            </a>`;
-  }
-  if (book.buy_fahasa) {
-    html += `<a href="${book.buy_fahasa}" class="btn-platform btn-fahasa"
-              target="_blank" rel="noopener sponsored"
-              id="buy-fahasa-${book.sku}">
-              📚 Fahasa
-            </a>`;
-  }
-  if (book.buy_tiki) {
-    html += `<a href="${book.buy_tiki}" class="btn-platform btn-tiki"
-              target="_blank" rel="noopener sponsored"
-              id="buy-tiki-${book.sku}">
-              🛍️ Tiki
-            </a>`;
-  }
-  if (!html) {
-    html = `<span style="color:rgba(255,255,255,.4);font-size:.9rem">Link đang cập nhật…</span>`;
-  }
-  return html;
+  const platforms = [
+    { url: book.buy_shopee, cls: 'btn-shopee', label: '🛒 Shopee', id: 'shopee' },
+    { url: book.buy_fahasa, cls: 'btn-fahasa', label: '📚 Fahasa', id: 'fahasa' },
+    { url: book.buy_tiki,   cls: 'btn-tiki',   label: '🛍️ Tiki',   id: 'tiki'   },
+    { url: book.buy_lazada, cls: 'btn-lazada', label: '🟠 Lazada', id: 'lazada' },
+  ];
+  const html = platforms.filter(p => p.url).map(p =>
+    `<a href="${p.url}" class="btn-platform ${p.cls}"
+        target="_blank" rel="noopener sponsored"
+        id="buy-${p.id}-${book.sku}">${p.label}</a>`
+  ).join('');
+  return html || `<span style="color:rgba(255,255,255,.4);font-size:.9rem">Link đang cập nhật…</span>`;
 }
 
 function formatReview(text) {
-  // Bôi đậm text trong **...**
   return text
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n\n/g, '</p><p>')
     .replace(/\n/g, '<br>');
 }
 
