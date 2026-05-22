@@ -115,10 +115,10 @@ function buildBookCard(row) {
 
   // Nút mua — 4 platform (ẩn nếu không có link)
   const platforms = [
-    { key: shopee,  cls: 'btn-p-shopee',  label: '🛒 Shopee' },
-    { key: fahasa,  cls: 'btn-p-fahasa',  label: '📚 Fahasa' },
-    { key: tiki,    cls: 'btn-p-tiki',    label: '🛍️ Tiki'   },
-    { key: lazada,  cls: 'btn-p-lazada',  label: '🟠 Lazada' },
+    { key: shopee,  cls: 'btn-p-shopee',  label: '🛒 <span>Shopee</span>' },
+    { key: fahasa,  cls: 'btn-p-fahasa',  label: '📚 <span>Fahasa</span>' },
+    { key: tiki,    cls: 'btn-p-tiki',    label: '🛍️ <span>Tiki</span>'   },
+    { key: lazada,  cls: 'btn-p-lazada',  label: '🟠 <span>Lazada</span>' },
   ];
 
   const platformBtns = platforms
