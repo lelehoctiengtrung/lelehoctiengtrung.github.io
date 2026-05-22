@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bookshop – Lê Lê học tiếng Trung</title>
+  <meta name="description" content="Sách học tiếng Trung được Lê Lê chọn lọc & tài liệu miễn phí dành cho người học." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="shop.css" />
+</head>
+<body>
+
+  <div class="bg-scene" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="hanzi" style="--x:5%;--y:10%;--s:2rem;--d:0s;--dur:16s">书</div>
+    <div class="hanzi" style="--x:88%;--y:6%;--s:1.5rem;--d:-4s;--dur:20s">学</div>
+    <div class="hanzi" style="--x:3%;--y:55%;--s:1.2rem;--d:-8s;--dur:18s">读</div>
+    <div class="hanzi" style="--x:92%;--y:50%;--s:1.8rem;--d:-12s;--dur:14s">汉</div>
+    <div class="hanzi" style="--x:45%;--y:92%;--s:1.4rem;--d:-6s;--dur:22s">文</div>
+  </div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <div class="shop-container">
+
+    <!-- Header -->
+    <header class="shop-header">
+      <a href="index.html" class="back-btn" id="btn-back" aria-label="Quay lại trang chính">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        <span>Trang chính</span>
+      </a>
+
+      <div class="shop-brand">
+        <img src="logo.png" alt="Logo Lê Lê" class="shop-logo" width="40" height="40" />
+        <div>
+          <p class="shop-brand-name">Lê Lê học tiếng Trung</p>
+          <p class="shop-brand-sub" lang="zh">乐乐学中文 · Bookshop</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="shop-hero" aria-label="Giới thiệu bookshop">
+      <div class="hero-badge">📚 Được Lê Lê chọn lọc</div>
+      <h1 class="hero-title">Sách<br/><span>tiếng Trung</span></h1>
+      <p class="hero-sub">Những cuốn sách mình đã dùng và thực sự thấy hiệu quả — chia sẻ thật lòng, không quảng cáo suông 🌸</p>
+    </section>
+
+    <!-- ========================
+         SÁCH GỢI Ý (Affiliate)
+    ========================= -->
+    <section class="section" aria-labelledby="books-heading">
+      <div class="section-header">
+        <h2 id="books-heading" class="section-title">
+          <span class="section-icon">📖</span>
+          Sách Lê Lê gợi ý
+        </h2>
+        <p class="section-desc">Mua qua link của mình để ủng hộ kênh nhé 🙏</p>
+      </div>
+
+      <div class="books-grid">
+
+        <!-- Book 1 -->
+        <article class="book-card" id="book-giaotrinhhangu">
+          <div class="book-cover-wrap">
+            <img src="book1.png" alt="Bìa sách Giáo Trình Hán Ngữ" class="book-cover" loading="lazy" />
+            <div class="book-badge-wrap">
+              <span class="badge badge-hot">Bán chạy</span>
+            </div>
+          </div>
+          <div class="book-info">
+            <div class="book-stars" aria-label="5 sao">★★★★★</div>
+            <h3 class="book-title">Giáo Trình Hán Ngữ</h3>
+            <p class="book-subtitle" lang="zh">标准汉语 · Bài 1–30</p>
+            <p class="book-desc">Giáo trình chuẩn Trung Quốc, từ vựng có phiên âm pinyin đầy đủ, bài tập đa dạng. Lê Lê học từ cuốn này từ đầu! ✨</p>
+            <div class="book-tags">
+              <span class="tag">Người mới</span>
+              <span class="tag">HSK 1–3</span>
+              <span class="tag">Có pinyin</span>
+            </div>
+            <div class="book-footer">
+              <div class="book-price-group">
+                <span class="price-label">Tham khảo</span>
+                <span class="price">~89.000₫</span>
+              </div>
+              <a href="https://shope.ee/LINK_AFFILIATE_THAY_VAO_DAY" class="btn-buy" target="_blank" rel="noopener sponsored" id="buy-book1">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+                Mua ngay
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Book 2 -->
+        <article class="book-card" id="book-hsk3000">
+          <div class="book-cover-wrap">
+            <img src="book2.png" alt="Bìa sách 3000 Từ Vựng HSK" class="book-cover" loading="lazy" />
+            <div class="book-badge-wrap">
+              <span class="badge badge-new">Mới nhất</span>
+            </div>
+          </div>
+          <div class="book-info">
+            <div class="book-stars" aria-label="5 sao">★★★★★</div>
+            <h3 class="book-title">3000 Từ Vựng HSK</h3>
+            <p class="book-subtitle" lang="zh">HSK词汇 · 6 Cấp độ</p>
+            <p class="book-desc">Toàn bộ từ vựng HSK 1–6 theo chủ đề, có ví dụ câu, phiên âm và nghĩa tiếng Việt. Học thi HSK không thể thiếu! 💪</p>
+            <div class="book-tags">
+              <span class="tag">Luyện thi</span>
+              <span class="tag">HSK 1–6</span>
+              <span class="tag">Đầy đủ</span>
+            </div>
+            <div class="book-footer">
+              <div class="book-price-group">
+                <span class="price-label">Tham khảo</span>
+                <span class="price">~145.000₫</span>
+              </div>
+              <a href="https://shope.ee/LINK_AFFILIATE_THAY_VAO_DAY" class="btn-buy" target="_blank" rel="noopener sponsored" id="buy-book2">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+                Mua ngay
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Book 3 -->
+        <article class="book-card" id="book-hoidai">
+          <div class="book-cover-wrap">
+            <img src="book3.png" alt="Bìa sách Hội Thoại Tiếng Trung Thực Dụng" class="book-cover" loading="lazy" />
+          </div>
+          <div class="book-info">
+            <div class="book-stars" aria-label="4 sao">★★★★☆</div>
+            <h3 class="book-title">Hội Thoại Tiếng Trung Thực Dụng</h3>
+            <p class="book-subtitle" lang="zh">实用汉语会话</p>
+            <p class="book-desc">Các tình huống giao tiếp thực tế hàng ngày. Học xong là nói được ngay, rất phù hợp để luyện speaking! 🗣️</p>
+            <div class="book-tags">
+              <span class="tag">Giao tiếp</span>
+              <span class="tag">Thực dụng</span>
+              <span class="tag">Audio CD</span>
+            </div>
+            <div class="book-footer">
+              <div class="book-price-group">
+                <span class="price-label">Tham khảo</span>
+                <span class="price">~115.000₫</span>
+              </div>
+              <a href="https://shope.ee/LINK_AFFILIATE_THAY_VAO_DAY" class="btn-buy" target="_blank" rel="noopener sponsored" id="buy-book3">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+                Mua ngay
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="shop-footer">
+      <img src="logo.png" alt="Logo Lê Lê" class="footer-logo" width="36" height="36" />
+      <p>Lê Lê học tiếng Trung <span>♥</span></p>
+      <p class="footer-note">* Link sách là affiliate link — mình được hoa hồng nhỏ khi bạn mua, không ảnh hưởng giá nhé!</p>
+    </footer>
+
+  </div>
+
+  <!-- Share toast notification -->
+  <div class="toast" id="share-toast" role="alert" aria-live="polite">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toast-msg">Đã sao chép link!</span>
+  </div>
+
+  <script src="shop.js"></script>
+</body>
+</html>

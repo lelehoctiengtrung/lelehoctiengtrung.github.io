@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lê Lê học tiếng Trung 🌸</title>
+  <meta name="description" content="Lê Lê học tiếng Trung – Học tiếng Trung dễ dàng, vui vẻ mỗi ngày! Theo dõi TikTok, YouTube và Facebook của mình nhé." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Animated background -->
+  <div class="bg-scene" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <!-- Floating Chinese characters -->
+    <div class="hanzi" style="--x:8%;--y:12%;--s:1.8rem;--d:0s;--dur:14s">学</div>
+    <div class="hanzi" style="--x:85%;--y:8%;--s:1.3rem;--d:-3s;--dur:18s">中</div>
+    <div class="hanzi" style="--x:5%;--y:62%;--s:1.1rem;--d:-7s;--dur:20s">文</div>
+    <div class="hanzi" style="--x:90%;--y:55%;--s:1.6rem;--d:-11s;--dur:16s">汉</div>
+    <div class="hanzi" style="--x:50%;--y:88%;--s:1.4rem;--d:-5s;--dur:22s">字</div>
+    <div class="hanzi" style="--x:72%;--y:78%;--s:1.0rem;--d:-9s;--dur:17s">乐</div>
+    <div class="hanzi" style="--x:22%;--y:82%;--s:1.2rem;--d:-2s;--dur:19s">好</div>
+  </div>
+
+  <div class="noise" aria-hidden="true"></div>
+
+  <main class="container">
+
+    <!-- Profile -->
+    <section class="profile" aria-label="Thông tin cá nhân">
+      <div class="avatar-wrap">
+        <div class="avatar-clip">
+          <img
+            class="avatar"
+            src="logo.png"
+            alt="Logo Lê Lê học tiếng Trung"
+            width="108"
+            height="108"
+          />
+        </div>
+        <div class="avatar-ring" aria-hidden="true"></div>
+        <div class="avatar-sparkle s1" aria-hidden="true">✦</div>
+        <div class="avatar-sparkle s2" aria-hidden="true">✦</div>
+        <div class="avatar-sparkle s3" aria-hidden="true">✦</div>
+      </div>
+
+      <h1 class="name">Lê Lê học tiếng Trung</h1>
+      <p class="hanzi-name" lang="zh">乐乐学中文</p>
+      <p class="tagline">Học tiếng Trung dễ dàng · vui vẻ · mỗi ngày 🌸</p>
+
+      <!-- Social quick-links -->
+      <div class="socials" role="list" aria-label="Mạng xã hội">
+        <a href="https://www.tiktok.com/@lelehoctiengtrung" class="social-pill" role="listitem" target="_blank" rel="noopener" id="pill-tiktok" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.75a8.27 8.27 0 0 0 4.84 1.56V6.85a4.85 4.85 0 0 1-1.07-.16z"/></svg>
+          TikTok
+        </a>
+        <a href="https://www.youtube.com/channel/UCGQfqOTElLYJ1-1OEDQJ8Cw?sub_confirmation=1" class="social-pill" role="listitem" target="_blank" rel="noopener" id="pill-youtube" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.19a3 3 0 0 0-2.12-2.13C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.56A3 3 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3 3 0 0 0 2.12 2.13C4.5 20.5 12 20.5 12 20.5s7.5 0 9.38-.56a3 3 0 0 0 2.12-2.13C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+          YouTube
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61589815692883" class="social-pill" role="listitem" target="_blank" rel="noopener" id="pill-facebook" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+          Facebook
+        </a>
+      </div>
+    </section>
+
+    <!-- Link cards -->
+    <section class="links" aria-label="Danh sách liên kết">
+
+      <a href="https://www.tiktok.com/@lelehoctiengtrung" class="link-card featured" id="link-tiktok" target="_blank" rel="noopener">
+        <div class="link-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.75a8.27 8.27 0 0 0 4.84 1.56V6.85a4.85 4.85 0 0 1-1.07-.16z"/></svg>
+        </div>
+        <div class="link-content">
+          <span class="link-label">TikTok của Lele</span>
+          <span class="link-sub">Video học tiếng Trung mỗi ngày ✨</span>
+        </div>
+        <div class="link-badge" aria-label="Hot">🔥</div>
+        <div class="link-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="link-glow" aria-hidden="true"></div>
+      </a>
+
+      <a href="https://www.youtube.com/channel/UCGQfqOTElLYJ1-1OEDQJ8Cw?sub_confirmation=1" class="link-card" id="link-youtube" target="_blank" rel="noopener">
+        <div class="link-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3 3 0 0 0-2.12-2.13C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.56A3 3 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3 3 0 0 0 2.12 2.13C4.5 20.5 12 20.5 12 20.5s7.5 0 9.38-.56a3 3 0 0 0 2.12-2.13C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+        </div>
+        <div class="link-content">
+          <span class="link-label">Kênh YouTube</span>
+          <span class="link-sub">Bài học chi tiết, ngữ pháp, hội thoại</span>
+        </div>
+        <div class="link-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="link-glow" aria-hidden="true"></div>
+      </a>
+
+      <a href="https://www.facebook.com/profile.php?id=61589815692883" class="link-card" id="link-facebook" target="_blank" rel="noopener">
+        <div class="link-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+        </div>
+        <div class="link-content">
+          <span class="link-label">Facebook</span>
+          <span class="link-sub">Cộng đồng học tiếng Trung cùng Lele</span>
+        </div>
+        <div class="link-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="link-glow" aria-hidden="true"></div>
+      </a>
+
+      <a href="shop.html" class="link-card shop-card" id="link-bookshop">
+        <div class="link-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <div class="link-content">
+          <span class="link-label">📚 Bookstore</span>
+          <span class="link-sub">Sách tiếng Trung Lê Lê gợi ý</span>
+        </div>
+        <div class="link-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="link-glow" aria-hidden="true"></div>
+      </a>
+
+      <a href="docs.html" class="link-card docs-card" id="link-docs">
+        <div class="link-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div class="link-content">
+          <span class="link-label">🎁 Tài liệu chia sẻ</span>
+          <span class="link-sub">PDF miễn phí · Tải về ngay</span>
+        </div>
+        <div class="link-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="link-glow" aria-hidden="true"></div>
+      </a>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p class="footer-hanzi" lang="zh" aria-hidden="true">加油！</p>
+      <p>Cùng nhau học tiếng Trung mỗi ngày <span>♥</span></p>
+    </footer>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
