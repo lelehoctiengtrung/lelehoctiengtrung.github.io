@@ -168,7 +168,7 @@ async function loadBooks() {
     }
 
     const cards = data.table.rows.map(buildBookCard).filter(Boolean).join('');
-    grid.innerHTML = cards || '<p class="no-data">Chưa có sách nào. Sẽ cập nhật sớm! 🌸</p>';
+    grid.innerHTML = cards || grid.dataset.staticFallback || '<p class="no-data">Chưa có sách nào. Sẽ cập nhật sớm! 🌸</p>';
 
     attachInteractions();
   } catch (err) {
