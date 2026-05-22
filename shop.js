@@ -14,28 +14,83 @@ const C = {
   cover_url: 10, buy_shopee: 11, buy_fahasa: 12, buy_tiki: 13, buy_lazada: 14,
 };
 
+// ---- Fallback data for preview ----
+const FALLBACK_BOOKS = {
+  'SACH-001': {
+    sku: 'SACH-001',
+    title: 'Giáo Trình Hán Ngữ',
+    subtitle_zh: '标准汉语 · Bài 1–30',
+    desc: 'Giáo trình chuẩn Trung Quốc, từ vựng có phiên âm pinyin đầy đủ, bài tập đa dạng. Lê Lê học từ cuốn này từ đầu! ✨',
+    tags: 'Người mới, HSK 1–3, Có pinyin',
+    price: '89000',
+    badge: 'Bán chạy',
+    badge_type: 'hot',
+    stars: '5',
+    cover_url: 'book1.png',
+    buy_shopee: 'https://shope.ee/LINK_AFFILIATE_THAY_VAO_DAY',
+    buy_fahasa: 'https://www.fahasa.com/',
+    buy_tiki: 'https://tiki.vn/',
+    buy_lazada: 'https://www.lazada.vn/'
+  },
+  'SACH-002': {
+    sku: 'SACH-002',
+    title: '3000 Từ Vựng HSK',
+    subtitle_zh: 'HSK词汇 · 6 Cấp độ',
+    desc: 'Toàn bộ từ vựng HSK 1–6 theo chủ đề, có ví dụ câu, phiên âm và nghĩa tiếng Việt. Học thi HSK không thể thiếu! 💪',
+    tags: 'Luyện thi, HSK 1–6, Đầy đủ',
+    price: '145000',
+    badge: 'Mới nhất',
+    badge_type: 'new',
+    stars: '5',
+    cover_url: 'book2.png',
+    buy_shopee: 'https://shope.ee/LINK_AFFILIATE_THAY_VAO_DAY',
+    buy_fahasa: 'https://www.fahasa.com/',
+    buy_tiki: 'https://tiki.vn/',
+    buy_lazada: 'https://www.lazada.vn/'
+  },
+  'SACH-003': {
+    sku: 'SACH-003',
+    title: 'Hội Thoại Tiếng Trung Thực Dụng',
+    subtitle_zh: '实用汉语会话',
+    desc: 'Các tình huống giao tiếp thực tế hàng ngày. Học xong là nói được ngay, rất phù hợp để luyện speaking! 🗣️',
+    tags: 'Giao tiếp, Thực dụng, Audio CD',
+    price: '115000',
+    badge: '',
+    badge_type: '',
+    stars: '4',
+    cover_url: 'book3.png',
+    buy_shopee: 'https://shope.ee/LINK_AFFILIATE_THAY_VAO_DAY',
+    buy_fahasa: 'https://www.fahasa.com/',
+    buy_tiki: 'https://tiki.vn/',
+    buy_lazada: 'https://www.lazada.vn/'
+  }
+};
+
 // ---- Helpers ----
-function colVal(row, i) {
+function colVal(row, i, fallbackVal = '') {
   const c = row.c[i];
-  return c && c.v !== null && c.v !== undefined ? String(c.v).trim() : '';
+  const val = c && c.v !== null && c.v !== undefined ? String(c.v).trim() : '';
+  return val || fallbackVal;
 }
 
 // ---- Build card ----
 function buildBookCard(row) {
-  const sku        = colVal(row, C.sku);
-  const title      = colVal(row, C.title);
-  const subtitleZh = colVal(row, C.subtitle_zh);
-  const desc       = colVal(row, C.desc);
-  const tags       = colVal(row, C.tags).split(',').map(t => t.trim()).filter(Boolean);
-  const price      = colVal(row, C.price);
-  const badge      = colVal(row, C.badge);
-  const badgeType  = colVal(row, C.badge_type) || 'hot';
-  const stars      = parseInt(colVal(row, C.stars)) || 5;
-  const coverUrl   = colVal(row, C.cover_url);
-  const shopee     = colVal(row, C.buy_shopee);
-  const fahasa     = colVal(row, C.buy_fahasa);
-  const tiki       = colVal(row, C.buy_tiki);
-  const lazada     = colVal(row, C.buy_lazada);
+  const sku = colVal(row, C.sku);
+  const fallback = FALLBACK_BOOKS[sku];
+
+  const title      = colVal(row, C.title, fallback?.title);
+  const subtitleZh = colVal(row, C.subtitle_zh, fallback?.subtitle_zh);
+  const desc       = colVal(row, C.desc, fallback?.desc);
+  const tags       = colVal(row, C.tags, fallback?.tags).split(',').map(t => t.trim()).filter(Boolean);
+  const price      = colVal(row, C.price, fallback?.price);
+  const badge      = colVal(row, C.badge, fallback?.badge);
+  const badgeType  = colVal(row, C.badge_type, fallback?.badge_type) || 'hot';
+  const stars      = parseInt(colVal(row, C.stars, fallback?.stars)) || 5;
+  const coverUrl   = colVal(row, C.cover_url, fallback?.cover_url);
+  const shopee     = colVal(row, C.buy_shopee, fallback?.buy_shopee);
+  const fahasa     = colVal(row, C.buy_fahasa, fallback?.buy_fahasa);
+  const tiki       = colVal(row, C.buy_tiki, fallback?.buy_tiki);
+  const lazada     = colVal(row, C.buy_lazada, fallback?.buy_lazada);
 
   if (!title) return '';
 

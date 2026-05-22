@@ -34,6 +34,76 @@ const COL = {
   sku_folder_url: 21,
 };
 
+// ---- Fallback data for preview ----
+const FALLBACK_BOOKS = {
+  'SACH-001': {
+    sku: 'SACH-001',
+    title: 'Giáo Trình Hán Ngữ',
+    subtitle_zh: '标准汉语 · Bài 1–30',
+    desc: 'Giáo trình chuẩn Trung Quốc, từ vựng có phiên âm pinyin đầy đủ, bài tập đa dạng. Lê Lê học từ cuốn này từ đầu! ✨',
+    tags: 'Người mới, HSK 1–3, Có pinyin',
+    price: '89000',
+    badge: 'Bán chạy',
+    badge_type: 'hot',
+    stars: '5',
+    cover_url: '../book1.png',
+    buy_shopee: 'https://shope.ee/LINK_AFFILIATE_THAY_VAO_DAY',
+    buy_fahasa: 'https://www.fahasa.com/',
+    buy_tiki: 'https://tiki.vn/',
+    buy_lazada: 'https://www.lazada.vn/',
+    review: 'Giáo trình Hán ngữ là bộ sách kinh điển mà hầu như bất kỳ ai bắt đầu học tiếng Trung cũng đều biết tới. Bản thân Lê Lê khi mới chập chững tự học cũng đã cày nát bộ này.\n\nĐiểm mình thích nhất ở bộ sách này là phần giải thích ngữ pháp rất dễ hiểu bằng tiếng Việt, hệ thống từ vựng đi từ dễ đến khó và có phiên âm Pinyin cực kỳ chuẩn xác. Cuốn sách giúp bạn xây dựng nền tảng phát âm và từ vựng cực kỳ vững chắc ngay từ những bài đầu tiên.\n\nTuy nhiên, sách cũng có điểm trừ nhỏ là phần hình ảnh minh họa không được bắt mắt lắm, chủ yếu là chữ. Để học tốt nhất, các bạn nên kết hợp nghe file âm thanh (audio) đi kèm để luyện phát âm chuẩn nhé!',
+    pros: 'Ngữ pháp giải thích siêu chi tiết | Hệ thống bài tập phong phú | Phù hợp tự học tại nhà',
+    cons: 'Hình ảnh minh họa hơi đơn giản | Không kèm CD vật lý (phải quét mã tải app)',
+    who_for: 'Phù hợp cho các bạn tự học từ con số 0, hoặc chuẩn bị thi HSK 1-3.',
+    review_images: '../book1.png',
+    sku_folder_url: 'https://drive.google.com/drive/folders/1gP-4vafPZiuHXAz6Zup0vboUK9D1llfC'
+  },
+  'SACH-002': {
+    sku: 'SACH-002',
+    title: '3000 Từ Vựng HSK',
+    subtitle_zh: 'HSK词汇 · 6 Cấp độ',
+    desc: 'Toàn bộ từ vựng HSK 1–6 theo chủ đề, có ví dụ câu, phiên âm và nghĩa tiếng Việt. Học thi HSK không thể thiếu! 💪',
+    tags: 'Luyện thi, HSK 1–6, Đầy đủ',
+    price: '145000',
+    badge: 'Mới nhất',
+    badge_type: 'new',
+    stars: '5',
+    cover_url: '../book2.png',
+    buy_shopee: 'https://shope.ee/LINK_AFFILIATE_THAY_VAO_DAY',
+    buy_fahasa: 'https://www.fahasa.com/',
+    buy_tiki: 'https://tiki.vn/',
+    buy_lazada: 'https://www.lazada.vn/',
+    review: 'Nếu mục tiêu của bạn là chinh phục kỳ thi HSK từ cấp 1 đến cấp 6 thì cuốn 3000 Từ Vựng HSK này chính là trợ thủ đắc lực không thể thiếu. Cuốn sách hệ thống hóa từ vựng một cách khoa học theo từng cấp độ.\n\nMỗi từ vựng đều đi kèm phiên âm, dịch nghĩa chi tiết và đặc biệt là có ví dụ minh họa thực tế. Việc học từ vựng qua câu ví dụ giúp Lê Lê nhớ lâu hơn gấp 3 lần so với việc học vẹt từ đơn lẻ.\n\nLưu ý là lượng kiến thức trong sách rất lớn, các bạn nên chia nhỏ mục tiêu học mỗi ngày khoảng 10-15 từ, kết hợp làm Flashcard để ôn tập nhé!',
+    pros: 'Đầy đủ từ vựng HSK 1-6 | Có câu ví dụ thực tế cho mỗi từ | Trình bày rõ ràng, dễ tra cứu',
+    cons: 'Sách khá dày và nặng | Không có hình minh họa sinh động',
+    who_for: 'Dành cho các bạn đang ôn luyện thi HSK từ cấp 1 đến cấp 6.',
+    review_images: '../book2.png',
+    sku_folder_url: 'https://drive.google.com/drive/folders/1gP-4vafPZiuHXAz6Zup0vboUK9D1llfC'
+  },
+  'SACH-003': {
+    sku: 'SACH-003',
+    title: 'Hội Thoại Tiếng Trung Thực Dụng',
+    subtitle_zh: '实用汉语会话',
+    desc: 'Các tình huống giao tiếp thực tế hàng ngày. Học xong là nói được ngay, rất phù hợp để luyện speaking! 🗣️',
+    tags: 'Giao tiếp, Thực dụng, Audio CD',
+    price: '115000',
+    badge: '',
+    badge_type: '',
+    stars: '4',
+    cover_url: '../book3.png',
+    buy_shopee: 'https://shope.ee/LINK_AFFILIATE_THAY_VAO_DAY',
+    buy_fahasa: 'https://www.fahasa.com/',
+    buy_tiki: 'https://tiki.vn/',
+    buy_lazada: 'https://www.lazada.vn/',
+    review: 'Học tiếng Trung mà không nói được thì thật là đáng tiếc đúng không nào? Cuốn Hội Thoại Tiếng Trung Thực Dụng tập trung hoàn toàn vào việc giúp bạn giao tiếp tự nhiên trong cuộc sống hàng ngày.\n\nSách gồm nhiều chủ đề gần gũi như mua sắm, hỏi đường, đặt bàn ăn, đi du lịch... Lê Lê cực kỳ thích phần hội thoại mẫu vì ngôn từ rất hiện đại, giống hệt cách người bản xứ nói chuyện ngoài đời thường, không bị cứng nhắc như sách giáo khoa.\n\nCác bạn nên luyện tập bằng cách nói to theo file nghe mẫu để cải thiện ngữ điệu và phản xạ giao tiếp nhé!',
+    pros: 'Chủ đề giao tiếp cực kỳ thực tế | Ngôn từ tự nhiên, hiện đại | Kèm file nghe giọng đọc chuẩn',
+    cons: 'Hơi ít bài tập ngữ pháp chuyên sâu',
+    who_for: 'Phù hợp cho các bạn muốn cải thiện kỹ năng giao tiếp phản xạ, nói tiếng Trung tự nhiên.',
+    review_images: '../book3.png',
+    sku_folder_url: 'https://drive.google.com/drive/folders/1gP-4vafPZiuHXAz6Zup0vboUK9D1llfC'
+  }
+};
+
 // ── INIT ──────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   const sku = new URLSearchParams(window.location.search).get('sku');
@@ -47,7 +117,14 @@ function loadBook(sku) {
   const script = document.createElement('script');
   script.src = url + '&callback=onSheetData';
   window.onSheetData = (data) => parseAndRender(data, sku);
-  script.onerror = showError;
+  script.onerror = () => {
+    const fallback = FALLBACK_BOOKS[sku];
+    if (fallback) {
+      renderReview(fallback);
+    } else {
+      showError();
+    }
+  };
   document.head.appendChild(script);
 }
 
@@ -59,35 +136,46 @@ function parseAndRender(data, targetSku) {
       const cell = r.c[COL.sku];
       return cell && String(cell.v).trim() === targetSku.trim();
     });
-    if (!row) { showError(); return; }
 
-    const get = (col) => {
+    const fallback = FALLBACK_BOOKS[targetSku];
+
+    if (!row) {
+      if (fallback) {
+        renderReview(fallback);
+      } else {
+        showError();
+      }
+      return;
+    }
+
+    const get = (col, fallbackVal = '') => {
       const cell = row.c[col];
-      return (cell && cell.v != null) ? String(cell.v).trim() : '';
+      const val = (cell && cell.v != null) ? String(cell.v).trim() : '';
+      return val || fallbackVal;
     };
 
     renderReview({
-      sku:            get(COL.sku),
-      title:          get(COL.title),
-      subtitle_zh:    get(COL.subtitle_zh),
-      desc:           get(COL.desc),
-      tags:           get(COL.tags),
-      price:          get(COL.price),
-      badge:          get(COL.badge),
-      badge_type:     get(COL.badge_type),
-      stars:          get(COL.stars),
-      cover_url:      get(COL.cover_url),
-      buy_shopee:     get(COL.buy_shopee),
-      buy_fahasa:     get(COL.buy_fahasa),
-      buy_tiki:       get(COL.buy_tiki),
-      buy_lazada:     get(COL.buy_lazada),
-      review:         get(COL.review),
-      pros:           get(COL.pros),
-      cons:           get(COL.cons),
-      who_for:        get(COL.who_for),
-      shop_images:    get(COL.shop_images),
-      review_images:  get(COL.review_images),
-      sku_folder_url: get(COL.sku_folder_url),
+      sku:            get(COL.sku, fallback?.sku),
+      title:          get(COL.title, fallback?.title),
+      subtitle_zh:    get(COL.subtitle_zh, fallback?.subtitle_zh),
+      desc:           get(COL.desc, fallback?.desc),
+      tags:           get(COL.tags, fallback?.tags),
+      price:          get(COL.price, fallback?.price),
+      badge:          get(COL.badge, fallback?.badge),
+      badge_type:     get(COL.badge_type, fallback?.badge_type),
+      stars:          get(COL.stars, fallback?.stars),
+      cover_url:      get(COL.cover_url, fallback?.cover_url),
+      buy_shopee:     get(COL.buy_shopee, fallback?.buy_shopee),
+      buy_fahasa:     get(COL.buy_fahasa, fallback?.buy_fahasa),
+      buy_tiki:       get(COL.buy_tiki, fallback?.buy_tiki),
+      buy_lazada:     get(COL.buy_lazada, fallback?.buy_lazada),
+      review:         get(COL.review, fallback?.review),
+      pros:           get(COL.pros, fallback?.pros),
+      cons:           get(COL.cons, fallback?.cons),
+      who_for:        get(COL.who_for, fallback?.who_for),
+      shop_images:    get(COL.shop_images, fallback?.shop_images),
+      review_images:  get(COL.review_images, fallback?.review_images),
+      sku_folder_url: get(COL.sku_folder_url, fallback?.sku_folder_url),
     });
   } catch (e) {
     console.error('Parse error:', e);
