@@ -63,6 +63,38 @@ const FALLBACK_BOOKS = {
     buy_fahasa: 'https://www.fahasa.com/',
     buy_tiki: 'https://tiki.vn/',
     buy_lazada: 'https://www.lazada.vn/'
+  },
+  'SACH-004': {
+    sku: 'SACH-004',
+    title: 'Tập Viết Chữ Hán Căn Bản',
+    subtitle_zh: '汉字描红 · Quy tắc bút thuận',
+    desc: 'Sách tập viết chữ Hán có hướng dẫn thứ tự nét vẽ chi tiết, đi kèm ô ly Mễ tự tiêu chuẩn giúp bạn luyện viết chữ Hán đẹp và chuẩn xác.',
+    tags: 'Luyện viết, Chữ Hán, Tập viết',
+    price: '65000',
+    badge: 'Hot',
+    badge_type: 'hot',
+    stars: '5',
+    cover_url: 'book4.png',
+    buy_shopee: 'https://shope.ee/LINK_AFFILIATE_THAY_VAO_DAY',
+    buy_fahasa: 'https://www.fahasa.com/',
+    buy_tiki: 'https://tiki.vn/',
+    buy_lazada: 'https://www.lazada.vn/'
+  },
+  'SACH-005': {
+    sku: 'SACH-005',
+    title: 'Ngữ Pháp Tiếng Trung Dễ Hiểu',
+    subtitle_zh: '汉语语法 · Tư duy sơ đồ',
+    desc: 'Tổng hợp toàn bộ ngữ pháp tiếng Trung từ cơ bản đến nâng cao bằng sơ đồ tư duy trực quan, dễ nhớ, dễ áp dụng.',
+    tags: 'Ngữ pháp, Sơ đồ tư duy, Dễ hiểu',
+    price: '135000',
+    badge: 'Khuyên dùng',
+    badge_type: 'new',
+    stars: '5',
+    cover_url: 'book5.png',
+    buy_shopee: 'https://shope.ee/LINK_AFFILIATE_THAY_VAO_DAY',
+    buy_fahasa: 'https://www.fahasa.com/',
+    buy_tiki: 'https://tiki.vn/',
+    buy_lazada: 'https://www.lazada.vn/'
   }
 };
 
