@@ -106,8 +106,11 @@ const FALLBACK_BOOKS = {
 
 // ── INIT ──────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  const sku = new URLSearchParams(window.location.search).get('sku');
-  if (!sku) { showError(); return; }
+  let sku = new URLSearchParams(window.location.search).get('sku');
+  if (!sku) {
+    // Default to SACH-001 so the page can be previewed directly
+    sku = 'SACH-001';
+  }
   loadBook(sku);
 });
 
