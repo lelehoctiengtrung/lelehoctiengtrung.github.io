@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lê Lê Bookstore Dashboard</title>
+    <!-- Google Fonts: Inter for UI & Playfair Display for accents -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="bg-scene">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <div id="app">
+      <!-- Header Navigation -->
+      <header class="app-header">
+        <div class="brand">
+          <div class="logo-circle">LÊ</div>
+          <div class="brand-text">
+            <span class="brand-title">Lê Lê Bookstore</span>
+            <span class="brand-subtitle">Hệ thống quản lý dữ liệu AI</span>
+          </div>
+        </div>
+        
+        <nav class="main-nav">
+          <button class="nav-tab active" data-tab="dashboard">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+            Bảng điều khiển
+          </button>
+          <button class="nav-tab" data-tab="config">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.1a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+            Cấu hình hệ thống
+          </button>
+        </nav>
+      </header>
+
+      <!-- Main Layout -->
+      <main class="app-body">
+        
+        <!-- ================= PANEL 1: CONFIG ================= -->
+        <section id="panel-config" class="panel hidden">
+          <div class="card-glass center-box">
+            <h2 class="section-title">Cài đặt kết nối API</h2>
+            <p class="section-desc">Cấu hình URL của Google Apps Script Web App và ID thư mục Drive để đồng bộ hoá dữ liệu sản phẩm.</p>
+            
+            <form id="form-config" class="classic-form">
+              <div class="form-group">
+                <label for="cfg-web-app-url">Google Apps Script Web App URL</label>
+                <input type="url" id="cfg-web-app-url" placeholder="https://script.google.com/macros/s/.../exec" required />
+                <span class="field-tip">Web App của bạn phải được triển khai ở chế độ "Anyone" truy cập.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="cfg-sheet-id">Google Sheets ID (Tuỳ chọn)</label>
+                <input type="text" id="cfg-sheet-id" placeholder="1n62ZrrUJlnf8CDU2gSxW3jPCxdkwE1GFpBBDJQLEg0o" />
+                <span class="field-tip">ID của bảng tính. Nếu để trống, script sẽ tự động dùng Active Spreadsheet.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="cfg-root-folder-id">Drive Root Folder ID</label>
+                <input type="text" id="cfg-root-folder-id" placeholder="1gP-4vafPZiuHXAz6Zup0vboUK9D1llfC" required />
+                <span class="field-tip">Thư mục gốc trên Google Drive dùng để tải ảnh lên và lưu trữ theo SKU.</span>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Lưu cấu hình</button>
+                <button type="button" id="btn-test-connection" class="btn btn-secondary">Kiểm tra kết nối</button>
+              </div>
+            </form>
+
+            <div id="config-status-box" class="status-box hidden">
+              <span class="status-indicator"></span>
+              <span class="status-text">Đang kiểm tra kết nối...</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= PANEL 2: DASHBOARD ================= -->
+        <section id="panel-dashboard" class="panel">
+          <div class="dashboard-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar-card">
+              <ul class="sidebar-menu">
+                <li>
+                  <button class="side-tab active" data-subtab="books">
+                    <span class="tab-icon">📖</span>
+                    <span class="tab-label">Sách & Cửa hàng</span>
+                  </button>
+                </li>
+                <li>
+                  <button class="side-tab" data-subtab="reviews">
+                    <span class="tab-icon">✍️</span>
+                    <span class="tab-label">Bài viết Review (AI)</span>
+                  </button>
+                </li>
+                <li>
+                  <button class="side-tab" data-subtab="documents">
+                    <span class="tab-icon">📄</span>
+                    <span class="tab-label">Tài liệu chia sẻ</span>
+                  </button>
+                </li>
+                <li>
+                  <button class="side-tab" data-subtab="images">
+                    <span class="tab-icon">🖼️</span>
+                    <span class="tab-label">Canvas Image Editor</span>
+                  </button>
+                </li>
+              </ul>
+
+              <div class="sidebar-footer">
+                <button id="btn-sync-now" class="btn btn-outline btn-block">
+                  <svg class="icon-spin hidden" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                  Đồng bộ dữ liệu
+                </button>
+                <div class="sync-time">Lần cuối: <span id="lbl-last-sync">Chưa đồng bộ</span></div>
+              </div>
+            </aside>
+
+            <!-- Dashboard Content Area -->
+            <div class="workspace-area">
+              
+              <!-- ──────────────── TAB: BOOKS ──────────────── -->
+              <div id="subtab-books" class="subtab-content">
+                <div class="workspace-grid">
+                  <!-- List View -->
+                  <div class="list-section card-glass">
+                    <div class="section-header">
+                      <h3>Danh sách Sách</h3>
+                      <button class="btn btn-sm btn-outline" id="btn-new-book">+ Thêm mới</button>
+                    </div>
+                    <div class="search-bar">
+                      <input type="text" id="search-books" placeholder="Tìm theo tên, SKU..." />
+                    </div>
+                    <div class="list-container scrolling-container">
+                      <ul id="list-books" class="item-list">
+                        <!-- Placed dynamically -->
+                        <li class="loading-item">Đang tải danh sách sách...</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <!-- Editor Form -->
+                  <div class="form-section card-glass">
+                    <h3 class="editor-title">Chi tiết Sách</h3>
+                    <form id="form-book-editor" class="classic-form">
+                      <div class="grid-2-cols">
+                        <div class="form-group">
+                          <label for="bk-sku">SKU Sách *</label>
+                          <input type="text" id="bk-sku" required placeholder="Ví dụ: SACH-01" />
+                        </div>
+                        <div class="form-group">
+                          <label for="bk-price">Giá tiền (VND) *</label>
+                          <input type="number" id="bk-price" required placeholder="99000" />
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="bk-title">Tên sách *</label>
+                        <input type="text" id="bk-title" required placeholder="Tên sách tiếng Việt" />
+                      </div>
+
+                      <div class="form-group">
+                        <label for="bk-subtitle_zh">Tên gốc tiếng Trung (Subtitle)</label>
+                        <input type="text" id="bk-subtitle_zh" placeholder="Tiếng Trung giản thể/phồn thể" />
+                      </div>
+
+                      <div class="form-group">
+                        <label for="bk-desc">Mô tả ngắn gọn</label>
+                        <textarea id="bk-desc" rows="2" placeholder="Tóm tắt ngắn gọn hiển thị ngoài trang chủ"></textarea>
+                      </div>
+
+                      <div class="grid-2-cols">
+                        <div class="form-group">
+                          <label for="bk-tags">Thẻ phân loại (Tags)</label>
+                          <input type="text" id="bk-tags" placeholder="Từ vựng, Ngữ pháp, HSK (cách nhau bằng dấu phẩy)" />
+                        </div>
+                        <div class="form-group">
+                          <label for="bk-stars">Đánh giá (Sao: 1 - 5)</label>
+                          <input type="number" id="bk-stars" min="1" max="5" value="5" />
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="bk-affiliate_url">Link mua hàng Shopee / Affiliate</label>
+                        <input type="url" id="bk-affiliate_url" placeholder="https://shopee.vn/..." />
+                      </div>
+
+                      <div class="form-group">
+                        <label for="bk-cover_url">URL Ảnh bìa (Cover URL)</label>
+                        <input type="text" id="bk-cover_url" placeholder="Tải lên ở tab hình ảnh để tự điền..." />
+                      </div>
+
+                      <div class="form-group">
+                        <label for="bk-shop_images">Ảnh slide Cửa hàng (Shop Images - cách nhau bằng dấu phẩy)</label>
+                        <textarea id="bk-shop_images" rows="2" placeholder="https://..."></textarea>
+                      </div>
+
+                      <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Lưu sách</button>
+                        <button type="button" id="btn-delete-book" class="btn btn-danger hidden">Xoá</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ──────────────── TAB: REVIEWS ──────────────── -->
+              <div id="subtab-reviews" class="subtab-content hidden">
+                <div class="workspace-grid">
+                  <!-- List View -->
+                  <div class="list-section card-glass">
+                    <div class="section-header">
+                      <h3>Danh sách sách viết Review</h3>
+                    </div>
+                    <div class="search-bar">
+                      <input type="text" id="search-reviews" placeholder="Tìm kiếm sách..." />
+                    </div>
+                    <div class="list-container scrolling-container">
+                      <ul id="list-reviews" class="item-list">
+                        <!-- Placed dynamically -->
+                        <li class="loading-item">Đang tải sách cần viết review...</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <!-- Editor Form -->
+                  <div class="form-section card-glass">
+                    <div class="editor-header">
+                      <h3 class="editor-title">Nội dung Review AI</h3>
+                      <button type="button" id="btn-ai-write-review" class="btn btn-sm btn-gold">
+                        <span class="ai-stars">✨</span> Viết bằng AI
+                      </button>
+                    </div>
+                    
+                    <form id="form-review-editor" class="classic-form">
+                      <input type="hidden" id="rv-sku" />
+                      
+                      <div class="form-group">
+                        <label for="rv-title-display">Sách đang chỉnh sửa</label>
+                        <input type="text" id="rv-title-display" readonly class="readonly-input" />
+                      </div>
+
+                      <div class="form-group">
+                        <label for="rv-content">Bài viết chi tiết (Review Content)</label>
+                        <textarea id="rv-content" rows="10" placeholder="Nội dung viết chi tiết bằng giọng văn Lê Lê. Dùng **in đậm** cho các từ khoá. Xuống dòng bằng \n\n."></textarea>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="rv-pros">Điểm mạnh / Điểm cộng (Phân cách bằng dấu |)</label>
+                        <input type="text" id="rv-pros" placeholder="VD: Sách in màu đẹp | Bài tập phong phú | Kèm file nghe chuẩn" />
+                      </div>
+
+                      <div class="form-group">
+                        <label for="rv-cons">Điểm yếu / Lưu ý học (Phân cách bằng dấu |)</label>
+                        <input type="text" id="rv-cons" placeholder="VD: Khá nhiều chữ Hán | Giá hơi cao" />
+                      </div>
+
+                      <div class="form-group">
+                        <label for="rv-who_for">Ai nên học cuốn này? (Who is this for)</label>
+                        <input type="text" id="rv-who_for" placeholder="VD: Phù hợp với các bạn tự ôn thi HSK 3-4 tại nhà" />
+                      </div>
+
+                      <div class="form-group">
+                        <label for="rv-review_images">Ảnh minh hoạ bài viết (Review Images - cách nhau bằng dấu phẩy)</label>
+                        <textarea id="rv-review_images" rows="2" placeholder="Tải lên ở tab hình ảnh để tự điền..."></textarea>
+                      </div>
+
+                      <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Lưu bài review</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ──────────────── TAB: DOCUMENTS ──────────────── -->
+              <div id="subtab-documents" class="subtab-content hidden">
+                <div class="workspace-grid">
+                  <!-- List View -->
+                  <div class="list-section card-glass">
+                    <div class="section-header">
+                      <h3>Tài liệu chia sẻ</h3>
+                      <button class="btn btn-sm btn-outline" id="btn-new-doc">+ Thêm mới</button>
+                    </div>
+                    <div class="search-bar">
+                      <input type="text" id="search-docs" placeholder="Tìm theo tên, ID..." />
+                    </div>
+                    <div class="list-container scrolling-container">
+                      <ul id="list-docs" class="item-list">
+                        <!-- Placed dynamically -->
+                        <li class="loading-item">Đang tải danh sách tài liệu...</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <!-- Editor Form -->
+                  <div class="form-section card-glass">
+                    <div class="editor-header">
+                      <h3 class="editor-title">Chi tiết tài liệu & Bài viết AI</h3>
+                      <button type="button" id="btn-ai-write-doc" class="btn btn-sm btn-green">
+                        <span class="ai-stars">✨</span> Tạo bài AI
+                      </button>
+                    </div>
+
+                    <form id="form-doc-editor" class="classic-form">
+                      <div class="grid-2-cols">
+                        <div class="form-group">
+                          <label for="dc-id">ID Tài liệu *</label>
+                          <input type="text" id="dc-id" required placeholder="Ví dụ: DOC-500" />
+                        </div>
+                        <div class="form-group">
+                          <label for="dc-category">Danh mục (Category) *</label>
+                          <select id="dc-category" required>
+                            <option value="vocab">Từ vựng (vocab)</option>
+                            <option value="grammar">Ngữ pháp (grammar)</option>
+                            <option value="hsk">Luyện thi HSK (hsk)</option>
+                            <option value="writing">Luyện viết nét (writing)</option>
+                            <option value="other">Tài liệu khác (other)</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="dc-title">Tên tài liệu *</label>
+                        <input type="text" id="dc-title" required placeholder="Tên file hoặc tài liệu" />
+                      </div>
+
+                      <div class="form-group">
+                        <label for="dc-desc">Mô tả ngắn</label>
+                        <textarea id="dc-desc" rows="2" placeholder="Hiển thị nhanh ngoài trang danh sách"></textarea>
+                      </div>
+
+                      <div class="grid-3-cols">
+                        <div class="form-group">
+                          <label for="dc-pages">Định dạng & số trang</label>
+                          <input type="text" id="dc-pages" placeholder="PDF · 12 trang" />
+                        </div>
+                        <div class="form-group">
+                          <label for="dc-level">Độ khó (Level: 1 - 5)</label>
+                          <input type="number" id="dc-level" min="1" max="5" value="2" />
+                        </div>
+                        <div class="form-group">
+                          <label for="dc-level_text">Mô tả độ khó</label>
+                          <input type="text" id="dc-level_text" placeholder="Cơ bản · HSK 1-2" />
+                        </div>
+                      </div>
+
+                      <div class="grid-2-cols">
+                        <div class="form-group">
+                          <label for="dc-icon">Emoji biểu tượng</label>
+                          <input type="text" id="dc-icon" placeholder="📝" />
+                        </div>
+                        <div class="form-group">
+                          <label for="dc-icon_color">Màu biểu tượng (Mã Hex)</label>
+                          <input type="color" id="dc-icon_color" value="#4ecba0" />
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="dc-drive_url">Đường link download (Google Drive)</label>
+                        <input type="url" id="dc-drive_url" placeholder="https://drive.google.com/..." />
+                      </div>
+
+                      <hr class="form-divider" />
+                      <h4 class="form-section-subtitle">Nội dung bài viết chi tiết (AI generated)</h4>
+
+                      <div class="form-group">
+                        <label for="dc-content">Nội dung bài giới thiệu (HTML/Markdown)</label>
+                        <textarea id="dc-content" rows="6" placeholder="Giới thiệu tài liệu..."></textarea>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="dc-pros">Điểm cộng / Lợi ích tài liệu (Phân cách bằng dấu |)</label>
+                        <input type="text" id="dc-pros" placeholder="VD: Giao diện dễ in ấn | Pinyin cực kỳ chuẩn" />
+                      </div>
+
+                      <div class="form-group">
+                        <label for="dc-cons">Hướng dẫn / Lưu ý tự học (Phân cách bằng dấu |)</label>
+                        <input type="text" id="dc-cons" placeholder="VD: Hãy in ra giấy để luyện | Kết hợp nghe audio" />
+                      </div>
+
+                      <div class="form-group">
+                        <label for="dc-who_for">Đối tượng phù hợp nhất</label>
+                        <input type="text" id="dc-who_for" placeholder="VD: Dành cho người mới học Hán tự" />
+                      </div>
+
+                      <div class="form-group">
+                        <label for="dc-preview_images">Ảnh xem trước (Preview Images - cách nhau bằng dấu phẩy)</label>
+                        <textarea id="dc-preview_images" rows="2" placeholder="Tải lên ở tab hình ảnh để tự điền..."></textarea>
+                      </div>
+
+                      <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Lưu tài liệu</button>
+                        <button type="button" id="btn-delete-doc" class="btn btn-danger hidden">Xoá</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ──────────────── TAB: IMAGES ──────────────── -->
+              <div id="subtab-images" class="subtab-content hidden">
+                <div class="image-editor-workspace">
+                  
+                  <!-- Left side: canvas and dropzone -->
+                  <div class="editor-main-card card-glass">
+                    <div class="drag-drop-zone" id="drop-zone">
+                      <div class="drop-zone-content">
+                        <span class="drop-icon">📤</span>
+                        <p class="drop-text">Kéo thả ảnh hoặc click để chọn tệp</p>
+                        <span class="drop-hint">Hỗ trợ PNG, JPG (Khuyên dùng tỉ lệ 2:3 cho bìa sách)</span>
+                      </div>
+                      <input type="file" id="file-input" accept="image/*" class="hidden" />
+                    </div>
+
+                    <div class="canvas-container hidden" id="canvas-container">
+                      <canvas id="editor-canvas"></canvas>
+                      <!-- Crop box overlay overlaying the canvas -->
+                      <div class="crop-overlay-box hidden" id="crop-box">
+                        <div class="crop-handle handle-nw"></div>
+                        <div class="crop-handle handle-ne"></div>
+                        <div class="crop-handle handle-sw"></div>
+                        <div class="crop-handle handle-se"></div>
+                        <div class="crop-grid-line line-h1"></div>
+                        <div class="crop-grid-line line-h2"></div>
+                        <div class="crop-grid-line line-v1"></div>
+                        <div class="crop-grid-line line-v2"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Right side: controls and upload metadata -->
+                  <div class="editor-sidebar-card card-glass">
+                    <h3 class="editor-title">Bộ lọc & Công cụ</h3>
+                    
+                    <div class="tool-section">
+                      <span class="tool-section-title">Cắt ảnh & Khung hình</span>
+                      <div class="aspect-ratio-controls">
+                        <label class="checkbox-container">
+                          <input type="checkbox" id="chk-aspect-lock" checked />
+                          <span class="checkmark"></span>
+                          Khóa tỉ lệ bìa sách (2:3)
+                        </label>
+                        <button class="btn btn-sm btn-outline btn-block" id="btn-reset-crop">Reset Khung Cắt</button>
+                      </div>
+                    </div>
+
+                    <div class="tool-section">
+                      <span class="tool-section-title">Thao tác nhanh</span>
+                      <div class="quick-actions-grid">
+                        <button class="btn btn-sm btn-outline" id="btn-rotate-90">Xoay 90°</button>
+                        <button class="btn btn-sm btn-outline" id="btn-flip-h">Lật ngang</button>
+                      </div>
+                    </div>
+
+                    <div class="tool-section">
+                      <span class="tool-section-title">Bộ lọc màu & Ánh sáng</span>
+                      <div class="sliders-list">
+                        <div class="slider-group">
+                          <div class="slider-label">
+                            <span>Độ sáng</span>
+                            <span id="val-brightness">100%</span>
+                          </div>
+                          <input type="range" id="sld-brightness" min="50" max="150" value="100" />
+                        </div>
+                        
+                        <div class="slider-group">
+                          <div class="slider-label">
+                            <span>Độ tương phản</span>
+                            <span id="val-contrast">100%</span>
+                          </div>
+                          <input type="range" id="sld-contrast" min="50" max="150" value="100" />
+                        </div>
+
+                        <div class="slider-group">
+                          <div class="slider-label">
+                            <span>Độ bão hòa</span>
+                            <span id="val-saturation">100%</span>
+                          </div>
+                          <input type="range" id="sld-saturation" min="0" max="200" value="100" />
+                        </div>
+                      </div>
+
+                      <div class="filter-presets">
+                        <button class="btn btn-sm btn-outline preset-btn" data-preset="normal">Bình thường</button>
+                        <button class="btn btn-sm btn-outline preset-btn" data-preset="grayscale">Trắng đen</button>
+                        <button class="btn btn-sm btn-outline preset-btn" data-preset="warm">Ấm áp</button>
+                        <button class="btn btn-sm btn-outline preset-btn" data-preset="cool">Dịu mát</button>
+                      </div>
+                    </div>
+
+                    <div class="tool-section">
+                      <span class="tool-section-title">Kích thước đầu ra</span>
+                      <div class="resize-controls">
+                        <div class="resize-input">
+                          <input type="number" id="img-width" value="600" />
+                          <span>px (rộng)</span>
+                        </div>
+                        <div class="resize-input">
+                          <input type="number" id="img-height" value="900" readonly class="readonly-input" />
+                          <span>px (cao)</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="tool-section upload-destination">
+                      <span class="tool-section-title">Mục tiêu tải lên Drive</span>
+                      
+                      <div class="form-group">
+                        <label for="img-upload-target">Loại đối tượng</label>
+                        <select id="img-upload-target">
+                          <option value="book-shop">Ảnh Shop Sách (shop)</option>
+                          <option value="book-review">Ảnh Review Sách (review)</option>
+                          <option value="doc-preview">Ảnh Preview Tài liệu (preview)</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="img-upload-sku">SKU / ID cụ thể</label>
+                        <select id="img-upload-sku">
+                          <!-- Filled dynamically from books/docs -->
+                        </select>
+                      </div>
+
+                      <button class="btn btn-green btn-block btn-lg" id="btn-upload-drive" disabled>
+                        Tải lên Google Drive & Sync
+                      </button>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Fullscreen loading indicator for operations -->
+      <div id="global-loading" class="global-loading-overlay hidden">
+        <div class="loading-content">
+          <div class="loader-spinner"></div>
+          <p id="loading-message">Đang xử lý yêu cầu...</p>
+        </div>
+      </div>
+
+      <!-- Notification Toast -->
+      <div id="toast" class="toast">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="toast-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span id="toast-message">Đã cập nhật dữ liệu thành công!</span>
+      </div>
+    </div>
+    
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

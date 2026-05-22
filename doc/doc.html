@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon-180.png" />
+
+  <!-- SEO — filled dynamically -->
+  <title>Tài liệu học – Lê Lê học tiếng Trung</title>
+  <meta name="description" content="Chi tiết tài liệu học tiếng Trung chia sẻ bởi Lê Lê." />
+  <meta id="og-title"       property="og:title"       content="" />
+  <meta id="og-desc"        property="og:description"  content="" />
+  <meta id="og-image"       property="og:image"        content="" />
+  <meta                     property="og:type"         content="article" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../style.css?v=1.0.1" />
+  <link rel="stylesheet" href="doc.css?v=1.0.1" />
+</head>
+<body>
+
+  <!-- Background -->
+  <div class="bg-scene" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="hanzi" style="--x:7%;--y:10%;--s:2rem;--d:0s;--dur:15s">读</div>
+    <div class="hanzi" style="--x:88%;--y:6%;--s:1.4rem;--d:-4s;--dur:19s">学</div>
+    <div class="hanzi" style="--x:5%;--y:65%;--s:1.2rem;--d:-8s;--dur:21s">书</div>
+    <div class="hanzi" style="--x:92%;--y:58%;--s:1.6rem;--d:-12s;--dur:17s">字</div>
+  </div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <div class="doc-container" id="doc-root">
+
+    <!-- Header -->
+    <header class="doc-header">
+      <div class="header-nav">
+        <a href="../docs.html" class="back-btn" id="btn-back-docs" aria-label="Quay lại danh sách tài liệu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 12H5M12 5l-7 7 7 7"/>
+          </svg>
+          <span>Tài liệu</span>
+        </a>
+        <a href="../index.html" class="back-btn" id="btn-back-home" aria-label="Quay lại trang chính">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>Trang chính</span>
+        </a>
+      </div>
+
+      <div class="shop-brand">
+        <img src="../logo.png" alt="Logo Lê Lê" class="shop-logo" width="40" height="40" />
+        <div>
+          <p class="shop-brand-name">Lê Lê học tiếng Trung</p>
+          <p class="shop-brand-sub" lang="zh">乐乐学中文 · Tài liệu</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Loading state -->
+    <div class="doc-loading" id="doc-loading" aria-live="polite">
+      <div class="spinner"></div>
+      <p>Đang tải tài liệu…</p>
+    </div>
+
+    <!-- Error state -->
+    <div class="doc-error hidden" id="doc-error">
+      <p>😢 Không tìm thấy tài liệu này hoặc link đã bị gỡ bỏ.</p>
+      <a href="../docs.html" class="btn-back-list" style="display:inline-flex;margin-top:1rem">← Về mục Tài liệu</a>
+    </div>
+
+    <!-- Main document post content -->
+    <main class="doc-main hidden" id="doc-main">
+
+      <!-- Hero Header Section -->
+      <section class="doc-hero" aria-label="Thông tin tài liệu">
+        <div class="doc-hero-info">
+          <div class="doc-icon-badge" id="doc-icon-badge">📝</div>
+          <div class="doc-meta-header">
+            <span class="doc-category-badge" id="doc-category">Từ vựng</span>
+            <span class="doc-pages-badge" id="doc-pages-badge">PDF · 12 trang</span>
+          </div>
+          <h1 class="doc-title" id="doc-title"></h1>
+          <p class="doc-intro" id="doc-desc"></p>
+          
+          <div class="doc-difficulty" id="doc-difficulty">
+            <span class="level-dot"></span>
+            <span class="level-dot"></span>
+            <span class="level-dot"></span>
+            <span class="level-dot empty"></span>
+            <span class="level-dot empty"></span>
+            <span class="level-text" id="doc-level-text">Cơ bản · HSK 1–2</span>
+          </div>
+        </div>
+
+        <!-- Call to Action Box: download/share -->
+        <div class="doc-cta-box">
+          <p class="cta-price">🎁 Miễn phí 100%</p>
+          <p class="cta-note">Tải về trực tiếp từ Google Drive, học được trên điện thoại & máy tính.</p>
+          <div class="cta-actions">
+            <a href="" class="btn-download" id="btn-download" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Tải PDF ngay
+            </a>
+            <button class="btn-share" id="btn-share" aria-label="Chia sẻ tài liệu">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+              Chia sẻ
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Grid layout for detailed post and previews -->
+      <div class="doc-content-grid">
+        
+        <!-- Left Side: Post Walkthrough and details -->
+        <div class="doc-post-body">
+          
+          <!-- Walkthrough content -->
+          <section class="doc-body-section">
+            <div class="section-pill">
+              <span>🌟</span> Giới thiệu bài viết
+            </div>
+            <div class="post-content" id="doc-content-body">
+              <!-- filled by JS -->
+            </div>
+          </section>
+
+          <!-- Checklists and highlights -->
+          <section class="doc-body-section doc-highlights">
+            <div class="highlights-box pros-box">
+              <h3 class="highlights-title">📋 Bạn sẽ học được gì?</h3>
+              <ul class="highlights-list" id="doc-pros"></ul>
+            </div>
+            <div class="highlights-box cons-box">
+              <h3 class="highlights-title">💡 Mẹo tự học hiệu quả</h3>
+              <ul class="highlights-list" id="doc-cons"></ul>
+            </div>
+          </section>
+
+          <!-- Who is it for -->
+          <section class="doc-body-section doc-target">
+            <div class="section-pill"><span>🎯</span> Tài liệu này phù hợp với ai?</div>
+            <p class="target-text" id="doc-who-for"></p>
+          </section>
+        </div>
+
+        <!-- Right Side: Interactive Image Preview Gallery -->
+        <div class="doc-preview-column">
+          <section class="preview-section" id="doc-gallery" aria-label="Hình ảnh xem trước tài liệu">
+            <!-- filled by JS -->
+          </section>
+        </div>
+
+      </div>
+
+      <!-- Bottom Download Call to Action -->
+      <section class="doc-bottom-cta">
+        <p class="bottom-cta-label">Nhấp để tải về tài liệu miễn phí:</p>
+        <a href="" class="btn-download btn-download-lg" id="btn-download-bottom" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Tải PDF Miễn Phí
+        </a>
+      </section>
+
+    </main>
+
+    <footer class="shop-footer">
+      <img src="../logo.png" alt="Logo Lê Lê" class="footer-logo" width="36" height="36" />
+      <p>Lê Lê học tiếng Trung <span>♥</span></p>
+      <p class="footer-note">Tài liệu học tiếng Trung do Lê Lê tổng hợp và biên soạn hoàn toàn miễn phí.</p>
+    </footer>
+
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="share-toast" role="alert" aria-live="polite">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toast-msg">Đã sao chép link!</span>
+  </div>
+
+  <script src="doc.js?v=1.0.1"></script>
+</body>
+</html>
