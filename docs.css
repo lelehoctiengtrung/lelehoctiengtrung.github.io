@@ -2,6 +2,12 @@
    docs.css — Tài liệu page
 =========================== */
 
+/* Inherit and fix shop-container for docs page */
+.shop-container {
+  min-height: 100dvh;
+  align-self: flex-start;
+}
+
 /* Hero overrides */
 .docs-badge {
   background: rgba(46, 160, 120, 0.15) !important;
