@@ -220,6 +220,56 @@
 .price-label { font-size: 0.64rem; color: var(--clr-cream-muted); }
 .price { font-size: 0.95rem; font-weight: 700; color: var(--clr-gold); }
 
+/* Nút đọc review */
+.btn-review {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(212,168,67,0.12);
+  border: 1px solid rgba(212,168,67,0.3);
+  color: var(--clr-gold-light);
+  font-size: 0.76rem; font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.btn-review:hover {
+  background: rgba(212,168,67,0.22);
+  border-color: var(--clr-gold);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(212,168,67,0.2);
+}
+
+/* 4 Platform buy buttons */
+.book-platforms {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.btn-platform-sm {
+  display: inline-flex; align-items: center;
+  padding: 0.32rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.7rem; font-weight: 600;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: transform 0.18s, filter 0.18s, box-shadow 0.18s;
+  position: relative;
+  white-space: nowrap;
+}
+.btn-platform-sm:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+.btn-p-shopee { background: #ee4d2d; color: #fff; box-shadow: 0 2px 8px rgba(238,77,45,.3); }
+.btn-p-fahasa { background: #0066cc; color: #fff; box-shadow: 0 2px 8px rgba(0,102,204,.3); }
+.btn-p-tiki   { background: #1ba9e1; color: #fff; box-shadow: 0 2px 8px rgba(27,169,225,.3); }
+.btn-p-lazada { background: #f57224; color: #fff; box-shadow: 0 2px 8px rgba(245,114,36,.3); }
+
+.no-link-note {
+  font-size: 0.68rem; color: rgba(255,255,255,0.3);
+  font-style: italic; padding-top: 0.4rem;
+}
+
+/* Legacy btn-buy (giữ cho tương thích) */
 .btn-buy {
   display: inline-flex; align-items: center; gap: 0.4rem;
   padding: 0.5rem 0.9rem;

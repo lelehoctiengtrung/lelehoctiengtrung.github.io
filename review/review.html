@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon-180.png" />
+
+  <!-- SEO — filled dynamically by review.js -->
+  <title>Review sách – Lê Lê học tiếng Trung</title>
+  <meta name="description" content="Review sách học tiếng Trung từ Lê Lê – trung thực, chi tiết, có kinh nghiệm thực tế." />
+  <meta id="og-title"       property="og:title"       content="" />
+  <meta id="og-desc"        property="og:description"  content="" />
+  <meta id="og-image"       property="og:image"        content="" />
+  <meta                     property="og:type"         content="article" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="review.css" />
+</head>
+<body>
+
+  <!-- Background -->
+  <div class="bg-scene" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="hanzi" style="--x:5%;--y:8%;--s:2rem;--d:0s;--dur:16s">书</div>
+    <div class="hanzi" style="--x:90%;--y:5%;--s:1.5rem;--d:-4s;--dur:20s">评</div>
+    <div class="hanzi" style="--x:3%;--y:60%;--s:1.2rem;--d:-8s;--dur:18s">读</div>
+    <div class="hanzi" style="--x:93%;--y:55%;--s:1.8rem;--d:-12s;--dur:14s">好</div>
+  </div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <div class="review-container" id="review-root">
+
+    <!-- Back button -->
+    <header class="review-header">
+      <a href="../shop.html" class="back-btn" id="btn-back-shop" aria-label="Quay lại Bookshop">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M19 12H5M12 5l-7 7 7 7"/>
+        </svg>
+        <span>Bookshop</span>
+      </a>
+      <a href="../index.html" class="back-btn back-btn-ghost" id="btn-back-home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span>Trang chính</span>
+      </a>
+    </header>
+
+    <!-- Loading state -->
+    <div class="review-loading" id="review-loading" aria-live="polite">
+      <div class="spinner"></div>
+      <p>Đang tải review…</p>
+    </div>
+
+    <!-- Error state -->
+    <div class="review-error hidden" id="review-error">
+      <p>😢 Không tìm thấy sách này.</p>
+      <a href="../shop.html" class="btn-buy" style="display:inline-flex;margin-top:1rem">← Về Bookshop</a>
+    </div>
+
+    <!-- Main review content — filled by JS -->
+    <main class="review-main hidden" id="review-main">
+
+      <!-- HERO ── cover + meta + buy buttons -->
+      <section class="review-hero" aria-label="Thông tin sách">
+        <div class="hero-cover-wrap">
+          <img id="rv-cover" src="" alt="" class="hero-cover" />
+          <div class="hero-badge-wrap" id="rv-badge-wrap"></div>
+        </div>
+
+        <div class="hero-meta">
+          <div class="hero-stars" id="rv-stars" aria-label="Đánh giá"></div>
+          <h1 class="hero-title" id="rv-title"></h1>
+          <p class="hero-subtitle" id="rv-subtitle" lang="zh"></p>
+
+          <div class="hero-tags" id="rv-tags"></div>
+
+          <div class="hero-price-row">
+            <span class="price-label">Giá tham khảo</span>
+            <span class="hero-price" id="rv-price"></span>
+          </div>
+
+          <!-- Buy buttons — multiple platforms -->
+          <div class="buy-group" id="rv-buy-group">
+            <!-- filled by JS -->
+          </div>
+
+          <p class="affiliate-note">* Link affiliate — mình nhận hoa hồng nhỏ, không ảnh hưởng giá bạn mua nhé 🙏</p>
+        </div>
+      </section>
+
+      <!-- REVIEW ── Lê Lê's personal take -->
+      <section class="review-section" aria-labelledby="rv-review-heading">
+        <div class="section-pill">
+          <span>📝</span> Lê Lê review
+        </div>
+        <h2 id="rv-review-heading" class="sr-only">Nhận xét của Lê Lê</h2>
+        <div class="review-body" id="rv-review-body">
+          <!-- filled by JS -->
+        </div>
+      </section>
+
+      <!-- PROS & CONS -->
+      <section class="pros-cons-section" aria-label="Điểm mạnh và lưu ý">
+        <div class="pros-box">
+          <h2 class="pros-title">✅ Điểm mạnh</h2>
+          <ul class="pros-list" id="rv-pros"></ul>
+        </div>
+        <div class="cons-box">
+          <h2 class="cons-title">⚠️ Lưu ý</h2>
+          <ul class="cons-list" id="rv-cons"></ul>
+        </div>
+      </section>
+
+      <!-- WHO IS IT FOR -->
+      <section class="who-section" aria-labelledby="rv-who-heading">
+        <div class="section-pill"><span>🎯</span> Phù hợp với ai?</div>
+        <h2 id="rv-who-heading" class="sr-only">Phù hợp với ai</h2>
+        <p class="who-body" id="rv-who"></p>
+      </section>
+
+      <!-- BOTTOM CTA -->
+      <section class="cta-section" aria-label="Mua sách">
+        <p class="cta-label">Sẵn sàng bắt đầu? Mua tại:</p>
+        <div class="buy-group buy-group-lg" id="rv-buy-group-bottom"></div>
+      </section>
+
+    </main>
+
+    <footer class="shop-footer">
+      <img src="../logo.png" alt="Logo Lê Lê" class="footer-logo" width="36" height="36" />
+      <p>Lê Lê học tiếng Trung <span>♥</span></p>
+      <p class="footer-note">* Affiliate link — mình được hoa hồng nhỏ khi bạn mua, không ảnh hưởng giá nhé!</p>
+    </footer>
+
+  </div><!-- /review-container -->
+
+  <script src="review.js"></script>
+</body>
+</html>

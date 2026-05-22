@@ -2,36 +2,46 @@
 // shop.js — Fetch sách từ Google Sheets
 // ===================================================
 
-const SHEET_ID = '1n62ZrrUJlnf8CDU2gSxW3jPCxdkwE1GFpBBDJQLEg0o';
-const BOOKS_API = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=books`;
+const SHEET_ID  = '1n62ZrrUJlnf8CDU2gSxW3jPCxdkwE1GFpBBDJQLEg0o';
+const BOOKS_API = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=books&headers=2`;
+
+// Columns (row 1 = keys, row 2 = labels, row 3+ = data)
+// sku | order | title | subtitle_zh | desc | tags | price | badge | badge_type
+// stars | cover_url | buy_shopee | buy_fahasa | buy_tiki | buy_lazada | review | pros | cons | who_for
+const C = {
+  sku: 0, order: 1, title: 2, subtitle_zh: 3, desc: 4,
+  tags: 5, price: 6, badge: 7, badge_type: 8, stars: 9,
+  cover_url: 10, buy_shopee: 11, buy_fahasa: 12, buy_tiki: 13, buy_lazada: 14,
+};
 
 // ---- Helpers ----
-function parseGSheetJSON(raw) {
-  // GSheet API wraps JSON in /*O_o*/ google.visualization.Query.setResponse({...});
-  const json = raw.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/);
-  if (!json) return null;
-  return JSON.parse(json[1]);
-}
-
 function colVal(row, i) {
   const c = row.c[i];
   return c && c.v !== null && c.v !== undefined ? String(c.v).trim() : '';
 }
 
-// Columns: A=title B=subtitle_zh C=desc D=tags E=price F=badge G=badge_type H=stars I=cover_url J=affiliate_url
+// ---- Build card ----
 function buildBookCard(row) {
-  const title        = colVal(row, 0);
-  const subtitleZh   = colVal(row, 1);
-  const desc         = colVal(row, 2);
-  const tags         = colVal(row, 3).split(',').map(t => t.trim()).filter(Boolean);
-  const price        = colVal(row, 4);
-  const badge        = colVal(row, 5);
-  const badgeType    = colVal(row, 6) || 'hot';
-  const stars        = parseInt(colVal(row, 7)) || 5;
-  const coverUrl     = colVal(row, 8);
-  const affiliateUrl = colVal(row, 9) || '#';
+  const sku        = colVal(row, C.sku);
+  const title      = colVal(row, C.title);
+  const subtitleZh = colVal(row, C.subtitle_zh);
+  const desc       = colVal(row, C.desc);
+  const tags       = colVal(row, C.tags).split(',').map(t => t.trim()).filter(Boolean);
+  const price      = colVal(row, C.price);
+  const badge      = colVal(row, C.badge);
+  const badgeType  = colVal(row, C.badge_type) || 'hot';
+  const stars      = parseInt(colVal(row, C.stars)) || 5;
+  const coverUrl   = colVal(row, C.cover_url);
+  const shopee     = colVal(row, C.buy_shopee);
+  const fahasa     = colVal(row, C.buy_fahasa);
+  const tiki       = colVal(row, C.buy_tiki);
+  const lazada     = colVal(row, C.buy_lazada);
 
   if (!title) return '';
+
+  const reviewUrl = sku
+    ? `review/review.html?sku=${encodeURIComponent(sku)}`
+    : '#';
 
   const starsHtml = '★'.repeat(stars) + '☆'.repeat(5 - stars);
   const badgeHtml = badge
@@ -48,15 +58,44 @@ function buildBookCard(row) {
     ? `<img src="${coverUrl}" alt="Bìa sách ${title}" class="book-cover" loading="lazy" />`
     : `<div class="book-cover-placeholder" aria-hidden="true">📚</div>`;
 
+  // Nút mua — 4 platform (ẩn nếu không có link)
+  const platforms = [
+    { key: shopee,  cls: 'btn-p-shopee',  label: '🛒 Shopee' },
+    { key: fahasa,  cls: 'btn-p-fahasa',  label: '📚 Fahasa' },
+    { key: tiki,    cls: 'btn-p-tiki',    label: '🛍️ Tiki'   },
+    { key: lazada,  cls: 'btn-p-lazada',  label: '🟠 Lazada' },
+  ];
+
+  const platformBtns = platforms
+    .filter(p => p.key)
+    .map(p => `
+      <a href="${p.key}" class="btn-platform-sm ${p.cls}"
+         target="_blank" rel="noopener sponsored"
+         aria-label="Mua ${title} tại ${p.label.replace(/\W/g,'')}">
+        ${p.label}
+      </a>`)
+    .join('');
+
+  const buySection = platformBtns
+    ? `<div class="book-platforms">${platformBtns}</div>`
+    : `<span class="no-link-note">Đang cập nhật link…</span>`;
+
   return `
     <article class="book-card" aria-label="${title}">
-      <div class="book-cover-wrap">
-        ${coverHtml}
-        ${badgeHtml}
-      </div>
+      <a href="${reviewUrl}" class="card-cover-link" tabindex="-1" aria-hidden="true">
+        <div class="book-cover-wrap">
+          ${coverHtml}
+          ${badgeHtml}
+          <div class="cover-overlay">
+            <span class="cover-overlay-text">Xem review →</span>
+          </div>
+        </div>
+      </a>
       <div class="book-info">
         <div class="book-stars" aria-label="${stars} sao">${starsHtml}</div>
-        <h3 class="book-title">${title}</h3>
+        <h3 class="book-title">
+          <a href="${reviewUrl}" class="title-link">${title}</a>
+        </h3>
         ${subtitleZh ? `<p class="book-subtitle" lang="zh">${subtitleZh}</p>` : ''}
         <p class="book-desc">${desc}</p>
         ${tagsHtml ? `<div class="book-tags">${tagsHtml}</div>` : ''}
@@ -65,11 +104,14 @@ function buildBookCard(row) {
             <span class="price-label">Tham khảo</span>
             <span class="price">${priceFormatted}</span>
           </div>
-          <a href="${affiliateUrl}" class="btn-buy" target="_blank" rel="noopener sponsored" aria-label="Mua ${title}">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
-            Mua ngay
+          <a href="${reviewUrl}" class="btn-review" aria-label="Xem review ${title}">
+            Đọc review
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" width="14" height="14">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+            </svg>
           </a>
         </div>
+        ${buySection}
       </div>
     </article>`;
 }
@@ -84,6 +126,7 @@ function showSkeletons(container, count = 3) {
         <div class="skeleton-line"></div>
         <div class="skeleton-line medium"></div>
         <div class="skeleton-line long"></div>
+        <div class="skeleton-line short"></div>
       </div>
     </div>`).join('');
 }
@@ -108,37 +151,44 @@ async function loadBooks() {
   try {
     const res  = await fetch(BOOKS_API);
     const raw  = await res.text();
-    const data = parseGSheetJSON(raw);
 
-    if (!data || !data.table || !data.table.rows.length) {
-      // Sheet chưa có dữ liệu — giữ sách mẫu tĩnh
-      grid.innerHTML = grid.dataset.staticFallback || '';
+    // GSheet wraps JSON — parse response
+    const match = raw.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/);
+    if (!match) throw new Error('Invalid response');
+    const data = JSON.parse(match[1]);
+
+    if (!data?.table?.rows?.length) {
+      grid.innerHTML = grid.dataset.staticFallback || '<p class="no-data">Chưa có sách nào. Sẽ cập nhật sớm! 🌸</p>';
       return;
     }
 
-    const cards = data.table.rows.map(buildBookCard).join('');
-    grid.innerHTML = cards || '<p class="no-data">Chưa có sách nào. Sẽ cập nhật sớm!</p>';
+    const cards = data.table.rows.map(buildBookCard).filter(Boolean).join('');
+    grid.innerHTML = cards || '<p class="no-data">Chưa có sách nào. Sẽ cập nhật sớm! 🌸</p>';
 
-    // Re-attach interactions
     attachInteractions();
   } catch (err) {
     console.error('Fetch books error:', err);
-    showError(grid);
+    // Fallback: giữ HTML tĩnh nếu có
+    const fallback = grid.dataset.staticFallback;
+    if (fallback) { grid.innerHTML = fallback; attachInteractions(); }
+    else showError(grid);
   }
 }
 
-// ---- Interactions (ripple + tilt) ----
+// ---- Interactions ----
 function attachInteractions() {
-  // Ripple
-  document.querySelectorAll('.btn-buy').forEach(btn => {
-    btn.addEventListener('click', function (e) {
+  // Ripple trên tất cả nút
+  document.querySelectorAll('.btn-buy, .btn-review, .btn-platform-sm').forEach(btn => {
+    if (btn._ripple) return;
+    btn._ripple = true;
+    btn.addEventListener('click', function(e) {
       const ripple = document.createElement('span');
       const rect   = btn.getBoundingClientRect();
       const size   = Math.max(rect.width, rect.height) * 1.5;
       ripple.style.cssText = `
         position:absolute;width:${size}px;height:${size}px;
         left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px;
-        border-radius:50%;background:rgba(255,255,255,0.25);
+        border-radius:50%;background:rgba(255,255,255,0.22);
         transform:scale(0);animation:ripple-shop .5s ease-out forwards;
         pointer-events:none;z-index:10;`;
       btn.style.position = 'relative';
@@ -149,8 +199,7 @@ function attachInteractions() {
   });
 
   // 3D tilt
-  const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!noMotion) {
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.querySelectorAll('.book-card').forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const r = card.getBoundingClientRect();

@@ -1,0 +1,307 @@
+/* ============================================================
+   review.css — Trang review sách riêng biệt
+   Lê Lê học tiếng Trung · Dark Gold × Chinese Red theme
+============================================================ */
+
+/* ── Layout ─────────────────────────────────────────────── */
+.review-container {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 860px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 4rem;
+  display: flex; flex-direction: column; gap: 2.5rem;
+  align-self: flex-start;
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.review-header {
+  display: flex; align-items: center; gap: .75rem;
+  flex-wrap: wrap;
+}
+.back-btn-ghost {
+  background: transparent !important;
+  border: 1px solid rgba(212,168,67,.25) !important;
+  color: rgba(212,168,67,.6) !important;
+}
+.back-btn-ghost:hover {
+  background: rgba(212,168,67,.08) !important;
+  color: var(--gold) !important;
+}
+
+/* ── Loading ─────────────────────────────────────────────── */
+.review-loading {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 1rem; padding: 5rem 0;
+  color: rgba(212,168,67,.6); font-size: .95rem;
+}
+.spinner {
+  width: 40px; height: 40px;
+  border: 3px solid rgba(212,168,67,.2);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.review-error {
+  text-align: center; padding: 4rem 0;
+  color: rgba(255,255,255,.5); font-size: 1.1rem;
+}
+.hidden { display: none !important; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+}
+
+/* ── HERO ────────────────────────────────────────────────── */
+.review-hero {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2rem;
+  align-items: start;
+  background: linear-gradient(135deg,
+    rgba(26,19,8,.85) 0%,
+    rgba(40,28,10,.7) 100%);
+  border: 1px solid rgba(212,168,67,.18);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.hero-cover-wrap {
+  position: relative;
+  width: 100%;
+}
+.hero-cover {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.6),
+    0 0 0 1px rgba(212,168,67,.15);
+  transition: transform .3s ease;
+}
+.hero-cover:hover { transform: scale(1.02) rotate(.5deg); }
+
+.hero-badge-wrap {
+  position: absolute; top: .75rem; left: .75rem;
+  display: flex; flex-direction: column; gap: .4rem;
+}
+
+.hero-meta {
+  display: flex; flex-direction: column; gap: 1rem;
+}
+
+.hero-stars {
+  color: #F59E0B;
+  font-size: 1.3rem;
+  letter-spacing: .1em;
+}
+
+.hero-title {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.hero-subtitle {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1rem;
+  color: var(--gold);
+  opacity: .8;
+  margin: -.25rem 0 0;
+}
+
+.hero-tags {
+  display: flex; flex-wrap: wrap; gap: .4rem;
+}
+
+.hero-price-row {
+  display: flex; align-items: baseline; gap: .5rem;
+}
+.hero-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+/* ── Buy Buttons ─────────────────────────────────────────── */
+.buy-group {
+  display: flex; flex-wrap: wrap; gap: .6rem;
+}
+.buy-group-lg {
+  gap: .8rem;
+}
+
+.btn-platform {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .65rem 1.25rem;
+  border-radius: 10px;
+  font-size: .9rem; font-weight: 600;
+  text-decoration: none;
+  transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+  cursor: pointer; border: none;
+  white-space: nowrap;
+}
+.btn-platform:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+}
+.btn-platform:active { transform: translateY(0); }
+
+.btn-shopee {
+  background: linear-gradient(135deg, #ee4d2d, #d73311);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(238,77,45,.35);
+}
+.btn-fahasa {
+  background: linear-gradient(135deg, #0066cc, #004fa3);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(0,102,204,.35);
+}
+.btn-tiki {
+  background: linear-gradient(135deg, #1ba9e1, #0f8dc7);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(27,169,225,.35);
+}
+.btn-platform-lg {
+  padding: .85rem 1.75rem;
+  font-size: 1rem;
+  border-radius: 12px;
+}
+
+.affiliate-note {
+  font-size: .75rem;
+  color: rgba(255,255,255,.35);
+  margin: -.25rem 0 0;
+  line-height: 1.5;
+}
+
+/* ── Section pill header ─────────────────────────────────── */
+.section-pill {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .4rem 1rem;
+  background: rgba(212,168,67,.12);
+  border: 1px solid rgba(212,168,67,.25);
+  border-radius: 999px;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+}
+
+/* ── Review body ─────────────────────────────────────────── */
+.review-section {
+  background: rgba(26,19,8,.6);
+  border: 1px solid rgba(212,168,67,.12);
+  border-radius: 16px;
+  padding: 1.75rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.review-body {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: rgba(255,255,255,.82);
+  white-space: pre-line;
+}
+.review-body strong {
+  color: #fff; font-weight: 600;
+}
+
+/* ── Pros & Cons ─────────────────────────────────────────── */
+.pros-cons-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.pros-box, .cons-box {
+  border-radius: 14px;
+  padding: 1.5rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.pros-box {
+  background: rgba(34,197,94,.08);
+  border: 1px solid rgba(34,197,94,.2);
+}
+.cons-box {
+  background: rgba(245,158,11,.08);
+  border: 1px solid rgba(245,158,11,.2);
+}
+.pros-title { color: #4ade80; font-size: .95rem; margin: 0 0 .75rem; }
+.cons-title { color: #fbbf24; font-size: .95rem; margin: 0 0 .75rem; }
+.pros-list, .cons-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: .5rem;
+}
+.pros-list li, .cons-list li {
+  font-size: .9rem; line-height: 1.5;
+  color: rgba(255,255,255,.78);
+  padding-left: 1.1rem;
+  position: relative;
+}
+.pros-list li::before { content: '•'; position: absolute; left: 0; color: #4ade80; }
+.cons-list li::before { content: '•'; position: absolute; left: 0; color: #fbbf24; }
+
+/* ── Who is it for ───────────────────────────────────────── */
+.who-section {
+  background: rgba(201,69,53,.08);
+  border: 1px solid rgba(201,69,53,.2);
+  border-radius: 16px;
+  padding: 1.75rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.who-body {
+  font-size: .95rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,.8);
+  margin: 0;
+  white-space: pre-line;
+}
+
+/* ── CTA bottom ──────────────────────────────────────────── */
+.cta-section {
+  text-align: center;
+  background: linear-gradient(135deg,
+    rgba(212,168,67,.12) 0%,
+    rgba(201,69,53,.1) 100%);
+  border: 1px solid rgba(212,168,67,.2);
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 1.25rem;
+}
+.cta-label {
+  font-size: 1rem; font-weight: 600;
+  color: rgba(255,255,255,.7);
+  margin: 0;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .review-hero {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.25rem;
+  }
+  .hero-cover-wrap {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+  .hero-title { font-size: 1.5rem; }
+  .pros-cons-section { grid-template-columns: 1fr; }
+  .review-container { gap: 1.75rem; }
+}
+
+@media (max-width: 400px) {
+  .btn-platform { padding: .6rem 1rem; font-size: .82rem; }
+}
