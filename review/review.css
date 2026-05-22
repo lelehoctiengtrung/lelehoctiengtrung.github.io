@@ -14,19 +14,54 @@
   align-self: flex-start;
 }
 
-/* ── Header ──────────────────────────────────────────────── */
+/* ── Header & Back Buttons ───────────────────────────────── */
 .review-header {
-  display: flex; align-items: center; gap: .75rem;
-  flex-wrap: wrap;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--clr-border);
+  animation: fade-up 0.5s cubic-bezier(0.22,1,0.36,1) both;
 }
-.back-btn-ghost {
-  background: transparent !important;
-  border: 1px solid rgba(212,168,67,.25) !important;
-  color: rgba(212,168,67,.6) !important;
+.header-nav {
+  display: inline-flex; align-items: center; gap: 0.55rem;
 }
-.back-btn-ghost:hover {
-  background: rgba(212,168,67,.08) !important;
-  color: var(--gold) !important;
+.back-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.82rem; font-weight: 500;
+  color: var(--clr-cream-muted);
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--clr-border);
+  background: var(--clr-surface);
+  backdrop-filter: blur(var(--blur-glass));
+  -webkit-backdrop-filter: blur(var(--blur-glass));
+  transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast), transform var(--transition);
+  font-family: var(--font-body);
+}
+.back-btn svg { width: 14px; height: 14px; }
+.back-btn:hover {
+  color: var(--clr-gold-light);
+  border-color: var(--clr-gold);
+  background: var(--clr-gold-dim);
+  transform: translateX(-3px);
+}
+
+.shop-brand {
+  display: flex; align-items: center; gap: 0.65rem;
+}
+.shop-logo {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--clr-gold);
+}
+.shop-brand-name {
+  font-size: 0.85rem; font-weight: 600;
+  color: var(--clr-cream);
+}
+.shop-brand-sub {
+  font-size: 0.7rem; color: var(--clr-gold); opacity: 0.8;
 }
 
 /* ── Loading ─────────────────────────────────────────────── */
@@ -39,7 +74,7 @@
 .spinner {
   width: 40px; height: 40px;
   border: 3px solid rgba(212,168,67,.2);
-  border-top-color: var(--gold);
+  border-top-color: var(--clr-gold);
   border-radius: 50%;
   animation: spin .8s linear infinite;
 }
@@ -114,7 +149,7 @@
 .hero-subtitle {
   font-family: 'Noto Serif SC', serif;
   font-size: 1rem;
-  color: var(--gold);
+  color: var(--clr-gold);
   opacity: .8;
   margin: -.25rem 0 0;
 }
@@ -129,7 +164,7 @@
 .hero-price {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--clr-gold);
 }
 
 /* ── Buy Buttons ─────────────────────────────────────────── */
@@ -193,7 +228,7 @@
   border-radius: 999px;
   font-size: .85rem;
   font-weight: 600;
-  color: var(--gold);
+  color: var(--clr-gold);
   margin-bottom: 1.25rem;
 }
 
@@ -288,6 +323,11 @@
 
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 640px) {
+  .review-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
   .review-hero {
     grid-template-columns: 1fr;
     gap: 1.5rem;
