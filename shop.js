@@ -146,6 +146,11 @@ async function loadBooks() {
   const grid = document.getElementById('books-grid');
   if (!grid) return;
 
+  // Save static HTML as fallback before showing skeletons
+  if (!grid.dataset.staticFallback) {
+    grid.dataset.staticFallback = grid.innerHTML;
+  }
+
   showSkeletons(grid);
 
   try {
