@@ -444,6 +444,23 @@ img { display: block; max-width: 100%; }
   color: #4ecba0;
 }
 
+/* Practice card */
+.link-card.practice-card {
+  background: linear-gradient(130deg var(--in-oklch),
+    rgba(201, 69, 53, 0.15) 0%,
+    rgba(212, 168, 67, 0.10) 100%);
+  border-color: rgba(201, 69, 53, 0.3);
+}
+.link-card.practice-card:hover {
+  border-color: rgba(201, 69, 53, 0.55);
+  box-shadow: 0 12px 48px rgba(201, 69, 53, 0.18), 0 0 0 1px rgba(201,69,53,0.15);
+}
+.link-card.practice-card .link-icon {
+  background: rgba(201, 69, 53, 0.15);
+  border-color: rgba(201, 69, 53, 0.3);
+  color: #ef6455;
+}
+
 /* ===========================
    Reduced motion
 =========================== */
