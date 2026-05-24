@@ -162,104 +162,99 @@
         </div>
       </section>
 
-      <!-- COLUMN 2: HSK Vocabulary & Open-ended Practice -->
-      <div class="right-column-stack">
-        
-        <!-- SECTION 2: HSK Practice -->
-        <section class="card-glass" aria-labelledby="hsk-heading">
-          <div class="card-header-bar">
-            <span class="pill-icon">📚</span>
-            <h2 id="hsk-heading" class="card-title">2. Luyện Phát Âm Từ Vựng HSK</h2>
+      <!-- SECTION 2: HSK Practice -->
+      <section class="card-glass" aria-labelledby="hsk-heading">
+        <div class="card-header-bar">
+          <span class="pill-icon">📚</span>
+          <h2 id="hsk-heading" class="card-title">2. Luyện Phát Âm Từ Vựng HSK</h2>
+        </div>
+        <p class="card-desc">Luyện nói từ vựng cấp độ thi HSK. Chọn cấp độ và luyện phát âm theo từng từ.</p>
+
+        <div class="hsk-controls">
+          <div class="form-group-inline">
+            <label for="hsk-level-select">Cấp độ HSK:</label>
+            <select id="hsk-level-select" class="dropdown-select">
+              <option value="1">HSK 1 (Cơ bản)</option>
+              <option value="2">HSK 2 (Sơ cấp)</option>
+              <option value="3">HSK 3 (Trung cấp)</option>
+              <option value="4">HSK 4 (Tiền cao cấp)</option>
+            </select>
           </div>
-          <p class="card-desc">Luyện nói từ vựng cấp độ thi HSK. Chọn cấp độ và luyện phát âm theo từng từ.</p>
+        </div>
 
-          <div class="hsk-controls">
-            <div class="form-group-inline">
-              <label for="hsk-level-select">Cấp độ HSK:</label>
-              <select id="hsk-level-select" class="dropdown-select">
-                <option value="1">HSK 1 (Cơ bản)</option>
-                <option value="2">HSK 2 (Sơ cấp)</option>
-                <option value="3">HSK 3 (Trung cấp)</option>
-                <option value="4">HSK 4 (Tiền cao cấp)</option>
-              </select>
+        <div class="active-practice-box mt-3">
+          <div class="practice-word-display">
+            <div class="word-hanzi" id="hsk-word-hanzi">苹果</div>
+            <div class="word-pinyin-wrap">
+              <span class="word-pinyin blurred" id="hsk-word-pinyin" title="Nhấp vào để hiện">Nhấp để hiện pinyin</span>
+              <button class="btn-audio" id="btn-play-hsk" aria-label="Nghe phát âm mẫu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+              </button>
             </div>
+            <p class="word-meaning" id="hsk-word-meaning">Quả táo</p>
           </div>
 
-          <div class="active-practice-box mt-3">
-            <div class="practice-word-display">
-              <div class="word-hanzi" id="hsk-word-hanzi">苹果</div>
-              <div class="word-pinyin-wrap">
-                <span class="word-pinyin blurred" id="hsk-word-pinyin" title="Nhấp vào để hiện">Nhấp để hiện pinyin</span>
-                <button class="btn-audio" id="btn-play-hsk" aria-label="Nghe phát âm mẫu">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                  </svg>
-                </button>
-              </div>
-              <p class="word-meaning" id="hsk-word-meaning">Quả táo</p>
-            </div>
-
-            <!-- Speech input area -->
-            <div class="record-area">
-              <div class="record-status-box" id="hsk-record-status">Nhấn micro để ghi âm từ này</div>
-              <div class="button-row">
-                <button class="btn btn-record" id="btn-record-hsk">
-                  <span class="mic-icon">🎙️</span> Nhấn và nói
-                </button>
-                <button class="btn btn-secondary btn-sm" id="btn-next-hsk">Từ khác →</button>
-              </div>
-            </div>
-
-            <!-- Result feedback -->
-            <div class="result-feedback hidden" id="hsk-result-box">
-              <p class="feedback-label">Bạn đã phát âm:</p>
-              <div class="user-speech" id="hsk-user-speech">--</div>
-              <div class="score-badge" id="hsk-score-badge">Đúng</div>
-            </div>
-          </div>
-        </section>
-
-        <!-- SECTION 3: Open-Ended Recognition -->
-        <section class="card-glass" aria-labelledby="open-ended-heading">
-          <div class="card-header-bar">
-            <span class="pill-icon">🗣️</span>
-            <h2 id="open-ended-heading" class="card-title">3. Luyện Nói Tự Do</h2>
-          </div>
-          <p class="card-desc">Nói một từ hoặc câu bất kỳ, hệ thống sẽ tự động ghi âm và chuyển chữ Hán thành Pinyin kèm theo dấu thanh điệu.</p>
-
-          <div class="open-controls">
-            <div class="form-group-inline">
-              <label for="syllable-count-select">Độ dài dự kiến:</label>
-              <select id="syllable-count-select" class="dropdown-select">
-                <option value="1">1 âm tiết (Từ đơn)</option>
-                <option value="2" selected>2 âm tiết (Từ ghép)</option>
-                <option value="3">3 âm tiết</option>
-                <option value="4">4 âm tiết / Thành ngữ</option>
-                <option value="all">Tự do (Bất kỳ câu nào)</option>
-              </select>
+          <!-- Speech input area -->
+          <div class="record-area">
+            <div class="record-status-box" id="hsk-record-status">Nhấn micro để ghi âm từ này</div>
+            <div class="button-row">
+              <button class="btn btn-record" id="btn-record-hsk">
+                <span class="mic-icon">🎙️</span> Nhấn và nói
+              </button>
+              <button class="btn btn-secondary btn-sm" id="btn-next-hsk">Từ khác →</button>
             </div>
           </div>
 
-          <div class="active-practice-box mt-3">
-            <div class="pinyin-output-box">
-              <div class="output-pinyin" id="open-output-pinyin">nǐ hǎo</div>
-              <div class="output-hanzi" id="open-output-hanzi">你好</div>
-            </div>
+          <!-- Result feedback -->
+          <div class="result-feedback hidden" id="hsk-result-box">
+            <p class="feedback-label">Bạn đã phát âm:</p>
+            <div class="user-speech" id="hsk-user-speech">--</div>
+            <div class="score-badge" id="hsk-score-badge">Đúng</div>
+          </div>
+        </div>
+      </section>
 
-            <!-- Speech input area -->
-            <div class="record-area">
-              <div class="record-status-box" id="open-record-status">Sẵn sàng lắng nghe giọng nói của bạn</div>
-              <div class="button-row">
-                <button class="btn btn-record" id="btn-record-open">
-                  <span class="mic-icon">🎙️</span> Nhấn và nói
-                </button>
-              </div>
+      <!-- SECTION 3: Open-Ended Practice -->
+      <section class="card-glass" aria-labelledby="open-ended-heading">
+        <div class="card-header-bar">
+          <span class="pill-icon">🗣️</span>
+          <h2 id="open-ended-heading" class="card-title">3. Luyện Nói Tự Do</h2>
+        </div>
+        <p class="card-desc">Nói một từ hoặc câu bất kỳ, hệ thống sẽ tự động ghi âm và chuyển chữ Hán thành Pinyin kèm theo dấu thanh điệu.</p>
+
+        <div class="open-controls">
+          <div class="form-group-inline">
+            <label for="syllable-count-select">Độ dài dự kiến:</label>
+            <select id="syllable-count-select" class="dropdown-select">
+              <option value="1">1 âm tiết (Từ đơn)</option>
+              <option value="2" selected>2 âm tiết (Từ ghép)</option>
+              <option value="3">3 âm tiết</option>
+              <option value="4">4 âm tiết / Thành ngữ</option>
+              <option value="all">Tự do (Bất kỳ câu nào)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="active-practice-box mt-3">
+          <div class="pinyin-output-box">
+            <div class="output-pinyin" id="open-output-pinyin">nǐ hǎo</div>
+            <div class="output-hanzi" id="open-output-hanzi">你好</div>
+          </div>
+
+          <!-- Speech input area -->
+          <div class="record-area">
+            <div class="record-status-box" id="open-record-status">Sẵn sàng lắng nghe giọng nói của bạn</div>
+            <div class="button-row">
+              <button class="btn btn-record" id="btn-record-open">
+                <span class="mic-icon">🎙️</span> Nhấn và nói
+              </button>
             </div>
           </div>
-        </section>
-
-      </div><!-- /right-column-stack -->
+        </div>
+      </section>
 
     </div><!-- /practice-grid -->
 
