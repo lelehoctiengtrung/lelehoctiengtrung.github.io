@@ -181,6 +181,33 @@ const HSK_PRESETS = {
   ]
 };
 
+// ── ROBUST CHARACTER DATA LOADER (Multi-CDN queue with 3.5s timeout) ──
+async function loadCharData(char) {
+  if (!char) return null;
+  const cdns = [
+    `https://unpkg.com/hanzi-writer-data@2.0.1/${char}.json`,
+    `https://fastly.jsdelivr.net/npm/hanzi-writer-data@2.0/${char}.json`,
+    `https://gcore.jsdelivr.net/npm/hanzi-writer-data@2.0/${char}.json`,
+    `https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/${char}.json`
+  ];
+  
+  for (const url of cdns) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3500);
+      
+      const response = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeoutId);
+      if (response.ok) {
+        return await response.json();
+      }
+    } catch (e) {
+      console.warn(`Failed to fetch character data for "${char}" from ${url}:`, e);
+    }
+  }
+  throw new Error(`Could not load character data for "${char}" from any CDN mirror.`);
+}
+
 // ── CORE APP CONTROLLER CLASS ────────────────────────────────────────
 class StrokePracticeApp {
   constructor() {
@@ -279,6 +306,12 @@ class StrokePracticeApp {
     }
 
     try {
+      const customLoader = (character, onComplete, onError) => {
+        loadCharData(character)
+          .then(data => onComplete(data))
+          .catch(err => onError(err));
+      };
+
       // 1. Initialize Animate Hanzi Writer instance (Only for preview animation)
       this.writerAnimate = HanziWriter.create("character-target-animate", char, {
         width: 300,
@@ -287,7 +320,8 @@ class StrokePracticeApp {
         showOutline: true,
         strokeColor: "#D4AF37",      // Gold for strokes
         outlineColor: "rgba(255, 255, 255, 0.08)", // Faint outline
-        showCharacter: true
+        showCharacter: true,
+        charDataLoader: customLoader
       });
 
       // 2. Initialize Quiz Hanzi Writer instance (Only for user writing practice)
@@ -302,7 +336,8 @@ class StrokePracticeApp {
         highlightColor: "#D4AF37",   // Gold for highlight hint
         drawingWidth: 16,
         drawingPadding: 20,
-        showCharacter: false         // Hide character so user has to write it
+        showCharacter: false,        // Hide character so user has to write it
+        charDataLoader: customLoader
       });
 
       // Fetch character details & render steps
@@ -330,8 +365,8 @@ class StrokePracticeApp {
   async renderStrokeSteps(char) {
     this.stepsContainer.innerHTML = ""; // Clear previous steps
 
-    // Load raw SVG stroke data from HanziWriter CDN
-    const charData = await HanziWriter.loadCharacterData(char);
+    // Load raw SVG stroke data from custom loader
+    const charData = await loadCharData(char);
     if (!charData || !charData.strokes) {
       this.stepsContainer.innerHTML = `<p class="placeholder-text">Không tìm thấy sơ đồ nét vẽ cho chữ "${char}".</p>`;
       return;
