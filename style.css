@@ -495,3 +495,8 @@ img { display: block; max-width: 100%; }
   .container { padding: 2rem 1rem 2rem; }
   .name { font-size: 1.4rem; }
 }
+
+/* Global Utilities */
+.hidden {
+  display: none !important;
+}
