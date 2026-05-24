@@ -544,3 +544,67 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* Active Word Details Info Banner */
+.active-word-details {
+  background: rgba(212, 175, 55, 0.04);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.active-word-title {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.word-title-hz {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.word-title-py {
+  font-size: 0.95rem;
+  color: #d4af37;
+  font-weight: 600;
+}
+
+.word-title-vi {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin-left: 0.5rem;
+  border-left: 1.5px solid rgba(255, 255, 255, 0.2);
+  padding-left: 0.8rem;
+}
+
+.active-char-detail {
+  font-size: 0.9rem;
+  color: #aaa;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 0.35rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.active-char-detail strong {
+  color: #fff;
+  font-size: 1.1rem;
+  font-family: 'Noto Serif SC', serif;
+}
+
+.active-char-detail span {
+  color: #d4af37;
+  font-weight: 600;
+}
+

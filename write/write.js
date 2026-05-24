@@ -4,7 +4,132 @@
    and interactive drawing quizzes.
    ============================================================ */
 
-// ── HSK PRESET VOCABULARY DATABASE ───────────────────────────────────
+// ── PINYIN CHARACTER DICTIONARY (Common characters) ────────────────
+const PINYIN_DICT = {
+  "一": "yī", "二": "èr", "三": "sān", "四": "sì", "五": "wǔ", "六": "liù", "七": "qī", "八": "bā", "九": "jiǔ", "十": "shí", "百": "bǎi", "千": "qiān",
+  "我": "wǒ", "你": "nǐ", "他": "tā", "她": "tā", "它": "tā", "们": "men", "这": "zhè", "那": "nà", "哪": "nǎ", "谁": "shéi", "什": "shén", "么": "me",
+  "的": "de", "得": "de", "地": "de", "了": "le", "过": "guò", "着": "zhe", "吧": "ba", "ma": "ma", "呢": "ne", "呀": "ya", "不": "bù", "很": "hěn", "太": "tài",
+  "都": "dōu", "和": "hé", "在": "zài", "有": "yǒu", "没": "méi", "去": "qù", "来": "lái", "里": "lǐ", "外": "wài", "上": "shàng", "下": "xià", "左": "zuǒ", "右": "yòu",
+  "是": "shì", "做": "zuò", "写": "xiě", "说": "shuō", "听": "tīng", "读": "dú", "看": "kàn", "见": "jiàn", "吃": "chī", "喝": "hē", "爱": "ài", "想": "xiǎng",
+  "喜欢": "xǐhuan", "喜": "xǐ", "欢": "huān", "苹": "píng", "果": "guǒ", "谢": "xiè", "医": "yī", "生": "shēng", "汉": "hàn", "语": "yǔ", "星": "xīng", "期": "qī",
+  "衣": "yī", "服": "fu", "学": "xué", "习": "xí", "老": "lǎo", "师": "shī", "朋": "péng", "友": "you", "睡": "shuì", "觉": "jiào", "电": "diàn", "脑": "nǎo",
+  "影": "yǐng", "飞": "fēi", "机": "jī", "名": "míng", "字": "zi", "昨": "zuó", "天": "tiān", "今": "jīn", "明": "míng", "跑": "pǎo", "步": "bù", "唱": "chàng",
+  "歌": "gē", "旅": "lǚ", "biến hóa": "yóu", "运": "yùn", "动": "dòng", "准": "zhǔn", "备": "bèi", "帮": "bāng", "助": "zhù", "介": "jiè", "绍": "shào", "告": "gào",
+  "诉": "su", "身": "shēn", "体": "tǐ", "便": "pián", "宜": "yi", "时": "shí", "giai đoạn": "jiān", "词": "cí", "典": "diǎn", "经": "jīng", "常": "cháng", "愿": "yuàn",
+  "意": "yì", "简": "jiǎn", "单": "dān", "响": "xiǎng", "办": "bàn", "法": "fǎ", "历": "lì", "史": "shǐ", "音": "yīn", "乐": "yuè", "干": "gān", "净": "jìng",
+  "突": "tū", "然": "rán", "努": "nǔ", "力": "lì", "发": "fā", "现": "xiàn", "环": "huán", "境": "jìng", "关": "guān", "键": "jiàn", "骄": "jiāo", "傲": "ào",
+  "调": "diào", "查": "chá", "拒": "jù", "绝": "jué", "甚": "shèn", "至": "zhì", "翻": "fān", "giải thích": "yì", "招": "zhāo", "聘": "pìn", "复": "fù", "杂": "zá",
+  "解": "jiě", "释": "shì", "鼓": "gǔ", "励": "lì", "tảo": "tǎo", "论": "lùn", "家": "jiā", "人": "rén", "bà": "bà", "mā": "mā", "哥": "gē", "姐": "jiě",
+  "đệ": "dì", "妹": "mèi", "māo": "māo", "gǒu": "gǒu", "yú": "yú", "mǐ": "mǐ", "fàn": "fàn", "miàn": "miàn", "茶": "chá", "水": "shuǐ", "bēi": "bēi", "lěng": "lěng",
+  "热": "rè", "duō": "duō", "shao": "shǎo", "suì": "suì", "hào": "hào", "diǎn": "diǎn", "fēn": "fēn", "qián": "qián", "买": "mǎi", "kāi": "kāi", "坐": "zuò", "住": "zhù",
+  "gāo": "gāo", "xìng": "xìng", "请": "qǐng", "喂": "wèi", "客": "kè", "气": "qì", "再": "zài", "北": "běi", "京": "jīng", "东": "dōng", "西": "xī",
+  "号": "hào", "路": "lù", "车": "chē", "站": "zhàn", "票": "piào", "报": "bào", "纸": "zhǐ", "送": "sòng", "等": "děng", "错": "cuò", "懂": "dǒng",
+  "完": "wán", "新": "xīn", "旧": "jiù", "黑": "hēi", "红": "hóng", "白": "bái", "lǜ": "lǜ", "蓝": "lán", "黄": "huáng", "百": "bǎi", "千": "qiān",
+  "晴": "qíng", "阴": "yīn", "雪": "xuě", "药": "yào", "病": "bìng", "笑": "xiào", "哭": "kū", "穿": "chuān", "洗": "xǐ", "给": "gěi", "找": "zhǎo",
+  // Write character maps
+  "场": "chǎng", "饱": "bǎo", "板": "bǎn", "回": "huí", "答": "dá", "食": "shí", "堂": "táng",
+  "银": "yín", "行": "háng", "其": "qí", "实": "shí", "决": "jué", "定": "dìng", "惯": "guàn",
+  "戏": "xì", "同": "tóng", "火": "huǒ", "普": "pǔ", "通": "tōng", "每": "měi", "起": "qǐ",
+  "床": "chuáng", "可": "kě", "能": "néng", "小": "xiǎo", "好": "hǎo", "以": "yǐ", "脸": "liǎn",
+  "包": "bāo", "认": "rèn", "真": "zhēn", "半": "bàn", "汽": "qì", "问": "wèn", "题": "tí",
+  "特": "tè", "别": "bié", "练": "liàn", "年": "nián"
+};
+
+// ── FULL DICTIONARY DEFINITIONS ─────────────────────────────────────
+const DICT_LOOKUP = {
+  // HSK 1
+  "医生": { py: "yīshēng", vi: "Bác sĩ" },
+  "星期": { py: "xīngqī", vi: "Tuần" },
+  "飞机": { py: "fēijī", vi: "Máy bay" },
+  "今天": { py: "jīntiān", vi: "Hôm nay" },
+  "苹果": { py: "píngguǒ", vi: "Quả táo" },
+  "朋友": { py: "péngyou", vi: "Bạn bè" },
+  "昨天": { py: "zuótiān", vi: "Hôm qua" },
+  "明天": { py: "míngtiān", vi: "Ngày mai" },
+  "名字": { py: "míngzi", vi: "Tên" },
+  "学习": { py: "xuéxí", vi: "Học tập" },
+  "老师": { py: "lǎoshī", vi: "Giáo viên" },
+  "汉语": { py: "Hànyǔ", vi: "Tiếng Trung" },
+  "电脑": { py: "diànnǎo", vi: "Máy tính" },
+  "电影": { py: "diànyǐng", vi: "Phim" },
+  "谢谢": { py: "xièxie", vi: "Cảm ơn" },
+  "睡觉": { py: "shuìjiào", vi: "Đi ngủ" },
+  "吃饱": { py: "chībǎo", vi: "Ăn no" },
+  "北京": { py: "Běijīng", vi: "Bắc Kinh" },
+  "每天": { py: "měitiān", vi: "Mỗi ngày" },
+  "水果": { py: "shuǐguǒ", vi: "Hoa quả" },
+  "很好": { py: "hěnhǎo", vi: "Rất tốt" },
+  // HSK 2
+  "唱歌": { py: "chànggē", vi: "Hát" },
+  "跑步": { py: "pǎobù", vi: "Chạy bộ" },
+  "旅游": { py: "lǚyóu", vi: "Đi du lịch" },
+  "运动": { py: "yùndòng", vi: "Thể thao" },
+  "准备": { py: "zhǔnbèi", vi: "Chuẩn bị" },
+  "帮助": { py: "bāngzhù", vi: "Giúp đỡ" },
+  "介绍": { py: "jièshào", vi: "Giới thiệu" },
+  "欢迎": { py: "huānyíng", vi: "Hoan nghênh" },
+  "告诉": { py: "gàosu", vi: "Cho biết" },
+  "身体": { py: "shēntǐ", vi: "Sức khoẻ" },
+  "便宜": { py: "piányi", vi: "Rẻ" },
+  "时间": { py: "shíjiān", vi: "Thời gian" },
+  "词典": { py: "cídiǎn", vi: "Từ điển" },
+  "机场": { py: "jīchǎng", vi: "Sân bay" },
+  "听懂": { py: "tīngdǒng", vi: "Nghe hiểu" },
+  "回答": { py: "huídá", vi: "Trả lời" },
+  "食堂": { py: "shítáng", vi: "Nhà ăn" },
+  "银行": { py: "yínháng", vi: "Ngân hàng" },
+  "火车": { py: "huǒchē", vi: "Tàu hoả" },
+  "起床": { py: "qǐchuáng", vi: "Ngủ dậy" },
+  "可能": { py: "kěnéng", vi: "Có thể" },
+  "小时": { py: "xiǎoshí", vi: "Tiếng đồng hồ" },
+  "可以": { py: "kěyǐ", vi: "Có thể" },
+  "面包": { py: "miànbāo", vi: "Bánh mì" },
+  "汽车": { py: "qìchē", vi: "Xe ô tô" },
+  "问题": { py: "wèntí", vi: "Vấn đề" },
+  "练习": { py: "liànxí", vi: "Luyện tập" },
+  "去年": { py: "qùnián", vi: "Năm ngoái" },
+  // HSK 3
+  "经常": { py: "jīngcháng", vi: "Thường xuyên" },
+  "愿意": { py: "yuànyì", vi: "Bằng lòng" },
+  "简单": { py: "jiǎndān", vi: "Đơn giản" },
+  "影响": { py: "yǐngxiǎng", vi: "Ảnh hưởng" },
+  "办法": { py: "bànfǎ", vi: "Biện pháp" },
+  "历史": { py: "lìshǐ", vi: "Lịch sử" },
+  "音乐": { py: "yīnyuè", vi: "Âm nhạc" },
+  "干净": { py: "gānjìng", vi: "Sạch sẽ" },
+  "突然": { py: "tūrán", vi: "Đột nhiên" },
+  "努力": { py: "nǔlì", vi: "Cố gắng" },
+  "发现": { py: "fāxiàn", vi: "Phát hiện" },
+  "环境": { py: "huánjìng", vi: "Môi trường" },
+  "黑板": { py: "hēibǎn", vi: "Bảng đen" },
+  "其实": { py: "qíshí", vi: "Thực ra" },
+  "决定": { py: "juédìng", vi: "Quyết định" },
+  "游戏": { py: "yóuxì", vi: "Trò chơi" },
+  "同意": { py: "tóngyì", vi: "Đồng ý" },
+  "了解": { py: "liǎojiě", vi: "Hiểu rõ" },
+  "语法": { py: "yǔfǎ", vi: "Ngữ pháp" },
+  "有点": { py: "yǒudiǎn", vi: "Có chút / Hơi" },
+  "认真": { py: "rènzhēn", vi: "Nghiêm túc" },
+  "半天": { py: "bàntiān", vi: "Nửa ngày" },
+  "特别": { py: "tèbié", vi: "Đặc biệt" },
+  // HSK 4
+  "关键": { py: "guānjiàn", vi: "Mấu chốt" },
+  "骄傲": { py: "jiāo'ào", vi: "Kiêu ngạo" },
+  "调查": { py: "diàochá", vi: "Điều tra" },
+  "拒绝": { py: "jùjué", vi: "Từ chối" },
+  "biến hóa": { py: "biànhuà", vi: "Thay đổi" },
+  "翻译": { py: "fānyì", vi: "Phiên dịch" },
+  "复杂": { py: "fùzá", vi: "Phức tạp" },
+  "习惯": { py: "xíguàn", vi: "Thói quen" },
+  "解释": { py: "jiěshì", vi: "Giải thích" },
+  "招聘": { py: "zhāopìn", vi: "Tuyển dụng" },
+  // Characters
+  "你": { py: "nǐ", vi: "Bạn, anh, chị" },
+  "好": { py: "hǎo", vi: "Tốt, khoẻ, ngon" },
+  "我": { py: "wǒ", vi: "Tôi, ta, tớ" }
+};
+
+// ── HSK PRESET SELECTION DATABASE ────────────────────────────────────
 const HSK_PRESETS = {
   1: [
     { hz: "你", py: "nǐ", vi: "Bạn, anh, chị" },
@@ -75,7 +200,7 @@ class StrokePracticeApp {
 
     // Initial renders
     this.renderHskPresets(1);
-    this.loadCharacter("你");
+    this.loadPhrase("你");
   }
 
   initDOM() {
@@ -93,6 +218,13 @@ class StrokePracticeApp {
     this.targetContainer = document.getElementById("character-target");
     this.loadingSpinner  = document.getElementById("loading-spinner");
     this.successBadge    = document.getElementById("success-badge");
+
+    // Active Word Details elements
+    this.infoWordHz      = document.getElementById("info-word-hz");
+    this.infoWordPy      = document.getElementById("info-word-py");
+    this.infoWordVi      = document.getElementById("info-word-vi");
+    this.infoCharHz      = document.getElementById("info-char-hz");
+    this.infoCharPy      = document.getElementById("info-char-py");
 
     // Controls
     this.btnAnimate     = document.getElementById("btn-animate");
@@ -135,6 +267,13 @@ class StrokePracticeApp {
     this.targetContainer.innerHTML = ""; // Clear canvas
     this.loadingSpinner.classList.remove("hidden");
     this.updateQuizUI();
+
+    // Update current drawing character info details in the banner
+    if (this.infoCharHz && this.infoCharPy) {
+      this.infoCharHz.textContent = char;
+      const pinyin = PINYIN_DICT[char] || char;
+      this.infoCharPy.textContent = `(${pinyin})`;
+    }
 
     try {
       // Initialize Hanzi Writer instance
@@ -264,6 +403,20 @@ class StrokePracticeApp {
     this.activePhrase = cleanPhrase;
     this.charList = cleanPhrase.split("");
     this.activeCharIndex = 0;
+
+    // Look up dictionary definition info
+    const definition = DICT_LOOKUP[cleanPhrase];
+    if (definition) {
+      this.infoWordHz.textContent = cleanPhrase;
+      this.infoWordPy.textContent = `(${definition.py})`;
+      this.infoWordVi.textContent = definition.vi;
+    } else {
+      // Fallback translation character by character
+      const pyTranslated = cleanPhrase.split("").map(c => PINYIN_DICT[c] || c).join(" ");
+      this.infoWordHz.textContent = cleanPhrase;
+      this.infoWordPy.textContent = `(${pyTranslated})`;
+      this.infoWordVi.textContent = "Từ tự tra cứu";
+    }
 
     this.updateCharNavigation();
     this.loadCharacter(this.charList[0]);
