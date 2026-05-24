@@ -195,16 +195,19 @@
 
 .board-layout {
   display: flex;
-  gap: 3rem;
+  gap: 2.5rem;
+  justify-content: center;
   align-items: flex-start;
   margin-top: 1.5rem;
 }
 
-.canvas-column {
+.practice-block {
+  flex: 1;
+  min-width: 320px;
+  max-width: 450px;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  flex-shrink: 0;
 }
 
 .canvas-title {
@@ -214,6 +217,7 @@
   text-transform: uppercase;
   letter-spacing: 0.8px;
   margin-bottom: -0.5rem;
+  text-align: center;
 }
 
 /* Canvas Wrapper with custom Mizi Ge lines */
@@ -230,6 +234,7 @@
   align-items: center;
   flex-shrink: 0;
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
+  align-self: center;
 }
 
 .character-target {
@@ -246,6 +251,8 @@
 /* Hanzi Writer overlay elements overrides */
 .character-target svg {
   display: block;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 /* Spinner Overlay */
@@ -305,12 +312,9 @@
   text-shadow: 0 0 15px rgba(46, 204, 113, 0.2);
 }
 
-/* Board Controls */
-.board-controls {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+/* Practice Block Controls */
+.practice-block .control-section {
+  width: 100%;
 }
 
 .control-section {
@@ -634,7 +638,12 @@
   .board-layout {
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 3rem;
+  }
+  
+  .practice-block {
+    width: 100%;
+    max-width: 360px;
   }
   
   .canvas-wrapper {
@@ -645,10 +654,6 @@
   .character-target {
     width: 260px;
     height: 260px;
-  }
-  
-  .board-controls {
-    width: 100%;
   }
 }
 

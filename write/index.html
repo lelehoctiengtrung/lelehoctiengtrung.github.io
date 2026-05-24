@@ -101,8 +101,8 @@
         </div>
 
         <div class="board-layout">
-          <!-- Two separate canvas boxes in a column -->
-          <div class="canvas-column">
+          <!-- Block 1: Mẫu Nét Vẽ -->
+          <div class="practice-block animate-block">
             <div class="canvas-title">Mẫu Nét Vẽ</div>
             <div class="canvas-wrapper animate-wrapper">
               <div id="character-target-animate" class="character-target"></div>
@@ -111,8 +111,24 @@
                 <p>Đang tải dữ liệu...</p>
               </div>
             </div>
+            
+            <div class="control-section mt-3">
+              <h3>Hoạt ảnh nét vẽ</h3>
+              <div class="button-stack">
+                <button class="btn btn-primary" id="btn-animate">📺 Xem nét vẽ</button>
+                <button class="btn btn-secondary" id="btn-pause">⏸️ Tạm dừng</button>
+                <button class="btn btn-secondary" id="btn-reset-anim">🔄 Xem lại từ đầu</button>
+              </div>
+              <div class="slider-group">
+                <label for="speed-slider">Tốc độ vẽ: <span id="speed-val">1.0x</span></label>
+                <input type="range" id="speed-slider" min="0.3" max="2.5" step="0.1" value="1.0" class="range-slider" />
+              </div>
+            </div>
+          </div>
 
-            <div class="canvas-title mt-3">Khung Tập Viết</div>
+          <!-- Block 2: Khung Tập Viết -->
+          <div class="practice-block quiz-block">
+            <div class="canvas-title">Khung Tập Viết</div>
             <div class="canvas-wrapper quiz-wrapper">
               <div id="character-target-quiz" class="character-target"></div>
               <div id="loading-spinner-quiz" class="loading-spinner hidden">
@@ -125,24 +141,8 @@
                 <p>Viết chữ hoàn thành xuất sắc!</p>
               </div>
             </div>
-          </div>
-
-          <!-- Controls side panel -->
-          <div class="board-controls">
-            <div class="control-section">
-              <h3>Hoạt ảnh nét vẽ</h3>
-              <div class="button-stack">
-                <button class="btn btn-primary" id="btn-animate">📺 Xem nét vẽ</button>
-                <button class="btn btn-secondary" id="btn-pause">⏸️ Tạm dừng</button>
-                <button class="btn btn-secondary" id="btn-reset-anim">🔄 Xem lại từ đầu</button>
-              </div>
-              <div class="slider-group">
-                <label for="speed-slider">Tốc độ vẽ: <span id="speed-val">1.0x</span></label>
-                <input type="range" id="speed-slider" min="0.3" max="2.5" step="0.1" value="1.0" class="range-slider" />
-              </div>
-            </div>
-
-            <div class="control-section mt-4">
+            
+            <div class="control-section mt-3">
               <h3>Tự luyện viết tương tác</h3>
               <div class="button-stack">
                 <button class="btn btn-record" id="btn-quiz">✍️ Bắt đầu viết</button>
