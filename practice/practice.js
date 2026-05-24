@@ -27,8 +27,15 @@ const PINYIN_DICT = {
   "热": "rè", "多": "duō", "少": "shǎo", "岁": "suì", "号": "hào", "点": "diǎn", "分": "fēn", "钱": "qián", "买": "mǎi", "开": "kāi", "坐": "zuò", "住": "zhù",
   "高": "gāo", "兴": "xìng", "请": "qǐng", "喂": "wèi", "客": "kè", "气": "qì", "再": "zài", "北": "běi", "京": "jīng", "东": "dōng", "西": "xī",
   "号": "hào", "路": "lù", "车": "chē", "站": "zhàn", "票": "piào", "报": "bào", "纸": "zhǐ", "送": "sòng", "等": "děng", "错": "cuò", "懂": "dǒng",
-  "完": "wán", "新": "xīn", "旧": "jiù", "黑": "hēi", "红": "hóng", "白": "bái", "绿": "lǜ", "蓝": "lán", "黄": "huáng", "百": "bǎi", "千": "qiān",
-  "晴": "qíng", "阴": "yīn", "雪": "xuě", "药": "yào", "病": "bìng", "笑": "xiào", "哭": "kū", "穿": "chuān", "洗": "xǐ", "给": "gěi", "找": "zhǎo"
+  "完": "wán", "新": "xīn", "旧": "jiù", "黑": "hēi", "红": "hóng", "白": "bái", "lǜ": "lǜ", "蓝": "lán", "黄": "huáng", "百": "bǎi", "千": "qiān",
+  "晴": "qíng", "阴": "yīn", "雪": "xuě", "药": "yào", "病": "bìng", "笑": "xiào", "哭": "kū", "穿": "chuān", "洗": "xǐ", "给": "gěi", "找": "zhǎo",
+  // New tone pair vocabulary character mapping
+  "场": "chǎng", "饱": "bǎo", "板": "bǎn", "回": "huí", "答": "dá", "食": "shí", "堂": "táng",
+  "银": "yín", "行": "háng", "其": "qí", "实": "shí", "决": "jué", "定": "dìng", "惯": "guàn",
+  "戏": "xì", "同": "tóng", "火": "huǒ", "普": "pǔ", "通": "tōng", "每": "měi", "起": "qǐ",
+  "床": "chuáng", "可": "kě", "能": "néng", "小": "xiǎo", "好": "hǎo", "以": "yǐ", "脸": "liǎn",
+  "包": "bāo", "认": "rèn", "真": "zhēn", "半": "bàn", "汽": "qì", "问": "wèn", "题": "tí",
+  "特": "tè", "别": "bié", "练": "liàn", "年": "nián"
 };
 
 // ── LOCAL HSK WORD BANK ──────────────────────────────────────────
@@ -50,7 +57,12 @@ const HSK_VOCAB = {
     { hanzi: "电脑", pinyin: "diànnǎo", tone_pair: "43", meaning: "Máy tính" },
     { hanzi: "电影", pinyin: "diànyǐng", tone_pair: "43", meaning: "Phim" },
     { hanzi: "谢谢", pinyin: "xièxie", tone_pair: "44", meaning: "Cảm ơn" },
-    { hanzi: "睡觉", pinyin: "shuìjiào", tone_pair: "44", meaning: "Đi ngủ" }
+    { hanzi: "睡觉", pinyin: "shuìjiào", tone_pair: "44", meaning: "Đi ngủ" },
+    { hanzi: "吃饱", pinyin: "chībǎo", tone_pair: "13", meaning: "Ăn no" },
+    { hanzi: "北京", pinyin: "Běijīng", tone_pair: "31", meaning: "Bắc Kinh" },
+    { hanzi: "每天", pinyin: "měitiān", tone_pair: "31", meaning: "Mỗi ngày" },
+    { hanzi: "水果", pinyin: "shuǐguǒ", tone_pair: "33", meaning: "Hoa quả" },
+    { hanzi: "很好", pinyin: "hěnhǎo", tone_pair: "33", meaning: "Rất tốt" }
   ],
   // HSK 2
   2: [
@@ -66,22 +78,48 @@ const HSK_VOCAB = {
     { hanzi: "身体", pinyin: "shēntǐ", tone_pair: "13", meaning: "Sức khoẻ" },
     { hanzi: "便宜", pinyin: "piányi", tone_pair: "22", meaning: "Rẻ" },
     { hanzi: "时间", pinyin: "shíjiān", tone_pair: "21", meaning: "Thời gian" },
-    { hanzi: "词典", pinyin: "cídiǎn", tone_pair: "23", meaning: "Từ điển" }
+    { hanzi: "词典", pinyin: "cídiǎn", tone_pair: "23", meaning: "Từ điển" },
+    { hanzi: "机场", pinyin: "jīchǎng", tone_pair: "13", meaning: "Sân bay" },
+    { hanzi: "听懂", pinyin: "tīngdǒng", tone_pair: "13", meaning: "Nghe hiểu" },
+    { hanzi: "回答", pinyin: "huídá", tone_pair: "22", meaning: "Trả lời" },
+    { hanzi: "食堂", pinyin: "shítáng", tone_pair: "22", meaning: "Nhà ăn" },
+    { hanzi: "银行", pinyin: "yínháng", tone_pair: "22", meaning: "Ngân hàng" },
+    { hanzi: "火车", pinyin: "huǒchē", tone_pair: "31", meaning: "Tàu hoả" },
+    { hanzi: "起床", pinyin: "qǐchuáng", tone_pair: "32", meaning: "Ngủ dậy" },
+    { hanzi: "可能", pinyin: "kěnéng", tone_pair: "32", meaning: "Có thể" },
+    { hanzi: "小时", pinyin: "xiǎoshí", tone_pair: "32", meaning: "Tiếng đồng hồ" },
+    { hanzi: "可以", pinyin: "kěyǐ", tone_pair: "33", meaning: "Có thể" },
+    { hanzi: "面包", pinyin: "miànbāo", tone_pair: "41", meaning: "Bánh mì" },
+    { hanzi: "汽车", pinyin: "qìchē", tone_pair: "41", meaning: "Xe ô tô" },
+    { hanzi: "问题", pinyin: "wèntí", tone_pair: "42", meaning: "Vấn đề" },
+    { hanzi: "练习", pinyin: "liànxí", tone_pair: "42", meaning: "Luyện tập" },
+    { hanzi: "去年", pinyin: "qùnián", tone_pair: "42", meaning: "Năm ngoái" }
   ],
   // HSK 3
   3: [
     { hanzi: "经常", pinyin: "jīngcháng", tone_pair: "12", meaning: "Thường xuyên" },
     { hanzi: "愿意", pinyin: "yuànyì", tone_pair: "44", meaning: "Bằng lòng" },
     { hanzi: "简单", pinyin: "jiǎndān", tone_pair: "31", meaning: "Đơn giản" },
-    { hanzi: "影响", pinyin: "yǐngxiǎng", tone_pair: "23", meaning: "Ảnh hưởng (biến điệu 3-3)" },
-    { hanzi: "办法", pinyin: "bànfǎ", tone_pair: "43", meaning: "Biện pháp, cách làm" },
+    { hanzi: "影响", pinyin: "yǐngxiǎng", tone_pair: "23", meaning: "Ảnh hưởng" },
+    { hanzi: "办法", pinyin: "bànfǎ", tone_pair: "43", meaning: "Biện pháp" },
     { hanzi: "历史", pinyin: "lìshǐ", tone_pair: "43", meaning: "Lịch sử" },
     { hanzi: "音乐", pinyin: "yīnyuè", tone_pair: "14", meaning: "Âm nhạc" },
     { hanzi: "干净", pinyin: "gānjìng", tone_pair: "14", meaning: "Sạch sẽ" },
     { hanzi: "突然", pinyin: "tūrán", tone_pair: "12", meaning: "Đột nhiên" },
     { hanzi: "努力", pinyin: "nǔlì", tone_pair: "34", meaning: "Cố gắng" },
     { hanzi: "发现", pinyin: "fāxiàn", tone_pair: "14", meaning: "Phát hiện" },
-    { hanzi: "环境", pinyin: "huánjìng", tone_pair: "24", meaning: "Môi trường" }
+    { hanzi: "环境", pinyin: "huánjìng", tone_pair: "24", meaning: "Môi trường" },
+    { hanzi: "黑板", pinyin: "hēibǎn", tone_pair: "13", meaning: "Bảng đen" },
+    { hanzi: "其实", pinyin: "qíshí", tone_pair: "22", meaning: "Thực ra" },
+    { hanzi: "决定", pinyin: "juédìng", tone_pair: "24", meaning: "Quyết định" },
+    { hanzi: "游戏", pinyin: "yóuxì", tone_pair: "24", meaning: "Trò chơi" },
+    { hanzi: "同意", pinyin: "tóngyì", tone_pair: "24", meaning: "Đồng ý" },
+    { hanzi: "了解", pinyin: "liǎojiě", tone_pair: "33", meaning: "Hiểu rõ" },
+    { hanzi: "语法", pinyin: "yǔfǎ", tone_pair: "33", meaning: "Ngữ pháp" },
+    { hanzi: "有点", pinyin: "yǒudiǎn", tone_pair: "33", meaning: "Có chút / Hơi" },
+    { hanzi: "认真", pinyin: "rènzhēn", tone_pair: "41", meaning: "Nghiêm túc" },
+    { hanzi: "半天", pinyin: "bàntiān", tone_pair: "41", meaning: "Nửa ngày" },
+    { hanzi: "特别", pinyin: "tèbié", tone_pair: "42", meaning: "Đặc biệt" }
   ],
   // HSK 4
   4: [
@@ -94,8 +132,9 @@ const HSK_VOCAB = {
     { hanzi: "招聘", pinyin: "zhāopìn", tone_pair: "14", meaning: "Tuyển dụng" },
     { hanzi: "复杂", pinyin: "fùzá", tone_pair: "42", meaning: "Phức tạp" },
     { hanzi: "解释", pinyin: "jiěshì", tone_pair: "34", meaning: "Giải thích" },
-    { hanzi: "鼓励", pinyin: "gǔlì", tone_pair: "34", meaning: "Cổ vũ" },
-    { hanzi: "讨论", pinyin: "tǎolùn", tone_pair: "34", meaning: "Thảo luận" }
+    { hanzi: "鼓励", "pinyin": "gǔlì", tone_pair: "34", meaning: "Cổ vũ" },
+    { hanzi: "讨论", pinyin: "tǎolùn", tone_pair: "34", meaning: "Thảo luận" },
+    { hanzi: "习惯", pinyin: "xíguàn", tone_pair: "24", meaning: "Thói quen" }
   ]
 };
 
@@ -418,6 +457,13 @@ class MandarinPractice {
     
     // Find matching word
     const exclude = keepSamePair ? null : this.activeTpWord?.hanzi;
+    
+    // Check how many words match this pair in ALL_WORDS
+    const allMatches = ALL_WORDS.filter(w => w.tone_pair === this.activeTonePair);
+    if (!keepSamePair && allMatches.length <= 1 && allMatches.length > 0) {
+      this.showToast("Chỉ có 1 từ mẫu cho cặp thanh điệu này!");
+    }
+    
     this.activeTpWord = getWordForTonePair(this.activeTonePair, exclude);
     
     this.tpWordHanzi.textContent = this.activeTpWord.hanzi;
