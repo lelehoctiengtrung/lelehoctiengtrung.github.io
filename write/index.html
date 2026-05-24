@@ -6,15 +6,15 @@
   <link rel="icon" type="image/x-icon" href="../favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="../favicon-180.png" />
-  <title>Tra cứu nét viết – Lê Lê học tiếng Trung</title>
-  <meta name="description" content="Tra cứu thứ tự nét viết và tập viết chữ Hán trực tiếp từ StrokeOrder.com tích hợp trên website Lê Lê học tiếng Trung." />
+  <title>Tập Viết Chữ Hán – Lê Lê học tiếng Trung</title>
+  <meta name="description" content="Tra cứu thứ tự nét viết và tập viết chữ Hán tương tác online miễn phí. Hỗ trợ hoạt ảnh stroke order, sơ đồ từng nét viết và hướng dẫn viết đúng thứ tự nét." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="../style.css?v=1.0.4" />
-  <link rel="stylesheet" href="write.css?v=1.0.3" />
+  <link rel="stylesheet" href="write.css?v=1.0.5" />
 </head>
 <body>
 
@@ -33,7 +33,7 @@
 
   <div class="write-container">
     <!-- Header -->
-    <header class="write-header">
+    <header class="shop-header">
       <div class="header-nav">
         <a href="../index.html" class="back-btn" id="btn-back-home" aria-label="Quay lại trang chính">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -53,28 +53,138 @@
         <img src="../logo.png" alt="Logo Lê Lê" class="shop-logo" width="40" height="40" />
         <div>
           <p class="shop-brand-name">Lê Lê học tiếng Trung</p>
-          <p class="shop-brand-sub" lang="zh">乐乐学中文 · Tra nét</p>
+          <p class="shop-brand-sub" lang="zh">乐乐学中文 · Tập Viết</p>
         </div>
       </div>
     </header>
 
     <!-- Page Title Section -->
     <section class="write-hero" aria-label="Giới thiệu">
-      <div class="hero-badge">📖 Tra cứu nét viết</div>
-      <h1 class="hero-title">Tra Cứu Nét Viết <br/><span class="accent-gradient">StrokeOrder</span></h1>
-      <p class="hero-sub">Tra cứu thứ tự nét viết, xem hoạt ảnh viết chữ Hán trực tiếp từ StrokeOrder bên dưới.</p>
+      <div class="hero-badge">✍️ Luyện viết tương tác</div>
+      <h1 class="hero-title">Tra Cứu & Tập Viết<br/><span class="accent-gradient">Chữ Hán Tương Tác</span></h1>
+      <p class="hero-sub">Học cách viết đúng thứ tự nét (Stroke Order), xem hoạt ảnh hướng dẫn và tự tay vẽ từng nét chữ trực tiếp bằng chuột hoặc màn hình cảm ứng.</p>
     </section>
 
-    <!-- Embedded Frame Card -->
-    <div class="frame-card card-glass">
-      <iframe src="https://www.strokeorder.com/" id="stroke-iframe" title="StrokeOrder Lookup" allow="clipboard-write"></iframe>
-    </div>
+    <!-- Search Section -->
+    <section class="card-glass search-card">
+      <form id="search-form" class="search-box-wrap">
+        <input type="text" id="search-input" placeholder="Nhập chữ Hán cần tra (ví dụ: 你, 谢谢, 学习)..." autocomplete="off" maxlength="15" />
+        <button type="submit" class="btn btn-primary" id="btn-search">Tra cứu</button>
+      </form>
+      <div id="character-nav" class="char-nav-box hidden">
+        <button class="btn btn-secondary btn-sm" id="btn-prev-char">← Chữ trước</button>
+        <span id="char-nav-info" class="char-nav-info">Chữ 1 / 1</span>
+        <button class="btn btn-secondary btn-sm" id="btn-next-char">Chữ sau →</button>
+      </div>
+    </section>
+
+    <!-- Content Layout Grid -->
+    <div class="write-grid">
+      
+      <!-- LEFT COLUMN: Main Writing Board Grid -->
+      <section class="card-glass board-card">
+        <div class="card-header-bar">
+          <span class="pill-icon">🎨</span>
+          <h2 class="card-title">Bảng Luyện Viết</h2>
+        </div>
+
+        <!-- Active Word Details Info -->
+        <div class="active-word-details" id="active-word-details">
+          <div class="active-word-title">
+            <span class="word-title-hz" id="info-word-hz">--</span>
+            <span class="word-title-py" id="info-word-py">(--)</span>
+            <span class="word-title-vi" id="info-word-vi">--</span>
+          </div>
+          <div class="active-char-detail">
+            Chữ đang viết: <strong id="info-char-hz">--</strong> <span id="info-char-py">(--)</span>
+          </div>
+        </div>
+
+        <div class="board-layout">
+          <!-- Canvas Container with Tianzi Ge lines -->
+          <div class="canvas-wrapper">
+            <div id="character-target" class="character-target"></div>
+            <div id="loading-spinner" class="loading-spinner hidden">
+              <div class="spinner"></div>
+              <p>Đang tải dữ liệu nét vẽ...</p>
+            </div>
+            <!-- Success indicator badge -->
+            <div id="success-badge" class="success-badge hidden">
+              <div class="badge-icon">🌟</div>
+              <p>Viết chữ hoàn thành xuất sắc!</p>
+            </div>
+          </div>
+
+          <!-- Controls side panel -->
+          <div class="board-controls">
+            <div class="control-section">
+              <h3>Hoạt ảnh nét vẽ</h3>
+              <div class="button-stack">
+                <button class="btn btn-primary" id="btn-animate">📺 Xem nét vẽ</button>
+                <button class="btn btn-secondary" id="btn-pause">⏸️ Tạm dừng</button>
+                <button class="btn btn-secondary" id="btn-reset-anim">🔄 Xem lại từ đầu</button>
+              </div>
+              <div class="slider-group">
+                <label for="speed-slider">Tốc độ vẽ: <span id="speed-val">1.0x</span></label>
+                <input type="range" id="speed-slider" min="0.3" max="2.5" step="0.1" value="1.0" class="range-slider" />
+              </div>
+            </div>
+
+            <div class="control-section mt-4">
+              <h3>Tự luyện viết tương tác</h3>
+              <div class="button-stack">
+                <button class="btn btn-record" id="btn-quiz">✍️ Bắt đầu viết</button>
+                <button class="btn btn-secondary" id="btn-quiz-hint">💡 Hiện gợi ý</button>
+                <button class="btn btn-secondary" id="btn-quiz-reset">🧹 Xóa nét vẽ</button>
+              </div>
+              <div id="quiz-status" class="quiz-status-box">Nhấp "Bắt đầu viết" để tự vẽ.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MIDDLE SECTION: Step-by-Step diagrams -->
+      <section class="card-glass step-card" aria-labelledby="steps-heading">
+        <div class="card-header-bar">
+          <span class="pill-icon">📋</span>
+          <h2 id="steps-heading" class="card-title">Sơ Đồ Từng Bước Viết (Stroke Order Steps)</h2>
+        </div>
+        <p class="card-desc">Thứ tự viết chi tiết của từng nét từ trái qua phải (nét màu đỏ thể hiện bước vẽ hiện tại, màu vàng thể hiện các nét đã hoàn thành trước đó):</p>
+        
+        <div id="stroke-steps" class="stroke-steps-container">
+          <p class="placeholder-text">Nhập chữ Hán ở trên để xem sơ đồ nét vẽ.</p>
+        </div>
+      </section>
+
+      <!-- BOTTOM SECTION: HSK Presets -->
+      <section class="card-glass preset-card" aria-labelledby="preset-heading">
+        <div class="card-header-bar">
+          <span class="pill-icon">📚</span>
+          <h2 id="preset-heading" class="card-title">Chữ Mẫu Luyện Tập Theo Cấp Độ HSK</h2>
+        </div>
+        <p class="card-desc">Chọn nhanh các từ vựng thông dụng để xem thứ tự nét vẽ và luyện viết trực tiếp:</p>
+
+        <!-- HSK level tabs -->
+        <div class="hsk-tabs">
+          <button class="hsk-tab-btn active" data-level="1">HSK 1</button>
+          <button class="hsk-tab-btn" data-level="2">HSK 2</button>
+          <button class="hsk-tab-btn" data-level="3">HSK 3</button>
+          <button class="hsk-tab-btn" data-level="4">HSK 4</button>
+        </div>
+
+        <!-- Word items list grid -->
+        <div id="preset-words-list" class="preset-words-grid">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </section>
+
+    </div><!-- /write-grid -->
 
     <!-- Footer -->
     <footer class="shop-footer">
       <img src="../logo.png" alt="Logo Lê Lê" class="footer-logo" width="36" height="36" />
       <p>Lê Lê học tiếng Trung <span>♥</span></p>
-      <p class="footer-note">Nhúng trực tiếp công cụ tra cứu StrokeOrder để có đầy đủ hoạt ảnh và thông tin chi tiết nhất.</p>
+      <p class="footer-note">Ứng dụng hoạt ảnh nét vẽ & tương tác tập viết 100% chạy trên trình duyệt sử dụng thư viện Hanzi Writer.</p>
     </footer>
 
   </div><!-- /write-container -->
@@ -82,8 +192,12 @@
   <!-- Toast -->
   <div class="toast" id="write-toast" role="alert" aria-live="polite">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-    <span id="toast-msg">Đang tải...</span>
+    <span id="toast-msg">Đang xử lý...</span>
   </div>
 
+  <!-- Hanzi Writer CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
+  <!-- Main Script -->
+  <script src="write.js?v=1.0.5" type="module"></script>
 </body>
 </html>
