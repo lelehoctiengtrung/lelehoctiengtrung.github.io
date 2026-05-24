@@ -200,6 +200,22 @@
   margin-top: 1.5rem;
 }
 
+.canvas-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex-shrink: 0;
+}
+
+.canvas-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #d4af37;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: -0.5rem;
+}
+
 /* Canvas Wrapper with custom Mizi Ge lines */
 .canvas-wrapper {
   position: relative;

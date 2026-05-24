@@ -184,7 +184,8 @@ const HSK_PRESETS = {
 // ── CORE APP CONTROLLER CLASS ────────────────────────────────────────
 class StrokePracticeApp {
   constructor() {
-    this.writer = null;
+    this.writerAnimate = null;
+    this.writerQuiz = null;
     this.activePhrase = "你";
     this.charList = ["你"];
     this.activeCharIndex = 0;
@@ -215,9 +216,11 @@ class StrokePracticeApp {
     this.btnNextChar    = document.getElementById("btn-next-char");
 
     // Board
-    this.targetContainer = document.getElementById("character-target");
-    this.loadingSpinner  = document.getElementById("loading-spinner");
-    this.successBadge    = document.getElementById("success-badge");
+    this.targetAnimateContainer = document.getElementById("character-target-animate");
+    this.targetQuizContainer    = document.getElementById("character-target-quiz");
+    this.loadingSpinnerAnimate  = document.getElementById("loading-spinner-animate");
+    this.loadingSpinnerQuiz     = document.getElementById("loading-spinner-quiz");
+    this.successBadge           = document.getElementById("success-badge");
 
     // Active Word Details elements
     this.infoWordHz      = document.getElementById("info-word-hz");
@@ -251,10 +254,7 @@ class StrokePracticeApp {
   }
 
   showToast(msg) {
-    if (!this.toast || !this.toastMsg) return;
-    this.toastMsg.textContent = msg;
-    this.toast.classList.add("show");
-    setTimeout(() => this.toast.classList.remove("show"), 2800);
+    // Disabled as per user request to remove toast popups
   }
 
   // ── CHARACTER LOADING ──────────────────────────────────────────────
@@ -264,8 +264,11 @@ class StrokePracticeApp {
     // Cancel active quiz states
     this.isQuizActive = false;
     this.successBadge.classList.add("hidden");
-    this.targetContainer.innerHTML = ""; // Clear canvas
-    this.loadingSpinner.classList.remove("hidden");
+    
+    this.targetAnimateContainer.innerHTML = ""; // Clear canvas
+    this.targetQuizContainer.innerHTML = ""; // Clear canvas
+    this.loadingSpinnerAnimate.classList.remove("hidden");
+    this.loadingSpinnerQuiz.classList.remove("hidden");
     this.updateQuizUI();
 
     // Update current drawing character info details in the banner
@@ -276,8 +279,19 @@ class StrokePracticeApp {
     }
 
     try {
-      // Initialize Hanzi Writer instance
-      this.writer = HanziWriter.create("character-target", char, {
+      // 1. Initialize Animate Hanzi Writer instance (Only for preview animation)
+      this.writerAnimate = HanziWriter.create("character-target-animate", char, {
+        width: 300,
+        height: 300,
+        padding: 15,
+        showOutline: true,
+        strokeColor: "#D4AF37",      // Gold for strokes
+        outlineColor: "rgba(255, 255, 255, 0.08)", // Faint outline
+        showCharacter: true
+      });
+
+      // 2. Initialize Quiz Hanzi Writer instance (Only for user writing practice)
+      this.writerQuiz = HanziWriter.create("character-target-quiz", char, {
         width: 300,
         height: 300,
         padding: 15,
@@ -287,22 +301,27 @@ class StrokePracticeApp {
         drawingColor: "#C0392B",     // Red for active drawing
         highlightColor: "#D4AF37",   // Gold for highlight hint
         drawingWidth: 16,
-        drawingPadding: 20
+        drawingPadding: 20,
+        showCharacter: false         // Hide character so user has to write it
       });
 
       // Fetch character details & render steps
       await this.renderStrokeSteps(char);
 
-      this.loadingSpinner.classList.add("hidden");
-      this.showToast(`Đã tải chữ "${char}" thành công!`);
+      this.loadingSpinnerAnimate.classList.add("hidden");
+      this.loadingSpinnerQuiz.classList.add("hidden");
 
-      // Start quiz or animate initially
-      this.writer.animateCharacter();
+      // Auto-play preview animation initially on load
+      this.writerAnimate.animateCharacter();
+      
+      // Auto-start drawing quiz on quiz target so user can write instantly
+      this.startQuiz();
     } catch (error) {
       console.error("HanziWriter load error:", error);
-      this.loadingSpinner.classList.add("hidden");
-      this.showToast("Không tìm thấy dữ liệu nét vẽ cho ký tự này!");
-      this.targetContainer.innerHTML = `<div style="color:#d4af37; font-size:4rem; font-family:'Noto Serif SC', serif;">${char}</div>`;
+      this.loadingSpinnerAnimate.classList.add("hidden");
+      this.loadingSpinnerQuiz.classList.add("hidden");
+      this.targetAnimateContainer.innerHTML = `<div style="color:#d4af37; font-size:4rem; font-family:'Noto Serif SC', serif;">${char}</div>`;
+      this.targetQuizContainer.innerHTML = `<div style="color:#d4af37; font-size:4rem; font-family:'Noto Serif SC', serif;">${char}</div>`;
       this.stepsContainer.innerHTML = `<p class="placeholder-text">Không có sơ đồ nét vẽ cho chữ "${char}".</p>`;
     }
   }
@@ -449,59 +468,42 @@ class StrokePracticeApp {
 
   // ── ANIMATION TRIGGERS ─────────────────────────────────────────────
   animate() {
-    if (this.writer) {
-      this.isQuizActive = false;
-      this.successBadge.classList.add("hidden");
-      this.updateQuizUI();
-      this.writer.cancelQuiz();
-      
-      // Update speed slider setting
-      this.writer.updateColor("strokeColor", "#D4AF37");
-      this.writer.animateCharacter({
-        onComplete: () => {
-          this.showToast("Hoạt ảnh hoàn tất.");
-        }
-      });
+    if (this.writerAnimate) {
+      this.writerAnimate.animateCharacter();
     }
   }
 
   pause() {
-    if (this.writer) {
-      this.writer.pauseAnimation();
-      this.showToast("Đã tạm dừng.");
+    if (this.writerAnimate) {
+      this.writerAnimate.pauseAnimation();
     }
   }
 
   resetAnimation() {
-    if (this.writer) {
-      this.isQuizActive = false;
-      this.successBadge.classList.add("hidden");
-      this.updateQuizUI();
-      this.writer.cancelQuiz();
-      
-      this.writer.showCharacter();
-      setTimeout(() => this.writer.animateCharacter(), 200);
+    if (this.writerAnimate) {
+      this.writerAnimate.showCharacter();
+      setTimeout(() => this.writerAnimate.animateCharacter(), 200);
     }
   }
 
   updateSpeed(val) {
     this.animationSpeed = parseFloat(val);
     this.speedValLabel.textContent = `${this.animationSpeed.toFixed(1)}x`;
-    if (this.writer) {
-      this.writer.options.strokeAnimationSpeed = this.animationSpeed;
+    if (this.writerAnimate) {
+      this.writerAnimate.options.strokeAnimationSpeed = this.animationSpeed;
     }
   }
 
   // ── WRITING QUIZ MODE ──────────────────────────────────────────────
   startQuiz() {
-    if (!this.writer) return;
+    if (!this.writerQuiz) return;
 
     this.isQuizActive = true;
     this.successBadge.classList.add("hidden");
     this.updateQuizUI();
 
     // Start Interactive Hanzi Writer quiz
-    this.writer.quiz({
+    this.writerQuiz.quiz({
       onMistake: (strokeData) => {
         const remaining = strokeData.totalStrokes - strokeData.strokeNum;
         this.quizStatusBox.className = "quiz-status-box error";
@@ -522,9 +524,8 @@ class StrokePracticeApp {
         // Auto-navigate to next character if practicing a multi-character word
         if (this.activeCharIndex < this.charList.length - 1) {
           setTimeout(() => {
-            this.showToast("Chuẩn bị chuyển sang chữ tiếp theo...");
-            setTimeout(() => this.nextChar(), 1500);
-          }, 1200);
+            this.nextChar();
+          }, 1500);
         }
       }
     });
@@ -543,20 +544,19 @@ class StrokePracticeApp {
   }
 
   showQuizHint() {
-    if (this.writer && this.isQuizActive) {
-      this.writer.quiz.showHint();
+    if (this.writerQuiz && this.isQuizActive) {
+      this.writerQuiz.quiz.showHint();
     }
   }
 
   resetQuiz() {
-    if (this.writer) {
+    if (this.writerQuiz) {
       this.successBadge.classList.add("hidden");
       this.isQuizActive = false;
       this.updateQuizUI();
-      this.writer.cancelQuiz();
-      this.writer.showCharacter();
-      this.quizStatusBox.className = "quiz-status-box";
-      this.quizStatusBox.innerHTML = `Đã xóa nét vẽ. Nhấp "Bắt đầu viết" để thử lại.`;
+      this.writerQuiz.cancelQuiz();
+      this.writerQuiz.showCharacter();
+      setTimeout(() => this.startQuiz(), 200);
     }
   }
 

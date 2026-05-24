@@ -101,17 +101,29 @@
         </div>
 
         <div class="board-layout">
-          <!-- Canvas Container with Tianzi Ge lines -->
-          <div class="canvas-wrapper">
-            <div id="character-target" class="character-target"></div>
-            <div id="loading-spinner" class="loading-spinner hidden">
-              <div class="spinner"></div>
-              <p>Đang tải dữ liệu nét vẽ...</p>
+          <!-- Two separate canvas boxes in a column -->
+          <div class="canvas-column">
+            <div class="canvas-title">Mẫu Nét Vẽ</div>
+            <div class="canvas-wrapper animate-wrapper">
+              <div id="character-target-animate" class="character-target"></div>
+              <div id="loading-spinner-animate" class="loading-spinner hidden">
+                <div class="spinner"></div>
+                <p>Đang tải dữ liệu...</p>
+              </div>
             </div>
-            <!-- Success indicator badge -->
-            <div id="success-badge" class="success-badge hidden">
-              <div class="badge-icon">🌟</div>
-              <p>Viết chữ hoàn thành xuất sắc!</p>
+
+            <div class="canvas-title mt-3">Khung Tập Viết</div>
+            <div class="canvas-wrapper quiz-wrapper">
+              <div id="character-target-quiz" class="character-target"></div>
+              <div id="loading-spinner-quiz" class="loading-spinner hidden">
+                <div class="spinner"></div>
+                <p>Đang tải dữ liệu...</p>
+              </div>
+              <!-- Success indicator badge -->
+              <div id="success-badge" class="success-badge hidden">
+                <div class="badge-icon">🌟</div>
+                <p>Viết chữ hoàn thành xuất sắc!</p>
+              </div>
             </div>
           </div>
 
@@ -188,12 +200,6 @@
     </footer>
 
   </div><!-- /write-container -->
-
-  <!-- Toast -->
-  <div class="toast" id="write-toast" role="alert" aria-live="polite">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-    <span id="toast-msg">Đang xử lý...</span>
-  </div>
 
   <!-- Hanzi Writer CDN -->
   <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
