@@ -461,6 +461,23 @@ img { display: block; max-width: 100%; }
   color: #ef6455;
 }
 
+/* Write card */
+.link-card.write-card {
+  background: linear-gradient(130deg var(--in-oklch),
+    rgba(212, 175, 55, 0.15) 0%,
+    rgba(243, 156, 18, 0.08) 100%);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+.link-card.write-card:hover {
+  border-color: rgba(212, 175, 55, 0.55);
+  box-shadow: 0 12px 48px rgba(212, 175, 55, 0.18), 0 0 0 1px rgba(212,175,55,0.15);
+}
+.link-card.write-card .link-icon {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.3);
+  color: #f1c40f;
+}
+
 /* ===========================
    Reduced motion
 =========================== */
