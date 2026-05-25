@@ -12,16 +12,31 @@ const COLOR_MAP = {
   gray: '#555555'
 };
 
+// Helper to generate path coordinates for dashed lines to bypass browser printing bugs
+function drawDashedLinePath(x1, y1, x2, y2, dashLen, gapLen) {
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  const L = Math.sqrt(dx * dx + dy * dy);
+  if (L === 0) return '';
+  const ux = dx / L;
+  const uy = dy / L;
+  let pathD = '';
+  for (let t = 0; t < L; t += (dashLen + gapLen)) {
+    const end = Math.min(t + dashLen, L);
+    pathD += `M ${(x1 + t * ux).toFixed(1)} ${(y1 + t * uy).toFixed(1)} L ${(x1 + end * ux).toFixed(1)} ${(y1 + end * uy).toFixed(1)} `;
+  }
+  return pathD;
+}
+
 // ── SVG GRID GENERATOR ───────────────────────────────────────────────
 function drawGridCellSVG(gridType, colorHex, character = '', isTrace = false) {
-  const lineStrokeDash = "5,5";
-  const miziLineStrokeDash = "6,6";
+  // Cross guides path
+  const crossD = drawDashedLinePath(0, 50, 100, 50, 4, 4) + ' ' + drawDashedLinePath(50, 0, 50, 100, 4, 4);
   
-  let diagonals = '';
+  let diagonalsPath = '';
   if (gridType === 'mizi') {
-    diagonals = `
-      <line x1="0" y1="0" x2="100" y2="100" stroke="${colorHex}" stroke-width="0.7" stroke-dasharray="${miziLineStrokeDash}" />
-      <line x1="100" y1="0" x2="0" y2="100" stroke="${colorHex}" stroke-width="0.7" stroke-dasharray="${miziLineStrokeDash}" />
+    diagonalsPath = `
+      <path d="${drawDashedLinePath(0, 0, 100, 100, 4, 4) + ' ' + drawDashedLinePath(100, 0, 0, 100, 4, 4)}" stroke="${colorHex}" stroke-width="0.5" fill="none" />
     `;
   }
   
@@ -36,9 +51,8 @@ function drawGridCellSVG(gridType, colorHex, character = '', isTrace = false) {
         <!-- Outer border -->
         <rect x="0" y="0" width="100" height="100" fill="none" stroke="${colorHex}" stroke-width="1.5"/>
         <!-- Cross dashed lines (Tianzi Ge) -->
-        <line x1="0" y1="50" x2="100" y2="50" stroke="${colorHex}" stroke-width="0.8" stroke-dasharray="${lineStrokeDash}"/>
-        <line x1="50" y1="0" x2="50" y2="100" stroke="${colorHex}" stroke-width="0.8" stroke-dasharray="${lineStrokeDash}"/>
-        ${diagonals}
+        <path d="${crossD}" stroke="${colorHex}" stroke-width="0.8" fill="none" />
+        ${diagonalsPath}
       </svg>
       ${charOverlay}
     </div>
