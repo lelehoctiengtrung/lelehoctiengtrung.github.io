@@ -667,3 +667,5 @@ class StrokePracticeApp {
 document.addEventListener("DOMContentLoaded", () => {
   window.writeApp = new StrokePracticeApp();
 });
+
+export { PINYIN_DICT, DICT_LOOKUP };
