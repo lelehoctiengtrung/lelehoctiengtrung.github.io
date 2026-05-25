@@ -14,14 +14,14 @@ const COLOR_MAP = {
 
 // ── SVG GRID GENERATOR ───────────────────────────────────────────────
 function drawGridCellSVG(gridType, colorHex, character = '', isTrace = false) {
-  const lineStrokeDash = "3,3";
-  const miziLineStrokeDash = "4,4";
+  const lineStrokeDash = "5,5";
+  const miziLineStrokeDash = "6,6";
   
   let diagonals = '';
   if (gridType === 'mizi') {
     diagonals = `
-      <line x1="0" y1="0" x2="100" y2="100" stroke="${colorHex}" stroke-width="0.5" stroke-dasharray="${miziLineStrokeDash}" />
-      <line x1="100" y1="0" x2="0" y2="100" stroke="${colorHex}" stroke-width="0.5" stroke-dasharray="${miziLineStrokeDash}" />
+      <line x1="0" y1="0" x2="100" y2="100" stroke="${colorHex}" stroke-width="0.7" stroke-dasharray="${miziLineStrokeDash}" />
+      <line x1="100" y1="0" x2="0" y2="100" stroke="${colorHex}" stroke-width="0.7" stroke-dasharray="${miziLineStrokeDash}" />
     `;
   }
   
