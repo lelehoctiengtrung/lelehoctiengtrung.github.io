@@ -357,7 +357,7 @@ function printWorksheet() {
             padding-bottom: 10px;
             margin-bottom: 25px;
           }
-          .sheet-header h1 {
+          .sheet-header h1, .sheet-header h2 {
             font-family: 'Noto Serif SC', serif;
             font-size: 1.6rem;
             font-weight: 700;
