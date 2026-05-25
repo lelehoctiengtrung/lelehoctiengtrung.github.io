@@ -6,15 +6,15 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png" />
-  <title>Bookstore – Lê Lê học tiếng Trung</title>
+  <title data-i18n="shop_title">Bookstore – Lê Lê học tiếng Trung</title>
   <meta name="description" content="Sách học tiếng Trung được Lê Lê chọn lọc & tài liệu miễn phí dành cho người học." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css?v=1.0.2" />
-  <link rel="stylesheet" href="shop.css?v=1.0.2" />
+  <link rel="stylesheet" href="style.css?v=1.0.8" />
+  <link rel="stylesheet" href="shop.css?v=1.0.8" />
 </head>
 <body>
 
@@ -36,7 +36,7 @@
     <header class="shop-header">
       <a href="index.html" class="back-btn" id="btn-back" aria-label="Quay lại trang chính">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-        <span>Trang chính</span>
+        <span data-i18n="nav_home">Trang chính</span>
       </a>
 
       <div class="shop-brand">
@@ -46,13 +46,14 @@
           <p class="shop-brand-sub" lang="zh">乐乐学中文 · Bookstore</p>
         </div>
       </div>
+      <div id="lang-selector"></div>
     </header>
 
     <!-- Hero -->
     <section class="shop-hero" aria-label="Giới thiệu bookshop">
-      <div class="hero-badge">📚 Được Lê Lê chọn lọc</div>
-      <h1 class="hero-title">Sách<br/><span>tiếng Trung</span></h1>
-      <p class="hero-sub">Những cuốn sách mình đã dùng và thực sự thấy hiệu quả — chia sẻ thật lòng, không quảng cáo suông 🌸</p>
+      <div class="hero-badge" data-i18n="shop_hero_badge">📚 Được Lê Lê chọn lọc</div>
+      <h1 class="hero-title" data-i18n="shop_hero_title">Sách<br/><span>tiếng Trung</span></h1>
+      <p class="hero-sub" data-i18n="shop_hero_sub">Những cuốn sách mình đã dùng và thực sự thấy hiệu quả — chia sẻ thật lòng, không quảng cáo suông 🌸</p>
     </section>
 
     <!-- ========================
@@ -62,9 +63,9 @@
       <div class="section-header">
         <h2 id="books-heading" class="section-title">
           <span class="section-icon">📖</span>
-          Sách Lê Lê gợi ý
+          <span data-i18n="shop_section_title">Sách Lê Lê gợi ý</span>
         </h2>
-        <p class="section-desc">Mua qua link của mình để ủng hộ kênh nhé 🙏</p>
+        <p class="section-desc" data-i18n="shop_section_desc">Mua qua link của mình để ủng hộ kênh nhé 🙏</p>
       </div>
 
       <div class="books-grid" id="books-grid">
@@ -278,7 +279,7 @@
     <footer class="shop-footer">
       <img src="logo.png" alt="Logo Lê Lê" class="footer-logo" width="36" height="36" />
       <p>Lê Lê học tiếng Trung <span>♥</span></p>
-      <p class="footer-note">* Link sách là affiliate link — mình được hoa hồng nhỏ khi bạn mua, không ảnh hưởng giá nhé!</p>
+      <p class="footer-note" data-i18n="shop_footer_note">Tất cả tài liệu đều miễn phí — chia sẻ thoải mái cho bạn bè cùng học nhé!</p>
     </footer>
 
   </div>
@@ -286,9 +287,10 @@
   <!-- Share toast notification -->
   <div class="toast" id="share-toast" role="alert" aria-live="polite">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-    <span id="toast-msg">Đã sao chép link!</span>
+    <span id="toast-msg" data-i18n="docs_toast_copied">Đã sao chép link!</span>
   </div>
 
-  <script src="shop.js?v=1.0.2"></script>
+  <script src="i18n.js"></script>
+  <script src="shop.js?v=1.0.8"></script>
 </body>
 </html>

@@ -98,6 +98,64 @@ const FALLBACK_BOOKS = {
   }
 };
 
+// ---- Book Translations Mapping ----
+const BOOK_TRANSLATIONS = {
+  en: {
+    'SACH-001': {
+      title: 'Chinese Course (Hanyu Jiaocheng)',
+      desc: 'Standard Chinese textbook, complete with Pinyin pronunciation and rich exercises. Le Le studied from this book from the start! ✨',
+      tags: 'Beginner, HSK 1-3, Has Pinyin'
+    },
+    'SACH-002': {
+      title: '3000 HSK Vocabulary',
+      desc: 'Complete HSK 1-6 vocabulary by theme, with example sentences, pronunciation and translations. A must-have for HSK prep! 💪',
+      tags: 'Exam Prep, HSK 1-6, Comprehensive'
+    },
+    'SACH-003': {
+      title: 'Practical Chinese Conversations',
+      desc: 'Real-world daily communication scenarios. Speak immediately after learning, perfect for practicing speaking! 🗣️',
+      tags: 'Communication, Practical, Audio CD'
+    },
+    'SACH-004': {
+      title: 'Basic Chinese Character Writing',
+      desc: 'Chinese writing book with detailed stroke order instructions and standard Mizi Ge grids to help you write characters beautifully.',
+      tags: 'Writing, Chinese Characters, Practice'
+    },
+    'SACH-005': {
+      title: 'Easy-to-Understand Chinese Grammar',
+      desc: 'Summarizes all Chinese grammar from basic to advanced using intuitive mind maps, easy to remember and apply.',
+      tags: 'Grammar, Mind Maps, Easy'
+    }
+  },
+  zh: {
+    'SACH-001': {
+      title: '汉语教程',
+      desc: '标准汉语教材，拼音标注齐全，练习丰富。乐乐从一开始就用这本书学习！✨',
+      tags: '零基础, HSK 1-3, 附拼音'
+    },
+    'SACH-002': {
+      title: 'HSK 3000 词汇',
+      desc: '按主题分类的 HSK 1-6 全套词汇，附带例句、发音和释义。HSK备考必备！💪',
+      tags: '备考, HSK 1-6, 完整版'
+    },
+    'SACH-003': {
+      title: '实用汉语会话',
+      desc: '真实日常交际场景。学完即用，非常适合练习口语！🗣️',
+      tags: '口语交际, 实用, 附CD音频'
+    },
+    'SACH-004': {
+      title: '基础汉字书写描红',
+      desc: '带有详细笔顺指导的汉字字帖，配有标准米字格，助您写出漂亮规范的汉字。',
+      tags: '书写练习, 汉字, 字帖'
+    },
+    'SACH-005': {
+      title: '图解易懂汉语语法',
+      desc: '通过直观的思维导图系统总结从初级到高级的汉语语法，易记易用。',
+      tags: '语法, 思维导图, 易懂'
+    }
+  }
+};
+
 // ---- Helpers ----
 function colVal(row, i, fallbackVal = '') {
   const c = row.c[i];
@@ -110,12 +168,12 @@ function buildBookCard(row) {
   const sku = colVal(row, C.sku);
   const fallback = FALLBACK_BOOKS[sku];
 
-  const title      = colVal(row, C.title, fallback?.title);
+  let title      = colVal(row, C.title, fallback?.title);
   const subtitleZh = colVal(row, C.subtitle_zh, fallback?.subtitle_zh);
-  const desc       = colVal(row, C.desc, fallback?.desc);
-  const tags       = colVal(row, C.tags, fallback?.tags).split(',').map(t => t.trim()).filter(Boolean);
+  let desc       = colVal(row, C.desc, fallback?.desc);
+  let tagsRaw    = colVal(row, C.tags, fallback?.tags);
   const price      = colVal(row, C.price, fallback?.price);
-  const badge      = colVal(row, C.badge, fallback?.badge);
+  let badge      = colVal(row, C.badge, fallback?.badge);
   const badgeType  = colVal(row, C.badge_type, fallback?.badge_type) || 'hot';
   const stars      = parseInt(colVal(row, C.stars, fallback?.stars)) || 5;
   const coverUrl   = colVal(row, C.cover_url, fallback?.cover_url);
@@ -126,6 +184,28 @@ function buildBookCard(row) {
 
   if (!title) return '';
 
+  // Localize content fields if active language is not vi
+  const lang = window.i18n ? window.i18n.currentLang : 'vi';
+  if (lang !== 'vi' && BOOK_TRANSLATIONS[lang] && BOOK_TRANSLATIONS[lang][sku]) {
+    const tBook = BOOK_TRANSLATIONS[lang][sku];
+    title = tBook.title || title;
+    desc = tBook.desc || desc;
+    tagsRaw = tBook.tags || tagsRaw;
+  }
+
+  // Localize badge if active
+  if (badge) {
+    if (badge.toLowerCase() === 'bán chạy' || badge.toLowerCase() === 'hot') {
+      badge = window.i18n ? window.i18n.t('badge_hot', 'Bán chạy') : badge;
+    } else if (badge.toLowerCase() === 'mới nhất' || badge.toLowerCase() === 'new') {
+      badge = window.i18n ? window.i18n.t('badge_new', 'Mới nhất') : badge;
+    } else if (badge.toLowerCase() === 'khuyên dùng' || badge.toLowerCase() === 'recommend') {
+      badge = window.i18n ? window.i18n.t('badge_recommended', 'Khuyên dùng') : badge;
+    }
+  }
+
+  const tags = tagsRaw.split(',').map(t => t.trim()).filter(Boolean);
+
   const reviewUrl = sku
     ? `review/review.html?sku=${encodeURIComponent(sku)}`
     : '#';
@@ -134,12 +214,32 @@ function buildBookCard(row) {
   const badgeHtml = badge
     ? `<div class="book-badge-wrap"><span class="badge badge-${badgeType}">${badge}</span></div>`
     : '';
-  const tagsHtml = tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+  // Translate tags dynamically if they are standard ones
+  const translatedTags = tags.map(tag => {
+    if (!window.i18n) return tag;
+    const tagLower = tag.toLowerCase();
+    if (tagLower === 'người mới') return window.i18n.t('tag_beginner', 'Beginner');
+    if (tagLower === 'có pinyin') return window.i18n.t('tag_pinyin', 'Has Pinyin');
+    if (tagLower === 'luyện thi') return window.i18n.t('tag_exam', 'Exam Prep');
+    if (tagLower === 'đầy đủ') return window.i18n.t('tag_complete', 'Complete');
+    if (tagLower === 'giao tiếp') return window.i18n.t('tag_comms', 'Spoken');
+    if (tagLower === 'thực dụng') return window.i18n.t('tag_practical', 'Practical');
+    if (tagLower === 'luyện viết') return window.i18n.t('tag_writing', 'Writing');
+    if (tagLower === 'chữ hán') return window.i18n.t('tag_hanzi', 'Hanzi');
+    if (tagLower === 'ngữ pháp') return window.i18n.t('tag_grammar', 'Grammar');
+    return tag;
+  });
+  const tagsHtml = translatedTags.map(t => `<span class="tag">${t}</span>`).join('');
 
   const priceNum = parseFloat(price);
+  
+  // Format price label
   const priceFormatted = priceNum
-    ? `~${priceNum.toLocaleString('vi-VN')}₫`
-    : 'Liên hệ';
+    ? (lang === 'vi' 
+        ? `~${priceNum.toLocaleString('vi-VN')}₫` 
+        : `~$${(priceNum / 25000).toFixed(1)}`) // Rough conversion for non-Vietnamese
+    : (window.i18n ? window.i18n.t('shop_updating_links', 'Contact') : 'Liên hệ');
 
   const coverHtml = coverUrl
     ? `<img src="${coverUrl}" alt="Bìa sách ${title}" class="book-cover" loading="lazy" />`
@@ -158,14 +258,17 @@ function buildBookCard(row) {
     .map(p => `
       <a href="${p.key}" class="btn-platform-sm ${p.cls}"
          target="_blank" rel="noopener sponsored"
-         aria-label="Mua ${title} tại ${p.label.replace(/\W/g,'')}">
+         aria-label="Buy ${title}">
         ${p.label}
       </a>`)
     .join('');
 
   const buySection = platformBtns
     ? `<div class="book-platforms">${platformBtns}</div>`
-    : `<span class="no-link-note">Đang cập nhật link…</span>`;
+    : `<span class="no-link-note">${window.i18n ? window.i18n.t('shop_updating_links', 'Updating links...') : 'Đang cập nhật link…'}</span>`;
+
+  const readReviewTxt = window.i18n ? window.i18n.t('shop_btn_read_review', 'Đọc review') : 'Đọc review';
+  const priceLabelTxt = window.i18n ? window.i18n.t('shop_price_label', 'Tham khảo') : 'Tham khảo';
 
   return `
     <article class="book-card" aria-label="${title}">
@@ -174,12 +277,12 @@ function buildBookCard(row) {
           ${coverHtml}
           ${badgeHtml}
           <div class="cover-overlay">
-            <span class="cover-overlay-text">Xem review →</span>
+            <span class="cover-overlay-text">${readReviewTxt} →</span>
           </div>
         </div>
       </a>
       <div class="book-info">
-        <div class="book-stars" aria-label="${stars} sao">${starsHtml}</div>
+        <div class="book-stars" aria-label="${stars} stars">${starsHtml}</div>
         <h3 class="book-title">
           <a href="${reviewUrl}" class="title-link">${title}</a>
         </h3>
@@ -188,11 +291,11 @@ function buildBookCard(row) {
         ${tagsHtml ? `<div class="book-tags">${tagsHtml}</div>` : ''}
         <div class="book-footer">
           <div class="book-price-group">
-            <span class="price-label">Tham khảo</span>
+            <span class="price-label">${priceLabelTxt}</span>
             <span class="price">${priceFormatted}</span>
           </div>
-          <a href="${reviewUrl}" class="btn-review" aria-label="Xem review ${title}">
-            Đọc review
+          <a href="${reviewUrl}" class="btn-review" aria-label="Review ${title}">
+            ${readReviewTxt}
             <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" width="14" height="14">
               <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
             </svg>
@@ -310,4 +413,10 @@ s.textContent = `@keyframes ripple-shop { to { transform:scale(1);opacity:0; } }
 document.head.appendChild(s);
 
 // ---- Boot ----
-document.addEventListener('DOMContentLoaded', loadBooks);
+document.addEventListener('DOMContentLoaded', () => {
+  loadBooks();
+  
+  window.addEventListener('langChanged', () => {
+    loadBooks();
+  });
+});

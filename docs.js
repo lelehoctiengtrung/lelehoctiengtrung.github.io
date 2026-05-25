@@ -102,9 +102,93 @@ const FALLBACK_DOCS = [
   }
 ];
 
+// --- Book/Doc Translations Mapping ----
+const DOC_TRANSLATIONS = {
+  en: {
+    'DOC-500': {
+      title: '500 Most Common Words',
+      desc: 'A list of the 500 most frequently used words in daily Chinese, with Pinyin and English/Vietnamese meanings. Ideal for beginners.',
+      level_text: 'Basic · HSK 1-2',
+      pages: 'PDF · 12 pages'
+    },
+    'DOC-GRAMMAR': {
+      title: 'Basic Chinese Grammar',
+      desc: 'A compilation of the most important grammar structures with clear explanations. Learn to speak correctly right away.',
+      level_text: 'Intermediate · HSK 2-3',
+      pages: 'PDF · 28 pages'
+    },
+    'DOC-HSK': {
+      title: 'HSK 1 & 2 Mock Exams',
+      desc: 'HSK Level 1 and 2 mock test bundle with complete answers. Practice and build confidence for the real exam!',
+      level_text: 'Basic · HSK 1-2',
+      pages: 'PDF · 35 pages · Answer Key'
+    },
+    'DOC-WRITING': {
+      title: 'Character Practice Sheets',
+      desc: 'Standard grid practice sheets with 100 of the most fundamental Chinese characters. Print out to write daily!',
+      level_text: 'Beginner · 100 chars',
+      pages: 'PDF · Printable'
+    },
+    'DOC-CHUDE': {
+      title: 'Thematic Vocabulary Lists',
+      desc: 'Vocabulary organized into 15 practical real-life themes: family, work, travel, dining... Learn fast, remember long!',
+      level_text: 'Basic · HSK 1-3',
+      pages: 'PDF · 20 pages'
+    },
+    'DOC-HSK3': {
+      title: 'HSK 3 Mock Exams',
+      desc: '3 complete HSK 3 mock exams covering listening, reading, and writing with detailed answer keys.',
+      level_text: 'Intermediate · HSK 3',
+      pages: 'PDF · 42 pages · Answer Key'
+    }
+  },
+  zh: {
+    'DOC-500': {
+      title: '500个最常用词汇表',
+      desc: '日常汉语中最常用的500个词汇列表，附带拼音与多语种释义。非常适合初学者。',
+      level_text: '基础 · HSK 1–2',
+      pages: 'PDF · 12 页'
+    },
+    'DOC-GRAMMAR': {
+      title: '基础汉语语法汇总',
+      desc: '系统整理最核心的中文语法结构，配有清晰的例句和解释，助您快速掌握。',
+      level_text: '中级 · HSK 2–3',
+      pages: 'PDF · 28 页'
+    },
+    'DOC-HSK': {
+      title: 'HSK 1 & 2 模拟试题',
+      desc: '包含完整答案的 HSK 1级和2级模拟套题，模拟真实考试场景，助您自信通关。',
+      level_text: '基础 · HSK 1–2',
+      pages: 'PDF · 35 页 · 附答案'
+    },
+    'DOC-WRITING': {
+      title: '汉字书写田字格字帖',
+      desc: '专为100个最基础汉字设计的田字格书写练习模板。可直接打印，每日练习！',
+      level_text: '零基础 · 100 字',
+      pages: 'PDF · 可打印'
+    },
+    'DOC-CHUDE': {
+      title: '分类主题词汇表',
+      desc: '涵盖家庭、工作、旅游、饮食等 15 个实用生活场景的分类词汇表。高效记忆！',
+      level_text: '基础 · HSK 1–3',
+      pages: 'PDF · 20 页'
+    },
+    'DOC-HSK3': {
+      title: 'HSK 3 模拟试卷',
+      desc: '3套完整的 HSK 3级模拟试卷，覆盖听力、阅读和书写，并附有详细答案解析。',
+      level_text: '中级 · HSK 3',
+      pages: 'PDF · 42 页 · 附答案'
+    }
+  }
+};
+
 // --- INIT ──────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   loadDocs();
+  
+  window.addEventListener('langChanged', () => {
+    loadDocs();
+  });
 });
 
 // --- Fetch from Google Sheets ─────────────────────────────
@@ -136,22 +220,30 @@ function parseAndRenderDocs(data) {
         return val || fallbackVal;
       };
 
-      // Match fallback default properties for details if some columns are empty
       const id = get(COL.id);
       const fallbackItem = FALLBACK_DOCS.find(f => f.id.toUpperCase() === id.toUpperCase());
 
-      return {
-        id:             id,
-        title:          get(COL.title, fallbackItem?.title),
-        desc:           get(COL.desc, fallbackItem?.desc),
-        category:       get(COL.category, fallbackItem?.category || 'vocab'),
-        icon:           get(COL.icon, fallbackItem?.icon || '📝'),
-        icon_color:     get(COL.icon_color, fallbackItem?.icon_color || '#D4A843'),
-        pages:          get(COL.pages, fallbackItem?.pages || 'PDF'),
-        level:          get(COL.level, fallbackItem?.level || '2'),
-        level_text:     get(COL.level_text, fallbackItem?.level_text || 'Cơ bản'),
-        drive_url:      get(COL.drive_url, fallbackItem?.drive_url || '#')
-      };
+      let title = get(COL.title, fallbackItem?.title);
+      let desc = get(COL.desc, fallbackItem?.desc);
+      let pages = get(COL.pages, fallbackItem?.pages || 'PDF');
+      let level_text = get(COL.level_text, fallbackItem?.level_text || 'Cơ bản');
+      const category = get(COL.category, fallbackItem?.category || 'vocab');
+      const icon = get(COL.icon, fallbackItem?.icon || '📝');
+      const icon_color = get(COL.icon_color, fallbackItem?.icon_color || '#D4A843');
+      const level = get(COL.level, fallbackItem?.level || '2');
+      const drive_url = get(COL.drive_url, fallbackItem?.drive_url || '#');
+
+      // Localize metadata fields if active language is not vi
+      const lang = window.i18n ? window.i18n.currentLang : 'vi';
+      if (lang !== 'vi' && DOC_TRANSLATIONS[lang] && DOC_TRANSLATIONS[lang][id]) {
+        const tDoc = DOC_TRANSLATIONS[lang][id];
+        title = tDoc.title || title;
+        desc = tDoc.desc || desc;
+        pages = tDoc.pages || pages;
+        level_text = tDoc.level_text || level_text;
+      }
+
+      return { id, title, desc, category, icon, icon_color, pages, level, level_text, drive_url };
     });
 
     renderDocsList(docs);
@@ -170,6 +262,13 @@ function renderDocsList(docs) {
 
   grid.innerHTML = '';
   
+  const lang = window.i18n ? window.i18n.currentLang : 'vi';
+  const detailBtnText = {
+    vi: 'Xem chi tiết & tải về',
+    en: 'Details & Download',
+    zh: '查看详情并下载'
+  }[lang] || 'Xem chi tiết & tải về';
+
   docs.forEach(doc => {
     const card = document.createElement('div');
     card.className = 'doc-big-card';
@@ -203,7 +302,7 @@ function renderDocsList(docs) {
             <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
           </svg>
-          Xem chi tiết & tải về
+          ${detailBtnText}
         </a>
         <button class="btn-share-big" data-title="${doc.title}" data-url="${window.location.origin}/doc/doc.html?id=${doc.id}" id="share-${doc.id.toLowerCase()}" aria-label="Chia sẻ tài liệu">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -301,7 +400,8 @@ function setupActions() {
 
       try {
         await navigator.clipboard.writeText(url);
-        showToast('✅ Đã sao chép link tài liệu!');
+        const toastMsgText = window.i18n ? window.i18n.t('docs_toast_copied', 'Đã sao chép link!') : 'Đã sao chép link!';
+        showToast(`✅ ${toastMsgText}`);
       } catch {
         window.prompt('Sao chép link này:', url);
       }
@@ -343,11 +443,12 @@ function setupActions() {
 
 // ── Helpers ───────────────────────────────────────────────
 function getCategoryLabel(cat) {
-  const map = {
-    'vocab': 'Từ vựng',
-    'grammar': 'Ngữ pháp',
-    'hsk': 'Thi HSK',
-    'writing': 'Luyện viết'
-  };
-  return map[cat] || 'Tài liệu';
+  const lang = window.i18n ? window.i18n.currentLang : 'vi';
+  const viMap = { 'vocab': 'Từ vựng', 'grammar': 'Ngữ pháp', 'hsk': 'Thi HSK', 'writing': 'Luyện viết' };
+  const enMap = { 'vocab': 'Vocab', 'grammar': 'Grammar', 'hsk': 'HSK Exam', 'writing': 'Handwriting' };
+  const zhMap = { 'vocab': '词汇', 'grammar': '语法', 'hsk': 'HSK考试', 'writing': '字帖' };
+  
+  const maps = { vi: viMap, en: enMap, zh: zhMap };
+  const activeMap = maps[lang] || viMap;
+  return activeMap[cat] || cat;
 }

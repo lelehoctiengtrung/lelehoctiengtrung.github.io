@@ -6,14 +6,14 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png" />
-  <title>Lê Lê học tiếng Trung 🌸</title>
+  <title data-i18n="home_title">Lê Lê học tiếng Trung 🌸</title>
   <meta name="description" content="Lê Lê học tiếng Trung – Học tiếng Trung dễ dàng, vui vẻ mỗi ngày! Theo dõi TikTok, YouTube và Facebook của mình nhé." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css?v=1.0.3" />
+  <link rel="stylesheet" href="style.css?v=1.0.8" />
 </head>
 <body>
 
@@ -34,139 +34,248 @@
 
   <div class="noise" aria-hidden="true"></div>
 
-  <main class="container">
-
-    <!-- Profile -->
-    <section class="profile" aria-label="Thông tin cá nhân">
-      <div class="avatar-wrap">
-        <div class="avatar-clip">
-          <img
-            class="avatar"
-            src="logo.png"
-            alt="Logo Lê Lê học tiếng Trung"
-            width="108"
-            height="108"
-          />
-        </div>
-        <div class="avatar-ring" aria-hidden="true"></div>
-        <div class="avatar-sparkle s1" aria-hidden="true">✦</div>
-        <div class="avatar-sparkle s2" aria-hidden="true">✦</div>
-        <div class="avatar-sparkle s3" aria-hidden="true">✦</div>
+  <!-- Header Navigation -->
+  <header class="landing-header">
+    <div class="header-brand">
+      <img src="logo.png" alt="Logo Lê Lê" class="header-logo" width="36" height="36" />
+      <div class="header-title-group">
+        <span class="header-title">Lê Lê học tiếng Trung</span>
+        <span class="header-subtitle" lang="zh">乐乐学中文</span>
       </div>
+    </div>
+    <nav class="header-nav-menu" role="navigation" aria-label="Menu chính">
+      <a href="index.html" class="header-nav-link" data-i18n="nav_home">Trang chính</a>
+      <a href="shop.html" class="header-nav-link" data-i18n="nav_bookstore">Bookstore</a>
+      <a href="docs.html" class="header-nav-link" data-i18n="nav_docs">Tài liệu</a>
+      <a href="practice/index.html" class="header-nav-link" data-i18n="nav_practice">Phát âm</a>
+      <a href="write/index.html" class="header-nav-link" data-i18n="nav_write">Tập viết</a>
+      <a href="tools.html" class="header-nav-link" data-i18n="nav_tools">Góc học liệu</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <div id="lang-selector"></div>
+      <button class="menu-toggle" id="menu-toggle-btn" aria-label="Mở menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
 
-      <h1 class="name">Lê Lê học tiếng Trung</h1>
-      <p class="hanzi-name" lang="zh">乐乐学中文</p>
-      <p class="tagline">Học tiếng Trung dễ dàng · vui vẻ · mỗi ngày 🌸</p>
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-nav-panel" id="mobile-nav">
+    <a href="index.html" class="mobile-nav-link" data-i18n="nav_home">Trang chính</a>
+    <a href="shop.html" class="mobile-nav-link" data-i18n="nav_bookstore">Bookstore</a>
+    <a href="docs.html" class="mobile-nav-link" data-i18n="nav_docs">Tài liệu</a>
+    <a href="practice/index.html" class="mobile-nav-link" data-i18n="nav_practice">Phát âm</a>
+    <a href="write/index.html" class="mobile-nav-link" data-i18n="nav_write">Tập viết</a>
+    <a href="tools.html" class="mobile-nav-link" data-i18n="nav_tools">Góc học liệu</a>
+  </div>
 
-      <!-- Social quick-links -->
-      <div class="socials" role="list" aria-label="Mạng xã hội">
-        <a href="https://www.tiktok.com/@lelehoctiengtrung" class="social-pill" role="listitem" target="_blank" rel="noopener" id="pill-tiktok" aria-label="TikTok">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.75a8.27 8.27 0 0 0 4.84 1.56V6.85a4.85 4.85 0 0 1-1.07-.16z"/></svg>
-          TikTok
+  <div class="landing-container">
+
+    <!-- Hero Section -->
+    <section class="hero" aria-label="Giới thiệu">
+      <div class="hero-content">
+        <span class="hero-tag" data-i18n="hero_badge">🌸 HỌC TIẾNG TRUNG MIỄN PHÍ</span>
+        <h1 class="hero-title" data-i18n="hero_title">Cùng Lê Lê Chinh Phục<br><span>Tiếng Trung</span></h1>
+        <p class="hero-desc" data-i18n="hero_subtitle">Khám phá các công cụ luyện phát âm AI, tập viết chữ Hán tương tác và tự tạo phiếu học tập PDF hoàn toàn miễn phí.</p>
+        <div class="hero-ctas">
+          <a href="#showcase" class="btn-primary" data-i18n="hero_cta_start">Học Ngay Miễn Phí</a>
+          <a href="tools.html" class="btn-secondary" data-i18n="hero_cta_tools">Tạo Phiếu Viết PDF</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="scroll-box">
+          <span class="scroll-header" data-i18n="hero_interactive_title">Học viết cùng Lê Lê</span>
+          <div class="calligraphy-canvas-wrap">
+            <div id="hero-writer-canvas"></div>
+          </div>
+          <div class="scroll-controls">
+            <button class="scroll-btn" id="hero-play-btn" data-i18n="hero_interactive_play">Chạy nét</button>
+            <button class="scroll-btn" id="hero-clear-btn" data-i18n="hero_interactive_clear">Viết lại</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Banner -->
+    <section class="stats-banner" aria-label="Thống kê">
+      <div class="stat-item">
+        <span class="stat-val" data-i18n="stats_free">100% Miễn Phí</span>
+        <span class="stat-label" data-i18n="stats_free_sub">Học liệu và công cụ</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-val" data-i18n="stats_hsk">Chuẩn HSK 1–6</span>
+        <span class="stat-label" data-i18n="stats_hsk_sub">Kho từ vựng & đề thi</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-val" data-i18n="stats_ai">Công Nghệ AI</span>
+        <span class="stat-label" data-i18n="stats_ai_sub">Phân tích giọng nói</span>
+      </div>
+    </section>
+
+    <!-- Showcase Grid -->
+    <section class="showcase-section" id="showcase" aria-labelledby="showcase-heading">
+      <div class="showcase-header">
+        <span class="section-tag" data-i18n="showcase_title">Học Trực Tuyến</span>
+        <h2 id="showcase-heading" class="showcase-title" data-i18n="showcase_title">Công Cụ Học Tập Trực Tuyến</h2>
+        <p class="showcase-sub" data-i18n="showcase_subtitle">Được thiết kế nhằm tối ưu hóa trải nghiệm tự học tiếng Trung hiệu quả nhất</p>
+      </div>
+      <div class="showcase-grid">
+        <!-- Bookstore -->
+        <a href="shop.html" class="showcase-card card-shop">
+          <div>
+            <div class="showcase-card-header">
+              <div class="showcase-card-icon">📚</div>
+              <span class="showcase-card-badge" data-i18n="nav_bookstore">Bookstore</span>
+            </div>
+            <div class="showcase-card-body">
+              <h3 class="showcase-card-title" data-i18n="card_bookstore_label">📚 Bookstore gợi ý</h3>
+              <p class="showcase-card-desc" data-i18n="card_bookstore_sub">Tổng hợp những cuốn sách học tiếng Trung Lê Lê khuyên dùng, có link mua uy tín và review chi tiết.</p>
+            </div>
+          </div>
+          <span class="showcase-card-action" data-i18n="card_bookstore_action">Khám phá Bookstore →</span>
         </a>
-        <a href="https://www.youtube.com/channel/UCGQfqOTElLYJ1-1OEDQJ8Cw?sub_confirmation=1" class="social-pill" role="listitem" target="_blank" rel="noopener" id="pill-youtube" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.19a3 3 0 0 0-2.12-2.13C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.56A3 3 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3 3 0 0 0 2.12 2.13C4.5 20.5 12 20.5 12 20.5s7.5 0 9.38-.56a3 3 0 0 0 2.12-2.13C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
-          YouTube
+
+        <!-- Speech -->
+        <a href="practice/index.html" class="showcase-card card-speech">
+          <div>
+            <div class="showcase-card-header">
+              <div class="showcase-card-icon">🎙️</div>
+              <span class="showcase-card-badge" data-i18n="nav_practice">Phát âm</span>
+            </div>
+            <div class="showcase-card-body">
+              <h3 class="showcase-card-title" data-i18n="card_practice_label">🎙️ Luyện Phát Âm</h3>
+              <p class="showcase-card-desc" data-i18n="card_practice_sub">Chấm điểm phát âm, thanh điệu và nhận diện giọng nói trực tiếp để cải thiện kỹ năng nói.</p>
+            </div>
+          </div>
+          <span class="showcase-card-action" data-i18n="card_practice_action">Luyện phát âm ngay →</span>
         </a>
-        <a href="https://www.facebook.com/profile.php?id=61589815692883" class="social-pill" role="listitem" target="_blank" rel="noopener" id="pill-facebook" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
-          Facebook
+
+        <!-- Tracing -->
+        <a href="write/index.html" class="showcase-card card-tracing">
+          <div>
+            <div class="showcase-card-header">
+              <div class="showcase-card-icon">✍️</div>
+              <span class="showcase-card-badge" data-i18n="nav_write">Tập viết</span>
+            </div>
+            <div class="showcase-card-body">
+              <h3 class="showcase-card-title" data-i18n="card_write_label">✍️ Tập Viết Hán Tự</h3>
+              <p class="showcase-card-desc" data-i18n="card_write_sub">Học viết chữ Hán có hướng dẫn thứ tự nét, hoạt ảnh stroke order và bảng vẽ tự tập viết thông minh.</p>
+            </div>
+          </div>
+          <span class="showcase-card-action" data-i18n="card_write_action">Tập viết online →</span>
+        </a>
+
+        <!-- Tools PDF -->
+        <a href="tools.html" class="showcase-card card-pdf-tools">
+          <div>
+            <div class="showcase-card-header">
+              <div class="showcase-card-icon">🛠️</div>
+              <span class="showcase-card-badge" data-i18n="nav_tools">Góc học liệu</span>
+            </div>
+            <div class="showcase-card-body">
+              <h3 class="showcase-card-title" data-i18n="card_tools_label">🛠️ Tạo Phiếu Luyện Viết PDF</h3>
+              <p class="showcase-card-desc" data-i18n="card_tools_sub">Tự thiết kế phiếu tập viết ô chữ Mễ tự, Điền tự theo ý muốn để in ra hoặc lưu PDF học tập.</p>
+            </div>
+          </div>
+          <span class="showcase-card-action" data-i18n="card_tools_action">Tạo phiếu học tập →</span>
+        </a>
+
+        <!-- Shared Documents (spanning 2 columns) -->
+        <a href="docs.html" class="showcase-card card-documents">
+          <div>
+            <div class="showcase-card-header">
+              <div class="showcase-card-icon">🎁</div>
+              <span class="showcase-card-badge" data-i18n="nav_docs">Tài liệu</span>
+            </div>
+            <div class="showcase-card-body">
+              <h3 class="showcase-card-title" data-i18n="card_docs_label">🎁 Tài Liệu Chia Sẻ</h3>
+              <p class="showcase-card-desc" data-i18n="card_docs_sub">Kho thư viện PDF từ vựng HSK, ngữ pháp chuẩn và phiếu luyện viết tải về hoàn toàn miễn phí.</p>
+            </div>
+          </div>
+          <span class="showcase-card-action" data-i18n="card_docs_action">Tải tài liệu ngay →</span>
         </a>
       </div>
     </section>
 
-    <!-- Link cards -->
-    <section class="links" aria-label="Danh sách liên kết">
+    <!-- Bio & Creator Section -->
+    <section class="bio-section" aria-labelledby="bio-heading">
+      <div class="bio-card">
+        <div class="bio-avatar-column">
+          <div class="avatar-wrap">
+            <div class="avatar-clip">
+              <img class="avatar" src="logo.png" alt="Logo Lê Lê" width="108" height="108" />
+            </div>
+            <div class="avatar-ring" aria-hidden="true"></div>
+            <div class="avatar-sparkle s1" aria-hidden="true">✦</div>
+            <div class="avatar-sparkle s2" aria-hidden="true">✦</div>
+            <div class="avatar-sparkle s3" aria-hidden="true">✦</div>
+          </div>
+          <h3 class="bio-name">Lê Lê</h3>
+          <p class="bio-subtitle" lang="zh">乐乐</p>
+        </div>
+        <div class="bio-content-column">
+          <h2 id="bio-heading" class="bio-heading" data-i18n="bio_section_title">Lê Lê học tiếng Trung là ai?</h2>
+          <p class="bio-description" data-i18n="bio_text">Chào bạn, mình là Lê Lê! Kênh của mình chia sẻ hành trình học tiếng Trung từ số 0, cùng những tài liệu hữu ích và kinh nghiệm tự học thực tế mà mình tích lũy được. Hy vọng các công cụ trực tuyến này sẽ giúp con đường chinh phục tiếng Trung của bạn trở nên dễ dàng và thú vị hơn!</p>
+        </div>
+      </div>
 
-      <a href="shop.html" class="link-card shop-card" id="link-bookshop">
-        <div class="link-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-        </div>
-        <div class="link-content">
-          <span class="link-label">📚 Bookstore</span>
-          <span class="link-sub">Sách tiếng Trung Lê Lê gợi ý</span>
-        </div>
-        <div class="link-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-        <div class="link-glow" aria-hidden="true"></div>
-      </a>
+      <!-- Social Channels -->
+      <div class="social-section">
+        <h3 class="social-title-heading" data-i18n="social_heading">Kết nối với mình qua các nền tảng</h3>
+        <div class="social-grid">
+          <!-- TikTok -->
+          <a href="https://www.tiktok.com/@lelehoctiengtrung" target="_blank" rel="noopener" class="social-card social-tiktok">
+            <div class="social-card-header">
+              <div class="social-card-brand">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.75a8.27 8.27 0 0 0 4.84 1.56V6.85a4.85 4.85 0 0 1-1.07-.16z"/></svg>
+                <span>TikTok</span>
+              </div>
+              <svg class="social-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </div>
+            <p class="social-card-desc" data-i18n="social_tiktok_desc">Video ngắn học tiếng Trung vui vẻ mỗi ngày</p>
+          </a>
 
-      <a href="docs.html" class="link-card docs-card" id="link-docs">
-        <div class="link-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
-        <div class="link-content">
-          <span class="link-label">🎁 Tài liệu chia sẻ</span>
-          <span class="link-sub">PDF miễn phí · Tải về ngay</span>
-        </div>
-        <div class="link-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-        <div class="link-glow" aria-hidden="true"></div>
-      </a>
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/channel/UCGQfqOTElLYJ1-1OEDQJ8Cw?sub_confirmation=1" target="_blank" rel="noopener" class="social-card social-youtube">
+            <div class="social-card-header">
+              <div class="social-card-brand">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3 3 0 0 0-2.12-2.13C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.56A3 3 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3 3 0 0 0 2.12 2.13C4.5 20.5 12 20.5 12 20.5s7.5 0 9.38-.56a3 3 0 0 0 2.12-2.13C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+                <span>YouTube</span>
+              </div>
+              <svg class="social-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </div>
+            <p class="social-card-desc" data-i18n="social_youtube_desc">Bài học chi tiết, hướng dẫn luyện nghe & viết</p>
+          </a>
 
-      <a href="practice/index.html" class="link-card practice-card" id="link-practice">
-        <div class="link-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
-            <path d="M19 10v1a7 7 0 0 1-14 0v-1"/>
-            <line x1="12" y1="19" x2="12" y2="22"/>
-          </svg>
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/profile.php?id=61589815692883" target="_blank" rel="noopener" class="social-card social-facebook">
+            <div class="social-card-header">
+              <div class="social-card-brand">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+                <span>Facebook</span>
+              </div>
+              <svg class="social-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </div>
+            <p class="social-card-desc" data-i18n="social_facebook_desc">Chia sẻ tài liệu học, cập nhật mới nhất</p>
+          </a>
         </div>
-        <div class="link-content">
-          <span class="link-label">🎙️ Luyện Phát Âm</span>
-          <span class="link-sub">Chấm điểm thanh điệu & từ vựng trực tuyến</span>
-        </div>
-        <div class="link-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-        <div class="link-glow" aria-hidden="true"></div>
-      </a>
-
-      <a href="write/index.html" class="link-card write-card" id="link-write">
-        <div class="link-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 20h9"/>
-            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-          </svg>
-        </div>
-        <div class="link-content">
-          <span class="link-label">✍️ Tập Viết Chữ Hán</span>
-          <span class="link-sub">Tra thứ tự nét vẽ & tự luyện viết tương tác</span>
-        </div>
-        <div class="link-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-        <div class="link-glow" aria-hidden="true"></div>
-      </a>
-
-      <a href="tools.html" class="link-card tools-card" id="link-tools">
-        <div class="link-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-          </svg>
-        </div>
-        <div class="link-content">
-          <span class="link-label">🛠️ Góc Học Liệu & Công Cụ</span>
-          <span class="link-sub">Tự tạo phiếu tập viết PDF & đề thi Pinyin miễn phí</span>
-        </div>
-        <div class="link-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-        <div class="link-glow" aria-hidden="true"></div>
-      </a>
-
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
       <p class="footer-hanzi" lang="zh" aria-hidden="true">加油！</p>
-      <p>Cùng nhau học tiếng Trung mỗi ngày <span>♥</span></p>
+      <p data-i18n="footer_text">Cùng nhau học tiếng Trung mỗi ngày <span>♥</span></p>
     </footer>
 
-  </main>
+  </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
+  <script src="i18n.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

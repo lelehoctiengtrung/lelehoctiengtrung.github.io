@@ -229,6 +229,63 @@ class StrokePracticeApp {
     // Initial renders
     this.renderHskPresets(1);
     this.loadPhrase("你");
+
+    // Listen for language change to re-translate
+    window.addEventListener('langChanged', () => {
+      this.renderHskPresets(this.hskActiveLevel);
+      this.loadPhrase(this.activePhrase);
+    });
+  }
+
+  // i18n Translation helper for preset word definitions
+  translateDefinition(word, defaultVi) {
+    if (!window.i18n) return defaultVi;
+    const lang = window.i18n.currentLang;
+    if (lang === 'vi') return defaultVi;
+    
+    const translations = {
+      en: {
+        "医生": "Doctor", "星期": "Week", "飞机": "Airplane", "今天": "Today", "苹果": "Apple",
+        "朋友": "Friend", "昨天": "Yesterday", "明天": "Tomorrow", "名字": "Name", "学习": "Study",
+        "老师": "Teacher", "汉语": "Chinese", "电脑": "Computer", "电影": "Movie", "谢谢": "Thank you",
+        "睡觉": "Sleep", "吃饱": "Eat full", "北京": "Beijing", "每天": "Every day", "水果": "Fruit",
+        "很好": "Very good", "唱歌": "Sing", "跑步": "Run", "旅游": "Travel", "运动": "Sports",
+        "准备": "Prepare", "帮助": "Help", "介": "Introduce", "介绍": "Introduce", "欢迎": "Welcome",
+        "告诉": "Tell", "身体": "Health/Body", "便宜": "Cheap", "时间": "Time", "词典": "Dictionary",
+        "机场": "Airport", "听懂": "Understand", "回答": "Answer", "食堂": "Cafeteria", "银行": "Bank",
+        "火车": "Train", "起床": "Get up", "可能": "Possible", "小时": "Hour", "可以": "Can/May",
+        "面包": "Bread", "汽车": "Car", "问题": "Problem/Question", "练习": "Practice", "去年": "Last year",
+        "经常": "Often", "愿意": "Willing", "简单": "Simple", "影响": "Influence", "办法": "Method",
+        "历史": "History", "音乐": "Music", "干净": "Clean", "突然": "Suddenly", "努力": "Hardworking",
+        "发现": "Discover", "环境": "Environment", "黑板": "Blackboard", "其实": "Actually", "决定": "Decide",
+        "游戏": "Game", "同意": "Agree", "了解": "Understand", "语法": "Grammar", "有点": "Slightly",
+        "认真": "Earnest", "半天": "Half a day", "特别": "Special", "关键": "Key point", "骄傲": "Proud",
+        "调查": "Survey", "拒绝": "Refuse", "biến hóa": "Change", "变化": "Change", "翻译": "Translate",
+        "复杂": "Complex", "习惯": "Habit", "解释": "Explain", "招聘": "Recruit", "你": "You",
+        "好": "Good", "我": "I/Me"
+      },
+      zh: {
+        "医生": "医生", "星期": "星期", "飞机": "飞机", "今天": "今天", "苹果": "苹果",
+        "朋友": "朋友", "昨天": "昨天", "明天": "明天", "名字": "名字", "学习": "学习",
+        "老师": "老师", "汉语": "汉语", "电脑": "电脑", "电影": "电影", "谢谢": "谢谢",
+        "睡觉": "睡觉", "吃饱": "吃饱", "北京": "北京", "每天": "每天", "水果": "水果",
+        "很好": "很好", "唱歌": "唱歌", "跑步": "跑步", "旅游": "旅游", "运动": "运动",
+        "准备": "准备", "帮助": "帮助", "介": "介绍", "介绍": "介绍", "欢迎": "欢迎",
+        "告诉": "告诉", "身体": "身体", "便宜": "便宜", "时间": "时间", "词典": "词典",
+        "机场": "机场", "听懂": "听懂", "回答": "回答", "食堂": "食堂", "银行": "银行",
+        "火车": "火车", "起床": "起床", "可能": "可能", "小时": "小时", "可以": "可以",
+        "面包": "面包", "汽车": "汽车", "问题": "问题", "练习": "练习", "去年": "去年",
+        "经常": "经常", "愿意": "愿意", "简单": "简单", "影响": "影响", "办法": "办法",
+        "历史": "历史", "音乐": "音乐", "干净": "干净", "突然": "突然", "努力": "努力",
+        "发现": "发现", "环境": "环境", "黑板": "黑板", "其实": "其实", "决定": "决定",
+        "游戏": "游戏", "同意": "同意", "了解": "了解", "语法": "语法", "有点": "有点",
+        "认真": "认真", "半天": "半天", "特别": "特别", "关键": "关键", "骄傲": "骄傲",
+        "调查": "调查", "拒绝": "拒绝", "biến hóa": "变化", "变化": "变化", "翻译": "翻译",
+        "复杂": "复杂", "习惯": "习惯", "解释": "解释", "招聘": "招聘", "你": "你",
+        "好": "好", "我": "我"
+      }
+    };
+    return (translations[lang] && translations[lang][word]) ? translations[lang][word] : defaultVi;
   }
 
   initDOM() {
@@ -357,7 +414,8 @@ class StrokePracticeApp {
       this.loadingSpinnerQuiz.classList.add("hidden");
       this.targetAnimateContainer.innerHTML = `<div style="color:#d4af37; font-size:4rem; font-family:'Noto Serif SC', serif;">${char}</div>`;
       this.targetQuizContainer.innerHTML = `<div style="color:#d4af37; font-size:4rem; font-family:'Noto Serif SC', serif;">${char}</div>`;
-      this.stepsContainer.innerHTML = `<p class="placeholder-text">Không có sơ đồ nét vẽ cho chữ "${char}".</p>`;
+      const noDiagramMsg = window.i18n ? window.i18n.t('write_status_not_found') : `Không có sơ đồ nét vẽ cho chữ "${char}".`;
+      this.stepsContainer.innerHTML = `<p class="placeholder-text">${noDiagramMsg}</p>`;
     }
   }
 
@@ -368,7 +426,8 @@ class StrokePracticeApp {
     // Load raw SVG stroke data from custom loader
     const charData = await loadCharData(char);
     if (!charData || !charData.strokes) {
-      this.stepsContainer.innerHTML = `<p class="placeholder-text">Không tìm thấy sơ đồ nét vẽ cho chữ "${char}".</p>`;
+      const noDiagramMsg = window.i18n ? window.i18n.t('write_status_not_found') : `Không tìm thấy sơ đồ nét vẽ cho chữ "${char}".`;
+      this.stepsContainer.innerHTML = `<p class="placeholder-text">${noDiagramMsg}</p>`;
       return;
     }
 
@@ -463,13 +522,14 @@ class StrokePracticeApp {
     if (definition) {
       this.infoWordHz.textContent = cleanPhrase;
       this.infoWordPy.textContent = `(${definition.py})`;
-      this.infoWordVi.textContent = definition.vi;
+      this.infoWordVi.textContent = this.translateDefinition(cleanPhrase, definition.vi);
     } else {
       // Fallback translation character by character
       const pyTranslated = cleanPhrase.split("").map(c => PINYIN_DICT[c] || c).join(" ");
       this.infoWordHz.textContent = cleanPhrase;
       this.infoWordPy.textContent = `(${pyTranslated})`;
-      this.infoWordVi.textContent = "Từ tự tra cứu";
+      const fallbackLabel = window.i18n ? (window.i18n.currentLang === 'en' ? 'User look-up' : (window.i18n.currentLang === 'zh' ? '用户查询' : 'Từ tự tra cứu')) : 'Từ tự tra cứu';
+      this.infoWordVi.textContent = fallbackLabel;
     }
 
     this.updateCharNavigation();
@@ -481,7 +541,13 @@ class StrokePracticeApp {
       this.charNavBox.classList.add("hidden");
     } else {
       this.charNavBox.classList.remove("hidden");
-      this.charNavInfo.textContent = `Ký tự ${this.activeCharIndex + 1} / ${this.charList.length} ("${this.charList[this.activeCharIndex]}")`;
+      let navMsg = `Ký tự ${this.activeCharIndex + 1} / ${this.charList.length} ("${this.charList[this.activeCharIndex]}")`;
+      if (window.i18n && window.i18n.currentLang === 'en') {
+        navMsg = `Character ${this.activeCharIndex + 1} / ${this.charList.length} ("${this.charList[this.activeCharIndex]}")`;
+      } else if (window.i18n && window.i18n.currentLang === 'zh') {
+        navMsg = `第 ${this.activeCharIndex + 1} / ${this.charList.length} 字 ("${this.charList[this.activeCharIndex]}")`;
+      }
+      this.charNavInfo.textContent = navMsg;
     }
   }
 
@@ -542,17 +608,29 @@ class StrokePracticeApp {
       onMistake: (strokeData) => {
         const remaining = strokeData.totalStrokes - strokeData.strokeNum;
         this.quizStatusBox.className = "quiz-status-box error";
-        this.quizStatusBox.innerHTML = `❌ Sai thứ tự! Lỗi thứ ${strokeData.mistakesOnStroke}. Còn lại ${remaining} nét.`;
+        let msg = `❌ Sai thứ tự! Lỗi thứ ${strokeData.mistakesOnStroke}. Còn lại ${remaining} nét.`;
+        if (window.i18n && window.i18n.currentLang === 'en') {
+          msg = `❌ Incorrect! Mistakes: ${strokeData.mistakesOnStroke}. ${remaining} strokes left.`;
+        } else if (window.i18n && window.i18n.currentLang === 'zh') {
+          msg = `❌ 笔顺错误！已错 ${strokeData.mistakesOnStroke} 次。还剩 ${remaining} 笔。`;
+        }
+        this.quizStatusBox.innerHTML = msg;
       },
       onCorrectStroke: (strokeData) => {
         const progress = strokeData.strokeNum + 1;
         this.quizStatusBox.className = "quiz-status-box success";
-        this.quizStatusBox.innerHTML = `✓ Đúng nét! Tiến trình: ${progress}/${strokeData.totalStrokes}`;
+        let msg = `✓ Đúng nét! Tiến trình: ${progress}/${strokeData.totalStrokes}`;
+        if (window.i18n && window.i18n.currentLang === 'en') {
+          msg = `✓ Correct! Progress: ${progress}/${strokeData.totalStrokes}`;
+        } else if (window.i18n && window.i18n.currentLang === 'zh') {
+          msg = `✓ 笔画正确！进度：${progress}/${strokeData.totalStrokes}`;
+        }
+        this.quizStatusBox.innerHTML = msg;
       },
       onComplete: (strokeData) => {
         this.isQuizActive = false;
         this.quizStatusBox.className = "quiz-status-box success";
-        this.quizStatusBox.innerHTML = `🌟 Hoàn thành xuất sắc!`;
+        this.quizStatusBox.innerHTML = window.i18n ? window.i18n.t('write_quiz_success') : `🌟 Hoàn thành xuất sắc!`;
         this.successBadge.classList.remove("hidden");
         this.updateQuizUI();
         
@@ -569,12 +647,21 @@ class StrokePracticeApp {
   updateQuizUI() {
     if (this.isQuizActive) {
       this.btnQuiz.classList.add("recording");
-      this.btnQuiz.innerHTML = `✍️ Đang luyện viết...`;
+      let btnLabel = `✍️ Đang luyện viết...`;
+      let statusMsg = `Hãy vẽ nét đầu tiên lên khung lưới.`;
+      if (window.i18n && window.i18n.currentLang === 'en') {
+        btnLabel = `✍️ Writing...`;
+        statusMsg = `Draw the first stroke on the grid.`;
+      } else if (window.i18n && window.i18n.currentLang === 'zh') {
+        btnLabel = `✍️ 正在书写...`;
+        statusMsg = `请在网格上画出第一笔。`;
+      }
+      this.btnQuiz.innerHTML = btnLabel;
       this.quizStatusBox.className = "quiz-status-box success";
-      this.quizStatusBox.innerHTML = `Hãy vẽ nét đầu tiên lên khung lưới.`;
+      this.quizStatusBox.innerHTML = statusMsg;
     } else {
       this.btnQuiz.classList.remove("recording");
-      this.btnQuiz.innerHTML = `✍️ Bắt đầu viết`;
+      this.btnQuiz.innerHTML = window.i18n ? window.i18n.t('write_btn_quiz_start') : `✍️ Bắt đầu viết`;
     }
   }
 
@@ -605,10 +692,12 @@ class StrokePracticeApp {
       chip.className = "word-chip";
       chip.setAttribute("data-word", item.hz);
       
+      const translatedDef = this.translateDefinition(item.hz, item.vi);
+      
       chip.innerHTML = `
         <span class="word-hz" lang="zh">${item.hz}</span>
         <span class="word-py">${item.py}</span>
-        <span class="word-vi">${item.vi}</span>
+        <span class="word-vi">${translatedDef}</span>
       `;
       
       chip.addEventListener("click", () => {
@@ -657,6 +746,7 @@ class StrokePracticeApp {
         btn.classList.add("active");
         
         const lvl = parseInt(btn.dataset.level) || 1;
+        this.hskActiveLevel = lvl;
         this.renderHskPresets(lvl);
       });
     });

@@ -6,7 +6,7 @@
   <link rel="icon" type="image/x-icon" href="../favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="../favicon-180.png" />
-  <title>Tập Viết Chữ Hán – Lê Lê học tiếng Trung</title>
+  <title data-i18n="write_title">Tập Viết Chữ Hán – Lê Lê học tiếng Trung</title>
   <meta name="description" content="Tra cứu thứ tự nét viết và tập viết chữ Hán tương tác online miễn phí. Hỗ trợ hoạt ảnh stroke order, sơ đồ từng nét viết và hướng dẫn viết đúng thứ tự nét." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -39,13 +39,13 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
           </svg>
-          <span>Trang chính</span>
+          <span data-i18n="nav_home">Trang chính</span>
         </a>
         <a href="../shop.html" class="back-btn" id="btn-back-shop" aria-label="Quay lại Bookstore">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
           </svg>
-          <span>Bookstore</span>
+          <span data-i18n="nav_bookstore">Bookstore</span>
         </a>
       </div>
 
@@ -56,20 +56,21 @@
           <p class="shop-brand-sub" lang="zh">乐乐学中文 · Tập Viết</p>
         </div>
       </div>
+      <div id="lang-selector"></div>
     </header>
 
     <!-- Page Title Section -->
     <section class="write-hero" aria-label="Giới thiệu">
-      <div class="hero-badge">✍️ Luyện viết tương tác</div>
-      <h1 class="hero-title">Tra Cứu & Tập Viết<br/><span class="accent-gradient">Chữ Hán Tương Tác</span></h1>
-      <p class="hero-sub">Học cách viết đúng thứ tự nét (Stroke Order), xem hoạt ảnh hướng dẫn và tự tay vẽ từng nét chữ trực tiếp bằng chuột hoặc màn hình cảm ứng.</p>
+      <div class="hero-badge" data-i18n="write_nav_title">✍️ Luyện viết tương tác</div>
+      <h1 class="hero-title" data-i18n="write_hero_title">Tra Cứu & Tập Viết<br/><span class="accent-gradient">Chữ Hán Tương Tác</span></h1>
+      <p class="hero-sub" data-i18n="write_hero_subtitle">Học cách viết đúng thứ tự nét (Stroke Order), xem hoạt ảnh hướng dẫn và tự tay vẽ từng nét chữ trực tiếp bằng chuột hoặc màn hình cảm ứng.</p>
     </section>
 
     <!-- Search Section -->
     <section class="card-glass search-card">
       <form id="search-form" class="search-box-wrap">
-        <input type="text" id="search-input" placeholder="Nhập chữ Hán cần tra (ví dụ: 你, 谢谢, 学习)..." autocomplete="off" maxlength="15" />
-        <button type="submit" class="btn btn-primary" id="btn-search">Tra cứu</button>
+        <input type="text" id="search-input" data-i18n-placeholder="write_search_placeholder" placeholder="Nhập chữ Hán cần tra (ví dụ: 你, 谢谢, 学习)..." autocomplete="off" maxlength="15" />
+        <button type="submit" class="btn btn-primary" id="btn-search" data-i18n="write_btn_search">Tra cứu</button>
       </form>
       <div id="character-nav" class="char-nav-box hidden">
         <button class="btn btn-secondary btn-sm" id="btn-prev-char">← Chữ trước</button>
@@ -85,7 +86,7 @@
       <section class="card-glass board-card">
         <div class="card-header-bar">
           <span class="pill-icon">🎨</span>
-          <h2 class="card-title">Bảng Luyện Viết</h2>
+          <h2 class="card-title" data-i18n="write_panel_practice">Bảng Luyện Viết</h2>
         </div>
 
         <!-- Active Word Details Info -->
@@ -96,31 +97,31 @@
             <span class="word-title-vi" id="info-word-vi">--</span>
           </div>
           <div class="active-char-detail">
-            Chữ đang viết: <strong id="info-char-hz">--</strong> <span id="info-char-py">(--)</span>
+            <span data-i18n="write_active_char">Chữ đang viết:</span> <strong id="info-char-hz">--</strong> <span id="info-char-py">(--)</span>
           </div>
         </div>
 
         <div class="board-layout">
           <!-- Block 1: Mẫu Nét Vẽ -->
           <div class="practice-block animate-block">
-            <div class="canvas-title">Mẫu Nét Vẽ</div>
+            <div class="canvas-title" data-i18n="write_canvas_animate">Mẫu Nét Vẽ</div>
             <div class="canvas-wrapper animate-wrapper">
               <div id="character-target-animate" class="character-target"></div>
               <div id="loading-spinner-animate" class="loading-spinner hidden">
                 <div class="spinner"></div>
-                <p>Đang tải dữ liệu...</p>
+                <p data-i18n="write_status_loading">Đang tải dữ liệu...</p>
               </div>
             </div>
             
             <div class="control-section mt-3">
-              <h3>Hoạt ảnh nét vẽ</h3>
+              <h3 data-i18n="write_panel_animation">Hoạt ảnh nét vẽ</h3>
               <div class="button-stack">
-                <button class="btn btn-primary" id="btn-animate">📺 Xem nét vẽ</button>
-                <button class="btn btn-secondary" id="btn-pause">⏸️ Tạm dừng</button>
-                <button class="btn btn-secondary" id="btn-reset-anim">🔄 Xem lại từ đầu</button>
+                <button class="btn btn-primary" id="btn-animate" data-i18n="write_btn_view_animate">📺 Xem nét vẽ</button>
+                <button class="btn btn-secondary" id="btn-pause" data-i18n="write_btn_pause">⏸️ Tạm dừng</button>
+                <button class="btn btn-secondary" id="btn-reset-anim" data-i18n="write_btn_restart">🔄 Xem lại từ đầu</button>
               </div>
               <div class="slider-group">
-                <label for="speed-slider">Tốc độ vẽ: <span id="speed-val">1.0x</span></label>
+                <label for="speed-slider"><span data-i18n="write_stroke_speed">Tốc độ vẽ:</span> <span id="speed-val">1.0x</span></label>
                 <input type="range" id="speed-slider" min="0.3" max="2.5" step="0.1" value="1.0" class="range-slider" />
               </div>
             </div>
@@ -128,28 +129,28 @@
 
           <!-- Block 2: Khung Tập Viết -->
           <div class="practice-block quiz-block">
-            <div class="canvas-title">Khung Tập Viết</div>
+            <div class="canvas-title" data-i18n="write_canvas_quiz">Khung Tập Viết</div>
             <div class="canvas-wrapper quiz-wrapper">
               <div id="character-target-quiz" class="character-target"></div>
               <div id="loading-spinner-quiz" class="loading-spinner hidden">
                 <div class="spinner"></div>
-                <p>Đang tải dữ liệu...</p>
+                <p data-i18n="write_status_loading">Đang tải dữ liệu...</p>
               </div>
               <!-- Success indicator badge -->
               <div id="success-badge" class="success-badge hidden">
                 <div class="badge-icon">🌟</div>
-                <p>Viết chữ hoàn thành xuất sắc!</p>
+                <p data-i18n="write_quiz_success">Viết chữ hoàn thành xuất sắc!</p>
               </div>
             </div>
             
             <div class="control-section mt-3">
-              <h3>Tự luyện viết tương tác</h3>
+              <h3 data-i18n="write_btn_clear_canvas">Tự luyện viết tương tác</h3>
               <div class="button-stack">
-                <button class="btn btn-record" id="btn-quiz">✍️ Bắt đầu viết</button>
-                <button class="btn btn-secondary" id="btn-quiz-hint">💡 Hiện gợi ý</button>
-                <button class="btn btn-secondary" id="btn-quiz-reset">🧹 Xóa nét vẽ</button>
+                <button class="btn btn-record" id="btn-quiz" data-i18n="write_btn_quiz_start">✍️ Bắt đầu viết</button>
+                <button class="btn btn-secondary" id="btn-quiz-hint" data-i18n="write_btn_quiz_hint">💡 Hiện gợi ý</button>
+                <button class="btn btn-secondary" id="btn-quiz-reset" data-i18n="write_btn_quiz_clear">🧹 Xóa nét vẽ</button>
               </div>
-              <div id="quiz-status" class="quiz-status-box">Nhấp "Bắt đầu viết" để tự vẽ.</div>
+              <div id="quiz-status" class="quiz-status-box" data-i18n="write_quiz_status_idle">Nhấp "Bắt đầu viết" để tự vẽ.</div>
             </div>
           </div>
         </div>
@@ -159,12 +160,12 @@
       <section class="card-glass step-card" aria-labelledby="steps-heading">
         <div class="card-header-bar">
           <span class="pill-icon">📋</span>
-          <h2 id="steps-heading" class="card-title">Sơ Đồ Từng Bước Viết (Stroke Order Steps)</h2>
+          <h2 id="steps-heading" class="card-title" data-i18n="write_diagrams_heading">Sơ Đồ Từng Bước Viết (Stroke Order Steps)</h2>
         </div>
-        <p class="card-desc">Thứ tự viết chi tiết của từng nét từ trái qua phải (nét màu đỏ thể hiện bước vẽ hiện tại, màu vàng thể hiện các nét đã hoàn thành trước đó):</p>
+        <p class="card-desc" data-i18n="write_diagrams_desc">Thứ tự viết chi tiết của từng nét từ trái qua phải (nét màu đỏ thể hiện bước vẽ hiện tại, màu vàng thể hiện các nét đã hoàn thành trước đó):</p>
         
         <div id="stroke-steps" class="stroke-steps-container">
-          <p class="placeholder-text">Nhập chữ Hán ở trên để xem sơ đồ nét vẽ.</p>
+          <p class="placeholder-text" data-i18n="write_diagrams_placeholder">Nhập chữ Hán ở trên để xem sơ đồ nét vẽ.</p>
         </div>
       </section>
 
@@ -172,9 +173,9 @@
       <section class="card-glass preset-card" aria-labelledby="preset-heading">
         <div class="card-header-bar">
           <span class="pill-icon">📚</span>
-          <h2 id="preset-heading" class="card-title">Chữ Mẫu Luyện Tập Theo Cấp Độ HSK</h2>
+          <h2 id="preset-heading" class="card-title" data-i18n="write_hsk_heading">Chữ Mẫu Luyện Tập Theo Cấp Độ HSK</h2>
         </div>
-        <p class="card-desc">Chọn nhanh các từ vựng thông dụng để xem thứ tự nét vẽ và luyện viết trực tiếp:</p>
+        <p class="card-desc" data-i18n="write_hsk_desc">Chọn nhanh các từ vựng thông dụng để xem thứ tự nét vẽ và luyện viết trực tiếp:</p>
 
         <!-- HSK level tabs -->
         <div class="hsk-tabs">
@@ -196,13 +197,15 @@
     <footer class="shop-footer">
       <img src="../logo.png" alt="Logo Lê Lê" class="footer-logo" width="36" height="36" />
       <p>Lê Lê học tiếng Trung <span>♥</span></p>
-      <p class="footer-note">Ứng dụng hoạt ảnh nét vẽ & tương tác tập viết 100% chạy trên trình duyệt sử dụng thư viện Hanzi Writer.</p>
+      <p class="footer-note" data-i18n="write_footer_note">Ứng dụng hoạt ảnh nét vẽ & tương tác tập viết 100% chạy trên trình duyệt sử dụng thư viện Hanzi Writer.</p>
     </footer>
 
   </div><!-- /write-container -->
 
   <!-- Hanzi Writer CDN -->
   <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
+  <!-- Main i18n translation framework -->
+  <script src="../i18n.js"></script>
   <!-- Main Script -->
   <script src="write.js?v=1.0.5" type="module"></script>
 </body>

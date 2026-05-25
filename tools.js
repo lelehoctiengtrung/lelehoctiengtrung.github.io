@@ -70,8 +70,21 @@ function updatePreview() {
   const subtitle = document.getElementById('subtitle-input').value;
   
   // Update Header & Footer
-  document.getElementById('preview-sheet-title').textContent = title || 'PHIẾU TẬP VIẾT CHỮ HÁN';
-  document.getElementById('preview-sheet-subtitle').textContent = subtitle || '';
+  const defaultTitle = window.i18n ? window.i18n.t('tools_default_title') : 'PHIẾU TẬP VIẾT CHỮ HÁN';
+  const defaultSubtitle = window.i18n ? window.i18n.t('tools_default_subtitle') : '';
+  
+  document.getElementById('preview-sheet-title').textContent = title || defaultTitle;
+  document.getElementById('preview-sheet-subtitle').textContent = subtitle || defaultSubtitle;
+
+  const infoFields = document.getElementById('preview-sheet-info-fields');
+  if (infoFields) {
+    const colName = window.i18n ? window.i18n.t('tools_col_name') : 'Họ tên:';
+    const colDate = window.i18n ? window.i18n.t('tools_col_date') : 'Ngày:';
+    infoFields.innerHTML = `
+      <span>${colName} ........................................................................</span>
+      <span>${colDate} ...../...../20...</span>
+    `;
+  }
 
   const gridBody = document.getElementById('preview-grid-body');
   if (!gridBody) return;
@@ -100,7 +113,8 @@ function updatePreview() {
     const charsToShow = cleanChars.slice(0, 4); // Limit preview to 4 characters for 2-row layout
 
     if (charsToShow.length === 0) {
-      gridBody.innerHTML = '<p class="placeholder-text">Nhập chữ Hán ở bên để xem trước mẫu phiếu vẽ.</p>';
+      const msg = window.i18n ? window.i18n.t('tools_preview_empty_chars') : 'Nhập chữ Hán ở bên để xem trước mẫu phiếu vẽ.';
+      gridBody.innerHTML = `<p class="placeholder-text">${msg}</p>`;
       return;
     }
 
@@ -162,7 +176,8 @@ function updatePreview() {
     const wordsToShow = validWords.slice(0, 4); // Limit preview to 4 words
 
     if (wordsToShow.length === 0) {
-      gridBody.innerHTML = '<p class="placeholder-text">Nhập từ vựng ở bên để tạo đề kiểm tra Pinyin.</p>';
+      const msg = window.i18n ? window.i18n.t('tools_preview_empty_pinyin') : 'Nhập từ vựng ở bên để tạo đề kiểm tra Pinyin.';
+      gridBody.innerHTML = `<p class="placeholder-text">${msg}</p>`;
       return;
     }
 
@@ -231,14 +246,20 @@ function printWorksheet() {
   const style = styleElement ? styleElement.value : 'trace';
   const gridType = document.getElementById('grid-type').value;
   const gridColor = document.getElementById('grid-color').value;
-  const title = document.getElementById('title-input').value || 'PHIẾU TẬP VIẾT CHỮ HÁN';
-  const subtitle = document.getElementById('subtitle-input').value || '';
+  const title = document.getElementById('title-input').value;
+  const subtitle = document.getElementById('subtitle-input').value;
+  
+  const defaultTitle = window.i18n ? window.i18n.t('tools_default_title') : 'PHIẾU TẬP VIẾT CHỮ HÁN';
+  const defaultSubtitle = window.i18n ? window.i18n.t('tools_default_subtitle') : '';
+  const titleVal = title || defaultTitle;
+  const subtitleVal = subtitle || defaultSubtitle;
   
   const colorHex = COLOR_MAP[gridColor] || '#C94535';
 
   const printWindow = window.open('', '_blank');
   if (!printWindow) {
-    alert("Vui lòng cho phép trình duyệt mở tab mới để in phiếu!");
+    const alertMsg = window.i18n ? window.i18n.t('tools_alert_popup') : "Vui lòng cho phép trình duyệt mở tab mới để in phiếu!";
+    alert(alertMsg);
     return;
   }
 
@@ -260,7 +281,8 @@ function printWorksheet() {
   } else if (style === 'trace') {
     const cleanChars = textInput.replace(/[^\u4e00-\u9fa5]/g, '').split('');
     if (cleanChars.length === 0) {
-      alert("Vui lòng nhập ít nhất 1 chữ Hán để tạo phiếu!");
+      const alertMsg = window.i18n ? window.i18n.t('tools_alert_empty_trace') : "Vui lòng nhập ít nhất 1 chữ Hán để tạo phiếu!";
+      alert(alertMsg);
       printWindow.close();
       return;
     }
@@ -298,7 +320,8 @@ function printWorksheet() {
     const words = textInput.split(/[\s,，.。!！?？;；]+/);
     const validWords = words.map(w => w.replace(/[^\u4e00-\u9fa5]/g, '')).filter(w => w.length > 0);
     if (validWords.length === 0) {
-      alert("Vui lòng nhập ít nhất 1 từ vựng Hán tự để tạo đề kiểm tra!");
+      const alertMsg = window.i18n ? window.i18n.t('tools_alert_empty_pinyin') : "Vui lòng nhập ít nhất 1 từ vựng Hán tự để tạo đề kiểm tra!";
+      alert(alertMsg);
       printWindow.close();
       return;
     }
@@ -339,12 +362,15 @@ function printWorksheet() {
   }
 
   // Draw full document markup and styles
+  const colNameVal = window.i18n ? window.i18n.t('tools_col_name') : 'Họ và tên:';
+  const colDateVal = window.i18n ? window.i18n.t('tools_col_date') : 'Ngày:';
+  
   printWindow.document.write(`
     <!DOCTYPE html>
     <html>
       <head>
         <meta charset="UTF-8">
-        <title>${title}</title>
+        <title>${titleVal}</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
@@ -462,10 +488,10 @@ function printWorksheet() {
       <body>
         <div class="sheet-container">
           <div class="sheet-header">
-            <h1>${title}</h1>
+            <h1>${titleVal}</h1>
             <div class="sheet-info-fields">
-              <span>Họ và tên: ........................................................................</span>
-              <span>Ngày: ...../...../20...</span>
+              <span>${colNameVal} ........................................................................</span>
+              <span>${colDateVal} ...../...../20...</span>
             </div>
           </div>
           
@@ -474,7 +500,7 @@ function printWorksheet() {
           </div>
           
           <div class="sheet-footer">
-            ${subtitle}
+            ${subtitleVal}
           </div>
         </div>
         <script>
@@ -491,8 +517,40 @@ function printWorksheet() {
 
 // ── EVENT BINDINGS ───────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  // Translate initial input default values based on loaded language
+  const titleInput = document.getElementById('title-input');
+  const subtitleInput = document.getElementById('subtitle-input');
+  if (titleInput && (titleInput.value === 'PHIẾU TẬP VIẾT CHỮ HÁN' || titleInput.value === '')) {
+    titleInput.value = window.i18n ? window.i18n.t('tools_default_title') : 'PHIẾU TẬP VIẾT CHỮ HÁN';
+  }
+  if (subtitleInput && (subtitleInput.value === 'Lê Lê học tiếng Trung 🌸 Cùng nhau học tập mỗi ngày' || subtitleInput.value === '')) {
+    subtitleInput.value = window.i18n ? window.i18n.t('tools_default_subtitle') : 'Lê Lê học tiếng Trung 🌸 Cùng nhau học tập mỗi ngày';
+  }
+
   // Initial render
   updatePreview();
+
+  // Listen for language change to update defaults
+  window.addEventListener('langChanged', () => {
+    const defaultTitles = [
+      'PHIẾU TẬP VIẾT CHỮ HÁN',
+      'CHINESE HANDWRITING WORKSHEET',
+      '汉字书写练习字帖'
+    ];
+    const defaultSubtitles = [
+      'Lê Lê học tiếng Trung 🌸 Cùng nhau học tập mỗi ngày',
+      "Le Le Learn Chinese 🌸 Let's study together every day",
+      '乐乐学中文 🌸 每天一起学习进步'
+    ];
+
+    if (titleInput && (titleInput.value === '' || defaultTitles.includes(titleInput.value))) {
+      titleInput.value = window.i18n ? window.i18n.t('tools_default_title') : '';
+    }
+    if (subtitleInput && (subtitleInput.value === '' || defaultSubtitles.includes(subtitleInput.value))) {
+      subtitleInput.value = window.i18n ? window.i18n.t('tools_default_subtitle') : '';
+    }
+    updatePreview();
+  });
 
   // Listeners for configuration updates
   const formInputs = [

@@ -223,6 +223,76 @@ class MandarinPractice {
 
     // Attach Listeners
     this.attachEvents();
+
+    // Listen for language change to update display values
+    window.addEventListener('langChanged', () => {
+      if (this.activeTpWord) {
+        this.tpWordMeaning.textContent = this.translateMeaning(this.activeTpWord.hanzi, this.activeTpWord.meaning);
+      }
+      if (this.activeHskWord) {
+        this.hskWordMeaning.textContent = this.translateMeaning(this.activeHskWord.hanzi, this.activeHskWord.meaning);
+        if (this.hskWordPinyin.classList.contains("blurred")) {
+          this.hskWordPinyin.textContent = window.i18n ? window.i18n.t('practice_hsk_pinyin_hint') : "Nhấp để hiện pinyin";
+        }
+      }
+      this.selectTonePairCell(this.activeTonePair);
+      this.clearOpenEnded();
+    });
+  }
+
+  // Translate HSK and Tone Pair meanings based on language setting
+  translateMeaning(word, defaultVi) {
+    if (!window.i18n) return defaultVi;
+    const lang = window.i18n.currentLang;
+    if (lang === 'vi') return defaultVi;
+    
+    const translations = {
+      en: {
+        "医生": "Doctor", "星期": "Week", "飞机": "Airplane", "今天": "Today", "苹果": "Apple",
+        "朋友": "Friend", "昨天": "Yesterday", "明天": "Tomorrow", "名字": "Name", "学习": "Study",
+        "老师": "Teacher", "汉语": "Chinese", "电脑": "Computer", "电影": "Movie", "谢谢": "Thank you",
+        "睡觉": "Sleep", "吃饱": "Eat full", "北京": "Beijing", "每天": "Every day", "水果": "Fruit",
+        "很好": "Very good", "唱歌": "Sing", "跑步": "Run", "旅游": "Travel", "运动": "Sports",
+        "准备": "Prepare", "帮助": "Help", "介": "Introduce", "介绍": "Introduce", "欢迎": "Welcome",
+        "告诉": "Tell", "身体": "Health/Body", "便宜": "Cheap", "时间": "Time", "词典": "Dictionary",
+        "机场": "Airport", "听懂": "Understand", "回答": "Answer", "食堂": "Cafeteria", "银行": "Bank",
+        "火车": "Train", "起床": "Get up", "可能": "Possible", "小时": "Hour", "可以": "Can/May",
+        "面包": "Bread", "汽车": "Car", "问题": "Problem/Question", "练习": "Practice", "去年": "Last year",
+        "经常": "Often", "愿意": "Willing", "简单": "Simple", "影响": "Influence", "办法": "Method",
+        "历史": "History", "音乐": "Music", "干净": "Clean", "突然": "Suddenly", "努力": "Hardworking",
+        "发现": "Discover", "环境": "Environment", "黑板": "Blackboard", "其实": "Actually", "决定": "Decide",
+        "游戏": "Game", "同意": "Agree", "了解": "Understand", "语法": "Grammar", "有点": "Slightly",
+        "认真": "Earnest", "半天": "Half a day", "特别": "Special", "关键": "Key point", "骄傲": "Proud",
+        "调查": "Survey", "拒绝": "Refuse", "甚至": "Even/So far", "变化": "Change", "翻译": "Translate",
+        "复杂": "Complex", "习惯": "Habit", "解释": "Explain", "招聘": "Recruit", "你": "You",
+        "好": "Good", "我": "I/Me", "加载": "Loading", "起": "Get up", "床": "Bed", "饱": "Full", "食堂": "Cafeteria",
+        "银行": "Bank", "可能": "Possible", "面包": "Bread", "汽车": "Car", "问题": "Question", "去年": "Last year",
+        "讨论": "Discuss", "鼓励": "Encourage"
+      },
+      zh: {
+        "医生": "医生", "星期": "星期", "飞机": "飞机", "今天": "今天", "苹果": "苹果",
+        "朋友": "朋友", "昨天": "昨天", "明天": "明天", "名字": "名字", "学习": "学习",
+        "老师": "老师", "汉语": "汉语", "电脑": "电脑", "电影": "电影", "谢谢": "谢谢",
+        "睡觉": "睡觉", "吃饱": "吃饱", "北京": "北京", "每天": "每天", "水果": "水果",
+        "很好": "很好", "唱歌": "唱歌", "跑步": "跑步", "旅游": "旅游", "运动": "运动",
+        "准备": "准备", "帮助": "帮助", "介": "介绍", "介绍": "介绍", "欢迎": "欢迎",
+        "告诉": "告诉", "身体": "身体", "便宜": "便宜", "时间": "时间", "词典": "词典",
+        "机场": "机场", "听懂": "听懂", "回答": "回答", "食堂": "食堂", "银行": "银行",
+        "火车": "火车", "起床": "起床", "可能": "可能", "小时": "小时", "可以": "可以",
+        "面包": "面包", "汽车": "汽车", "问题": "问题", "练习": "练习", "去年": "去年",
+        "经常": "经常", "愿意": "愿意", "简单": "简单", "影响": "影响", "办法": "办法",
+        "历史": "历史", "音乐": "音乐", "干净": "干净", "突然": "突然", "努力": "努力",
+        "发现": "发现", "环境": "环境", "黑板": "黑板", "其实": "其实", "决定": "决定",
+        "游戏": "游戏", "同意": "同意", "了解": "了解", "语法": "语法", "有点": "有点",
+        "认真": "认真", "半天": "半天", "特别": "特别", "关键": "关键", "骄傲": "骄傲",
+        "调查": "调查", "拒绝": "拒绝", "甚至": "甚至", "变化": "变化", "翻译": "翻译",
+        "复杂": "复杂", "习惯": "习惯", "解释": "解释", "招聘": "招聘", "你": "你",
+        "好": "好", "我": "我", "加载": "加载", "起": "起", "床": "床", "饱": "饱", "食堂": "食堂",
+        "银行": "银行", "可能": "可能", "面包": "面包", "汽车": "汽车", "问题": "问题", "去年": "去年",
+        "讨论": "讨论", "鼓励": "鼓励"
+      }
+    };
+    return (translations[lang] && translations[lang][word]) ? translations[lang][word] : defaultVi;
   }
 
   initDOM() {
@@ -275,7 +345,12 @@ class MandarinPractice {
   initSpeechEngine() {
     if (!this.SpeechRecognition) {
       console.warn("Trình duyệt không hỗ trợ Web Speech Recognition API.");
-      const warnMsg = "Microphone không hỗ trợ trên trình duyệt này. Vui lòng sử dụng Google Chrome hoặc Safari.";
+      let warnMsg = "Microphone không hỗ trợ trên trình duyệt này. Vui lòng sử dụng Google Chrome hoặc Safari.";
+      if (window.i18n && window.i18n.currentLang === 'en') {
+        warnMsg = "Microphone not supported in this browser. Please use Google Chrome or Safari.";
+      } else if (window.i18n && window.i18n.currentLang === 'zh') {
+        warnMsg = "此浏览器不支持麦克风。请使用 Google Chrome 或 Safari 浏览器。";
+      }
       this.tpRecordStatus.innerText = warnMsg;
       this.hskRecordStatus.innerText = warnMsg;
       this.openRecordStatus.innerText = warnMsg;
@@ -304,10 +379,17 @@ class MandarinPractice {
       this.updateMicUI();
       
       let errorText = "Lỗi micro. Hãy thử lại.";
-      if (e.error === 'not-allowed') {
-        errorText = "Quyền truy cập micro bị từ chối. Vui lòng cấp quyền.";
-      } else if (e.error === 'no-speech') {
-        errorText = "Không nghe thấy tiếng nói. Hãy thử lại.";
+      if (window.i18n && window.i18n.currentLang === 'en') {
+        errorText = "Microphone error. Please try again.";
+        if (e.error === 'not-allowed') errorText = "Microphone permission denied. Please grant access.";
+        else if (e.error === 'no-speech') errorText = "No speech detected. Please try again.";
+      } else if (window.i18n && window.i18n.currentLang === 'zh') {
+        errorText = "麦克风错误。请重试。";
+        if (e.error === 'not-allowed') errorText = "麦克风权限被拒绝。请开启麦克风权限。";
+        else if (e.error === 'no-speech') errorText = "未检测到说话声。请重试。";
+      } else {
+        if (e.error === 'not-allowed') errorText = "Quyền truy cập micro bị từ chối. Vui lòng cấp quyền.";
+        else if (e.error === 'no-speech') errorText = "Không nghe thấy tiếng nói. Hãy thử lại.";
       }
       
       this.setStatusText(errorText);
@@ -322,29 +404,45 @@ class MandarinPractice {
   updateMicUI() {
     // Reset recording status strings
     if (this.isRecording) {
-      this.setStatusText("🎙️ Đang nghe... Hãy nói rõ ràng.");
+      let listeningMsg = "🎙️ Đang nghe... Hãy nói rõ ràng.";
+      let stopLabel = `🛑 Dừng & Chấm điểm`;
+      let stopRecLabel = `🛑 Dừng ghi`;
+      if (window.i18n && window.i18n.currentLang === 'en') {
+        listeningMsg = "🎙️ Listening... Speak clearly.";
+        stopLabel = `🛑 Stop & Score`;
+        stopRecLabel = `🛑 Stop`;
+      } else if (window.i18n && window.i18n.currentLang === 'zh') {
+        listeningMsg = "🎙️ 正在录音... 请清晰朗读。";
+        stopLabel = `🛑 停止并打分`;
+        stopRecLabel = `🛑 停止`;
+      }
+      this.setStatusText(listeningMsg);
       
       if (this.activeMode === "tp") {
         this.btnRecordTp.classList.add("recording");
-        this.btnRecordTp.innerHTML = `<span class="mic-icon">🛑</span> Dừng & Chấm điểm`;
+        this.btnRecordTp.innerHTML = `<span class="mic-icon">🛑</span> ${stopLabel}`;
       } else if (this.activeMode === "hsk") {
         this.btnRecordHsk.classList.add("recording");
-        this.btnRecordHsk.innerHTML = `<span class="mic-icon">🛑</span> Dừng & Chấm điểm`;
+        this.btnRecordHsk.innerHTML = `<span class="mic-icon">🛑</span> ${stopLabel}`;
       } else if (this.activeMode === "open") {
         this.btnRecordOpen.classList.add("recording");
-        this.btnRecordOpen.innerHTML = `<span class="mic-icon">🛑</span> Dừng ghi`;
+        this.btnRecordOpen.innerHTML = `<span class="mic-icon">🛑</span> ${stopRecLabel}`;
       }
     } else {
-      this.setStatusText("Sẵn sàng ghi âm");
+      let readyMsg = "Sẵn sàng ghi âm";
+      if (window.i18n && window.i18n.currentLang === 'en') readyMsg = "Ready to record";
+      else if (window.i18n && window.i18n.currentLang === 'zh') readyMsg = "已就绪";
+      this.setStatusText(readyMsg);
       
+      const speakLabel = window.i18n ? window.i18n.t('practice_btn_speak') : `Nhấn và nói`;
       this.btnRecordTp.classList.remove("recording");
-      this.btnRecordTp.innerHTML = `<span class="mic-icon">🎙️</span> Nhấn và nói`;
+      this.btnRecordTp.innerHTML = `<span class="mic-icon">🎙️</span> ${speakLabel}`;
       
       this.btnRecordHsk.classList.remove("recording");
-      this.btnRecordHsk.innerHTML = `<span class="mic-icon">🎙️</span> Nhấn và nói`;
+      this.btnRecordHsk.innerHTML = `<span class="mic-icon">🎙️</span> ${speakLabel}`;
       
       this.btnRecordOpen.classList.remove("recording");
-      this.btnRecordOpen.innerHTML = `<span class="mic-icon">🎙️</span> Nhấn và nói`;
+      this.btnRecordOpen.innerHTML = `<span class="mic-icon">🎙️</span> ${speakLabel}`;
     }
   }
 
@@ -444,7 +542,7 @@ class MandarinPractice {
         const total = stat.correct + stat.wrong;
         this.tpAccuracyLabel.innerText = `${Math.round(100 * stat.correct / total)}% (${stat.correct}/${total})`;
       } else {
-        this.tpAccuracyLabel.innerText = "Chưa thực hành";
+        this.tpAccuracyLabel.innerText = window.i18n ? window.i18n.t('practice_accuracy_none') : "Chưa thực hành";
       }
 
       this.nextTpWord(true); // load new word matching the pair
@@ -461,14 +559,17 @@ class MandarinPractice {
     // Check how many words match this pair in ALL_WORDS
     const allMatches = ALL_WORDS.filter(w => w.tone_pair === this.activeTonePair);
     if (!keepSamePair && allMatches.length <= 1 && allMatches.length > 0) {
-      this.showToast("Chỉ có 1 từ mẫu cho cặp thanh điệu này!");
+      let alertMsg = "Chỉ có 1 từ mẫu cho cặp thanh điệu này!";
+      if (window.i18n && window.i18n.currentLang === 'en') alertMsg = "Only 1 sample word for this tone pair!";
+      else if (window.i18n && window.i18n.currentLang === 'zh') alertMsg = "该声调组合仅有1个示例词！";
+      this.showToast(alertMsg);
     }
     
     this.activeTpWord = getWordForTonePair(this.activeTonePair, exclude);
     
     this.tpWordHanzi.textContent = this.activeTpWord.hanzi;
     this.tpWordPinyin.textContent = this.activeTpWord.pinyin;
-    this.tpWordMeaning.textContent = this.activeTpWord.meaning;
+    this.tpWordMeaning.textContent = this.translateMeaning(this.activeTpWord.hanzi, this.activeTpWord.meaning);
   }
 
   nextHskWord() {
@@ -484,10 +585,10 @@ class MandarinPractice {
 
     this.activeHskWord = word;
     this.hskWordHanzi.textContent = word.hanzi;
-    this.hskWordMeaning.textContent = word.meaning;
+    this.hskWordMeaning.textContent = this.translateMeaning(word.hanzi, word.meaning);
     
     // Hide pinyin initially
-    this.hskWordPinyin.textContent = "Nhấp để hiện pinyin";
+    this.hskWordPinyin.textContent = window.i18n ? window.i18n.t('practice_hsk_pinyin_hint') : "Nhấp để hiện pinyin";
     this.hskWordPinyin.classList.add("blurred");
   }
 
@@ -500,7 +601,10 @@ class MandarinPractice {
 
   clearOpenEnded() {
     this.openOutputPinyin.textContent = "--";
-    this.openOutputHanzi.textContent = "Nhấp micro & nói...";
+    let idleMsg = "Nhấp micro & nói...";
+    if (window.i18n && window.i18n.currentLang === 'en') idleMsg = "Click mic & speak...";
+    else if (window.i18n && window.i18n.currentLang === 'zh') idleMsg = "点击麦克风开始说话...";
+    this.openOutputHanzi.textContent = idleMsg;
   }
 
   // ── PRONUNCIATION EVALUATION ──────────────────────────────────────
@@ -538,19 +642,31 @@ class MandarinPractice {
       // Scoring & Stats Update
       if (incorrectCount === 0) {
         this.tpScoreBadge.className = "score-badge correct";
-        this.tpScoreBadge.textContent = "Phát âm chuẩn! 🌟";
+        let badgeText = "Phát âm chuẩn! 🌟";
+        if (window.i18n && window.i18n.currentLang === 'en') badgeText = "Perfect! 🌟";
+        else if (window.i18n && window.i18n.currentLang === 'zh') badgeText = "发音标准！🌟";
+        this.tpScoreBadge.textContent = badgeText;
         this.logTonePairResult(this.activeTonePair, true);
       } else if (incorrectCount === 1) {
         this.tpScoreBadge.className = "score-badge almost";
-        this.tpScoreBadge.textContent = "Gần đúng! ⚡";
+        let badgeText = "Gần đúng! ⚡";
+        if (window.i18n && window.i18n.currentLang === 'en') badgeText = "Close enough! ⚡";
+        else if (window.i18n && window.i18n.currentLang === 'zh') badgeText = "接近正确！⚡";
+        this.tpScoreBadge.textContent = badgeText;
         this.logTonePairResult(this.activeTonePair, false);
       } else {
         this.tpScoreBadge.className = "score-badge wrong";
-        this.tpScoreBadge.textContent = "Chưa chính xác ❌";
+        let badgeText = "Chưa chính xác ❌";
+        if (window.i18n && window.i18n.currentLang === 'en') badgeText = "Incorrect ❌";
+        else if (window.i18n && window.i18n.currentLang === 'zh') badgeText = "不准确 ❌";
+        this.tpScoreBadge.textContent = badgeText;
         this.logTonePairResult(this.activeTonePair, false);
       }
 
-      this.setStatusText("Nhấn Từ Khác để tiếp tục.");
+      let statusMsg = "Nhấn Từ Khác để tiếp tục.";
+      if (window.i18n && window.i18n.currentLang === 'en') statusMsg = "Click Next Word to continue.";
+      else if (window.i18n && window.i18n.currentLang === 'zh') statusMsg = "点击换个词语继续。";
+      this.setStatusText(statusMsg);
 
     } else if (this.activeMode === "hsk") {
       this.hskResultBox.classList.remove("hidden");
@@ -566,7 +682,10 @@ class MandarinPractice {
 
       if (isMatch) {
         this.hskScoreBadge.className = "score-badge correct";
-        this.hskScoreBadge.textContent = "Chuẩn xác! 🌟";
+        let badgeText = "Chuẩn xác! 🌟";
+        if (window.i18n && window.i18n.currentLang === 'en') badgeText = "Correct! 🌟";
+        else if (window.i18n && window.i18n.currentLang === 'zh') badgeText = "准确！🌟";
+        this.hskScoreBadge.textContent = badgeText;
       } else {
         // Fallback checks for character overlaps
         let matchCharCount = 0;
@@ -576,19 +695,35 @@ class MandarinPractice {
         
         if (matchCharCount > 0 && matchCharCount === this.activeHskWord.hanzi.length) {
           this.hskScoreBadge.className = "score-badge almost";
-          this.hskScoreBadge.textContent = "Gần đúng ⚡";
+          let badgeText = "Gần đúng ⚡";
+          if (window.i18n && window.i18n.currentLang === 'en') badgeText = "Almost ⚡";
+          else if (window.i18n && window.i18n.currentLang === 'zh') badgeText = "接近 ⚡";
+          this.hskScoreBadge.textContent = badgeText;
         } else {
           this.hskScoreBadge.className = "score-badge wrong";
-          this.hskScoreBadge.textContent = "Sai từ ❌";
+          let badgeText = "Sai từ ❌";
+          if (window.i18n && window.i18n.currentLang === 'en') badgeText = "Wrong Word ❌";
+          else if (window.i18n && window.i18n.currentLang === 'zh') badgeText = "发音错误 ❌";
+          this.hskScoreBadge.textContent = badgeText;
         }
       }
-      this.setStatusText("Nhấn Từ Khác để luyện từ tiếp theo.");
+      let statusMsg = "Nhấn Từ Khác để luyện từ tiếp theo.";
+      if (window.i18n && window.i18n.currentLang === 'en') statusMsg = "Click Next Word to continue HSK practice.";
+      else if (window.i18n && window.i18n.currentLang === 'zh') statusMsg = "点击换个词语进行下一个词练习。";
+      this.setStatusText(statusMsg);
 
     } else if (this.activeMode === "open") {
       this.openOutputHanzi.textContent = spokenText;
       const spokenPinyin = getPinyinForText(spokenText);
-      this.openOutputPinyin.textContent = spokenPinyin || "Không nhận diện được Pinyin";
-      this.setStatusText("Ghi âm nói tự do hoàn tất.");
+      let errorPinyin = "Không nhận diện được Pinyin";
+      if (window.i18n && window.i18n.currentLang === 'en') errorPinyin = "Could not recognize Pinyin";
+      else if (window.i18n && window.i18n.currentLang === 'zh') errorPinyin = "未识别到拼音";
+      this.openOutputPinyin.textContent = spokenPinyin || errorPinyin;
+      
+      let statusMsg = "Ghi âm nói tự do hoàn tất.";
+      if (window.i18n && window.i18n.currentLang === 'en') statusMsg = "Free speaking analysis completed.";
+      else if (window.i18n && window.i18n.currentLang === 'zh') statusMsg = "自由朗读分析完成。";
+      this.setStatusText(statusMsg);
     }
   }
 

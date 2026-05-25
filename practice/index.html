@@ -6,7 +6,7 @@
   <link rel="icon" type="image/x-icon" href="../favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="../favicon-180.png" />
-  <title>Luyện Phát Âm Tiếng Trung – Lê Lê học tiếng Trung</title>
+  <title data-i18n="practice_title">Luyện Phát Âm Tiếng Trung – Lê Lê học tiếng Trung</title>
   <meta name="description" content="Luyện phát âm tiếng Trung trực tuyến miễn phí – Chấm điểm thanh điệu (Tone Pairs), từ vựng HSK và nhận diện giọng nói tiếng Trung trực tiếp trên trình duyệt." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -39,13 +39,13 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
           </svg>
-          <span>Trang chính</span>
+          <span data-i18n="nav_home">Trang chính</span>
         </a>
         <a href="../shop.html" class="back-btn" id="btn-back-shop" aria-label="Quay lại Bookstore">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
           </svg>
-          <span>Bookstore</span>
+          <span data-i18n="nav_bookstore">Bookstore</span>
         </a>
       </div>
 
@@ -56,13 +56,14 @@
           <p class="shop-brand-sub" lang="zh">乐乐学中文 · Luyện Nói</p>
         </div>
       </div>
+      <div id="lang-selector"></div>
     </header>
 
     <!-- Page Title Section -->
     <section class="practice-hero" aria-label="Giới thiệu">
-      <div class="hero-badge">🎙️ Trực tuyến & Miễn phí</div>
-      <h1 class="hero-title">Luyện Phát Âm<br/><span class="accent-gradient">Tiếng Trung AI</span></h1>
-      <p class="hero-sub">Lắng nghe và chấm điểm giọng phát âm tiếng Trung của bạn tự động qua micro. Hãy nhấn nút và nói thử nhé! 💬</p>
+      <div class="hero-badge" data-i18n="practice_hero_badge">🎙️ Trực tuyến & Miễn phí</div>
+      <h1 class="hero-title" data-i18n="practice_hero_title">Luyện Phát Âm<br/><span class="accent-gradient">Tiếng Trung AI</span></h1>
+      <p class="hero-sub" data-i18n="practice_hero_subtitle">Lắng nghe và chấm điểm giọng phát âm tiếng Trung của bạn tự động qua micro. Hãy nhấn nút và nói thử nhé! 💬</p>
     </section>
 
     <!-- Content Layout Grid -->
@@ -72,46 +73,46 @@
       <section class="card-glass tone-pairs-card" aria-labelledby="tone-pairs-heading">
         <div class="card-header-bar">
           <span class="pill-icon">🎵</span>
-          <h2 id="tone-pairs-heading" class="card-title">1. Luyện Cặp Thanh Điệu</h2>
+          <h2 id="tone-pairs-heading" class="card-title" data-i18n="practice_tone_pairs_heading">1. Luyện Cặp Thanh Điệu</h2>
         </div>
-        <p class="card-desc">Một từ ghép 2 âm tiết có 15 tổ hợp thanh điệu. Nhấp vào ô bất kỳ để luyện tập từ vựng tương ứng (màu xanh: tốt, màu đỏ: chưa đạt).</p>
+        <p class="card-desc" data-i18n="practice_tone_pairs_desc">Một từ ghép 2 âm tiết có 15 tổ hợp thanh điệu. Nhấp vào ô bất kỳ để luyện tập từ vựng tương ứng (màu xanh: tốt, màu đỏ: chưa đạt).</p>
 
         <!-- Grid 4x4 Table -->
         <div class="table-wrap">
           <table class="tone-grid-table">
             <thead>
               <tr>
-                <th>Thanh điệu</th>
-                <th>Thanh 1</th>
-                <th>Thanh 2</th>
-                <th>Thanh 3</th>
-                <th>Thanh 4</th>
+                <th data-i18n="practice_tone_label">Thanh điệu</th>
+                <th data-i18n="practice_tone_1">Thanh 1</th>
+                <th data-i18n="practice_tone_2">Thanh 2</th>
+                <th data-i18n="practice_tone_3">Thanh 3</th>
+                <th data-i18n="practice_tone_4">Thanh 4</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th>Thanh 1</th>
+                <th data-i18n="practice_tone_1">Thanh 1</th>
                 <td class="tonepair-cell" data-pair="11" id="cell-11">ā ā</td>
                 <td class="tonepair-cell" data-pair="12" id="cell-12">ā á</td>
                 <td class="tonepair-cell" data-pair="13" id="cell-13">ā ǎ</td>
                 <td class="tonepair-cell" data-pair="14" id="cell-14">ā à</td>
               </tr>
               <tr>
-                <th>Thanh 2</th>
+                <th data-i18n="practice_tone_2">Thanh 2</th>
                 <td class="tonepair-cell" data-pair="21" id="cell-21">á ā</td>
                 <td class="tonepair-cell" data-pair="22" id="cell-22">á á</td>
                 <td class="tonepair-cell" data-pair="23" id="cell-23">á ǎ</td>
                 <td class="tonepair-cell" data-pair="24" id="cell-24">á à</td>
               </tr>
               <tr>
-                <th>Thanh 3</th>
+                <th data-i18n="practice_tone_3">Thanh 3</th>
                 <td class="tonepair-cell" data-pair="31" id="cell-31">ǎ ā</td>
                 <td class="tonepair-cell" data-pair="32" id="cell-32">ǎ á</td>
-                <td class="cell-disabled" title="Cặp thanh 3-3 biến điệu thành 2-3">sandhi</td>
+                <td class="cell-disabled" title="Cặp thanh 3-3 biến điệu thành 2-3" data-i18n="practice_sandhi_note" data-i18n-title="Cặp thanh 3-3 biến điệu thành 2-3">sandhi</td>
                 <td class="tonepair-cell" data-pair="34" id="cell-34">ǎ à</td>
               </tr>
               <tr>
-                <th>Thanh 4</th>
+                <th data-i18n="practice_tone_4">Thanh 4</th>
                 <td class="tonepair-cell" data-pair="41" id="cell-41">à ā</td>
                 <td class="tonepair-cell" data-pair="42" id="cell-42">à á</td>
                 <td class="tonepair-cell" data-pair="43" id="cell-43">à ǎ</td>
@@ -124,15 +125,15 @@
         <!-- Tone Pair Active practice section -->
         <div class="active-practice-box" id="tonepair-practice-area">
           <div class="practice-meta">
-            <div><strong>Đang chọn:</strong> <span class="badge-gold" id="lbl-selected-pair">3-2 (ǎ á)</span></div>
-            <div><strong>Tỷ lệ chính xác:</strong> <span id="lbl-pair-accuracy">Chưa thực hành</span></div>
+            <div><strong data-i18n="practice_lbl_selected_pair">Đang chọn:</strong> <span class="badge-gold" id="lbl-selected-pair">3-2 (ǎ á)</span></div>
+            <div><strong data-i18n="practice_lbl_accuracy">Tỷ lệ chính xác:</strong> <span id="lbl-pair-accuracy" data-i18n="practice_accuracy_none">Chưa thực hành</span></div>
           </div>
 
           <div class="practice-word-display">
             <div class="word-hanzi" id="tp-word-hanzi">加载</div>
             <div class="word-pinyin-wrap">
               <span class="word-pinyin" id="tp-word-pinyin">jiāzài</span>
-              <button class="btn-audio" id="btn-play-tp" aria-label="Nghe phát âm mẫu">
+              <button class="btn-audio" id="btn-play-tp" data-i18n-title="practice_audio_tooltip" title="Nghe phát âm mẫu" aria-label="Nghe phát âm mẫu">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                   <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
@@ -144,20 +145,20 @@
 
           <!-- Actions -->
           <div class="record-area">
-            <div class="record-status-box" id="tp-record-status">Sẵn sàng luyện tập</div>
+            <div class="record-status-box" id="tp-record-status" data-i18n="practice_status_ready">Sẵn sàng luyện tập</div>
             <div class="button-row">
               <button class="btn btn-record" id="btn-record-tp">
-                <span class="mic-icon">🎙️</span> Nhấn và nói
+                <span class="mic-icon">🎙️</span> <span data-i18n="practice_btn_speak">Nhấn và nói</span>
               </button>
-              <button class="btn btn-secondary btn-sm" id="btn-next-tp">Từ khác →</button>
+              <button class="btn btn-secondary btn-sm" id="btn-next-tp" data-i18n="practice_btn_next">Từ khác →</button>
             </div>
           </div>
 
           <!-- Result feedback -->
           <div class="result-feedback hidden" id="tp-result-box">
-            <p class="feedback-label">Bạn đã phát âm:</p>
+            <p class="feedback-label" data-i18n="practice_lbl_you_said">Bạn đã phát âm:</p>
             <div class="user-speech" id="tp-user-speech">--</div>
-            <div class="score-badge" id="tp-score-badge">Đúng</div>
+            <div class="score-badge" id="tp-score-badge" data-i18n="practice_badge_correct">Đúng</div>
           </div>
         </div>
       </section>
@@ -166,18 +167,18 @@
       <section class="card-glass" aria-labelledby="hsk-heading">
         <div class="card-header-bar">
           <span class="pill-icon">📚</span>
-          <h2 id="hsk-heading" class="card-title">2. Luyện Phát Âm Từ Vựng HSK</h2>
+          <h2 id="hsk-heading" class="card-title" data-i18n="practice_hsk_heading">2. Luyện Phát Âm Từ Vựng HSK</h2>
         </div>
-        <p class="card-desc">Luyện nói từ vựng cấp độ thi HSK. Chọn cấp độ và luyện phát âm theo từng từ.</p>
+        <p class="card-desc" data-i18n="practice_hsk_desc">Luyện nói từ vựng cấp độ thi HSK. Chọn cấp độ và luyện phát âm theo từng từ.</p>
 
         <div class="hsk-controls">
           <div class="form-group-inline">
-            <label for="hsk-level-select">Cấp độ HSK:</label>
+            <label for="hsk-level-select" data-i18n="practice_hsk_level_label">Cấp độ HSK:</label>
             <select id="hsk-level-select" class="dropdown-select">
-              <option value="1">HSK 1 (Cơ bản)</option>
-              <option value="2">HSK 2 (Sơ cấp)</option>
-              <option value="3">HSK 3 (Trung cấp)</option>
-              <option value="4">HSK 4 (Tiền cao cấp)</option>
+              <option value="1" data-i18n="practice_hsk_level_1">HSK 1 (Cơ bản)</option>
+              <option value="2" data-i18n="practice_hsk_level_2">HSK 2 (Sơ cấp)</option>
+              <option value="3" data-i18n="practice_hsk_level_3">HSK 3 (Trung cấp)</option>
+              <option value="4" data-i18n="practice_hsk_level_4">HSK 4 (Tiền cao cấp)</option>
             </select>
           </div>
         </div>
@@ -186,8 +187,8 @@
           <div class="practice-word-display">
             <div class="word-hanzi" id="hsk-word-hanzi">苹果</div>
             <div class="word-pinyin-wrap">
-              <span class="word-pinyin blurred" id="hsk-word-pinyin" title="Nhấp vào để hiện">Nhấp để hiện pinyin</span>
-              <button class="btn-audio" id="btn-play-hsk" aria-label="Nghe phát âm mẫu">
+              <span class="word-pinyin blurred" id="hsk-word-pinyin" data-i18n-title="practice_hsk_pinyin_hint" title="Nhấp vào để hiện">Nhấp để hiện pinyin</span>
+              <button class="btn-audio" id="btn-play-hsk" data-i18n-title="practice_audio_tooltip" title="Nghe phát âm mẫu" aria-label="Nghe phát âm mẫu">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                   <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
@@ -199,20 +200,20 @@
 
           <!-- Speech input area -->
           <div class="record-area">
-            <div class="record-status-box" id="hsk-record-status">Nhấn micro để ghi âm từ này</div>
+            <div class="record-status-box" id="hsk-record-status" data-i18n="practice_hsk_status_ready">Nhấn micro để ghi âm từ này</div>
             <div class="button-row">
               <button class="btn btn-record" id="btn-record-hsk">
-                <span class="mic-icon">🎙️</span> Nhấn và nói
+                <span class="mic-icon">🎙️</span> <span data-i18n="practice_btn_speak">Nhấn và nói</span>
               </button>
-              <button class="btn btn-secondary btn-sm" id="btn-next-hsk">Từ khác →</button>
+              <button class="btn btn-secondary btn-sm" id="btn-next-hsk" data-i18n="practice_btn_next">Từ khác →</button>
             </div>
           </div>
 
           <!-- Result feedback -->
           <div class="result-feedback hidden" id="hsk-result-box">
-            <p class="feedback-label">Bạn đã phát âm:</p>
+            <p class="feedback-label" data-i18n="practice_lbl_you_said">Bạn đã phát âm:</p>
             <div class="user-speech" id="hsk-user-speech">--</div>
-            <div class="score-badge" id="hsk-score-badge">Đúng</div>
+            <div class="score-badge" id="hsk-score-badge" data-i18n="practice_badge_correct">Đúng</div>
           </div>
         </div>
       </section>
@@ -221,19 +222,19 @@
       <section class="card-glass" aria-labelledby="open-ended-heading">
         <div class="card-header-bar">
           <span class="pill-icon">🗣️</span>
-          <h2 id="open-ended-heading" class="card-title">3. Luyện Nói Tự Do</h2>
+          <h2 id="open-ended-heading" class="card-title" data-i18n="practice_open_heading">3. Luyện Nói Tự Do</h2>
         </div>
-        <p class="card-desc">Nói một từ hoặc câu bất kỳ, hệ thống sẽ tự động ghi âm và chuyển chữ Hán thành Pinyin kèm theo dấu thanh điệu.</p>
+        <p class="card-desc" data-i18n="practice_open_desc">Nói một từ hoặc câu bất kỳ, hệ thống sẽ tự động ghi âm và chuyển chữ Hán thành Pinyin kèm theo dấu thanh điệu.</p>
 
         <div class="open-controls">
           <div class="form-group-inline">
-            <label for="syllable-count-select">Độ dài dự kiến:</label>
+            <label for="syllable-count-select" data-i18n="practice_open_len_label">Độ dài dự kiến:</label>
             <select id="syllable-count-select" class="dropdown-select">
-              <option value="1">1 âm tiết (Từ đơn)</option>
-              <option value="2" selected>2 âm tiết (Từ ghép)</option>
-              <option value="3">3 âm tiết</option>
-              <option value="4">4 âm tiết / Thành ngữ</option>
-              <option value="all">Tự do (Bất kỳ câu nào)</option>
+              <option value="1" data-i18n="practice_open_len_1">1 âm tiết (Từ đơn)</option>
+              <option value="2" data-i18n="practice_open_len_2" selected>2 âm tiết (Từ ghép)</option>
+              <option value="3" data-i18n="practice_open_len_3">3 âm tiết</option>
+              <option value="4" data-i18n="practice_open_len_4">4 âm tiết / Thành ngữ</option>
+              <option value="all" data-i18n="practice_open_len_free">Tự do (Bất kỳ câu nào)</option>
             </select>
           </div>
         </div>
@@ -246,10 +247,10 @@
 
           <!-- Speech input area -->
           <div class="record-area">
-            <div class="record-status-box" id="open-record-status">Sẵn sàng lắng nghe giọng nói của bạn</div>
+            <div class="record-status-box" id="open-record-status" data-i18n="practice_open_status_ready">Sẵn sàng lắng nghe giọng nói của bạn</div>
             <div class="button-row">
               <button class="btn btn-record" id="btn-record-open">
-                <span class="mic-icon">🎙️</span> Nhấn và nói
+                <span class="mic-icon">🎙️</span> <span data-i18n="practice_btn_speak">Nhấn và nói</span>
               </button>
             </div>
           </div>
@@ -262,7 +263,7 @@
     <footer class="shop-footer">
       <img src="../logo.png" alt="Logo Lê Lê" class="footer-logo" width="36" height="36" />
       <p>Lê Lê học tiếng Trung <span>♥</span></p>
-      <p class="footer-note">Ứng dụng luyện âm 100% chạy trên trình duyệt của bạn bằng công nghệ AI Web Speech.</p>
+      <p class="footer-note" data-i18n="practice_footer_note">Ứng dụng luyện âm 100% chạy trên trình duyệt của bạn bằng công nghệ AI Web Speech.</p>
     </footer>
 
   </div><!-- /practice-container -->
@@ -273,6 +274,7 @@
     <span id="toast-msg">Đang bật micro...</span>
   </div>
 
+  <script src="../i18n.js"></script>
   <script src="practice.js?v=1.0.4" type="module"></script>
 </body>
 </html>

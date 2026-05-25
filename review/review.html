@@ -8,7 +8,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="../favicon-180.png" />
 
   <!-- SEO — filled dynamically by review.js -->
-  <title>Review sách – Lê Lê học tiếng Trung</title>
+  <title data-i18n="review_title_tab">Review sách – Lê Lê học tiếng Trung</title>
   <meta name="description" content="Review sách học tiếng Trung từ Lê Lê – trung thực, chi tiết, có kinh nghiệm thực tế." />
   <meta id="og-title"       property="og:title"       content="" />
   <meta id="og-desc"        property="og:description"  content="" />
@@ -41,19 +41,19 @@
     <!-- Header -->
     <header class="review-header">
       <div class="header-nav">
-        <a href="../shop.html" class="back-btn" id="btn-back-shop" aria-label="Quay lại Bookstore">
+        <a href="../shop.html" class="back-btn" id="btn-back-shop" data-i18n-aria-label="review_back_shop">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M19 12H5M12 5l-7 7 7 7"/>
           </svg>
-          <span>Bookstore</span>
+          <span data-i18n="nav_bookstore">Bookstore</span>
         </a>
-        <a href="../index.html" class="back-btn" id="btn-back-home" aria-label="Quay lại trang chính">
+        <a href="../index.html" class="back-btn" id="btn-back-home" data-i18n-aria-label="nav_home">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
           </svg>
-          <span>Trang chính</span>
+          <span data-i18n="nav_home">Trang chính</span>
         </a>
       </div>
 
@@ -64,18 +64,19 @@
           <p class="shop-brand-sub" lang="zh">乐乐学中文 · Review</p>
         </div>
       </div>
+      <div id="lang-selector"></div>
     </header>
 
     <!-- Loading state -->
     <div class="review-loading" id="review-loading" aria-live="polite">
       <div class="spinner"></div>
-      <p>Đang tải review…</p>
+      <p data-i18n="review_loading">Đang tải review…</p>
     </div>
 
     <!-- Error state -->
     <div class="review-error hidden" id="review-error">
-      <p>😢 Không tìm thấy sách này.</p>
-      <a href="../shop.html" class="btn-buy" style="display:inline-flex;margin-top:1rem">← Về Bookstore</a>
+      <p data-i18n="review_error">😢 Không tìm thấy sách này.</p>
+      <a href="../shop.html" class="btn-buy" style="display:inline-flex;margin-top:1rem" data-i18n="review_back_shop">← Về Bookstore</a>
     </div>
 
     <!-- Main review content — filled by JS -->
@@ -96,7 +97,7 @@
           <div class="hero-tags" id="rv-tags"></div>
 
           <div class="hero-price-row">
-            <span class="price-label">Giá tham khảo</span>
+            <span class="price-label" data-i18n="review_price_label">Giá tham khảo</span>
             <span class="hero-price" id="rv-price"></span>
           </div>
 
@@ -105,14 +106,14 @@
             <!-- filled by JS -->
           </div>
 
-          <p class="affiliate-note">* Link affiliate — mình nhận hoa hồng nhỏ, không ảnh hưởng giá bạn mua nhé 🙏</p>
+          <p class="affiliate-note" data-i18n="review_affiliate_note">* Link affiliate — mình nhận hoa hồng nhỏ, không ảnh hưởng giá bạn mua nhé 🙏</p>
         </div>
       </section>
 
       <!-- REVIEW ── Lê Lê's personal take -->
       <section class="review-section" aria-labelledby="rv-review-heading">
         <div class="section-pill">
-          <span>📝</span> Lê Lê review
+          <span>📝</span> <span style="display:inline" data-i18n="review_badge_lele">Lê Lê review</span>
         </div>
         <h2 id="rv-review-heading" class="sr-only">Nhận xét của Lê Lê</h2>
         <div class="review-body" id="rv-review-body">
@@ -128,25 +129,25 @@
       <!-- PROS & CONS -->
       <section class="pros-cons-section" aria-label="Điểm mạnh và lưu ý">
         <div class="pros-box">
-          <h2 class="pros-title">✅ Điểm mạnh</h2>
+          <h2 class="pros-title">✅ <span style="display:inline" data-i18n="review_pros">Điểm mạnh</span></h2>
           <ul class="pros-list" id="rv-pros"></ul>
         </div>
         <div class="cons-box">
-          <h2 class="cons-title">⚠️ Lưu ý</h2>
+          <h2 class="cons-title">⚠️ <span style="display:inline" data-i18n="review_cons">Lưu ý</span></h2>
           <ul class="cons-list" id="rv-cons"></ul>
         </div>
       </section>
 
       <!-- WHO IS IT FOR -->
       <section class="who-section" aria-labelledby="rv-who-heading">
-        <div class="section-pill"><span>🎯</span> Phù hợp với ai?</div>
+        <div class="section-pill"><span>🎯</span> <span style="display:inline" data-i18n="review_who">Phù hợp với ai?</span></div>
         <h2 id="rv-who-heading" class="sr-only">Phù hợp với ai</h2>
         <p class="who-body" id="rv-who"></p>
       </section>
 
       <!-- BOTTOM CTA -->
       <section class="cta-section" aria-label="Mua sách">
-        <p class="cta-label">Sẵn sàng bắt đầu? Mua tại:</p>
+        <p class="cta-label" data-i18n="review_buy_at">Sẵn sàng bắt đầu? Mua tại:</p>
         <div class="buy-group buy-group-lg" id="rv-buy-group-bottom"></div>
       </section>
 
@@ -155,11 +156,12 @@
     <footer class="shop-footer">
       <img src="../logo.png" alt="Logo Lê Lê" class="footer-logo" width="36" height="36" />
       <p>Lê Lê học tiếng Trung <span>♥</span></p>
-      <p class="footer-note">* Affiliate link — mình được hoa hồng nhỏ khi bạn mua, không ảnh hưởng giá nhé!</p>
+      <p class="footer-note" data-i18n="review_affiliate_note">* Affiliate link — mình được hoa hồng nhỏ khi bạn mua, không ảnh hưởng giá nhé!</p>
     </footer>
 
   </div><!-- /review-container -->
 
+  <script src="../i18n.js"></script>
   <script src="review.js?v=1.0.1"></script>
 </body>
 </html>

@@ -42,13 +42,13 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
           </svg>
-          <span>Trang chính</span>
+          <span data-i18n="nav_home">Trang chính</span>
         </a>
         <a href="shop.html" class="back-btn" id="btn-back-shop" aria-label="Quay lại Bookstore">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
           </svg>
-          <span>Bookstore</span>
+          <span data-i18n="nav_bookstore">Bookstore</span>
         </a>
       </div>
 
@@ -59,16 +59,15 @@
           <p class="shop-brand-sub" lang="zh">乐乐学中文 · Tạo Phiếu Viết</p>
         </div>
       </div>
+      <div id="lang-selector"></div>
     </header>
 
     <!-- Page Title Section -->
     <section class="tools-hero" aria-label="Giới thiệu">
-      <div class="hero-badge">🛠️ Tạo phiếu luyện viết PDF</div>
-      <h1 class="hero-title">Tạo Phiếu Luyện Viết PDF</h1>
-      <p class="hero-sub">Tự tay thiết kế và in phiếu luyện viết chữ Hán, tạo đề kiểm tra phiên âm điền hán tự (Pinyin Dictation) hoàn toàn miễn phí và chạy trực tiếp trên trình duyệt.</p>
+      <div class="hero-badge" data-i18n="tools_hero_badge">🛠️ Tạo phiếu luyện viết PDF</div>
+      <h1 class="hero-title" data-i18n="tools_main_title">Tạo Phiếu Luyện Viết PDF</h1>
+      <p class="hero-sub" data-i18n="tools_subtitle">Tự tay thiết kế và in phiếu luyện viết chữ Hán, tạo đề kiểm tra phiên âm điền hán tự (Pinyin Dictation) hoàn toàn miễn phí và chạy trực tiếp trên trình duyệt.</p>
     </section>
-
-
 
     <!-- Generator Workspace -->
     <div class="workspace-grid">
@@ -77,27 +76,27 @@
       <section class="card-glass settings-card">
         <div class="card-header-bar">
           <span class="pill-icon">⚙️</span>
-          <h2 class="card-title">Cấu hình Phiếu Tập Viết</h2>
+          <h2 class="card-title" data-i18n="tools_config_heading">Cấu hình Phiếu Tập Viết</h2>
         </div>
 
         <form id="generator-form" class="settings-form">
           
           <!-- Text Input -->
           <div class="form-group">
-            <label for="char-input">Chữ Hán cần luyện viết / điền:</label>
-            <textarea id="char-input" rows="3" placeholder="Nhập các chữ Hán hoặc từ cần tạo phiếu (Ví dụ: 你好 谢谢 学习 Tiếng Trung)...">你好谢谢</textarea>
-            <small class="form-help">Chữ Latinh/số sẽ được bỏ qua khi vẽ ô ly, chỉ giữ lại chữ Hán.</small>
+            <label for="char-input" data-i18n="tools_label_text_input">Chữ Hán cần luyện viết / điền:</label>
+            <textarea id="char-input" rows="3" data-i18n-placeholder="tools_placeholder_text_input" placeholder="Nhập các chữ Hán hoặc từ cần tạo phiếu (Ví dụ: 你好 谢谢 学习 Tiếng Trung)...">你好谢谢</textarea>
+            <small class="form-help">* Chỉ giữ lại chữ Hán khi vẽ ô ly, các ký tự Latinh/số sẽ được bỏ qua.</small>
           </div>
 
           <!-- Style Selection -->
           <div class="form-group">
-            <label>Kiểu hiển thị trên phiếu:</label>
+            <label data-i18n="tools_label_grid_style">Chế độ hiển thị:</label>
             <div class="radio-group-tile">
               <label class="tile-option">
                 <input type="radio" name="sheet-style" value="trace" checked />
                 <span class="tile-box">
                   <span class="tile-icon">✍️</span>
-                  <span class="tile-label">Tập viết chữ mờ (描红)</span>
+                  <span class="tile-label" data-i18n="tools_mode_trace">Chữ mờ để tập tô nét</span>
                   <span class="tile-desc">In chữ mờ ở đầu hàng để tô theo</span>
                 </span>
               </label>
@@ -105,7 +104,7 @@
                 <input type="radio" name="sheet-style" value="blank" />
                 <span class="tile-box">
                   <span class="tile-icon">⬜</span>
-                  <span class="tile-label">Khung ô ly trống</span>
+                  <span class="tile-label" data-i18n="tools_mode_blank">Ô ly trống tự luyện tập</span>
                   <span class="tile-desc">Chỉ in ô ly trống để tự luyện viết</span>
                 </span>
               </label>
@@ -113,7 +112,7 @@
                 <input type="radio" name="sheet-style" value="pinyin" />
                 <span class="tile-box">
                   <span class="tile-icon">📖</span>
-                  <span class="tile-label">Đề điền chữ (Pinyin)</span>
+                  <span class="tile-label" data-i18n="tools_mode_dictation">Đề kiểm tra viết Pinyin</span>
                   <span class="tile-desc">Chỉ hiện Pinyin, để trống ô ly tự điền</span>
                 </span>
               </label>
@@ -123,20 +122,20 @@
           <!-- Grid type -->
           <div class="form-row">
             <div class="form-group col-half">
-              <label for="grid-type">Kiểu kẻ ô ly:</label>
+              <label for="grid-type" data-i18n="tools_label_grid_type">Kiểu kẻ ô ly:</label>
               <select id="grid-type" class="custom-select">
-                <option value="mizi">Mizi Ge (米字格 - Ô chữ Mễ)</option>
-                <option value="tianzi">Tianzi Ge (田字格 - Ô chữ Điền)</option>
+                <option value="mizi" data-i18n="tools_mizi">Mizi Ge (米字格 - Ô chữ Mễ)</option>
+                <option value="tianzi" data-i18n="tools_tianzi">Tianzi Ge (田字格 - Ô chữ Điền)</option>
               </select>
             </div>
 
             <!-- Grid color -->
             <div class="form-group col-half">
-              <label for="grid-color">Màu đường kẻ:</label>
+              <label for="grid-color" data-i18n="tools_label_grid_color">Màu đường kẻ:</label>
               <select id="grid-color" class="custom-select">
-                <option value="red">Đỏ truyền thống</option>
-                <option value="gold">Vàng kim</option>
-                <option value="gray">Xám đen</option>
+                <option value="red" data-i18n="tools_color_red">Đỏ truyền thống</option>
+                <option value="gold" data-i18n="tools_color_gold">Vàng kim</option>
+                <option value="gray" data-i18n="tools_color_gray">Xám đen</option>
               </select>
             </div>
           </div>
@@ -144,11 +143,11 @@
           <!-- Custom headers -->
           <div class="form-row">
             <div class="form-group col-half">
-              <label for="title-input">Tiêu đề phiếu:</label>
+              <label for="title-input" data-i18n="tools_label_page_subtitle">Tiêu đề phiếu:</label>
               <input type="text" id="title-input" value="PHIẾU TẬP VIẾT CHỮ HÁN" placeholder="Ví dụ: Phiếu bài tập tuần 1" />
             </div>
             <div class="form-group col-half">
-              <label for="subtitle-input">Phụ đề dưới trang:</label>
+              <label for="subtitle-input" data-i18n="tools_label_page_subtitle">Phụ đề dưới trang:</label>
               <input type="text" id="subtitle-input" value="Lê Lê học tiếng Trung 🌸 Cùng nhau học tập mỗi ngày" />
             </div>
           </div>
@@ -158,7 +157,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
                 <polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>
               </svg>
-              In phiếu / Tải PDF ngay
+              <span data-i18n="tools_btn_print">In phiếu / Tải PDF ngay</span>
             </button>
           </div>
 
@@ -166,32 +165,32 @@
 
         <!-- Preset select -->
         <div class="preset-section">
-          <h3>Gợi ý mẫu chữ luyện tập nhanh:</h3>
+          <h3 data-i18n="tools_presets_heading">Chọn nhanh từ mẫu luyện tập theo cấp độ HSK:</h3>
           <div class="preset-words-grid">
             <div class="word-chip preset-btn" data-text="你好谢谢">
               <span class="word-hz">你好谢谢</span>
               <span class="word-py">nǐ hǎo xiè xie</span>
-              <span class="word-vi">Lời chào hỏi</span>
+              <span class="word-vi" data-i18n="tools_preset_1">Lời chào hỏi</span>
             </div>
             <div class="word-chip preset-btn" data-text="好好学习天天向上">
               <span class="word-hz">好好学习</span>
               <span class="word-py">hǎo hǎo xué xí</span>
-              <span class="word-vi">Chăm chỉ học tập</span>
+              <span class="word-vi" data-i18n="tools_preset_2">Chăm chỉ học tập</span>
             </div>
             <div class="word-chip preset-btn" data-text="一二三四五六七八九十">
               <span class="word-hz">一二三四五</span>
               <span class="word-py">yī èr sān sì wǔ</span>
-              <span class="word-vi">Đếm số 1-10</span>
+              <span class="word-vi" data-i18n="tools_preset_3">Đếm số 1-10</span>
             </div>
             <div class="word-chip preset-btn" data-text="爸爸妈妈哥哥姐姐弟弟妹妹">
               <span class="word-hz">爸爸妈妈</span>
               <span class="word-py">bà ba mā ma</span>
-              <span class="word-vi">Gia đình</span>
+              <span class="word-vi" data-i18n="tools_preset_4">Gia đình</span>
             </div>
             <div class="word-chip preset-btn" data-text="星期一星期二星期三">
               <span class="word-hz">星期一二三</span>
               <span class="word-py">xīng qī yī èr sān</span>
-              <span class="word-vi">Thứ trong tuần</span>
+              <span class="word-vi" data-i18n="tools_preset_5">Thứ trong tuần</span>
             </div>
           </div>
         </div>
@@ -202,9 +201,9 @@
       <section class="card-glass preview-card">
         <div class="card-header-bar">
           <span class="pill-icon">👁️</span>
-          <h2 class="card-title">Xem trước thiết kế phiếu in (A4 Preview)</h2>
+          <h2 class="card-title" data-i18n="tools_preview_heading">Xem trước thiết kế phiếu in (A4 Preview)</h2>
         </div>
-        <p class="preview-desc">Bản xem trước kích thước thu nhỏ của phiếu in trên giấy A4. Khi in thực tế, các đường kẻ và chữ sẽ hiển thị với độ sắc nét cực cao:</p>
+        <p class="preview-desc" data-i18n="tools_preview_desc">Bản xem trước kích thước thu nhỏ của phiếu in trên giấy A4. Khi in thực tế, các đường kẻ và chữ sẽ hiển thị với độ sắc nét cực cao:</p>
 
         <!-- A4 Page Container Mockup -->
         <div class="a4-mockup-wrapper">
@@ -213,7 +212,7 @@
             <div class="sheet-header">
               <div class="sheet-title-container">
                 <h2 id="preview-sheet-title">PHIẾU TẬP VIẾT CHỮ HÁN</h2>
-                <div class="sheet-info-fields">
+                <div class="sheet-info-fields" id="preview-sheet-info-fields">
                   <span>Họ và tên: ........................................................................</span>
                   <span>Ngày: ...../...../20...</span>
                 </div>
@@ -238,22 +237,22 @@
 
     <!-- Interactive Tools Quick Navigation (Moved to bottom) -->
     <section class="interactive-tools-section" aria-label="Các công cụ trực tuyến" style="margin-top: 3.5rem;">
-      <h2 class="section-title">⚡ Các công cụ học tập trực tuyến khác</h2>
+      <h2 class="section-title" data-i18n="showcase_title">⚡ Các công cụ học tập trực tuyến khác</h2>
       <div class="interactive-tools-grid">
         <a href="write/index.html" class="tool-quick-card">
           <div class="tool-quick-icon">✍️</div>
           <div class="tool-quick-content">
-            <h3>Tập Viết Chữ Hán Tương Tác</h3>
-            <p>Tra thứ tự nét vẽ (Stroke Order), xem hoạt ảnh hướng dẫn và tự tay vẽ nét trực quan.</p>
-            <span class="tool-quick-link">Mở công cụ →</span>
+            <h3 data-i18n="write_nav_title">Tập Viết Chữ Hán Tương Tác</h3>
+            <p data-i18n="card_write_sub">Tra thứ tự nét vẽ (Stroke Order), xem hoạt ảnh hướng dẫn và tự tay vẽ nét trực quan.</p>
+            <span class="tool-quick-link" data-i18n="card_write_action">Mở công cụ →</span>
           </div>
         </a>
         <a href="practice/index.html" class="tool-quick-card">
           <div class="tool-quick-icon">🎙️</div>
           <div class="tool-quick-content">
-            <h3>Luyện Phát Âm Tiếng Trung AI</h3>
-            <p>Học phát âm, luyện nói tự do và chấm điểm thanh điệu (Tone Pairs) chuẩn xác bằng giọng nói.</p>
-            <span class="tool-quick-link">Mở công cụ →</span>
+            <h3 data-i18n="practice_nav_title">Luyện Phát Âm Tiếng Trung AI</h3>
+            <p data-i18n="card_practice_sub">Học phát âm, luyện nói tự do và chấm điểm thanh điệu (Tone Pairs) chuẩn xác bằng giọng nói.</p>
+            <span class="tool-quick-link" data-i18n="card_practice_action">Mở công cụ →</span>
           </div>
         </a>
       </div>
@@ -263,14 +262,16 @@
     <footer class="shop-footer">
       <img src="logo.png" alt="Logo Lê Lê" class="footer-logo" width="36" height="36" />
       <p>Lê Lê học tiếng Trung <span>♥</span></p>
-      <p class="footer-note">Ứng dụng tạo phiếu luyện viết được thiết kế 100% chạy trên trình duyệt. Bạn có thể chọn máy in là "Save as PDF" để tải file PDF về máy tính.</p>
+      <p class="footer-note" data-i18n="tools_print_tip">Ứng dụng tạo phiếu luyện viết được thiết kế 100% chạy trên trình duyệt. Bạn có thể chọn máy in là "Save as PDF" để tải file PDF về máy tính.</p>
     </footer>
 
   </div><!-- /tools-container -->
 
   <!-- Pinyin dict helper file (needed for dictation sheets) -->
-  <script src="write/write.js?v=1.0.6" type="module"></script>
+  <script src="write/write.js?v=1.0.8" type="module"></script>
+  <!-- Main i18n translation framework -->
+  <script src="i18n.js"></script>
   <!-- Main Controller script for tools page -->
-  <script src="tools.js?v=1.0.6" type="module"></script>
+  <script src="tools.js?v=1.0.8" type="module"></script>
 </body>
 </html>
