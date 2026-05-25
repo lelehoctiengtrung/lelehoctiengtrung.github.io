@@ -81,6 +81,7 @@ const TRANSLATIONS = {
     docs_toast_copied: "Đã sao chép link!",
 
     // tools.html (Worksheet PDF Generator)
+    tools_hero_badge: "🛠️ GÓC HỌC LIỆU",
     tools_title_tab: "Tạo Phiếu Luyện Viết PDF – Lê Lê học tiếng Trung",
     tools_main_title: "Tạo Phiếu Luyện Viết PDF",
     tools_subtitle: "Công cụ tự thiết kế và in phiếu luyện viết chữ Hán, điền chữ theo pinyin chuẩn định dạng A4",
@@ -357,6 +358,7 @@ const TRANSLATIONS = {
     docs_toast_copied: "Link copied!",
 
     // tools.html (Worksheet PDF Generator)
+    tools_hero_badge: "🛠️ TOOLS HUB",
     tools_title_tab: "PDF Worksheet Generator – Le Le Learn Chinese",
     tools_main_title: "PDF Worksheet Generator",
     tools_subtitle: "Design and print custom Hanzi tracing grids or Pinyin dictation sheets on standard A4 format",
@@ -633,6 +635,7 @@ const TRANSLATIONS = {
     docs_toast_copied: "链接已复制！",
 
     // tools.html (Worksheet PDF Generator)
+    tools_hero_badge: "🛠️ 学习工具",
     tools_title_tab: "PDF字帖生成器 – 乐乐学中文",
     tools_main_title: "PDF字帖生成器",
     tools_subtitle: "自定义设计并打印标准A4尺寸的汉字描红帖和拼音听写表",

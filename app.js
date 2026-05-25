@@ -8,6 +8,33 @@ document.addEventListener('DOMContentLoaded', () => {
   initCardEffects();
 });
 
+// Robust character data loader for Vietnam networks (Multi-CDN queue with 3.5s timeout)
+async function loadCharData(char) {
+  if (!char) return null;
+  const cdns = [
+    `https://unpkg.com/hanzi-writer-data@2.0.1/${char}.json`,
+    `https://fastly.jsdelivr.net/npm/hanzi-writer-data@2.0/${char}.json`,
+    `https://gcore.jsdelivr.net/npm/hanzi-writer-data@2.0/${char}.json`,
+    `https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/${char}.json`
+  ];
+  
+  for (const url of cdns) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3500);
+      
+      const response = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeoutId);
+      if (response.ok) {
+        return await response.json();
+      }
+    } catch (e) {
+      console.warn(`Failed to fetch character data for "${char}" from ${url}:`, e);
+    }
+  }
+  throw new Error(`Could not load character data for "${char}" from any CDN mirror.`);
+}
+
 // ---- Hero Calligraphy Tracing (HanziWriter) ----
 let heroWriter = null;
 function initHeroWriter() {
@@ -21,6 +48,12 @@ function initHeroWriter() {
     return;
   }
 
+  const customLoader = (character, onComplete, onError) => {
+    loadCharData(character)
+      .then(data => onComplete(data))
+      .catch(err => onError(err));
+  };
+
   // Create HanziWriter for character '学' (Learn)
   heroWriter = HanziWriter.create('hero-writer-canvas', '学', {
     width: 140,
@@ -32,7 +65,8 @@ function initHeroWriter() {
     showOutline: true,
     showCharacter: true,
     strokeAnimationSpeed: 1.2,
-    delayBetweenStrokes: 250
+    delayBetweenStrokes: 250,
+    charDataLoader: customLoader
   });
 
   // Autoplay animation with a delay
