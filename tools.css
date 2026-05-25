@@ -267,6 +267,49 @@
   gap: 0.5rem;
 }
 
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: inherit;
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--clr-gold);
+  color: #0b0b0b;
+  box-shadow: 0 4px 12px var(--clr-gold-dim);
+}
+.btn-primary:hover {
+  background: var(--clr-cream);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 16px rgba(212, 168, 67, 0.25);
+}
+.btn-primary:active {
+  transform: translateY(0.5px);
+}
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #fff;
+}
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--clr-gold) !important;
+  transform: translateY(-1.5px);
+}
+.btn-secondary:active {
+  transform: translateY(0.5px);
+}
+
 .btn-xs {
   padding: 0.35rem 0.75rem !important;
   font-size: 0.78rem !important;
@@ -281,6 +324,54 @@
 .btn svg {
   margin-right: 0.3rem;
   flex-shrink: 0;
+}
+
+/* Word chips preset styling */
+.preset-words-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.word-chip {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.word-chip:hover {
+  background: rgba(212, 168, 67, 0.06);
+  border-color: var(--clr-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.word-chip .word-hz {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.2rem;
+}
+
+.word-chip .word-py {
+  font-size: 0.75rem;
+  color: #aaa;
+  font-weight: 500;
+}
+
+.word-chip .word-vi {
+  font-size: 0.7rem;
+  color: #777;
+  margin-top: 0.15rem;
+  text-align: center;
 }
 
 /* ── A4 Sheet Preview Mockup styling ──────────────────────── */
