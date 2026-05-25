@@ -83,7 +83,7 @@ function updatePreview() {
   } else if (style === 'trace') {
     // Trace outline mode
     const cleanChars = textInput.replace(/[^\u4e00-\u9fa5]/g, '').split('');
-    const charsToShow = cleanChars.slice(0, 5); // Limit preview
+    const charsToShow = cleanChars.slice(0, 4); // Limit preview to 4 characters for 2-row layout
 
     if (charsToShow.length === 0) {
       gridBody.innerHTML = '<p class="placeholder-text">Nhập chữ Hán ở bên để xem trước mẫu phiếu vẽ.</p>';
@@ -91,30 +91,53 @@ function updatePreview() {
     }
 
     charsToShow.forEach(char => {
-      const rowDiv = document.createElement('div');
-      rowDiv.className = 'sheet-row';
+      const pairDiv = document.createElement('div');
+      pairDiv.className = 'sheet-row-pair';
 
-      const pinyinRow = document.createElement('div');
-      pinyinRow.className = 'pinyin-row';
+      // Row 1: Trace guide + blank cells
+      const rowDiv1 = document.createElement('div');
+      rowDiv1.className = 'sheet-row';
+
+      const pinyinRow1 = document.createElement('div');
+      pinyinRow1.className = 'pinyin-row';
       const py = PINYIN_DICT[char] || '';
-      pinyinRow.innerHTML = `<span class="pinyin-cell-text">${py}</span>`;
-      rowDiv.appendChild(pinyinRow);
+      pinyinRow1.innerHTML = `<span class="pinyin-cell-text">${py}</span>`;
+      rowDiv1.appendChild(pinyinRow1);
 
-      const cellsDiv = document.createElement('div');
-      cellsDiv.className = 'cells-row';
-      
+      const cellsDiv1 = document.createElement('div');
+      cellsDiv1.className = 'cells-row';
       for (let c = 0; c < 12; c++) {
         const isTrace = c < 3;
-        cellsDiv.innerHTML += drawGridCellSVG(gridType, colorHex, char, isTrace);
+        cellsDiv1.innerHTML += drawGridCellSVG(gridType, colorHex, char, isTrace);
       }
-      rowDiv.appendChild(cellsDiv);
-      gridBody.appendChild(rowDiv);
+      rowDiv1.appendChild(cellsDiv1);
+      pairDiv.appendChild(rowDiv1);
+
+      // Row 2: Completely blank cells for free practice
+      const rowDiv2 = document.createElement('div');
+      rowDiv2.className = 'sheet-row';
+
+      const pinyinRow2 = document.createElement('div');
+      pinyinRow2.className = 'pinyin-row';
+      pinyinRow2.style.visibility = 'hidden';
+      pinyinRow2.innerHTML = `<span class="pinyin-cell-text">&nbsp;</span>`;
+      rowDiv2.appendChild(pinyinRow2);
+
+      const cellsDiv2 = document.createElement('div');
+      cellsDiv2.className = 'cells-row';
+      for (let c = 0; c < 12; c++) {
+        cellsDiv2.innerHTML += drawGridCellSVG(gridType, colorHex);
+      }
+      rowDiv2.appendChild(cellsDiv2);
+      pairDiv.appendChild(rowDiv2);
+
+      gridBody.appendChild(pairDiv);
     });
     
-    if (cleanChars.length > 5) {
+    if (cleanChars.length > 4) {
       gridBody.innerHTML += `
         <p style="font-size: 0.65rem; color: #888; text-align: center; font-style: italic; margin-top: 5px;">
-          ... và ${cleanChars.length - 5} chữ khác sẽ được tự động in trên các trang tiếp theo ...
+          ... và ${cleanChars.length - 4} chữ khác sẽ được tự động in trên các trang tiếp theo ...
         </p>
       `;
     }
@@ -122,7 +145,7 @@ function updatePreview() {
     // Pinyin dictation sheets
     const words = textInput.split(/[\s,，.。!！?？;；]+/);
     const validWords = words.map(w => w.replace(/[^\u4e00-\u9fa5]/g, '')).filter(w => w.length > 0);
-    const wordsToShow = validWords.slice(0, 5);
+    const wordsToShow = validWords.slice(0, 4); // Limit preview to 4 words
 
     if (wordsToShow.length === 0) {
       gridBody.innerHTML = '<p class="placeholder-text">Nhập từ vựng ở bên để tạo đề kiểm tra Pinyin.</p>';
@@ -130,33 +153,57 @@ function updatePreview() {
     }
 
     wordsToShow.forEach(word => {
-      const rowDiv = document.createElement('div');
-      rowDiv.className = 'sheet-row';
+      const pairDiv = document.createElement('div');
+      pairDiv.className = 'sheet-row-pair';
 
-      const pinyinRow = document.createElement('div');
-      pinyinRow.className = 'pinyin-row';
+      // Row 1
+      const rowDiv1 = document.createElement('div');
+      rowDiv1.className = 'sheet-row';
 
-      const cellsDiv = document.createElement('div');
-      cellsDiv.className = 'cells-row';
+      const pinyinRow1 = document.createElement('div');
+      pinyinRow1.className = 'pinyin-row';
+
+      const cellsDiv1 = document.createElement('div');
+      cellsDiv1.className = 'cells-row';
 
       const chars = word.split('');
       chars.forEach(char => {
         const py = PINYIN_DICT[char] || '';
-        pinyinRow.innerHTML += `<span class="pinyin-cell-text">${py}</span>`;
+        pinyinRow1.innerHTML += `<span class="pinyin-cell-text">${py}</span>`;
       });
-      rowDiv.appendChild(pinyinRow);
+      rowDiv1.appendChild(pinyinRow1);
 
       for (let c = 0; c < 12; c++) {
-        cellsDiv.innerHTML += drawGridCellSVG(gridType, colorHex);
+        cellsDiv1.innerHTML += drawGridCellSVG(gridType, colorHex);
       }
-      rowDiv.appendChild(cellsDiv);
-      gridBody.appendChild(rowDiv);
+      rowDiv1.appendChild(cellsDiv1);
+      pairDiv.appendChild(rowDiv1);
+
+      // Row 2
+      const rowDiv2 = document.createElement('div');
+      rowDiv2.className = 'sheet-row';
+
+      const pinyinRow2 = document.createElement('div');
+      pinyinRow2.className = 'pinyin-row';
+      pinyinRow2.style.visibility = 'hidden';
+      pinyinRow2.innerHTML = chars.map(() => `<span class="pinyin-cell-text">&nbsp;</span>`).join('');
+      rowDiv2.appendChild(pinyinRow2);
+
+      const cellsDiv2 = document.createElement('div');
+      cellsDiv2.className = 'cells-row';
+      for (let c = 0; c < 12; c++) {
+        cellsDiv2.innerHTML += drawGridCellSVG(gridType, colorHex);
+      }
+      rowDiv2.appendChild(cellsDiv2);
+      pairDiv.appendChild(rowDiv2);
+
+      gridBody.appendChild(pairDiv);
     });
 
-    if (validWords.length > 5) {
+    if (validWords.length > 4) {
       gridBody.innerHTML += `
         <p style="font-size: 0.65rem; color: #888; text-align: center; font-style: italic; margin-top: 5px;">
-          ... và ${validWords.length - 5} từ khác sẽ được tự động in trên các trang tiếp theo ...
+          ... và ${validWords.length - 4} từ khác sẽ được tự động in trên các trang tiếp theo ...
         </p>
       `;
     }
@@ -206,15 +253,30 @@ function printWorksheet() {
 
     cleanChars.forEach(char => {
       const py = PINYIN_DICT[char] || '';
-      let cellsHtml = '';
+      
+      // Row 1
+      let cellsHtml1 = '';
       for (let c = 0; c < 12; c++) {
         const isTrace = c < 3;
-        cellsHtml += drawGridCellSVG(gridType, colorHex, char, isTrace);
+        cellsHtml1 += drawGridCellSVG(gridType, colorHex, char, isTrace);
       }
+      
+      // Row 2
+      let cellsHtml2 = '';
+      for (let c = 0; c < 12; c++) {
+        cellsHtml2 += drawGridCellSVG(gridType, colorHex);
+      }
+
       rowsHtml += `
-        <div class="sheet-row">
-          <div class="pinyin-row"><span class="pinyin-cell-text">${py}</span></div>
-          <div class="cells-row">${cellsHtml}</div>
+        <div class="sheet-row-pair">
+          <div class="sheet-row">
+            <div class="pinyin-row"><span class="pinyin-cell-text">${py}</span></div>
+            <div class="cells-row">${cellsHtml1}</div>
+          </div>
+          <div class="sheet-row">
+            <div class="pinyin-row" style="visibility: hidden;"><span class="pinyin-cell-text">&nbsp;</span></div>
+            <div class="cells-row">${cellsHtml2}</div>
+          </div>
         </div>
       `;
     });
@@ -229,21 +291,34 @@ function printWorksheet() {
 
     validWords.forEach(word => {
       const chars = word.split('');
-      let pinyinCellsHtml = '';
+      
+      // Row 1 Pinyin
+      let pinyinCellsHtml1 = '';
       chars.forEach(char => {
         const py = PINYIN_DICT[char] || '';
-        pinyinCellsHtml += `<span class="pinyin-cell-text">${py}</span>`;
+        pinyinCellsHtml1 += `<span class="pinyin-cell-text">${py}</span>`;
       });
 
-      let cellsHtml = '';
+      // Row 2 Pinyin (blank spacer)
+      let pinyinCellsHtml2 = chars.map(() => `<span class="pinyin-cell-text">&nbsp;</span>`).join('');
+
+      let cellsHtml1 = '';
+      let cellsHtml2 = '';
       for (let c = 0; c < 12; c++) {
-        cellsHtml += drawGridCellSVG(gridType, colorHex);
+        cellsHtml1 += drawGridCellSVG(gridType, colorHex);
+        cellsHtml2 += drawGridCellSVG(gridType, colorHex);
       }
 
       rowsHtml += `
-        <div class="sheet-row">
-          <div class="pinyin-row">${pinyinCellsHtml}</div>
-          <div class="cells-row">${cellsHtml}</div>
+        <div class="sheet-row-pair">
+          <div class="sheet-row">
+            <div class="pinyin-row">${pinyinCellsHtml1}</div>
+            <div class="cells-row">${cellsHtml1}</div>
+          </div>
+          <div class="sheet-row">
+            <div class="pinyin-row" style="visibility: hidden;">${pinyinCellsHtml2}</div>
+            <div class="cells-row">${cellsHtml2}</div>
+          </div>
         </div>
       `;
     });
@@ -301,15 +376,20 @@ function printWorksheet() {
           .sheet-grid-body {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
             flex: 1;
+          }
+          .sheet-row-pair {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            page-break-inside: avoid;
+            break-inside: avoid;
           }
           .sheet-row {
             display: flex;
             flex-direction: column;
             gap: 4px;
-            page-break-inside: avoid;
-            break-inside: avoid;
           }
           .pinyin-row {
             display: flex;
