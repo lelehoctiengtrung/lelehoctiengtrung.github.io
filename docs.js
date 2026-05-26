@@ -192,16 +192,42 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // --- Fetch from Google Sheets ─────────────────────────────
-function loadDocs() {
-  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}&headers=2`;
-  const script = document.createElement('script');
-  script.src = url + '&callback=onSheetData';
-  window.onSheetData = (data) => parseAndRenderDocs(data);
-  script.onerror = () => {
-    console.warn('Google Sheets loading failed. Using fallback docs.');
+async function loadDocs() {
+  const grid = document.getElementById('docs-grid');
+  if (!grid) return;
+
+  // Save static HTML as fallback if any
+  if (!grid.dataset.staticFallback) {
+    grid.dataset.staticFallback = grid.innerHTML;
+  }
+
+  try {
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}&headers=2`;
+    const res = await fetch(url);
+    const raw = await res.text();
+
+    const match = raw.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/);
+    if (!match) throw new Error('Invalid response');
+    const data = JSON.parse(match[1]);
+
+    parseAndRenderDocs(data);
+  } catch (err) {
+    console.warn('Google Sheets loading failed. Using fallback docs.', err);
     renderDocsList(FALLBACK_DOCS);
-  };
-  document.head.appendChild(script);
+  }
+}
+
+// --- Helpers for column parsing & ID inference ------------
+function inferId(title, index) {
+  if (!title) return `DOC-ROW-${index}`;
+  const t = title.toUpperCase();
+  if (t.includes('500')) return 'DOC-500';
+  if (t.includes('NGỮ PHÁP') || t.includes('GRAMMAR')) return 'DOC-GRAMMAR';
+  if (t.includes('HSK 3') || t.includes('HSK3')) return 'DOC-HSK3';
+  if (t.includes('ĐỀ THI') || t.includes('HSK') || t.includes('MOCK')) return 'DOC-HSK';
+  if (t.includes('LUYỆN VIẾT') || t.includes('WRITING') || t.includes('CHỮ HÁN')) return 'DOC-WRITING';
+  if (t.includes('CHỦ ĐỀ') || t.includes('THEME')) return 'DOC-CHUDE';
+  return `DOC-ROW-${index}`;
 }
 
 // --- Parse GViz response ──────────────────────────────────
@@ -213,25 +239,63 @@ function parseAndRenderDocs(data) {
       return;
     }
 
-    const docs = rows.map(r => {
-      const get = (col, fallbackVal = '') => {
-        const cell = r.c[col];
+    const cols = data.table.cols || [];
+    const colMap = {};
+    // Set default column indices for 9-column format
+    colMap.title = 0;
+    colMap.desc = 1;
+    colMap.category = 2;
+    colMap.icon = 3;
+    colMap.icon_color = 4;
+    colMap.pages = 5;
+    colMap.level = 6;
+    colMap.level_text = 7;
+    colMap.drive_url = 8;
+    colMap.id = -1;
+
+    cols.forEach((col, index) => {
+      const label = (col.label || '').toLowerCase();
+      if (label.includes('title')) colMap.title = index;
+      else if (label.includes('desc')) colMap.desc = index;
+      else if (label.includes('category') || label.includes('nhóm')) colMap.category = index;
+      else if (label.includes('icon_color') || label.includes('màu')) colMap.icon_color = index;
+      else if (label.includes('icon')) colMap.icon = index;
+      else if (label.includes('pages') || label.includes('trang') || label.includes('thông tin')) colMap.pages = index;
+      else if (label.includes('level_text')) colMap.level_text = index;
+      else if (label.includes('level') || label.includes('độ khó')) colMap.level = index;
+      else if (label.includes('drive_url') || label.includes('link drive')) colMap.drive_url = index;
+      else if (label.includes('id') || label.includes('id tài liệu')) colMap.id = index;
+    });
+
+    const docs = rows.map((r, rowIndex) => {
+      const get = (colIdx, fallbackVal = '') => {
+        if (colIdx === undefined || colIdx < 0 || !r.c) return fallbackVal;
+        const cell = r.c[colIdx];
         const val = (cell && cell.v != null) ? String(cell.v).trim() : '';
         return val || fallbackVal;
       };
 
-      const id = get(COL.id);
+      let title = get(colMap.title);
+      if (!title) return null; // Skip empty rows
+
+      let id = '';
+      if (colMap.id !== -1) {
+        id = get(colMap.id);
+      }
+      if (!id) {
+        id = inferId(title, rowIndex);
+      }
+
       const fallbackItem = FALLBACK_DOCS.find(f => f.id.toUpperCase() === id.toUpperCase());
 
-      let title = get(COL.title, fallbackItem?.title);
-      let desc = get(COL.desc, fallbackItem?.desc);
-      let pages = get(COL.pages, fallbackItem?.pages || 'PDF');
-      let level_text = get(COL.level_text, fallbackItem?.level_text || 'Cơ bản');
-      const category = get(COL.category, fallbackItem?.category || 'vocab');
-      const icon = get(COL.icon, fallbackItem?.icon || '📝');
-      const icon_color = get(COL.icon_color, fallbackItem?.icon_color || '#D4A843');
-      const level = get(COL.level, fallbackItem?.level || '2');
-      const drive_url = get(COL.drive_url, fallbackItem?.drive_url || '#');
+      let desc = get(colMap.desc, fallbackItem?.desc);
+      let pages = get(colMap.pages, fallbackItem?.pages || 'PDF');
+      let level_text = get(colMap.level_text, fallbackItem?.level_text || 'Cơ bản');
+      const category = get(colMap.category, fallbackItem?.category || 'vocab');
+      const icon = get(colMap.icon, fallbackItem?.icon || '📝');
+      const icon_color = get(colMap.icon_color, fallbackItem?.icon_color || '#D4A843');
+      const level = get(colMap.level, fallbackItem?.level || '2');
+      const drive_url = get(colMap.drive_url, fallbackItem?.drive_url || '#');
 
       // Localize metadata fields if active language is not vi
       const lang = window.i18n ? window.i18n.currentLang : 'vi';
@@ -244,7 +308,7 @@ function parseAndRenderDocs(data) {
       }
 
       return { id, title, desc, category, icon, icon_color, pages, level, level_text, drive_url };
-    });
+    }).filter(Boolean);
 
     renderDocsList(docs);
   } catch (e) {

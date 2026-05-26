@@ -144,36 +144,118 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ── Load từ Google Sheets ─────────────────────────────────
-function loadDoc(docId) {
-  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}&headers=2`;
-  const script = document.createElement('script');
-  script.src = url + '&callback=onSheetData';
-  window.onSheetData = (data) => parseAndRender(data, docId);
-  script.onerror = () => {
+async function loadDoc(docId) {
+  try {
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}&headers=2`;
+    const res = await fetch(url);
+    const raw = await res.text();
+
+    const match = raw.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/);
+    if (!match) throw new Error('Invalid response');
+    const data = JSON.parse(match[1]);
+
+    parseAndRender(data, docId);
+  } catch (err) {
+    console.warn('Google Sheets loading failed. Using fallback doc.', err);
     const fallback = FALLBACK_DOCS[docId.toUpperCase()];
     if (fallback) {
       renderDoc(fallback);
     } else {
       showError();
     }
-  };
-  document.head.appendChild(script);
+  }
+}
+
+// --- Helpers for column parsing & ID inference ------------
+function inferId(title, index) {
+  if (!title) return `DOC-ROW-${index}`;
+  const t = title.toUpperCase();
+  if (t.includes('500')) return 'DOC-500';
+  if (t.includes('NGỮ PHÁP') || t.includes('GRAMMAR')) return 'DOC-GRAMMAR';
+  if (t.includes('HSK 3') || t.includes('HSK3')) return 'DOC-HSK3';
+  if (t.includes('ĐỀ THI') || t.includes('HSK') || t.includes('MOCK')) return 'DOC-HSK';
+  if (t.includes('LUYỆN VIẾT') || t.includes('WRITING') || t.includes('CHỮ HÁN')) return 'DOC-WRITING';
+  if (t.includes('CHỦ ĐỀ') || t.includes('THEME')) return 'DOC-CHUDE';
+  return `DOC-ROW-${index}`;
 }
 
 // ── Parse GViz response ───────────────────────────────────
 function parseAndRender(data, targetId) {
   try {
     const rows = data.table.rows;
-    
-    // Find row by ID (COL.id is index 0)
-    const row = rows.find(r => {
-      const cell = r.c[COL.id];
-      return cell && String(cell.v).trim().toUpperCase() === targetId.trim().toUpperCase();
+    if (!rows || rows.length === 0) {
+      throw new Error('No rows found');
+    }
+
+    const cols = data.table.cols || [];
+    const colMap = {};
+    // Set default column indices for 9-column format
+    colMap.title = 0;
+    colMap.desc = 1;
+    colMap.category = 2;
+    colMap.icon = 3;
+    colMap.icon_color = 4;
+    colMap.pages = 5;
+    colMap.level = 6;
+    colMap.level_text = 7;
+    colMap.drive_url = 8;
+    colMap.id = -1;
+    colMap.content = -1;
+    colMap.pros = -1;
+    colMap.cons = -1;
+    colMap.who_for = -1;
+    colMap.preview_images = -1;
+
+    cols.forEach((col, index) => {
+      const label = (col.label || '').toLowerCase();
+      if (label.includes('title')) colMap.title = index;
+      else if (label.includes('desc')) colMap.desc = index;
+      else if (label.includes('category') || label.includes('nhóm')) colMap.category = index;
+      else if (label.includes('icon_color') || label.includes('màu')) colMap.icon_color = index;
+      else if (label.includes('icon')) colMap.icon = index;
+      else if (label.includes('pages') || label.includes('trang') || label.includes('thông tin')) colMap.pages = index;
+      else if (label.includes('level_text')) colMap.level_text = index;
+      else if (label.includes('level') || label.includes('độ khó')) colMap.level = index;
+      else if (label.includes('drive_url') || label.includes('link drive')) colMap.drive_url = index;
+      else if (label.includes('content') || label.includes('bài viết')) colMap.content = index;
+      else if (label.includes('pros') || label.includes('điểm nổi bật')) colMap.pros = index;
+      else if (label.includes('cons') || label.includes('mẹo tự học')) colMap.cons = index;
+      else if (label.includes('who_for') || label.includes('phù hợp')) colMap.who_for = index;
+      else if (label.includes('preview_images') || label.includes('link ảnh')) colMap.preview_images = index;
+      else if (label.includes('id') || label.includes('id tài liệu')) colMap.id = index;
     });
+
+    const getVal = (r, colIdx, fallbackVal = '') => {
+      if (colIdx === undefined || colIdx < 0 || !r.c) return fallbackVal;
+      const cell = r.c[colIdx];
+      const val = (cell && cell.v != null) ? String(cell.v).trim() : '';
+      return val || fallbackVal;
+    };
+
+    // Find row by comparing id or inferred id
+    let matchedRow = null;
+    let matchedIndex = -1;
+
+    for (let i = 0; i < rows.length; i++) {
+      const r = rows[i];
+      const titleVal = getVal(r, colMap.title);
+      let idVal = '';
+      if (colMap.id !== -1) {
+        idVal = getVal(r, colMap.id);
+      }
+      if (!idVal) {
+        idVal = inferId(titleVal, i);
+      }
+      if (idVal.toUpperCase() === targetId.toUpperCase()) {
+        matchedRow = r;
+        matchedIndex = i;
+        break;
+      }
+    }
 
     const fallback = FALLBACK_DOCS[targetId.toUpperCase()];
 
-    if (!row) {
+    if (!matchedRow) {
       if (fallback) {
         renderDoc(fallback);
       } else {
@@ -183,30 +265,28 @@ function parseAndRender(data, targetId) {
     }
 
     const get = (col, fallbackVal = '') => {
-      const cell = row.c[col];
-      const val = (cell && cell.v != null) ? String(cell.v).trim() : '';
-      return val || fallbackVal;
+      return getVal(matchedRow, col, fallbackVal);
     };
 
     renderDoc({
-      id:             get(COL.id, fallback?.id),
-      title:          get(COL.title, fallback?.title),
-      desc:           get(COL.desc, fallback?.desc),
-      category:       get(COL.category, fallback?.category),
-      icon:           get(COL.icon, fallback?.icon),
-      icon_color:     get(COL.icon_color, fallback?.icon_color),
-      pages:          get(COL.pages, fallback?.pages),
-      level:          get(COL.level, fallback?.level),
-      level_text:     get(COL.level_text, fallback?.level_text),
-      drive_url:      get(COL.drive_url, fallback?.drive_url),
-      content:        get(COL.content, fallback?.content),
-      pros:           get(COL.pros, fallback?.pros),
-      cons:           get(COL.cons, fallback?.cons),
-      who_for:        get(COL.who_for, fallback?.who_for),
-      preview_images: get(COL.preview_images, fallback?.preview_images),
+      id:             (colMap.id !== -1 ? get(colMap.id) : '') || fallback?.id || targetId,
+      title:          get(colMap.title, fallback?.title),
+      desc:           get(colMap.desc, fallback?.desc),
+      category:       get(colMap.category, fallback?.category),
+      icon:           get(colMap.icon, fallback?.icon),
+      icon_color:     get(colMap.icon_color, fallback?.icon_color),
+      pages:          get(colMap.pages, fallback?.pages),
+      level:          get(colMap.level, fallback?.level),
+      level_text:     get(colMap.level_text, fallback?.level_text),
+      drive_url:      get(colMap.drive_url, fallback?.drive_url),
+      content:        get(colMap.content, fallback?.content),
+      pros:           get(colMap.pros, fallback?.pros),
+      cons:           get(colMap.cons, fallback?.cons),
+      who_for:        get(colMap.who_for, fallback?.who_for),
+      preview_images: get(colMap.preview_images, fallback?.preview_images),
     });
   } catch (e) {
-    console.error('Parse error docs:', e);
+    console.error('Parse error doc details:', e);
     showError();
   }
 }

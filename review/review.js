@@ -267,20 +267,26 @@ window.addEventListener('langChanged', () => {
 });
 
 // ── Load từ Google Sheets ─────────────────────────────────
-function loadBook(sku) {
-  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}&headers=2`;
-  const script = document.createElement('script');
-  script.src = url + '&callback=onSheetData';
-  window.onSheetData = (data) => parseAndRender(data, sku);
-  script.onerror = () => {
+async function loadBook(sku) {
+  try {
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}&headers=2`;
+    const res = await fetch(url);
+    const raw = await res.text();
+
+    const match = raw.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/);
+    if (!match) throw new Error('Invalid response');
+    const data = JSON.parse(match[1]);
+
+    parseAndRender(data, sku);
+  } catch (err) {
+    console.warn('Google Sheets loading failed. Using fallback book review.', err);
     const fallback = FALLBACK_BOOKS[sku];
     if (fallback) {
       renderReview(fallback);
     } else {
       showError();
     }
-  };
-  document.head.appendChild(script);
+  }
 }
 
 // ── Parse GViz response ───────────────────────────────────
