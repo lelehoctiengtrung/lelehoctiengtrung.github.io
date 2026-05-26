@@ -278,7 +278,34 @@ const TRANSLATIONS = {
     lightbox_close: "Đóng",
     lightbox_prev: "Ảnh trước",
     lightbox_next: "Ảnh tiếp",
-    lightbox_img_alt: "Ảnh phóng to"
+    lightbox_img_alt: "Ảnh phóng to",
+
+    // doc/doc.html (Document details)
+    doc_title_tab: "Tài liệu học – Lê Lê học tiếng Trung",
+    doc_cta_free: "🎁 Miễn phí 100%",
+    doc_cta_note: "Tải về trực tiếp từ Google Drive, học được trên điện thoại & máy tính.",
+    doc_btn_download: "Tải PDF ngay",
+    doc_btn_share: "Chia sẻ",
+    doc_intro_title: "🌟 Giới thiệu bài viết",
+    doc_learn_title: "📋 Bạn sẽ học được gì?",
+    doc_tips_title: "💡 Mẹo tự học hiệu quả",
+    doc_who_title: "🎯 Tài liệu này phù hợp với ai?",
+    doc_preview_title: "📸 Trang xem trước",
+    doc_bottom_cta_label: "Nhấp để tải về tài liệu miễn phí:",
+    doc_btn_download_free: "Tải PDF Miễn Phí",
+
+    // Document Request Form
+    docs_request_title: "Yêu cầu tài liệu mới 📚",
+    docs_request_sub: "Nếu chưa thấy tài liệu cần tìm, bạn điền yêu cầu vào đây nhé! Lê Lê sẽ cố gắng tổng hợp sớm nhất có thể.",
+    docs_request_label_doc: "Tên tài liệu hoặc chủ đề bạn cần:",
+    docs_request_placeholder_doc: "Ví dụ: Từ vựng HSK 4, Ngữ pháp câu chữ Bị...",
+    docs_request_label_email: "Email nhận thông báo khi có:",
+    docs_request_placeholder_email: "email@example.com",
+    docs_request_btn_submit: "Gửi yêu cầu",
+    docs_request_success: "Đã ghi nhận yêu cầu của bạn! Cảm ơn bạn nhé 🥰",
+    docs_request_error: "Gửi yêu cầu thất bại. Vui lòng thử lại sau nhé!",
+    docs_request_invalid_email: "Vui lòng nhập email hợp lệ.",
+    docs_request_empty_fields: "Vui lòng nhập tên tài liệu."
   },
   en: {
     // Navigation
@@ -555,7 +582,34 @@ const TRANSLATIONS = {
     lightbox_close: "Close",
     lightbox_prev: "Previous image",
     lightbox_next: "Next image",
-    lightbox_img_alt: "Zoomed image"
+    lightbox_img_alt: "Zoomed image",
+
+    // doc/doc.html (Document details)
+    doc_title_tab: "Study Resource – Le Le Learn Chinese",
+    doc_cta_free: "🎁 100% Free",
+    doc_cta_note: "Download directly from Google Drive, compatible with phone & PC.",
+    doc_btn_download: "Download PDF",
+    doc_btn_share: "Share",
+    doc_intro_title: "🌟 Introduction",
+    doc_learn_title: "📋 What you will learn",
+    doc_tips_title: "💡 Effective study tips",
+    doc_who_title: "🎯 Who is this for?",
+    doc_preview_title: "📸 Page preview",
+    doc_bottom_cta_label: "Click to download free resource:",
+    doc_btn_download_free: "Download Free PDF",
+
+    // Document Request Form
+    docs_request_title: "Request New Resources 📚",
+    docs_request_sub: "Can't find what you're looking for? Let me know! I will try to compile it as soon as possible.",
+    docs_request_label_doc: "Resource name or topic you need:",
+    docs_request_placeholder_doc: "e.g., HSK 4 Vocab, Grammar guide...",
+    docs_request_label_email: "Your email (for notification):",
+    docs_request_placeholder_email: "your-email@example.com",
+    docs_request_btn_submit: "Submit Request",
+    docs_request_success: "Request submitted successfully! Thank you 🥰",
+    docs_request_error: "Submission failed. Please try again later!",
+    docs_request_invalid_email: "Please enter a valid email.",
+    docs_request_empty_fields: "Please enter the document name."
   },
   zh: {
     // Navigation
@@ -792,7 +846,34 @@ const TRANSLATIONS = {
     lightbox_close: "关闭",
     lightbox_prev: "上一张",
     lightbox_next: "下一张",
-    lightbox_img_alt: "放大图片"
+    lightbox_img_alt: "放大图片",
+
+    // doc/doc.html (Document details)
+    doc_title_tab: "学习资料 – 乐乐学中文",
+    doc_cta_free: "🎁 100% 免费",
+    doc_cta_note: "直接从 Google 云端硬盘下载，兼容手机和电脑。",
+    doc_btn_download: "下载 PDF",
+    doc_btn_share: "分享",
+    doc_intro_title: "🌟 内容介绍",
+    doc_learn_title: "📋 你将学到什么？",
+    doc_tips_title: "💡 高效学习技巧",
+    doc_who_title: "🎯 适合人群",
+    doc_preview_title: "📸 页面预览",
+    doc_bottom_cta_label: "点击免费下载资料：",
+    doc_btn_download_free: "免费下载 PDF",
+
+    // Document Request Form
+    docs_request_title: "要求新资料 📚",
+    docs_request_sub: "没找到你想要的资料？告诉我吧！我会尽快整理。",
+    docs_request_label_doc: "您需要的资料名称或主题：",
+    docs_request_placeholder_doc: "例如：HSK 4 词汇，语法指南...",
+    docs_request_label_email: "您的邮箱（用于接收通知）：",
+    docs_request_placeholder_email: "your-email@example.com",
+    docs_request_btn_submit: "提交请求",
+    docs_request_success: "请求已成功提交！谢谢您 🥰",
+    docs_request_error: "提交失败。请稍后再试！",
+    docs_request_invalid_email: "请输入有效的邮箱地址。",
+    docs_request_empty_fields: "请输入资料名称。"
   }
 };
 

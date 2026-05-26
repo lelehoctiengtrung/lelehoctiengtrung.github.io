@@ -563,3 +563,12 @@ function showError() {
   document.getElementById('doc-loading').classList.add('hidden');
   document.getElementById('doc-error').classList.remove('hidden');
 }
+
+// Watch language change event to trigger re-render
+window.addEventListener('langChanged', () => {
+  let docId = new URLSearchParams(window.location.search).get('id');
+  if (!docId) {
+    docId = 'DOC-500';
+  }
+  loadDoc(docId);
+});

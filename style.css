@@ -1479,3 +1479,196 @@ img { display: block; max-width: 100%; }
     margin-left: 0;
   }
 }
+
+/* ===================================================
+   Shop/Subpages Shared Footer
+   =================================================== */
+.shop-footer {
+  display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--clr-border);
+  text-align: center;
+  margin-top: 3rem;
+  padding-bottom: 2rem;
+  animation: fade-up 0.6s cubic-bezier(0.22,1,0.36,1) both;
+  animation-delay: 0.3s;
+  width: 100%;
+}
+.footer-logo {
+  width: 36px; height: 36px; border-radius: 50%;
+  object-fit: cover; opacity: 0.85;
+}
+.shop-footer p { font-size: 0.78rem; color: var(--clr-cream-muted); }
+.shop-footer span { color: var(--clr-red); }
+.footer-note {
+  font-size: 0.68rem !important;
+  opacity: 0.55;
+  max-width: 380px;
+  line-height: 1.5;
+}
+
+/* ===================================================
+   Document Request Form Styles
+   =================================================== */
+.request-card {
+  max-width: 580px;
+  margin: 1.5rem auto 2.5rem auto;
+  padding: 1.5rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  text-align: left;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: fade-up 0.6s cubic-bezier(0.22,1,0.36,1) both;
+  animation-delay: 0.12s;
+}
+
+.request-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--clr-cream);
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.request-title svg {
+  color: #4ecba0;
+  flex-shrink: 0;
+}
+
+.request-desc {
+  font-size: 0.78rem;
+  color: var(--clr-cream-muted);
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.request-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.request-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+.request-form-group label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--clr-cream-muted);
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+
+.request-input {
+  padding: 0.65rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid var(--clr-border);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--clr-cream);
+  font-size: 0.8rem;
+  font-family: var(--font-body);
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  height: 38px;
+  width: 100%;
+}
+
+.request-input:focus {
+  outline: none;
+  border-color: rgba(46, 160, 120, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 3px rgba(46, 160, 120, 0.15);
+}
+
+.request-input::placeholder {
+  color: rgba(245, 232, 208, 0.25);
+}
+
+.btn-request-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.2rem;
+  border-radius: 10px;
+  background: #2ea078;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--transition), background var(--transition-fast), box-shadow var(--transition-fast);
+  margin-top: 0.25rem;
+  box-shadow: 0 4px 12px rgba(46, 160, 120, 0.2);
+  height: 38px;
+}
+
+.btn-request-submit svg {
+  flex-shrink: 0;
+}
+
+.btn-request-submit:hover {
+  background: #39b589;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(46, 160, 120, 0.35);
+}
+
+.btn-request-submit:active {
+  transform: translateY(0);
+}
+
+.btn-request-submit:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.request-message {
+  font-size: 0.78rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  display: none;
+  text-align: left;
+}
+
+.request-message.success {
+  display: block;
+  background: rgba(46, 160, 120, 0.15);
+  border: 1px solid rgba(46, 160, 120, 0.3);
+  color: #4ecba0;
+}
+
+.request-message.error {
+  display: block;
+  background: rgba(201, 69, 53, 0.15);
+  border: 1px solid rgba(201, 69, 53, 0.3);
+  color: #f08070;
+}
+
+@media (min-width: 600px) {
+  .request-form-row {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr auto;
+    align-items: flex-end;
+    gap: 0.6rem;
+  }
+  
+  .request-form-group {
+    margin-bottom: 0;
+  }
+  
+  .btn-request-submit {
+    margin-top: 0;
+  }
+}

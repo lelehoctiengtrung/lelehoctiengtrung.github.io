@@ -6,6 +6,7 @@
 // ── CONFIG ────────────────────────────────────────────────
 const SHEET_ID   = '1n62ZrrUJlnf8CDU2gSxW3jPCxdkwE1GFpBBDJQLEg0o';
 const SHEET_NAME = 'docs';
+const WEB_APP_URL = ''; // Dán URL Web App của Google Apps Script tại đây để nhận yêu cầu từ bạn đọc
 
 // Columns in sheet 'docs'
 const COL = {
@@ -185,6 +186,7 @@ const DOC_TRANSLATIONS = {
 // --- INIT ──────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   loadDocs();
+  setupRequestForm();
   
   window.addEventListener('langChanged', () => {
     loadDocs();
@@ -515,4 +517,97 @@ function getCategoryLabel(cat) {
   const maps = { vi: viMap, en: enMap, zh: zhMap };
   const activeMap = maps[lang] || viMap;
   return activeMap[cat] || cat;
+}
+
+function setupRequestForm() {
+  const form = document.getElementById('doc-request-form');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const docInput = document.getElementById('req-doc-name');
+    const emailInput = document.getElementById('req-doc-email');
+    const submitBtn = document.getElementById('btn-request-submit');
+    const statusMsg = document.getElementById('request-status-msg');
+
+    if (!docInput || !submitBtn || !statusMsg) return;
+
+    // Reset status message
+    statusMsg.className = 'request-message';
+    statusMsg.style.display = 'none';
+    statusMsg.textContent = '';
+
+    const docName = docInput.value.trim();
+    const email = emailInput ? emailInput.value.trim() : '';
+
+    if (!docName) {
+      const errorMsg = window.i18n ? window.i18n.t('docs_request_empty_fields', 'Vui lòng nhập tên tài liệu.') : 'Vui lòng nhập tên tài liệu.';
+      showStatus(errorMsg, 'error');
+      return;
+    }
+
+    if (email && !validateEmail(email)) {
+      const errorMsg = window.i18n ? window.i18n.t('docs_request_invalid_email', 'Vui lòng nhập email hợp lệ.') : 'Vui lòng nhập email hợp lệ.';
+      showStatus(errorMsg, 'error');
+      return;
+    }
+
+    // Disable inputs
+    submitBtn.disabled = true;
+    docInput.disabled = true;
+    if (emailInput) emailInput.disabled = true;
+
+    // Get Web App URL
+    const targetUrl = WEB_APP_URL || localStorage.getItem('lele_web_app_url');
+    if (!targetUrl) {
+      console.warn('Google Apps Script Web App URL is not configured.');
+      const errorMsg = window.i18n ? window.i18n.t('docs_request_error', 'Gửi yêu cầu thất bại. Vui lòng thử lại sau nhé!') : 'Gửi yêu cầu thất bại. Vui lòng thử lại sau nhé!';
+      showStatus(errorMsg, 'error');
+      enableInputs();
+      return;
+    }
+
+    try {
+      await fetch(targetUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          action: 'submit_request',
+          request_doc: docName,
+          email: email
+        })
+      });
+
+      const successMsg = window.i18n ? window.i18n.t('docs_request_success', 'Đã ghi nhận yêu cầu của bạn! Cảm ơn bạn nhé 🥰') : 'Đã ghi nhận yêu cầu của bạn! Cảm ơn bạn nhé 🥰';
+      showStatus(successMsg, 'success');
+      form.reset();
+    } catch (err) {
+      console.error('Request form submission failed:', err);
+      const errorMsg = window.i18n ? window.i18n.t('docs_request_error', 'Gửi yêu cầu thất bại. Vui lòng thử lại sau nhé!') : 'Gửi yêu cầu thất bại. Vui lòng thử lại sau nhé!';
+      showStatus(errorMsg, 'error');
+    } finally {
+      enableInputs();
+    }
+
+    function showStatus(text, type) {
+      statusMsg.textContent = text;
+      statusMsg.className = `request-message ${type}`;
+      statusMsg.style.display = 'block';
+    }
+
+    function enableInputs() {
+      submitBtn.disabled = false;
+      docInput.disabled = false;
+      if (emailInput) emailInput.disabled = false;
+    }
+  });
+}
+
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
 }

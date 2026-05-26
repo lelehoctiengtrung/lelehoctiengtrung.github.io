@@ -167,6 +167,8 @@ function doPost(e) {
       responsePayload = generateDocPostForId(postData.id);
     } else if (action === 'upload_image') {
       responsePayload = uploadBase64Image(postData);
+    } else if (action === 'submit_request') {
+      responsePayload = submitReaderRequest(postData);
     }
   } catch(err) {
     responsePayload = { error: err.message };
@@ -1123,6 +1125,7 @@ function setupAllSheets() {
   setupAffiliateSheet();
   setupBooksSheet();
   setupDocsSheet();
+  setupRequestsSheet();
   setupGuideSheet();
 }
 
@@ -1183,15 +1186,54 @@ function setupGuideSheet() {
   var sheet = ss.getSheetByName('huongdansudung');
   if (sheet) sheet.clear(); else sheet = ss.insertSheet('huongdansudung');
   var rows = [
-    ['HUONG DAN SU DUNG v4.0 — Drive Folders & AI Reviews & Tauri integration','',''],
-    ['Cách tích hợp Tauri Desktop App','',''],
+    ['HUONG DAN SU DUNG v4.1 — Drive Folders, AI Reviews & Reader Requests','',''],
+    ['Cách tích hợp Web App Google Apps Script','',''],
     ['1. Deploy Apps Script này dưới dạng Web App:','',''],
     ['   - Góc trên bên phải → Deploy → New deployment','',''],
     ['   - Select type → Web App','',''],
     ['   - Execute as: Me','',''],
     ['   - Who has access: Anyone (quan trọng để client gọi được mà không vướng auth)','',''],
-    ['2. Copy URL Web App nhận được và dán vào tab Config trong Tauri Desktop App.','',''],
+    ['2. Copy URL Web App nhận được và dán vào:','',''],
+    ['   - Tab Config trong Tauri Desktop App (để sync dữ liệu sách/tài liệu)','',''],
+    ['   - Biến WEB_APP_URL ở đầu file docs.js trong source code website (để nhận yêu cầu tài liệu từ bạn đọc)','',''],
+    ['3. Tạo/Cập nhật các tabs trong Spreadsheet:','',''],
+    ['   - Chạy chức năng "Setup tất cả tabs" từ menu "🤖 Lê Lê AI" để cập nhật các tab books, docs, affiliate, requests.','','']
   ];
   sheet.getRange(1,1,rows.length,3).setValues(rows);
   sheet.setColumnWidth(1,280); sheet.setColumnWidth(2,400);
+}
+
+function setupRequestsSheet() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('requests');
+  if (sheet) sheet.clear(); else sheet = ss.insertSheet('requests');
+  
+  var h = ['timestamp', 'request_doc', 'email', 'status'];
+  var l = ['Thời gian', 'Tài liệu yêu cầu', 'Email', 'Trạng thái'];
+  
+  sheet.getRange(1, 1, 1, h.length).setValues([h]);
+  sheet.getRange(2, 1, 1, l.length).setValues([l]);
+  sheet.getRange(2, 1, 1, l.length).setBackground('#1b2a4a').setFontColor('#e2e8f0').setFontWeight('bold');
+  sheet.setFrozenRows(2);
+}
+
+function submitReaderRequest(postData) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('requests');
+  if (!sheet) {
+    setupRequestsSheet();
+    sheet = ss.getSheetByName('requests');
+  }
+  
+  var requestDoc = postData.request_doc || '';
+  var email = postData.email || '';
+  
+  if (!requestDoc) {
+    return { error: 'Tên tài liệu yêu cầu là bắt buộc' };
+  }
+  
+  var timestamp = new Date();
+  sheet.appendRow([timestamp, requestDoc, email, 'Chờ xử lý']);
+  
+  return { success: true };
 }
