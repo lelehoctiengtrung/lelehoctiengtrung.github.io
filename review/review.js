@@ -326,10 +326,10 @@ function parseAndRender(data, targetSku) {
       badge_type:     get(COL.badge_type, fallback?.badge_type),
       stars:          get(COL.stars, fallback?.stars),
       cover_url:      get(COL.cover_url, fallback?.cover_url),
-      buy_shopee:     get(COL.buy_shopee, fallback?.buy_shopee),
-      buy_fahasa:     get(COL.buy_fahasa, fallback?.buy_fahasa),
-      buy_tiki:       get(COL.buy_tiki, fallback?.buy_tiki),
-      buy_lazada:     get(COL.buy_lazada, fallback?.buy_lazada),
+      buy_shopee:     get(COL.buy_shopee),
+      buy_fahasa:     get(COL.buy_fahasa),
+      buy_tiki:       get(COL.buy_tiki),
+      buy_lazada:     get(COL.buy_lazada),
       review:         get(COL.review, fallback?.review),
       pros:           get(COL.pros, fallback?.pros),
       cons:           get(COL.cons, fallback?.cons),
@@ -451,9 +451,32 @@ function renderReview(book) {
 
   // Buy buttons
   const btns = buildBuyButtons(displayBook);
-  document.getElementById('rv-buy-group').innerHTML        = btns;
-  document.getElementById('rv-buy-group-bottom').innerHTML =
-    btns.replace(/btn-platform"/g, 'btn-platform btn-platform-lg"');
+  const buyGroup = document.getElementById('rv-buy-group');
+  const buyGroupBottom = document.getElementById('rv-buy-group-bottom');
+  const ctaSection = document.querySelector('.cta-section');
+  const affiliateNote = document.querySelector('.affiliate-note');
+
+  if (btns) {
+    if (buyGroup) {
+      buyGroup.innerHTML = btns;
+      buyGroup.style.display = '';
+    }
+    if (buyGroupBottom) {
+      buyGroupBottom.innerHTML = btns.replace(/btn-platform"/g, 'btn-platform btn-platform-lg"');
+    }
+    if (ctaSection) ctaSection.style.display = '';
+    if (affiliateNote) affiliateNote.style.display = '';
+  } else {
+    if (buyGroup) {
+      buyGroup.innerHTML = '';
+      buyGroup.style.display = 'none';
+    }
+    if (buyGroupBottom) {
+      buyGroupBottom.innerHTML = '';
+    }
+    if (ctaSection) ctaSection.style.display = 'none';
+    if (affiliateNote) affiliateNote.style.display = 'none';
+  }
 
   // Review body
   const reviewEl = document.getElementById('rv-review-body');
@@ -606,6 +629,15 @@ document.addEventListener('keydown', e => {
 });
 
 // ── Helpers ───────────────────────────────────────────────
+function isValidLink(url) {
+  if (!url) return false;
+  const u = url.trim();
+  if (u === '' || u === '#' || u.includes('LINK_AFFILIATE') || u.includes('THAY_VAO_DAY') || u.includes('LINK_GOOGLE_DRIVE') || u.includes('undefined')) {
+    return false;
+  }
+  return u.startsWith('http://') || u.startsWith('https://');
+}
+
 function buildBuyButtons(book) {
   const platforms = [
     { url: book.buy_shopee, cls: 'btn-shopee', label: '🛒 Shopee', id: 'shopee' },
@@ -613,13 +645,12 @@ function buildBuyButtons(book) {
     { url: book.buy_tiki,   cls: 'btn-tiki',   label: '🛍️ Tiki',   id: 'tiki'   },
     { url: book.buy_lazada, cls: 'btn-lazada', label: '🟠 Lazada', id: 'lazada' },
   ];
-  const updatingText = window.i18n ? window.i18n.t('shop_updating_links', 'Updating links...') : 'Link đang cập nhật…';
-  const html = platforms.filter(p => p.url).map(p =>
+  const html = platforms.filter(p => isValidLink(p.url)).map(p =>
     `<a href="${p.url}" class="btn-platform ${p.cls}"
         target="_blank" rel="noopener sponsored"
         id="buy-${p.id}-${book.sku}">${p.label}</a>`
   ).join('');
-  return html || `<span style="color:rgba(255,255,255,.4);font-size:.9rem">${updatingText}</span>`;
+  return html;
 }
 
 function formatReview(text) {

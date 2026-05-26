@@ -163,6 +163,15 @@ function colVal(row, i, fallbackVal = '') {
   return val || fallbackVal;
 }
 
+function isValidLink(url) {
+  if (!url) return false;
+  const u = url.trim();
+  if (u === '' || u === '#' || u.includes('LINK_AFFILIATE') || u.includes('THAY_VAO_DAY') || u.includes('LINK_GOOGLE_DRIVE') || u.includes('undefined')) {
+    return false;
+  }
+  return u.startsWith('http://') || u.startsWith('https://');
+}
+
 // ---- Build card ----
 function buildBookCard(row) {
   const sku = colVal(row, C.sku);
@@ -177,10 +186,10 @@ function buildBookCard(row) {
   const badgeType  = colVal(row, C.badge_type, fallback?.badge_type) || 'hot';
   const stars      = parseInt(colVal(row, C.stars, fallback?.stars)) || 5;
   const coverUrl   = colVal(row, C.cover_url, fallback?.cover_url);
-  const shopee     = colVal(row, C.buy_shopee, fallback?.buy_shopee);
-  const fahasa     = colVal(row, C.buy_fahasa, fallback?.buy_fahasa);
-  const tiki       = colVal(row, C.buy_tiki, fallback?.buy_tiki);
-  const lazada     = colVal(row, C.buy_lazada, fallback?.buy_lazada);
+  const shopee     = colVal(row, C.buy_shopee);
+  const fahasa     = colVal(row, C.buy_fahasa);
+  const tiki       = colVal(row, C.buy_tiki);
+  const lazada     = colVal(row, C.buy_lazada);
 
   if (!title) return '';
 
@@ -254,7 +263,7 @@ function buildBookCard(row) {
   ];
 
   const platformBtns = platforms
-    .filter(p => p.key)
+    .filter(p => isValidLink(p.key))
     .map(p => `
       <a href="${p.key}" class="btn-platform-sm ${p.cls}"
          target="_blank" rel="noopener sponsored"
@@ -265,7 +274,7 @@ function buildBookCard(row) {
 
   const buySection = platformBtns
     ? `<div class="book-platforms">${platformBtns}</div>`
-    : `<span class="no-link-note">${window.i18n ? window.i18n.t('shop_updating_links', 'Updating links...') : 'Đang cập nhật link…'}</span>`;
+    : '';
 
   const readReviewTxt = window.i18n ? window.i18n.t('shop_btn_read_review', 'Đọc review') : 'Đọc review';
   const priceLabelTxt = window.i18n ? window.i18n.t('shop_price_label', 'Tham khảo') : 'Tham khảo';
