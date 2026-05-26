@@ -1616,9 +1616,9 @@ img { display: block; max-width: 100%; }
 }
 
 .btn-request-submit:hover {
-  background: #39b589;
+  background: var(--clr-red);
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(46, 160, 120, 0.35);
+  box-shadow: 0 6px 16px rgba(201, 69, 53, 0.45);
 }
 
 .btn-request-submit:active {
@@ -1659,13 +1659,17 @@ img { display: block; max-width: 100%; }
 @media (min-width: 600px) {
   .request-form-row {
     display: grid;
-    grid-template-columns: 1.5fr 1fr auto;
+    grid-template-columns: 1fr 1.25fr auto;
     align-items: flex-end;
-    gap: 0.6rem;
+    gap: 0.8rem;
   }
   
   .request-form-group {
     margin-bottom: 0;
+  }
+  
+  .request-form-group label {
+    white-space: nowrap;
   }
   
   .btn-request-submit {
