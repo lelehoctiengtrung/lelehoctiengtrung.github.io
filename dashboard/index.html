@@ -394,6 +394,16 @@
                         <textarea id="dc-preview_images" rows="2" placeholder="Tải lên ở tab hình ảnh để tự điền..."></textarea>
                       </div>
 
+                      <div class="form-group">
+                        <label for="dc-folder_url">Thư mục Google Drive lưu trữ tài liệu</label>
+                        <div style="display: flex; gap: 8px;">
+                          <input type="url" id="dc-folder_url" placeholder="Đang tạo tự động khi lưu tài liệu..." style="flex: 1;" readonly class="readonly-input" />
+                          <a id="btn-open-dc-folder" href="#" target="_blank" class="btn btn-secondary" style="display: inline-flex; align-items: center; justify-content: center; text-decoration: none; min-width: 120px;">
+                            📁 Mở thư mục
+                          </a>
+                        </div>
+                      </div>
+
                       <div class="form-actions">
                         <button type="submit" class="btn btn-primary">Lưu tài liệu</button>
                         <button type="button" id="btn-delete-doc" class="btn btn-danger hidden">Xoá</button>

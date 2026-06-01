@@ -579,6 +579,21 @@ function selectDoc(id) {
   document.getElementById('dc-cons').value = doc.cons || '';
   document.getElementById('dc-who_for').value = doc.who_for || '';
   document.getElementById('dc-preview_images').value = doc.preview_images || '';
+  
+  const folderUrl = doc.folder_url || '';
+  document.getElementById('dc-folder_url').value = folderUrl;
+  const openBtn = document.getElementById('btn-open-dc-folder');
+  if (folderUrl) {
+    openBtn.href = folderUrl;
+    openBtn.classList.remove('disabled');
+    openBtn.style.pointerEvents = 'auto';
+    openBtn.style.opacity = '1';
+  } else {
+    openBtn.href = '#';
+    openBtn.classList.add('disabled');
+    openBtn.style.pointerEvents = 'none';
+    openBtn.style.opacity = '0.5';
+  }
 }
 
 function clearDocForm() {
@@ -589,6 +604,13 @@ function clearDocForm() {
   form.reset();
   document.getElementById('dc-id').readOnly = false;
   document.getElementById('dc-id').focus();
+  
+  document.getElementById('dc-folder_url').value = '';
+  const openBtn = document.getElementById('btn-open-dc-folder');
+  openBtn.href = '#';
+  openBtn.classList.add('disabled');
+  openBtn.style.pointerEvents = 'none';
+  openBtn.style.opacity = '0.5';
 }
 
 async function handleDocSave(e) {
@@ -614,13 +636,14 @@ async function handleDocSave(e) {
   const cons = document.getElementById('dc-cons').value.trim();
   const who_for = document.getElementById('dc-who_for').value.trim();
   const preview_images = document.getElementById('dc-preview_images').value.trim();
+  const folder_url = document.getElementById('dc-folder_url').value.trim();
   
   showLoading('Đang lưu thông tin tài liệu lên Google Sheets...');
   
   try {
     const payload = {
       action: 'update_doc',
-      id, title, desc, category, pages, level, level_text, icon, icon_color, drive_url, content, pros, cons, who_for, preview_images
+      id, title, desc, category, pages, level, level_text, icon, icon_color, drive_url, content, pros, cons, who_for, preview_images, folder_url
     };
     
     const response = await fetch(config.url, {

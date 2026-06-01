@@ -11,7 +11,7 @@
 
 // ── Google AI Studio Keys ────────────────────────────────────
 // Lấy miễn phí tại: aistudio.google.com/app/apikey
-const GEMINI_KEYS = [
+var GEMINI_KEYS = [
   'AIzaSyDfwgKYCglZqtXrMVIXYJve2HXpA2Le8Ng',
   'AIzaSyAL_pzcIxE0bXlokGdEPf6rodq3u5q2YLE',
   'KEY_3_THAY_VAO_DAY',
@@ -19,11 +19,11 @@ const GEMINI_KEYS = [
   'KEY_5_THAY_VAO_DAY',
   'KEY_6_THAY_VAO_DAY',
 ];
-const GEMINI_MODEL = 'gemini-2.0-flash';
+var GEMINI_MODEL = 'gemini-2.0-flash';
 
 // ── Custom Endpoints (OpenAI-compatible) ────────────────────────
 // Hỗ trợ nhiều endpoint cùng lúc — để trống '' nếu không dùng
-const CUSTOM_ENDPOINTS = [
+var CUSTOM_ENDPOINTS = [
   {
     name:     '9router',
     endpoint: 'THAY_URL_9ROUTER',          // VD: https://9router.decolua.com/v1/chat/completions
@@ -33,8 +33,12 @@ const CUSTOM_ENDPOINTS = [
 ];
 
 // ── Google Drive ───────────────────────────────────────────────
-// ID folder gốc chứa tất cả sách & tài liệu
+// ID folder gốc chứa tất cả sách & tài liệu (dự phòng)
 var ROOT_FOLDER_ID = '1gP-4vafPZiuHXAz6Zup0vboUK9D1llfC';
+// ID folder cho tài liệu chia sẻ
+var DOCS_FOLDER_ID = '1XdzdpnxPyPHp2PnEyIOPUnSwlTcIeTeN';
+// ID folder cho books review
+var BOOKS_FOLDER_ID = '14hhgqz03Ftbzy7bw4d8mWLnuIF4sQgMG';
 
 // Columns in sheet 'docs'
 const COL = {
@@ -56,11 +60,54 @@ const COL = {
 };
 
 // ================================================================
-// ROTATION ENGINE — kết hợp Gemini Keys + Custom Endpoints
+// CONFIGURATION LOADER & ROTATION ENGINE
 // ================================================================
+
+function loadConfigFromSheet() {
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName('config');
+    if (!sheet) return;
+    
+    var data = sheet.getDataRange().getValues();
+    for (var i = 1; i < data.length; i++) {
+      var key = data[i][0];
+      var val = data[i][1];
+      if (!key) continue;
+      
+      var valStr = String(val).trim();
+      if (key === 'GEMINI_KEYS') {
+        if (valStr) {
+          GEMINI_KEYS = valStr.split(',').map(function(k) { return k.trim(); });
+        }
+      } else if (key === 'GEMINI_MODEL') {
+        if (valStr) GEMINI_MODEL = valStr;
+      } else if (key === 'ROOT_FOLDER_ID') {
+        if (valStr) ROOT_FOLDER_ID = valStr;
+      } else if (key === 'DOCS_FOLDER_ID') {
+        if (valStr) DOCS_FOLDER_ID = valStr;
+      } else if (key === 'BOOKS_FOLDER_ID') {
+        if (valStr) BOOKS_FOLDER_ID = valStr;
+      } else if (key === 'CUSTOM_ENDPOINT_NAME') {
+        CUSTOM_ENDPOINTS[0].name = valStr;
+      } else if (key === 'CUSTOM_ENDPOINT_URL') {
+        CUSTOM_ENDPOINTS[0].endpoint = valStr;
+      } else if (key === 'CUSTOM_ENDPOINT_KEY') {
+        CUSTOM_ENDPOINTS[0].apiKey = valStr;
+      } else if (key === 'CUSTOM_ENDPOINT_MODEL') {
+        CUSTOM_ENDPOINTS[0].model = valStr;
+      }
+    }
+  } catch (e) {
+    console.error('Lỗi loadConfigFromSheet: ' + e.message);
+  }
+}
 
 // Xây dựng pool tất cả providers
 function buildProviderPool() {
+  // Nạp cấu hình từ sheet trước khi cào
+  loadConfigFromSheet();
+  
   var pool = [];
 
   // Thêm Gemini keys
@@ -90,6 +137,55 @@ function buildProviderPool() {
   return pool;
 }
 
+function getConfigJson() {
+  loadConfigFromSheet();
+  return {
+    gemini_keys: GEMINI_KEYS.join(', '),
+    gemini_model: GEMINI_MODEL,
+    root_folder_id: ROOT_FOLDER_ID,
+    docs_folder_id: DOCS_FOLDER_ID,
+    books_folder_id: BOOKS_FOLDER_ID,
+    custom_name: CUSTOM_ENDPOINTS[0].name || '',
+    custom_endpoint: CUSTOM_ENDPOINTS[0].endpoint || '',
+    custom_key: CUSTOM_ENDPOINTS[0].apiKey || '',
+    custom_model: CUSTOM_ENDPOINTS[0].model || ''
+  };
+}
+
+function saveConfigFromUI(configData) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('config');
+  if (!sheet) {
+    sheet = ss.insertSheet('config');
+  }
+  
+  sheet.clear();
+  sheet.appendRow(['Cấu hình', 'Giá trị']);
+  
+  var rows = [
+    ['GEMINI_KEYS', configData.gemini_keys],
+    ['GEMINI_MODEL', configData.gemini_model],
+    ['ROOT_FOLDER_ID', configData.root_folder_id],
+    ['DOCS_FOLDER_ID', configData.docs_folder_id],
+    ['BOOKS_FOLDER_ID', configData.books_folder_id],
+    ['CUSTOM_ENDPOINT_NAME', configData.custom_name],
+    ['CUSTOM_ENDPOINT_URL', configData.custom_endpoint],
+    ['CUSTOM_ENDPOINT_KEY', configData.custom_key],
+    ['CUSTOM_ENDPOINT_MODEL', configData.custom_model]
+  ];
+  
+  sheet.getRange(2, 1, rows.length, 2).setValues(rows);
+  
+  // Format đẹp cho tab config
+  sheet.getRange('A1:B1').setFontWeight('bold').setBackground('#D4A843').setFontColor('#ffffff');
+  sheet.setColumnWidth(1, 250);
+  sheet.setColumnWidth(2, 500);
+  
+  // Cập nhật lại biến toàn cục ngay lập tức
+  loadConfigFromSheet();
+  return { success: true };
+}
+
 // Lấy/lưu index trong PropertiesService
 function getCurrentKeyIndex() {
   var val = PropertiesService.getScriptProperties().getProperty('KEY_INDEX');
@@ -105,19 +201,43 @@ function resetKeyIndex() {
   SpreadsheetApp.getActiveSpreadsheet().toast('Key index đã reset về 0!', 'Done', 3);
 }
 
+function openDashboardExternal() {
+  var url = ScriptApp.getService().getUrl();
+  if (!url) {
+    SpreadsheetApp.getUi().alert('Vui lòng Deploy Apps Script dưới dạng Web App trước!\n(Góc trên bên phải -> Triển khai -> Triển khai mới -> Chọn loại: Ứng dụng web -> Bấm Triển khai)');
+    return;
+  }
+  var html = HtmlService.createHtmlOutput('Đang mở Dashboard... <script>window.open("' + url + '", "_blank");google.script.host.close();</script>');
+  SpreadsheetApp.getUi().showModalDialog(html, 'Mở Dashboard');
+}
+
+function openDashboardSidebar() {
+  var html = HtmlService.createHtmlOutputFromFile('DashboardUI')
+      .setTitle('Lê Lê Bookstore Panel')
+      .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+  SpreadsheetApp.getUi().showSidebar(html);
+}
+
 // ================================================================
 // ── MENU ─────────────────────────────────────────────────────────
 // ================================================================
 function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu('🤖 Lê Lê AI')
+    .addItem('🖥️ Mở Dashboard (Cửa sổ mới)',             'openDashboardExternal')
+    .addItem('📖 Mở Dashboard (Thanh Sidebar)',           'openDashboardSidebar')
+    .addSeparator()
     .addItem('📦 Fetch thông tin từ link Shopee',        'fetchSelectedRows')
     .addSeparator()
     .addItem('📁 Tạo thư mục Drive theo SKU',            'createSkuFolders')
     .addItem('🖼️ Sync ảnh Drive → Sheet',                   'syncDriveImages')
     .addSeparator()
+    .addItem('📁 Tạo thư mục Drive theo ID tài liệu',      'createDocFolders')
+    .addItem('🖼️ Sync Drive (PDF & Ảnh) → Sheet',           'syncDocsDrive')
+    .addSeparator()
     .addItem('✍️ Viết review bằng AI',                    'generateAIReviews')
     .addItem('✍️ Viết bài giới thiệu tài liệu (AI)',      'generateAIDocPosts')
+    .addItem('✍️ Tạo nhanh bài viết tài liệu mẫu (Pre-written)', 'createPrewrittenDocPosts')
     .addSeparator()
     .addItem('📥 Kéo sách vào books theo SKU',             'pullBySkuToBooks')
     .addItem('🗑️ Xoá sách khỏi books theo SKU',           'removeBySkuFromBooks')
@@ -140,8 +260,10 @@ function doGet(e) {
       .setMimeType(ContentService.MimeType.JSON);
   }
   
-  return ContentService.createTextOutput(JSON.stringify({ error: 'Action not found' }))
-    .setMimeType(ContentService.MimeType.JSON);
+  return HtmlService.createHtmlOutputFromFile('DashboardUI')
+      .setTitle('Lê Lê Bookstore Dashboard')
+      .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)
+      .addMetaTag('viewport', 'width=device-width, initial-scale=1');
 }
 
 function doPost(e) {
@@ -215,8 +337,46 @@ function getDataJson() {
       });
     }
   }
+
+  var affiliate = [];
+  var affSheet = ss.getSheetByName('affiliate');
+  if (affSheet) {
+    var lastRow = affSheet.getLastRow();
+    if (lastRow >= 3) {
+      var headers = affSheet.getRange(1, 1, 1, affSheet.getLastColumn()).getValues()[0];
+      var data = affSheet.getRange(3, 1, lastRow - 2, affSheet.getLastColumn()).getValues();
+      affiliate = data.map(function(row) {
+        var obj = {};
+        headers.forEach(function(h, idx) {
+          obj[h] = row[idx];
+        });
+        return obj;
+      });
+    }
+  }
+
+  var logs = [];
+  var logSheet = ss.getSheetByName('log');
+  if (logSheet) {
+    var lastRow = logSheet.getLastRow();
+    if (lastRow >= 2) {
+      var data = logSheet.getRange(2, 1, lastRow - 1, 4).getValues();
+      logs = data.map(function(row) {
+        return {
+          time: String(row[0]),
+          type: String(row[1]),
+          detail: String(row[2]),
+          key_index: String(row[3])
+        };
+      });
+      logs.reverse();
+      if (logs.length > 100) {
+        logs = logs.slice(0, 100);
+      }
+    }
+  }
   
-  return { books: books, docs: docs };
+  return { books: books, docs: docs, affiliate: affiliate, logs: logs };
 }
 
 function updateBookRow(postData) {
@@ -282,6 +442,35 @@ function updateDocRow(postData) {
     }
   }
   
+  // Tự động tìm hoặc tạo thư mục Drive cho tài liệu nếu chưa có
+  var folderColIndex = headers.indexOf('folder_url');
+  var existingFolderUrl = '';
+  if (folderColIndex !== -1) {
+    if (rowIndex !== -1) {
+      existingFolderUrl = String(sheet.getRange(rowIndex, folderColIndex + 1).getValue()).trim();
+    }
+    if (!existingFolderUrl) {
+      try {
+        var rootId = DOCS_FOLDER_ID || ROOT_FOLDER_ID;
+        var rootFolder = DriveApp.getFolderById(rootId);
+        var docFolder;
+        var folders = rootFolder.getFoldersByName(id);
+        if (folders.hasNext()) {
+          docFolder = folders.next();
+        } else {
+          docFolder = rootFolder.createFolder(id);
+        }
+        if (!docFolder.getFoldersByName('file').hasNext()) docFolder.createFolder('file');
+        if (!docFolder.getFoldersByName('preview').hasNext()) docFolder.createFolder('preview');
+        
+        existingFolderUrl = docFolder.getUrl();
+        postData.folder_url = existingFolderUrl;
+      } catch(err) {
+        Logger.log('Tự động tạo folder docs thất bại: ' + err.message);
+      }
+    }
+  }
+  
   if (rowIndex === -1) {
     sheet.appendRow([id]);
     rowIndex = sheet.getLastRow();
@@ -295,7 +484,7 @@ function updateDocRow(postData) {
     }
   }
   
-  return { success: true, id: id, rowIndex: rowIndex };
+  return { success: true, id: id, rowIndex: rowIndex, folder_url: existingFolderUrl };
 }
 
 function generateReviewForSku(sku) {
@@ -328,14 +517,14 @@ function generateReviewForSku(sku) {
   var tags = String(sheet.getRange(rowIndex, tagsCol).getValue()).trim();
   
   try {
-    var prompt = "Bạn là cô giáo Lê Lê (kênh Lê Lê học tiếng Trung), viết review sách có tâm bằng tiếng Việt, giọng điệu tự nhiên, thân thiện, dễ thương.\n" +
+    var prompt = "Bạn là Lê Lê (kênh Lê Lê học tiếng Trung), một người bạn đồng hành cùng học tiếng Trung với mọi người. Hãy viết review sách bằng tiếng Việt một cách chân thành, giọng điệu tự nhiên, thân thiện, dễ thương, xưng 'mình' hoặc 'Lê Lê' và gọi độc giả là 'các bạn' (không xưng cô/các em, không gọi học sinh).\n" +
                  "Hãy viết review cho cuốn sách sau:\n" +
                  "Tên sách: " + title + "\n" +
                  "Mô tả cơ bản: " + desc + "\n" +
                  "Tags: " + tags + "\n\n" +
                  "Hãy trả về JSON THUẦN (không markdown, không ```json):\n" +
                  "{\n" +
-                 "  \"review\": \"Đoạn review chi tiết khoảng 150-250 từ. Chia sẻ trải nghiệm học thực tế của Lê Lê. Dùng **text** để in đậm. Xuống dòng bằng \\n\\n khi cần.\",\n" +
+                 "  \"review\": \"Đoạn review chi tiết khoảng 150-250 từ. Chia sẻ trải nghiệm cùng học thực tế của Lê Lê với các bạn. Dùng **text** để in đậm. Xuống dòng bằng \\n\\n khi cần.\",\n" +
                  "  \"pros\": \"3-5 điểm mạnh nhất của sách, phân cách bằng dấu |. VD: Nội dung phong phú | Trình bày đẹp mắt\",\n" +
                  "  \"cons\": \"1-2 điểm hạn chế hoặc lưu ý khi học, phân cách bằng dấu |.\",\n" +
                  "  \"who_for\": \"Cuốn sách này phù hợp với ai.\"\n" +
@@ -384,14 +573,14 @@ function generateDocPostForId(id) {
   var category = String(sheet.getRange(rowIndex, 4).getValue()).trim();
   
   try {
-    var prompt = "Bạn là cô giáo Lê Lê (kênh Lê Lê học tiếng Trung). Hãy viết bài giới thiệu chi tiết cho tài liệu học tiếng Trung này để học sinh đọc và tải tài liệu. Giọng văn phải dễ thương, gần gũi, truyền cảm hứng tự học.\n" +
+    var prompt = "Bạn là Lê Lê (kênh Lê Lê học tiếng Trung), một người bạn đồng hành cùng học tiếng Trung với mọi người. Hãy viết bài giới thiệu chi tiết cho tài liệu học tiếng Trung này để các bạn cùng học đọc và tải tài liệu. Giọng văn xưng hô là 'mình' hoặc 'Lê Lê' và gọi người đọc là 'các bạn' (không xưng cô/các em, không gọi học sinh). Giọng văn phải dễ thương, gần gũi, chia sẻ kinh nghiệm học tập thân thiện như những người bạn học cùng nhau.\n" +
                  "Thông tin tài liệu:\n" +
                  "Tên tài liệu: " + title + "\n" +
                  "Mô tả: " + desc + "\n" +
                  "Nhóm: " + category + "\n\n" +
                  "Hãy trả về JSON THUẦN (không markdown, không ```json):\n" +
                  "{\n" +
-                 "  \"content\": \"Đoạn bài viết giới thiệu chi tiết khoảng 150-300 từ. Chia sẻ kinh nghiệm học. Dùng **text** để in đậm. Xuống dòng bằng \\n\\n khi cần.\",\n" +
+                 "  \"content\": \"Đoạn bài viết giới thiệu chi tiết khoảng 150-300 từ. Chia sẻ kinh nghiệm cùng học. Dùng **text** để in đậm. Xuống dòng bằng \\n\\n khi cần.\",\n" +
                  "  \"pros\": \"3-5 điểm nổi bật nhất của tài liệu, phân cách bằng dấu |.\",\n" +
                  "  \"cons\": \"1-2 mẹo tự học hiệu quả nhất với tài liệu này, phân cách bằng dấu |.\",\n" +
                  "  \"who_for\": \"Đối tượng phù hợp nhất.\"\n" +
@@ -429,7 +618,8 @@ function uploadBase64Image(postData) {
   var decodedBytes = Utilities.base64Decode(base64String);
   var blob = Utilities.newBlob(decodedBytes, 'image/png', fileName);
   
-  var rootId = ROOT_FOLDER_ID;
+  var isDoc = sku.indexOf('DOC-') === 0;
+  var rootId = isDoc ? (DOCS_FOLDER_ID || ROOT_FOLDER_ID) : (BOOKS_FOLDER_ID || ROOT_FOLDER_ID);
   var rootFolder = DriveApp.getFolderById(rootId);
   
   var skuFolder;
@@ -440,7 +630,12 @@ function uploadBase64Image(postData) {
     skuFolder = rootFolder.createFolder(sku);
   }
   
-  var targetSubfolderName = (type === 'review') ? 'review' : 'shop';
+  var targetSubfolderName = 'shop';
+  if (type === 'review') {
+    targetSubfolderName = 'review';
+  } else if (type === 'preview' || type === 'doc-preview') {
+    targetSubfolderName = 'preview';
+  }
   var subfolder;
   var subfolders = skuFolder.getFoldersByName(targetSubfolderName);
   if (subfolders.hasNext()) {
@@ -554,7 +749,7 @@ function fetchSelectedRows() {
 
     try {
       var html = fetchPage(affiliateUrl);
-      if (!html) throw new Error('Không fetch được trang Shopee');
+      if (!html) throw new Error('Không fetch được trang sản phẩm');
 
       var parsed = callGeminiWithRotation(html, affiliateUrl, rowNum, sheet);
       if (!parsed) throw new Error('Tài liệu phản hồi từ Gemini lỗi hoặc rỗng');
@@ -692,7 +887,7 @@ function callCustomAPIWithPrompt(prompt, provider) {
 }
 
 function buildPrompt(html, sourceUrl) {
-  return 'Bạn là assistant phân tích trang web bán sách Shopee Việt Nam.\n' +
+  return 'Bạn là assistant phân tích trang web bán sách thương mại điện tử Việt Nam (Shopee, Tiki, Lazada, Fahasa, TikTok Shop, v.v.).\n' +
     'Trích xuất thông tin sách và trả về JSON THUẦN (không có markdown, không có ```json):\n\n' +
     '{\n' +
     '  "title": "Tên sách tiếng Việt ngắn gọn",\n' +
@@ -769,7 +964,7 @@ function createSkuFolders() {
   var sheet = ss.getSheetByName('books');
   if (!sheet) { ui.alert('Không tìm thấy tab books'); return; }
   
-  var rootId = ROOT_FOLDER_ID;
+  var rootId = BOOKS_FOLDER_ID || ROOT_FOLDER_ID;
   var rootFolder = DriveApp.getFolderById(rootId);
   var lastRow = sheet.getLastRow();
   if (lastRow < 3) return;
@@ -814,7 +1009,7 @@ function syncDriveImages() {
   var sheet = ss.getSheetByName('books');
   if (!sheet) return;
 
-  var rootId = ROOT_FOLDER_ID;
+  var rootId = BOOKS_FOLDER_ID || ROOT_FOLDER_ID;
   var rootFolder = DriveApp.getFolderById(rootId);
   var lastRow = sheet.getLastRow();
   if (lastRow < 3) return;
@@ -886,6 +1081,183 @@ function syncDriveImages() {
 }
 
 // ================================================================
+// 📁 Drive Document Folders Creator
+// ================================================================
+function createDocFolders() {
+  var ui   = SpreadsheetApp.getUi();
+  var ss   = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('docs');
+  if (!sheet) { ui.alert('Không tìm thấy tab docs'); return; }
+  
+  var rootId = DOCS_FOLDER_ID || ROOT_FOLDER_ID;
+  var rootFolder = DriveApp.getFolderById(rootId);
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 3) return;
+
+  var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  var folderColIndex = headers.indexOf('folder_url');
+  
+  if (folderColIndex === -1) {
+    ui.alert('Không tìm thấy cột folder_url. Vui lòng chạy setupDocsSheet hoặc setup lại tab docs.');
+    return;
+  }
+
+  var range = sheet.getRange(3, 1, lastRow - 2, headers.length);
+  var values = range.getValues();
+  var count = 0;
+
+  for (var i = 0; i < values.length; i++) {
+    var rowNum = i + 3;
+    var docId = String(values[i][0]).trim();
+    if (!docId || docId === '') continue;
+
+    var existingFolderUrl = String(values[i][folderColIndex]).trim();
+    var docFolder;
+    var folders = rootFolder.getFoldersByName(docId);
+    if (folders.hasNext()) {
+      docFolder = folders.next();
+    } else {
+      docFolder = rootFolder.createFolder(docId);
+    }
+    
+    if (!docFolder.getFoldersByName('file').hasNext()) docFolder.createFolder('file');
+    if (!docFolder.getFoldersByName('preview').hasNext()) docFolder.createFolder('preview');
+
+    var folderUrl = docFolder.getUrl();
+    if (existingFolderUrl !== folderUrl) {
+      sheet.getRange(rowNum, folderColIndex + 1).setValue(folderUrl);
+      count++;
+    }
+  }
+  SpreadsheetApp.flush();
+  ui.alert('Đã tạo/kiểm tra Document Folders: ' + count);
+}
+
+// ================================================================
+// 🖼️ Sync Drive (PDF & Ảnh) → Sheet
+// ================================================================
+function syncDocsDrive() {
+  var ui   = SpreadsheetApp.getUi();
+  var ss   = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('docs');
+  if (!sheet) return;
+
+  var rootId = ROOT_FOLDER_ID;
+  var rootFolder = DriveApp.getFolderById(rootId);
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 3) return;
+
+  var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  var idColIndex = headers.indexOf('id');
+  var driveUrlColIndex = headers.indexOf('drive_url');
+  var previewImagesColIndex = headers.indexOf('preview_images');
+  var folderColIndex = headers.indexOf('folder_url');
+  
+  if (idColIndex === -1 || driveUrlColIndex === -1 || previewImagesColIndex === -1 || folderColIndex === -1) {
+    ui.alert('Thiếu các cột cần thiết trong tab docs (id, drive_url, preview_images, folder_url).');
+    return;
+  }
+
+  var range = sheet.getRange(3, 1, lastRow - 2, headers.length);
+  var values = range.getValues();
+  var updatedCount = 0;
+
+  for (var i = 0; i < values.length; i++) {
+    var rowNum = i + 3;
+    var docId = String(values[i][idColIndex]).trim();
+    if (!docId || docId === '') continue;
+
+    var folders = rootFolder.getFoldersByName(docId);
+    if (!folders.hasNext()) continue;
+    var docFolder = folders.next();
+
+    var pdfUrl = '';
+    var previewUrls = [];
+
+    // 1. Tìm file PDF trong subfolder 'file', fallback tìm trực tiếp trong thư mục gốc của tài liệu
+    var fileFolders = docFolder.getFoldersByName('file');
+    var pdfFile = null;
+    if (fileFolders.hasNext()) {
+      var files = fileFolders.next().getFiles();
+      while (files.hasNext()) {
+        var f = files.next();
+        if (f.getName().toLowerCase().endsWith('.pdf')) {
+          pdfFile = f;
+          break;
+        }
+      }
+    }
+    if (!pdfFile) {
+      // Fallback
+      var files = docFolder.getFiles();
+      while (files.hasNext()) {
+        var f = files.next();
+        if (f.getName().toLowerCase().endsWith('.pdf')) {
+          pdfFile = f;
+          break;
+        }
+      }
+    }
+    if (pdfFile) {
+      pdfFile.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+      pdfUrl = pdfFile.getUrl();
+    }
+
+    // 2. Tìm ảnh trong subfolder 'preview', fallback tìm trực tiếp trong thư mục gốc của tài liệu
+    var previewFolders = docFolder.getFoldersByName('preview');
+    if (previewFolders.hasNext()) {
+      var files = previewFolders.next().getFiles();
+      while (files.hasNext()) {
+        var f = files.next();
+        var name = f.getName().toLowerCase();
+        if (name.endsWith('.png') || name.endsWith('.jpg') || name.endsWith('.jpeg') || name.endsWith('.webp')) {
+          f.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+          previewUrls.push('https://lh3.googleusercontent.com/d/' + f.getId());
+        }
+      }
+    }
+    if (previewUrls.length === 0) {
+      // Fallback
+      var files = docFolder.getFiles();
+      while (files.hasNext()) {
+        var f = files.next();
+        var name = f.getName().toLowerCase();
+        if (name.endsWith('.png') || name.endsWith('.jpg') || name.endsWith('.jpeg') || name.endsWith('.webp')) {
+          f.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+          previewUrls.push('https://lh3.googleusercontent.com/d/' + f.getId());
+        }
+      }
+    }
+
+    var updated = false;
+
+    var currentDriveUrl = String(values[i][driveUrlColIndex]).trim();
+    if (pdfUrl && currentDriveUrl !== pdfUrl) {
+      sheet.getRange(rowNum, driveUrlColIndex + 1).setValue(pdfUrl);
+      updated = true;
+    }
+
+    var currentPreviewImages = String(values[i][previewImagesColIndex]).trim();
+    var newPreviewImages = previewUrls.join(',');
+    if (newPreviewImages && currentPreviewImages !== newPreviewImages) {
+      sheet.getRange(rowNum, previewImagesColIndex + 1).setValue(newPreviewImages);
+      updated = true;
+    }
+
+    var currentFolderUrl = String(values[i][folderColIndex]).trim();
+    var newFolderUrl = docFolder.getUrl();
+    if (currentFolderUrl !== newFolderUrl) {
+      sheet.getRange(rowNum, folderColIndex + 1).setValue(newFolderUrl);
+      updated = true;
+    }
+
+    if (updated) updatedCount++;
+  }
+  SpreadsheetApp.flush();
+  ui.alert('Đã đồng bộ PDF & ảnh cho ' + updatedCount + ' tài liệu.');
+}
+
+// ================================================================
 // ✍️ Viết review bằng AI
 // ================================================================
 function generateAIReviews() {
@@ -924,14 +1296,14 @@ function generateAIReviews() {
     SpreadsheetApp.flush();
 
     try {
-      var prompt = "Bạn là cô giáo Lê Lê (kênh Lê Lê học tiếng Trung), viết review sách có tâm bằng tiếng Việt, giọng điệu tự nhiên, thân thiện, dễ thương.\n" +
+      var prompt = "Bạn là Lê Lê (kênh Lê Lê học tiếng Trung), một người bạn đồng hành cùng học tiếng Trung với mọi người. Hãy viết review sách bằng tiếng Việt một cách chân thành, giọng điệu tự nhiên, thân thiện, dễ thương, xưng 'mình' hoặc 'Lê Lê' và gọi độc giả là 'các bạn' (không xưng cô/các em, không gọi học sinh).\n" +
                    "Hãy viết review cho cuốn sách sau:\n" +
                    "Tên sách: " + title + "\n" +
                    "Mô tả cơ bản: " + desc + "\n" +
                    "Tags: " + tags + "\n\n" +
                    "Hãy trả về JSON THUẦN (không markdown, không ```json):\n" +
                    "{\n" +
-                   "  \"review\": \"Đoạn review chi tiết khoảng 150-250 từ. Chia sẻ trải nghiệm học thực tế của Lê Lê. Dùng **text** để in đậm. Xuống dòng bằng \\n\\n khi cần.\",\n" +
+                   "  \"review\": \"Đoạn review chi tiết khoảng 150-250 từ. Chia sẻ trải nghiệm cùng học thực tế của Lê Lê với các bạn. Dùng **text** để in đậm. Xuống dòng bằng \\n\\n khi cần.\",\n" +
                    "  \"pros\": \"3-5 điểm mạnh nhất của sách, phân cách bằng dấu |. VD: Nội dung phong phú | Trình bày đẹp mắt\",\n" +
                    "  \"cons\": \"1-2 điểm hạn chế hoặc lưu ý khi học, phân cách bằng dấu |.\",\n" +
                    "  \"who_for\": \"Cuốn sách này phù hợp với ai.\"\n" +
@@ -990,17 +1362,17 @@ function generateAIDocPosts() {
     SpreadsheetApp.flush();
 
     try {
-      var prompt = "Bạn là cô giáo Lê Lê (kênh Lê Lê học tiếng Trung). Hãy viết bài giới thiệu chi tiết cho tài liệu học tiếng Trung này để học sinh đọc và tải tài liệu. Giọng văn phải dễ thương, gần gũi, truyền cảm hứng tự học.\n" +
+      var prompt = "Bạn là Lê Lê (kênh Lê Lê học tiếng Trung), một người bạn đồng hành cùng học tiếng Trung với mọi người. Hãy viết bài giới thiệu chi tiết cho tài liệu học tiếng Trung này để các bạn cùng học đọc và tải tài liệu. Giọng văn xưng hô là 'mình' hoặc 'Lê Lê' và gọi người đọc là 'các bạn' (không xưng cô/các em, không gọi học sinh). Giọng văn phải dễ thương, gần gũi, chia sẻ kinh nghiệm học tập thân thiện như những người bạn học cùng nhau.\n" +
                    "Thông tin tài liệu:\n" +
                    "Tên tài liệu: " + title + "\n" +
                    "Mô tả: " + desc + "\n" +
                    "Nhóm (vocab/grammar/hsk/writing): " + category + "\n\n" +
                    "Hãy trả về JSON THUẦN (không markdown, không ```json):\n" +
                    "{\n" +
-                   "  \"content\": \"Đoạn bài viết giới thiệu chi tiết khoảng 150-300 từ. Chia sẻ kinh nghiệm tại sao tài liệu này quan trọng, học sinh nên học như thế nào. Dùng **text** để in đậm. Xuống dòng bằng \\n\\n khi cần.\",\n" +
+                   "  \"content\": \"Đoạn bài viết giới thiệu chi tiết khoảng 150-300 từ. Chia sẻ kinh nghiệm tại sao tài liệu này quan trọng, các bạn nên học như thế nào. Dùng **text** để in đậm. Xuống dòng bằng \\n\\n khi cần.\",\n" +
                    "  \"pros\": \"3-5 điểm nổi bật nhất của tài liệu, phân cách bằng dấu |. VD: Thiết kế đẹp mắt | Rất dễ hiểu | Có pinyin đầy đủ\",\n" +
                    "  \"cons\": \"1-2 mẹo tự học hiệu quả nhất với tài liệu này, phân cách bằng dấu |. VD: Nên in ra giấy để học | Học kèm file phát âm\",\n" +
-                   "  \"who_for\": \"Đối tượng phù hợp nhất. VD: Dành cho người mới bắt đầu học tiếng Trung hoặc ôn thi HSK 1-2.\"\n" +
+                   "  \"who_for\": \"Đối tượng phù hợp nhất. VD: Dành cho các bạn mới bắt đầu học tiếng Trung hoặc ôn thi HSK 1-2.\"\n" +
                    "}";
 
       var parsed = callAIWithRotation(prompt);
@@ -1024,6 +1396,79 @@ function generateAIDocPosts() {
            '• Đã viết mới: ' + count + ' tài liệu\n' +
            '• Bỏ qua: ' + skipped + '\n' +
            '• Lỗi: ' + errors);
+}
+
+function createPrewrittenDocPosts() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('docs');
+  if (!sheet) {
+    SpreadsheetApp.getUi().alert('Không tìm thấy tab "docs". Hãy chạy Setup trước!');
+    return;
+  }
+  
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 3) {
+    SpreadsheetApp.getUi().alert('Chưa có dữ liệu hàng trong tab docs!');
+    return;
+  }
+  
+  var data = sheet.getRange(3, 1, lastRow - 2, 1).getValues();
+  
+  // Định nghĩa sẵn các bài viết giới thiệu chất lượng cao cho 6 tài liệu mặc định
+  var posts = {
+    'DOC-500': {
+      content: 'Chào các bạn! Lê Lê đây. Hôm nay mình chia sẻ cho các bạn tập tài liệu **500 Từ Vựng Thông Dụng Nhất** trong giao tiếp hàng ngày. Đây là những từ vựng "xương sống" mà mình đã dày công tổng hợp, lọc ra từ các cuộc hội thoại thực tế của người bản xứ và các đề thi HSK đời đầu. Mỗi từ đều có kèm phiên âm pinyin chuẩn xác và định nghĩa tiếng Việt siêu dễ hiểu, gần gũi. Học xong 500 từ này là các bạn đã có thể tự tin nghe hiểu và nói chuyện cơ bản với bạn bè người Trung Quốc rồi đó! Hãy kiên trì học mỗi ngày 10-15 từ nhé, chỉ sau 1 tháng là các bạn sẽ thấy sự khác biệt vượt bậc ngay.',
+      pros: 'Tổng hợp từ vựng tần suất cao nhất | Có Pinyin chuẩn và dịch nghĩa dễ hiểu | Giao diện PDF tối giản, dễ in ấn học tập',
+      cons: 'Mỗi ngày chỉ nên học tối đa 15 từ kèm đặt câu | Ghi âm lại giọng đọc của mình để đối chiếu',
+      who_for: 'Dành cho người mới bắt đầu học tiếng Trung hoặc các bạn đang ôn tập HSK 1-2 cần củng cố vốn từ vựng nền tảng.'
+    },
+    'DOC-GRAMMAR': {
+      content: 'Để nói được một câu tiếng Trung hoàn chỉnh và chuẩn ngữ pháp mà không bị ngập ngừng, chúng ta không thể thiếu nền tảng cấu trúc ngữ pháp. Cuốn **Ngữ Pháp Tiếng Trung Cơ Bản** này chính là "bảo bối" giúp các bạn hệ thống hoá toàn bộ các cấu trúc cơ bản từ câu đơn, câu phức, cách dùng các phó từ phổ biến cho đến các trợ từ động thái. Lê Lê đã viết kèm theo rất nhiều ví dụ sinh động, dịch nghĩa chi tiết để các bạn học đến đâu hiểu ngay đến đó. Tài liệu này sẽ giúp các bạn sửa ngay các lỗi dịch word-by-word từ tiếng Việt sang tiếng Trung thường gặp!',
+      pros: 'Giải thích cấu trúc rõ ràng, dễ hiểu | Nhiều ví dụ thực tế đi kèm | Phân tích các lỗi sai ngữ pháp kinh diễn',
+      cons: 'Học xong cấu trúc nào hãy tự đặt ít nhất 3 ví dụ | Tập viết tay các mẫu câu để nhớ lâu hơn',
+      who_for: 'Các bạn muốn củng cố tư duy ngữ pháp chuẩn, khắc phục lỗi nói tiếng Trung bồi, chuẩn bị ôn thi HSK 2-3.'
+    },
+    'DOC-HSK': {
+      content: 'Chào các bạn, việc luyện đề trước khi đi thi thật là vô cùng quan trọng để làm quen với áp lực phòng thi và cấu trúc bài làm. Bộ **Đề Thi Thử HSK 1 & 2** này được Lê Lê biên soạn sát với đề thi thực tế nhất, giúp các bạn tự đánh giá năng lực của mình một cách chính xác. Bài thi có đầy đủ các phần thi Nghe và Đọc hiểu kèm đáp án giải thích chi tiết ở cuối trang. Đây chính là trợ thủ đắc lực giúp các bạn tự tin giật điểm tuyệt đối HSK 1 & 2 chỉ sau vài tuần ôn luyện tập trung.',
+      pros: 'Cấu trúc đề thi sát với đề thi thật | Có đáp án chi tiết và dịch nghĩa | Giúp rèn luyện kỹ năng quản lý thời gian làm bài',
+      cons: 'Hãy làm bài nghiêm túc trong phòng yên tĩnh và bấm giờ đúng 35-40 phút | Xem kỹ lỗi sai ở phần đáp án',
+      who_for: 'Các bạn đang ôn thi chứng chỉ HSK 1 và HSK 2, muốn tự đánh giá điểm số trước khi đăng ký thi thật.'
+    },
+    'DOC-WRITING': {
+      content: 'Nhiều bạn than thở với Lê Lê là viết chữ Hán khó quá, viết trước quên sau. Bí quyết duy nhất chính là luyện viết theo đúng quy tắc bút thuận mỗi ngày! File **Bảng Luyện Viết Hán Tự** này cung cấp các ô vuông chuẩn Mễ Tự kèm nét mờ hướng dẫn cho 100 chữ Hán cơ bản nhất. Việc tập tô và viết theo ô giúp tay các bạn quen với nhịp nét, chữ viết ra sẽ vuông vức, thanh thoát và nhớ mặt chữ sâu sắc hơn rất nhiều. Các bạn chỉ cần tải về, in ra giấy A4 và viết mỗi ngày 15 phút nhé.',
+      pros: 'Thiết kế ô vuông Mễ Tự chuẩn nét | Danh sách 100 chữ Hán cốt lõi nhất | Định dạng PDF sắc nét, cực kỳ tiết kiệm mực khi in',
+      cons: 'Hãy in ra giấy A4 chất lượng tốt để viết không bị nhòe | Tập trung viết đúng thứ tự các nét vẽ',
+      who_for: 'Người mới bắt đầu học tiếng Trung, muốn cải thiện nét chữ viết tay và ghi nhớ mặt chữ Hán lâu hơn.'
+    },
+    'DOC-CHUDE': {
+      content: 'Học từ vựng theo chủ đề là phương pháp ghi nhớ khoa học giúp não bộ liên kết các từ lại với nhau hiệu quả gấp 3 lần thông thường. Tài liệu **Từ Vựng Theo Chủ Đề** của Lê Lê bao gồm 15 chủ đề giao tiếp gần gũi nhất như gia đình, ăn uống, làm việc, mua sắm... Mỗi từ đều có phiên âm và ví dụ ngắn đi kèm. Thay vì học vẹt các từ rời rạc, hãy học theo cụm chủ đề để khi cần nói về một nội dung nào đó, các bạn có thể tuôn ra cả loạt từ vựng liên quan một cách tự nhiên nhất!',
+      pros: 'Phân loại 15 chủ đề thực tế, thông dụng | Hình ảnh và màu sắc trình bày bắt mắt | Có pinyin và dịch nghĩa tiếng Việt',
+      cons: 'Học theo từng chủ đề một và ôn tập lại sau 3 ngày | Thực hành tự nói một đoạn văn ngắn nói về chủ đề đó',
+      who_for: 'Mọi đối tượng từ sơ cấp đến trung cấp (HSK 1-3) muốn mở rộng vốn từ vựng giao tiếp thực tế.'
+    },
+    'DOC-HSK3': {
+      content: 'Lên đến HSK 3 là các bạn đã bắt đầu bước vào giai đoạn trung cấp với phần thi viết chữ Hán trực tiếp. Bộ **Đề Thi Thử HSK 3** này gồm 3 đề thi thử chuẩn hóa kèm theo file đáp án chi tiết từng câu. Lê Lê khuyên các bạn hãy làm đề này thật cẩn thận để kiểm tra khả năng ghép câu và viết chữ Hán của mình. Việc cọ xát với đề thi thử chất lượng cao sẽ giúp các bạn phát hiện ra những lỗ hổng kiến thức kịp thời để ôn tập bổ sung ngay.',
+      pros: 'Có cả 3 phần thi Nghe - Đọc - Viết chuẩn cấu trúc mới | Đáp án giải thích cặn kẽ từng câu | File PDF sạch đẹp, dễ học',
+      cons: 'Tự bấm giờ làm bài nghiêm túc | Luyện viết tay phần hoàn thành câu chữ Hán thay vì gõ máy',
+      who_for: 'Các bạn chuẩn bị bước vào kỳ thi HSK 3 thực tế, cần luyện đề để củng cố phản xạ phòng thi và kỹ năng làm bài.'
+    }
+  };
+  
+  var updatedCount = 0;
+  for (var i = 0; i < data.length; i++) {
+    var id = String(data[i][0]).trim();
+    if (posts[id]) {
+      var rowNum = i + 3;
+      sheet.getRange(rowNum, 11).setValue(posts[id].content).setFontColor('#1a1308');
+      sheet.getRange(rowNum, 12).setValue(posts[id].pros);
+      sheet.getRange(rowNum, 13).setValue(posts[id].cons);
+      sheet.getRange(rowNum, 14).setValue(posts[id].who_for);
+      updatedCount++;
+    }
+  }
+  
+  SpreadsheetApp.flush();
+  SpreadsheetApp.getUi().alert('✅ Đã cập nhật thành công bài viết giới thiệu chất lượng cao cho ' + updatedCount + ' tài liệu chia sẻ!');
 }
 
 // ── Kéo sách theo SKU ──────────────────────────────────────────
@@ -1127,6 +1572,33 @@ function setupAllSheets() {
   setupDocsSheet();
   setupRequestsSheet();
   setupGuideSheet();
+  setupConfigSheet();
+}
+
+function setupConfigSheet() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('config');
+  if (!sheet) {
+    sheet = ss.insertSheet('config');
+    sheet.appendRow(['Cấu hình', 'Giá trị']);
+    var rows = [
+      ['GEMINI_KEYS', GEMINI_KEYS.join(', ')],
+      ['GEMINI_MODEL', GEMINI_MODEL],
+      ['ROOT_FOLDER_ID', ROOT_FOLDER_ID],
+      ['DOCS_FOLDER_ID', DOCS_FOLDER_ID],
+      ['BOOKS_FOLDER_ID', BOOKS_FOLDER_ID],
+      ['CUSTOM_ENDPOINT_NAME', CUSTOM_ENDPOINTS[0].name || ''],
+      ['CUSTOM_ENDPOINT_URL', CUSTOM_ENDPOINTS[0].endpoint || ''],
+      ['CUSTOM_ENDPOINT_KEY', CUSTOM_ENDPOINTS[0].apiKey || ''],
+      ['CUSTOM_ENDPOINT_MODEL', CUSTOM_ENDPOINTS[0].model || '']
+    ];
+    sheet.getRange(2, 1, rows.length, 2).setValues(rows);
+    
+    // Format đẹp
+    sheet.getRange('A1:B1').setFontWeight('bold').setBackground('#D4A843').setFontColor('#ffffff');
+    sheet.setColumnWidth(1, 250);
+    sheet.setColumnWidth(2, 500);
+  }
 }
 
 function setupAffiliateSheet() {
@@ -1162,20 +1634,20 @@ function setupDocsSheet() {
   var sheet = ss.getSheetByName('docs');
   if (sheet) sheet.clear(); else sheet = ss.insertSheet('docs');
   
-  var h = ['id','title','desc','category','icon','icon_color','pages','level','level_text','drive_url','content','pros','cons','who_for','preview_images'];
-  var l = ['⭐ ID tài liệu','Tên tài liệu','Mô tả ngắn','Nhóm','Icon','Màu','Thông tin (Trang)','Độ khó (1-5)','Text độ khó','Link Drive','Bài viết (AI)','Điểm nổi bật','Mẹo tự học','Phù hợp với ai','Link ảnh preview'];
+  var h = ['id','title','desc','category','icon','icon_color','pages','level','level_text','drive_url','content','pros','cons','who_for','preview_images','folder_url'];
+  var l = ['⭐ ID tài liệu','Tên tài liệu','Mô tả ngắn','Nhóm','Icon','Màu','Thông tin (Trang)','Độ khó (1-5)','Text độ khó','Link Drive','Bài viết (AI)','Điểm nổi bật','Mẹo tự học','Phù hợp với ai','Link ảnh preview','📁 Link Folder'];
   
   sheet.getRange(1,1,1,h.length).setValues([h]);
   sheet.getRange(2,1,1,l.length).setValues([l]);
   sheet.getRange(2,1,1,l.length).setBackground('#0d1f14').setFontColor('#4ecba0').setFontWeight('bold');
   
   var docs = [
-    ['DOC-500','500 Từ Vựng Thông Dụng Nhất','Danh sách 500 từ hay gặp nhất trong tiếng Trung hàng ngày, kèm pinyin và nghĩa tiếng Việt. Phù hợp cho người mới bắt đầu.','vocab','📝','#D4A843','PDF · 12 trang','2','Cơ bản · HSK 1–2','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','',''],
-    ['DOC-GRAMMAR','Ngữ Pháp Tiếng Trung Cơ Bản','Tổng hợp các cấu trúc ngữ pháp quan trọng nhất, ví dụ minh hoạ rõ ràng bằng tiếng Việt. Học xong nói câu đúng ngay.','grammar','📚','#C94535','PDF · 28 trang','3','Trung cấp · HSK 2–3','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','',''],
-    ['DOC-HSK','Đề Thi Thử HSK 1 & 2','Bộ đề thi thử HSK cấp 1 và 2 với đáp án đầy đủ. Luyện xong tự tin thi thật! Lê Lê đã dùng đề này để ôn thi.','hsk','🎯','#3b7fd4','PDF · 35 trang · Có đáp án','2','Cơ bản · HSK 1–2','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','',''],
-    ['DOC-WRITING','Bảng Luyện Viết Hán Tự','Tờ luyện viết nét chữ theo ô vuông chuẩn với 100 chữ Hán cơ bản nhất. In ra luyện mỗi ngày giúp nhớ chữ rất nhanh!','writing','✍️','#7c5cbf','PDF · In được','1','Người mới · 100 chữ','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','',''],
-    ['DOC-CHUDE','Từ Vựng Theo Chủ Đề','Từ vựng được phân loại theo 15 chủ đề thực tế: gia đình, công việc, du lịch, ăn uống… Học nhanh, nhớ lâu!','vocab','🗂️','#2ea078','PDF · 20 trang','2','Sơ cấp · HSK 1–3','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','',''],
-    ['DOC-HSK3','Đề Thi Thử HSK 3','3 đề thi thử HSK 3 đầy đủ các phần nghe – đọc – viết với đáp án chi tiết. Thích hợp ôn luyện trước kỳ thi.','hsk','📋','#3b7fd4','PDF · 42 trang · Có đáp án','3','Trung cấp · HSK 3','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','','']
+    ['DOC-500','500 Từ Vựng Thông Dụng Nhất','Danh sách 500 từ hay gặp nhất trong tiếng Trung hàng ngày, kèm pinyin và nghĩa tiếng Việt. Phù hợp cho người mới bắt đầu.','vocab','📝','#D4A843','PDF · 12 trang','2','Cơ bản · HSK 1–2','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','','',''],
+    ['DOC-GRAMMAR','Ngữ Pháp Tiếng Trung Cơ Bản','Tổng hợp các cấu trúc ngữ pháp quan trọng nhất, ví dụ minh hoạ rõ ràng bằng tiếng Việt. Học xong nói câu đúng ngay.','grammar','📚','#C94535','PDF · 28 trang','3','Trung cấp · HSK 2–3','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','','',''],
+    ['DOC-HSK','Đề Thi Thử HSK 1 & 2','Bộ đề thi thử HSK cấp 1 và 2 với đáp án đầy đủ. Luyện xong tự tin thi thật! Lê Lê đã dùng đề này để ôn thi.','hsk','🎯','#3b7fd4','PDF · 35 trang · Có đáp án','2','Cơ bản · HSK 1–2','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','','',''],
+    ['DOC-WRITING','Bảng Luyện Viết Hán Tự','Tờ luyện viết nét chữ theo ô vuông chuẩn với 100 chữ Hán cơ bản nhất. In ra luyện mỗi ngày giúp nhớ chữ rất nhanh!','writing','✍️','#7c5cbf','PDF · In được','1','Người mới · 100 chữ','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','','',''],
+    ['DOC-CHUDE','Từ Vựng Theo Chủ Đề','Từ vựng được phân loại theo 15 chủ đề thực tế: gia đình, công việc, du lịch, ăn uống… Học nhanh, nhớ lâu!','vocab','🗂️','#2ea078','PDF · 20 trang','2','Sơ cấp · HSK 1–3','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','','',''],
+    ['DOC-HSK3','Đề Thi Thử HSK 3','3 đề thi thử HSK 3 đầy đủ các phần nghe – đọc – viết với đáp án chi tiết. Thích hợp ôn luyện trước kỳ thi.','hsk','📋','#3b7fd4','PDF · 42 trang · Có đáp án','3','Trung cấp · HSK 3','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','','','']
   ];
   sheet.getRange(3,1,docs.length,h.length).setValues(docs);
   sheet.setFrozenRows(2);
@@ -1236,4 +1708,91 @@ function submitReaderRequest(postData) {
   sheet.appendRow([timestamp, requestDoc, email, 'Chờ xử lý']);
   
   return { success: true };
+}
+
+// ================================================================
+// ── DASHBOARD RPC HELPERS (ĐƯỢC GỌI TỪ UI) ────────────────────────
+// ================================================================
+
+function addAffiliateRow(sku, url) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('affiliate');
+  if (!sheet) return { error: 'Không tìm thấy tab affiliate' };
+  
+  var lastRow = sheet.getLastRow();
+  var stt = lastRow - 1;
+  if (stt < 1) stt = 1;
+  
+  sheet.appendRow([stt, sku, url, '🎁 Hộp Quà', 'default', '', '', '', '', '0', '5', '', '', '', 'Chờ fetch ⏳']);
+  
+  var newRowIndex = sheet.getLastRow();
+  sheet.getRange(newRowIndex, 15).setFontColor('#f59e0b');
+  
+  return { success: true };
+}
+
+function runCrawlerFromUI() {
+  try {
+    fetchSelectedRows();
+    return { success: true };
+  } catch (err) {
+    return { error: err.message };
+  }
+}
+
+// ================================================================
+// ── DASHBOARD RPC HELPERS (ĐƯỢC GỌI TỪ UI) ────────────────────────
+// ================================================================
+
+function runPullToBooksFromUI() {
+  try {
+    pullBySkuToBooks();
+    return { success: true };
+  } catch (err) {
+    return { error: err.message };
+  }
+}
+
+function clearLogsFromUI() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('log');
+  if (sheet) {
+    sheet.clear();
+    sheet.getRange(1,1,1,4).setValues([['Thời gian','Loại','Chi tiết','Key index']]);
+    sheet.setColumnWidth(3,500);
+    return { success: true };
+  }
+  return { error: 'Không tìm thấy tab log' };
+}
+
+function deleteBookBySku(sku) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('books');
+  if (!sheet) return { error: 'Không tìm thấy tab books' };
+  
+  var lastRow = sheet.getLastRow();
+  for (var r = lastRow; r >= 3; r--) {
+    var s = String(sheet.getRange(r, 1).getValue()).trim();
+    if (s === sku) {
+      sheet.deleteRow(r);
+      return { success: true };
+    }
+  }
+  return { error: 'Không tìm thấy sách với SKU ' + sku };
+}
+
+function deleteDocById(id) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('docs');
+  if (!sheet) return { error: 'Không tìm thấy tab docs' };
+  
+  var lastRow = sheet.getLastRow();
+  for (var r = lastRow; r >= 3; r--) {
+    var s = String(sheet.getRange(r, 1).getValue()).trim().toUpperCase();
+    if (s === id.trim().toUpperCase()) {
+      sheet.deleteRow(r);
+      return { success: true };
+    }
+  }
+  return { error: 'Không tìm thấy tài liệu với ID ' + id };
 }
