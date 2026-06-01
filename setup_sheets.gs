@@ -1142,7 +1142,7 @@ function syncDocsDrive() {
   var sheet = ss.getSheetByName('docs');
   if (!sheet) return;
 
-  var rootId = ROOT_FOLDER_ID;
+  var rootId = DOCS_FOLDER_ID || ROOT_FOLDER_ID;
   var rootFolder = DriveApp.getFolderById(rootId);
   var lastRow = sheet.getLastRow();
   if (lastRow < 3) return;
