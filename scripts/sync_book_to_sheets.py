@@ -11,7 +11,7 @@ def main():
         "subtitle_zh": "HSK 1 词汇 ⭐️ Luyện Viết Chữ Hán",
         "desc": "Cuốn vở tập viết chữ Hán kết hợp bút bay mực thông minh giúp ghi nhớ 150 từ vựng HSK 1 cốt lõi, nắm vững 70 bộ thủ và quy tắc bút thuận. Viết xong mực tự biến mất để luyện tập lại nhiều lần! ✨",
         "tags": "Luyện viết, HSK 1, Bộ thủ",
-        "price": "95000",
+        "price": "45100",
         "badge": "Khuyên dùng",
         "badge_type": "new",
         "stars": "5",
