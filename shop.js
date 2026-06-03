@@ -95,6 +95,22 @@ const FALLBACK_BOOKS = {
     buy_fahasa: 'https://www.fahasa.com/',
     buy_tiki: 'https://tiki.vn/',
     buy_lazada: 'https://www.lazada.vn/'
+  },
+  'SPE-0001': {
+    sku: 'SPE-0001',
+    title: 'Sách Luyện Viết Từ Vựng Tiếng Trung HSK 1',
+    subtitle_zh: 'HSK 1 词汇 ⭐️ Luyện Viết Chữ Hán',
+    desc: 'Cuốn vở tập viết chữ Hán kết hợp bút bay mực thông minh giúp ghi nhớ 150 từ vựng HSK 1 cốt lõi, nắm vững 70 bộ thủ và quy tắc bút thuận. Viết xong mực tự biến mất để luyện tập lại nhiều lần! ✨',
+    tags: 'Luyện viết, HSK 1, Bộ thủ',
+    price: '95000',
+    badge: 'Khuyên dùng',
+    badge_type: 'new',
+    stars: '5',
+    cover_url: 'spe0001.png',
+    buy_shopee: 'https://s.shopee.vn/AUrLPSQfFo',
+    buy_fahasa: '',
+    buy_tiki: '',
+    buy_lazada: ''
   }
 };
 
@@ -125,6 +141,11 @@ const BOOK_TRANSLATIONS = {
       title: 'Easy-to-Understand Chinese Grammar',
       desc: 'Summarizes all Chinese grammar from basic to advanced using intuitive mind maps, easy to remember and apply.',
       tags: 'Grammar, Mind Maps, Easy'
+    },
+    'SPE-0001': {
+      title: 'HSK 1 Chinese Vocabulary Writing Book',
+      desc: 'Smart Chinese vocabulary workbook combined with heat-erasable ink pen, helping you memorize 150 core HSK 1 words, 70 common radicals, and stroke order rules. Ink disappears automatically in minutes for repeated practice! ✨',
+      tags: 'Writing, HSK 1, Radicals'
     }
   },
   zh: {

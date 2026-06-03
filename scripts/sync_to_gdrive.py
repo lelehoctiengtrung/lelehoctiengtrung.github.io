@@ -66,27 +66,50 @@ def get_gdrive_path(config_path):
 
 def sync_sku(sku, src_docs_dir, src_images_dir, dest_root_dir):
     """
-    Syncs PDF and mockup images for a specific SKU.
+    Syncs PDF (for docs), Markdown, and mockup images for a specific SKU.
     """
-    print(f"\n📦 Bắt đầu đồng bộ cho SKU: {sku}")
+    is_review = sku.startswith("SPE-") or sku.startswith("SACH-")
+    print(f"\n📦 Bắt đầu đồng bộ cho SKU: {sku} ({'Review' if is_review else 'Doc'})")
     
     # Destination folder for this SKU
-    dest_sku_dir = os.path.join(dest_root_dir, sku)
+    if is_review:
+        # dest_root_dir is Affiliates/Docs. Parent is Affiliates.
+        affiliates_dir = os.path.dirname(dest_root_dir)
+        dest_sku_dir = os.path.join(affiliates_dir, "Reviews", sku)
+    else:
+        dest_sku_dir = os.path.join(dest_root_dir, sku)
+        
     os.makedirs(dest_sku_dir, exist_ok=True)
     
-    # 1. Find and copy PDF
-    pdf_filename = f"{sku}.pdf"
-    src_pdf_path = os.path.join(src_docs_dir, pdf_filename)
-    if os.path.exists(src_pdf_path):
-        dest_pdf_path = os.path.join(dest_sku_dir, pdf_filename)
-        shutil.copy2(src_pdf_path, dest_pdf_path)
-        size_mb = os.path.getsize(dest_pdf_path) / (1024 * 1024)
-        print(f"  ✅ Đã copy PDF: {pdf_filename} ({size_mb:.2f} MB)")
+    # 1. Find and copy PDF (only for Docs)
+    if not is_review:
+        pdf_filename = f"{sku}.pdf"
+        src_pdf_path = os.path.join(src_docs_dir, pdf_filename)
+        if os.path.exists(src_pdf_path):
+            dest_pdf_path = os.path.join(dest_sku_dir, pdf_filename)
+            shutil.copy2(src_pdf_path, dest_pdf_path)
+            size_mb = os.path.getsize(dest_pdf_path) / (1024 * 1024)
+            print(f"  ✅ Đã copy PDF: {pdf_filename} ({size_mb:.2f} MB)")
+        else:
+            print(f"  ❌ Không tìm thấy tệp PDF nguồn: {src_pdf_path}")
+            return False
+            
+    # 2. Copy markdown article reference
+    md_filename = f"{sku}.md"
+    if is_review:
+        src_reviews_dir = os.path.join(os.path.dirname(src_docs_dir), "reviews")
+        src_md_path = os.path.join(src_reviews_dir, md_filename)
     else:
-        print(f"  ❌ Không tìm thấy tệp PDF nguồn: {src_pdf_path}")
-        return False
+        src_md_path = os.path.join(src_docs_dir, md_filename)
         
-    # 2. Find and copy mockup/preview images
+    if os.path.exists(src_md_path):
+        dest_md_path = os.path.join(dest_sku_dir, md_filename)
+        shutil.copy2(src_md_path, dest_md_path)
+        print(f"  ✅ Đã copy bài viết giới thiệu: {md_filename}")
+    else:
+        print(f"  ⚠️ Cảnh báo: Không tìm thấy bài viết nguồn: {src_md_path}")
+        
+    # 3. Find and copy mockup/preview images
     # We search for any images starting with {sku} in the images folder
     image_pattern = os.path.join(src_images_dir, f"{sku}*")
     matching_images = glob.glob(image_pattern)
@@ -102,17 +125,11 @@ def sync_sku(sku, src_docs_dir, src_images_dir, dest_root_dir):
     else:
         print(f"  ⚠️ Cảnh báo: Không tìm thấy hình ảnh minh họa cho {sku} tại {src_images_dir}")
         
-    # 3. Print markdown article reference
-    md_filename = f"{sku}.md"
-    src_md_path = os.path.join(src_docs_dir, md_filename)
-    if os.path.exists(src_md_path):
-        print(f"  ℹ️ Đã tìm thấy bài viết giới thiệu: {md_filename}")
-        
     return True
 
 def main():
-    parser = argparse.ArgumentParser(description="Đồng bộ hóa tài liệu PDF và Mockup lên thư mục Google Drive cục bộ.")
-    parser.add_argument("--sku", type=str, help="SKU của tài liệu cần đồng bộ (Ví dụ: DOC-500, DOC-GRAMMAR). Nếu để trống sẽ đồng bộ tất cả.")
+    parser = argparse.ArgumentParser(description="Đồng bộ hóa tài liệu PDF, Markdown và Mockup lên thư mục Google Drive cục bộ.")
+    parser.add_argument("--sku", type=str, help="SKU của tài liệu cần đồng bộ (Ví dụ: DOC-500, SPE-0001). Nếu để trống sẽ đồng bộ tất cả.")
     parser.add_argument("--config", type=str, default=DEFAULT_CONFIG_PATH, help="Đường dẫn đến file cấu hình JSON.")
     args = parser.parse_args()
 
@@ -133,10 +150,19 @@ def main():
     if args.sku:
         skus_to_process = [args.sku.upper()]
     else:
-        # Auto-detect from POSTS/docs/*.pdf
+        # Auto-detect docs from POSTS/docs/*.pdf
         pdf_pattern = os.path.join(src_docs_dir, "*.pdf")
         pdf_files = glob.glob(pdf_pattern)
         skus_to_process = [os.path.splitext(os.path.basename(f))[0] for f in pdf_files]
+        
+        # Auto-detect reviews from POSTS/reviews/*.md
+        src_reviews_dir = os.path.join(project_root, "POSTS", "reviews")
+        md_pattern = os.path.join(src_reviews_dir, "*.md")
+        md_files = glob.glob(md_pattern)
+        skus_to_process.extend([os.path.splitext(os.path.basename(f))[0] for f in md_files])
+        
+        # Deduplicate and sort
+        skus_to_process = list(set(skus_to_process))
         skus_to_process.sort()
 
     if not skus_to_process:

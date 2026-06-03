@@ -145,6 +145,28 @@ const FALLBACK_BOOKS = {
     who_for: 'Cực kỳ hữu ích cho những ai đang bị rối về ngữ pháp hoặc cần hệ thống hóa kiến thức nhanh chóng.',
     review_images: '../book5.png',
     sku_folder_url: 'https://drive.google.com/drive/folders/1gP-4vafPZiuHXAz6Zup0vboUK9D1llfC'
+  },
+  'SPE-0001': {
+    sku: 'SPE-0001',
+    title: 'Sách Luyện Viết Từ Vựng Tiếng Trung HSK 1',
+    subtitle_zh: 'HSK 1 词汇 ⭐️ Luyện Viết Chữ Hán',
+    desc: 'Cuốn vở tập viết chữ Hán kết hợp bút bay mực thông minh giúp ghi nhớ 150 từ vựng HSK 1 cốt lõi, nắm vững 70 bộ thủ và quy tắc bút thuận. Viết xong mực tự biến mất để luyện tập lại nhiều lần! ✨',
+    tags: 'Luyện viết, HSK 1, Bộ thủ',
+    price: '95000',
+    badge: 'Khuyên dùng',
+    badge_type: 'new',
+    stars: '5',
+    cover_url: '../spe0001.png',
+    buy_shopee: 'https://s.shopee.vn/AUrLPSQfFo',
+    buy_fahasa: '',
+    buy_tiki: '',
+    buy_lazada: '',
+    review: 'Chào các bạn! Lê Lê đây. Hôm nay mình muốn chia sẻ với các bạn một cuốn sách luyện chữ Hán cực kỳ thông minh mà mình đã từng trải nghiệm khi bắt đầu học tiếng Trung: **Luyện Viết Từ Vựng HSK 1** của nhà NHT Books.\n\nĐiểm làm mình thích nhất ở cuốn vở này là nó được bán kèm **bút bay mực**. Các bạn viết xong chỉ khoảng 3-5 phút là nét mực tự bay đi mất tiêu, trang giấy lại trắng tinh như mới! Nhờ vậy, chúng mình có thể luyện tập viết đi viết lại hàng trăm lần mà không sợ tốn giấy hay bôi xóa lem nhem.\n\nSách in màu rõ nét, giấy rất dày dặn viết êm tay. Nội dung được chia làm 5 phần cực kỳ khoa học: từ luyện nét cơ bản, quy tắc bút thuận, 70 bộ thủ thông dụng cho tới luyện viết 150 từ vựng HSK 1 cốt lõi nhất. Thiết kế ô ly Mễ tự mờ giúp các bạn căn nét chữ vuông vắn, tròn trịa dễ dàng.\n\nTuy nhiên, các bạn cần chú ý bảo quản bút bay mực cẩn thận, tránh để mực tiếp xúc với nhiệt độ cao vì sẽ bay màu nhanh hơn. Hãy in thêm các tài liệu từ vựng bên mình để có thêm từ học song song nhé!',
+    pros: 'Kèm bút bay mực viết lại nhiều lần | Hướng dẫn 70 bộ thủ & quy tắc nét vẽ chi tiết | Chất giấy dày in màu sắc nét',
+    cons: 'Phải bảo quản ngòi bút bay mực kỹ | Chỉ giới hạn 150 từ HSK 1 cũ',
+    who_for: 'Người mới bắt đầu tự học tiếng Trung từ số 0, muốn luyện chữ Hán đẹp và học nhanh từ vựng HSK 1.',
+    review_images: '../POSTS/images/SPE-0001_page1.png,../POSTS/images/SPE-0001_page2.png',
+    sku_folder_url: ''
   }
 };
 
@@ -195,6 +217,15 @@ const BOOK_TRANSLATIONS = {
       pros: 'Presented with intuitive mind maps | Fully printed in sharp colors | Deep analysis of common mistakes',
       cons: 'Slightly higher price than ordinary black and white books',
       who_for: 'Extremely useful for those confused about grammar or needing to organize knowledge quickly.'
+    },
+    'SPE-0001': {
+      title: 'HSK 1 Chinese Vocabulary Writing Book',
+      desc: 'Smart Chinese vocabulary workbook combined with heat-erasable ink pen, helping you memorize 150 core HSK 1 words, 70 common radicals, and stroke order rules. Ink disappears automatically in minutes for repeated practice! ✨',
+      tags: 'Writing, HSK 1, Radicals',
+      review: 'Hi guys! Le Le here. Today I want to share with you a smart Chinese writing workbook that I experienced when first learning Chinese: **HSK 1 Vocabulary Writing Book** by NHT Books.\n\nThe best part about this book is that it comes with a **heat-erasable ink pen**. When you write, the ink automatically fades away in 3-5 minutes, leaving the page completely clean like new! This allows us to practice writing over and over again without wasting paper or making a mess.\n\nThe book is printed in clear colors, and the paper is thick and smooth to write on. The content is divided into 5 scientific sections: basic stroke training, stroke order rules, 70 common radicals, and writing grid for 150 core HSK 1 words. The faint Mizi Ge grid helps you align your strokes easily.\n\nHowever, remember to keep the magic pen capped and away from heat to prevent the ink from fading too fast. Print our other vocab sheets for extra study!',
+      pros: 'Comes with magic ink pen for infinite reuse | Detailed 70 radicals and stroke rules | Thick paper and sharp color print',
+      cons: 'Must store magic pen carefully | Limited to 150 legacy HSK 1 words',
+      who_for: 'Beginners self-studying Chinese from scratch who want to write beautiful characters and learn HSK 1 words.'
     }
   },
   zh: {
