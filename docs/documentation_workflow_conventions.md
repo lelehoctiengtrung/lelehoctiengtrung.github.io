@@ -84,11 +84,14 @@ SKU: [Mã SKU, VD: SACH-BOYA-1]
 ### Quy trình Thực hiện của AI (A-Z Review Workflow)
 
 1. **Tìm kiếm & Phân tích thông tin**:
-   - Truy quét thông tin về cuốn sách trên Shopee Việt Nam (thông qua link gửi hoặc tìm kiếm).
-   - Nghiên cứu các bài đánh giá, phân tích và chia sẻ kinh nghiệm học cuốn sách này trên internet.
-   - Tìm kiếm và tải xuống hình ảnh chất lượng cao của bìa sách và một số trang nội dung tiêu biểu.
+   - **Xử lý Link Shopee**:
+     - *Trường hợp 1 (Có link Shopee)*: AI sử dụng trực tiếp link đó để cào thông tin sản phẩm (giá, ảnh, mô tả). Nếu link gửi là link thường (`https://shopee.vn/...`), AI sẽ nhắc bạn đổi sang link affiliate (`https://shope.ee/...`) trước khi xuất bản.
+     - *Trường hợp 2 (Không có link Shopee)*: AI sẽ tự động tìm kiếm trên Shopee Việt Nam bằng Google Search để tìm sản phẩm sách chính hãng/được đánh giá tốt nhất, lấy link Shopee gốc và gửi lại cho bạn để bạn chỉ cần convert sang link tiếp thị liên kết cá nhân (Affiliate link) qua Shopee Console.
+   - **Nghiên cứu kiến thức**: Nghiên cứu các bài đánh giá, phân tích và chia sẻ kinh nghiệm học cuốn sách này trên các blog học tiếng Trung và mạng xã hội.
+   - **Thu thập tài nguyên**: Tìm kiếm và tải xuống hình ảnh chất lượng cao của bìa sách và một số trang nội dung tiêu biểu từ Shopee hoặc internet.
 2. **Lập Kế hoạch & Trình duyệt (Proposal)**:
    - Tạo kế hoạch phác thảo bài review, bao gồm các ý chính sẽ đánh giá, đối tượng phù hợp, các điểm mạnh (Pros) và điểm yếu/lưu ý tự học (Cons).
+   - Đính kèm link Shopee gốc tìm được để bạn thực hiện convert sang link affiliate.
    - Đề xuất layout mockup và chờ bạn duyệt bằng `/approve`.
 3. **Thiết kế Mockup 3D nghệ thuật**:
    - Sử dụng hình ảnh bìa và trang sách thu thập được để tạo mockup sách 3D đặt trên bàn thư viện gỗ và hình ảnh phóng to góc chéo nghệ thuật của các trang nội dung bên trong sách.
@@ -99,4 +102,5 @@ SKU: [Mã SKU, VD: SACH-BOYA-1]
 5. **Đồng bộ GDrive & Git**:
    - Sao chép toàn bộ hình ảnh mockup và bài viết liên quan vào thư mục Google Drive cục bộ của bạn (`Docs/[SKU]/`) để đồng bộ lên mây.
    - Commit và push bài viết mới lên Git (nhánh `main`).
+
 
