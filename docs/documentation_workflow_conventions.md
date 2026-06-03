@@ -66,3 +66,37 @@ Sau khi bạn gõ `/approve` hoặc phản hồi đồng ý, AI sẽ:
 - **Viết bài giới thiệu**: Tạo file giới thiệu Markdown tại `POSTS/docs/[SKU].md` chứa đầy đủ ảnh mockup 3D, ưu/nhược điểm, phương pháp học và link tải Google Drive.
 - **Commit và Push**: Đưa toàn bộ mã nguồn và bài viết mới lên Git (nhánh `main`).
 - **Sync Sheets (Nếu cần)**: Hướng dẫn bạn chạy đồng bộ hóa trên Google Sheets để dữ liệu lập tức hiển thị trên website.
+
+---
+
+## 3. Quy trình & Cú pháp Đánh giá Sách (Book Review Workflow - `/new-review`)
+
+Quy trình này áp dụng khi bạn muốn tạo bài viết giới thiệu/đánh giá sản phẩm sách học tiếng Trung từ các trang tiếp thị liên kết (Shopee Affiliate):
+
+### Cú pháp Lệnh (Chat Command)
+```text
+/new-review
+Sách: [Tên cuốn sách hoặc Từ khóa tìm kiếm, VD: Giáo trình Boya Sơ Cấp 1]
+Shopee Link: [Đường link Shopee VN của sản phẩm nếu có, hoặc để AI tự tìm]
+SKU: [Mã SKU, VD: SACH-BOYA-1]
+```
+
+### Quy trình Thực hiện của AI (A-Z Review Workflow)
+
+1. **Tìm kiếm & Phân tích thông tin**:
+   - Truy quét thông tin về cuốn sách trên Shopee Việt Nam (thông qua link gửi hoặc tìm kiếm).
+   - Nghiên cứu các bài đánh giá, phân tích và chia sẻ kinh nghiệm học cuốn sách này trên internet.
+   - Tìm kiếm và tải xuống hình ảnh chất lượng cao của bìa sách và một số trang nội dung tiêu biểu.
+2. **Lập Kế hoạch & Trình duyệt (Proposal)**:
+   - Tạo kế hoạch phác thảo bài review, bao gồm các ý chính sẽ đánh giá, đối tượng phù hợp, các điểm mạnh (Pros) và điểm yếu/lưu ý tự học (Cons).
+   - Đề xuất layout mockup và chờ bạn duyệt bằng `/approve`.
+3. **Thiết kế Mockup 3D nghệ thuật**:
+   - Sử dụng hình ảnh bìa và trang sách thu thập được để tạo mockup sách 3D đặt trên bàn thư viện gỗ và hình ảnh phóng to góc chéo nghệ thuật của các trang nội dung bên trong sách.
+   - Lưu trữ các mockup này tại `POSTS/images/`.
+4. **Sản xuất bài viết Markdown**:
+   - Tạo bài viết tại [POSTS/reviews/](file:///Users/hanario/Documents/YTF-Productions/Lê Lê học tiếng Trung/Website lelehoctiengtrung/POSTS/reviews/) với tên tệp là `[SKU].md`.
+   - Bài viết sẽ chứa đầy đủ: Tên sách, SKU, Đối tượng phù hợp, Link mua sách Shopee (Affiliate), các hình ảnh Mockup 3D, phần đánh giá chi tiết nội dung, danh sách Pros/Cons rõ ràng.
+5. **Đồng bộ GDrive & Git**:
+   - Sao chép toàn bộ hình ảnh mockup và bài viết liên quan vào thư mục Google Drive cục bộ của bạn (`Docs/[SKU]/`) để đồng bộ lên mây.
+   - Commit và push bài viết mới lên Git (nhánh `main`).
+
