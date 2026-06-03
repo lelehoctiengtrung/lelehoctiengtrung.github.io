@@ -156,7 +156,7 @@ const FALLBACK_BOOKS = {
     badge: 'Khuyên dùng',
     badge_type: 'new',
     stars: '5',
-    cover_url: 'https://lh3.googleusercontent.com/d/1rPxtUMrULM4aSyqYOMNqIbQanEoMoc13',
+    cover_url: 'https://lh3.googleusercontent.com/d/1yO7P2UAWJuorREnlDIYXQIs0JvWD6nmP',
     buy_shopee: 'https://s.shopee.vn/AUrLPSQfFo',
     buy_fahasa: '',
     buy_tiki: '',
@@ -165,7 +165,7 @@ const FALLBACK_BOOKS = {
     pros: 'Tiết kiệm tối đa nhờ công nghệ bút bay mực viết lại nhiều lần | Cấu trúc bài bản từ nét vẽ cơ bản đến 70 bộ thủ | Ô ly Mễ tự và hướng dẫn bút thuận giúp viết chữ chuẩn đẹp',
     cons: 'Phải đậy nắp bút kỹ để tránh khô mực | Chỉ chứa 150 từ vựng HSK 1 cũ',
     who_for: 'Các bạn tự học tiếng Trung từ con số 0, muốn luyện nét chữ Hán chuẩn đẹp và ghi nhớ 150 từ vựng HSK 1 cốt lõi.',
-    review_images: 'https://lh3.googleusercontent.com/d/1oxTHW-rkeuNxEiXqu7vSFQ3yLaBHerRZ,https://lh3.googleusercontent.com/d/1kWbo3uRHMPS_LWW3Ug5vitl0cOu0wMEl',
+    review_images: 'https://lh3.googleusercontent.com/d/1RW3l-5MPmCtXUmtT1Vf-rb6DBWbk0sqH,https://lh3.googleusercontent.com/d/1j2485zZOPVTz-Er8CjfeXzwXBglxjVpQ',
     sku_folder_url: ''
   }
 };

@@ -43,8 +43,8 @@ def upload_image(sku, file_path, img_type):
 def main():
     sku = "SPE-0001"
     
-    # 1. Upload the mockups and get direct GDrive URLs
-    cover_url = upload_image(sku, "POSTS/images/SPE-0001_mockup.png", "shop")
+    # 1. Upload the original images and get direct GDrive URLs
+    cover_url = upload_image(sku, "POSTS/images/SPE-0001_cover.png", "shop")
     page1_url = upload_image(sku, "POSTS/images/SPE-0001_page1.png", "review")
     page2_url = upload_image(sku, "POSTS/images/SPE-0001_page2.png", "review")
     
