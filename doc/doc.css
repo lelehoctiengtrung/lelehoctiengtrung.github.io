@@ -516,6 +516,9 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 1.2rem;
 }
+.doc-content-grid.is-infographics .gallery-thumb {
+  aspect-ratio: 1 / 1;
+}
 
 @media (max-width: 480px) {
   .doc-content-grid.is-infographics .gallery-grid {

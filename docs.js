@@ -80,7 +80,7 @@ const FALLBACK_DOCS = [
   },
   {
     id: 'DOC-WORDORDERS',
-    title: 'Sổ Tay Trật Tự Từ Trong Câu',
+    title: 'Trật tự từ',
     desc: 'Bí kíp sắp xếp thứ tự từ trong câu tiếng Trung chuẩn xác, không bị lỗi dịch ngược hay nói bồi.',
     category: 'infographics',
     icon: '🔤',
