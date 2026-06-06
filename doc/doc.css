@@ -516,8 +516,11 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 1.2rem;
 }
-.doc-content-grid.is-infographics .gallery-thumb {
+.doc-content-grid.doc-id-doc-wordorders .gallery-thumb {
   aspect-ratio: 1 / 1;
+}
+.doc-content-grid.doc-id-doc-streetfood .gallery-thumb {
+  aspect-ratio: 9 / 16;
 }
 
 @media (max-width: 480px) {

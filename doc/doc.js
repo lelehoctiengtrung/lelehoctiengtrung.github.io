@@ -364,8 +364,12 @@ function renderDoc(doc) {
   // Content grid class for infographics layout
   const contentGrid = document.querySelector('.doc-content-grid');
   if (contentGrid) {
+    // Remove any previous doc-id classes
+    contentGrid.className = contentGrid.className.split(' ').filter(c => !c.startsWith('doc-id-')).join(' ');
+
     if (doc.category === 'infographics') {
       contentGrid.classList.add('is-infographics');
+      contentGrid.classList.add(`doc-id-${doc.id.toLowerCase()}`);
     } else {
       contentGrid.classList.remove('is-infographics');
     }
