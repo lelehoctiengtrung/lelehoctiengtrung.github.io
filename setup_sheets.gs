@@ -1634,77 +1634,136 @@ function syncYouTubeVideos() {
     sheet = ss.getSheetByName('media');
   }
   
+  var lastRow = sheet.getLastRow();
+  var existingIds = {};
+  if (lastRow >= 3) {
+    var data = sheet.getRange(3, 1, lastRow - 2, 1).getValues();
+    data.forEach(function(row) {
+      existingIds[row[0]] = true;
+    });
+  }
+  
+  var newRows = [];
+  var fetchedVideos = [];
+  var usedAdvancedService = false;
+  
+  // Try using Advanced YouTube Service to get ALL videos
   try {
-    var url = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCGQfqOTElLYJ1-1OEDQJ8Cw';
-    var response = UrlFetchApp.fetch(url);
-    var xml = response.getContentText();
-    var document = XmlService.parse(xml);
-    var root = document.getRootElement();
-    
-    var atom = XmlService.getNamespace('http://www.w3.org/2005/Atom');
-    var yt = XmlService.getNamespace('http://www.youtube.com/xml/schemas/2015');
-    var media = XmlService.getNamespace('http://search.yahoo.com/mrss/');
-    
-    var entries = root.getChildren('entry', atom);
-    
-    var lastRow = sheet.getLastRow();
-    var existingIds = {};
-    if (lastRow >= 3) {
-      var data = sheet.getRange(3, 1, lastRow - 2, 1).getValues();
-      data.forEach(function(row) {
-        existingIds[row[0]] = true;
-      });
-    }
-    
-    var newRows = [];
-    
-    for (var i = entries.length - 1; i >= 0; i--) {
-      var entry = entries[i];
-      var videoId = entry.getChildText('videoId', yt);
-      if (!videoId) continue;
+    if (typeof YouTube !== 'undefined') {
+      var playlistId = 'UUGQfqOTElLYJ1-1OEDQJ8Cw'; // Channel ID UCGQfqOTElLYJ1-1OEDQJ8Cw with C -> U
+      var nextPageToken = '';
+      do {
+        var playlistResponse = YouTube.PlaylistItems.list('snippet', {
+          playlistId: playlistId,
+          maxResults: 50,
+          pageToken: nextPageToken
+        });
+        
+        if (playlistResponse && playlistResponse.items) {
+          playlistResponse.items.forEach(function(item) {
+            var snippet = item.snippet;
+            var videoId = snippet.resourceId.videoId;
+            var title = snippet.title || '';
+            var desc = snippet.description || '';
+            fetchedVideos.push({
+              id: videoId,
+              title: title,
+              desc: desc
+            });
+          });
+        }
+        nextPageToken = playlistResponse.nextPageToken;
+      } while (nextPageToken);
       
-      if (existingIds[videoId]) continue;
-      
-      var title = entry.getChildText('title', atom) || '';
-      var youtubeUrl = 'https://www.youtube.com/watch?v=' + videoId;
-      
-      var mediaGroup = entry.getChild('group', media);
-      var desc = '';
-      if (mediaGroup) {
-        desc = mediaGroup.getChildText('description', media) || '';
-      }
-      
-      var category = 'Tiếng Trung thực chiến';
-      var cleanTitle = title;
-      
-      cleanTitle = cleanTitle.replace(/#\w+/g, '').trim();
-      cleanTitle = cleanTitle.replace(/\s+/g, ' ');
-      
-      var lowerTitle = title.toLowerCase();
-      
-      if (lowerTitle.indexOf('kể chữ') !== -1 || lowerTitle.indexOf('câu chuyện chữ') !== -1 || lowerTitle.indexOf('bộ thủ') !== -1) {
-        category = 'Lê Lê kể chữ';
-      } else if (lowerTitle.indexOf('slang') !== -1 || lowerTitle.indexOf('tiếng lóng') !== -1 || lowerTitle.indexOf('lóng') !== -1) {
-        category = 'Tiếng lóng';
-      } else if (lowerTitle.indexOf('vs') !== -1 || lowerTitle.indexOf('phân biệt') !== -1 || lowerTitle.indexOf('song đấu') !== -1) {
-        category = 'Song đấu từ vựng';
-      } else if (lowerTitle.indexOf('thành ngữ') !== -1 || lowerTitle.indexOf('idiom') !== -1) {
-        category = 'Thành ngữ';
-      }
-      
-      var charMatch = cleanTitle.match(/Câu chuyện chữ\s+([^\s\-]+)\s*[\-\:]\s*(.*)/i);
-      if (charMatch) {
-        cleanTitle = charMatch[1];
-      }
-      
-      newRows.push([videoId, cleanTitle, youtubeUrl, category, desc.slice(0, 150), '1']);
-    }
-    
-    if (newRows.length > 0) {
-      sheet.getRange(sheet.getLastRow() + 1, 1, newRows.length, 6).setValues(newRows);
+      usedAdvancedService = true;
+      Logger.log('Successfully fetched ' + fetchedVideos.length + ' videos using YouTube Service.');
     }
   } catch (err) {
-    Logger.log('Error syncing videos: ' + err.toString());
+    Logger.log('YouTube Advanced Service failed or not enabled: ' + err.toString());
+  }
+  
+  // Fallback to XML Feed (latest 15 videos) if Advanced Service failed or is disabled
+  if (!usedAdvancedService) {
+    try {
+      var url = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCGQfqOTElLYJ1-1OEDQJ8Cw';
+      var response = UrlFetchApp.fetch(url);
+      var xml = response.getContentText();
+      var document = XmlService.parse(xml);
+      var root = document.getRootElement();
+      
+      var atom = XmlService.getNamespace('http://www.w3.org/2005/Atom');
+      var yt = XmlService.getNamespace('http://www.youtube.com/xml/schemas/2015');
+      var media = XmlService.getNamespace('http://search.yahoo.com/mrss/');
+      
+      var entries = root.getChildren('entry', atom);
+      
+      for (var i = entries.length - 1; i >= 0; i--) {
+        var entry = entries[i];
+        var videoId = entry.getChildText('videoId', yt);
+        if (!videoId) continue;
+        
+        var title = entry.getChildText('title', atom) || '';
+        var mediaGroup = entry.getChild('group', media);
+        var desc = '';
+        if (mediaGroup) {
+          desc = mediaGroup.getChildText('description', media) || '';
+        }
+        
+        fetchedVideos.push({
+          id: videoId,
+          title: title,
+          desc: desc
+        });
+      }
+      Logger.log('Successfully fetched ' + fetchedVideos.length + ' videos using XML feed.');
+    } catch (err) {
+      Logger.log('XML feed fetch failed: ' + err.toString());
+      return; // Stop if both failed
+    }
+  }
+  
+  // Process the fetched videos (reverse order to append oldest first)
+  if (usedAdvancedService) {
+    fetchedVideos.reverse();
+  }
+  
+  fetchedVideos.forEach(function(video) {
+    var videoId = video.id;
+    if (existingIds[videoId]) return;
+    
+    var title = video.title;
+    var youtubeUrl = 'https://www.youtube.com/watch?v=' + videoId;
+    var desc = video.desc || '';
+    
+    var category = 'Tiếng Trung thực chiến';
+    var cleanTitle = title;
+    
+    cleanTitle = cleanTitle.replace(/#\w+/g, '').trim();
+    cleanTitle = cleanTitle.replace(/\s+/g, ' ');
+    
+    var lowerTitle = title.toLowerCase();
+    
+    if (lowerTitle.indexOf('kể chữ') !== -1 || lowerTitle.indexOf('câu chuyện chữ') !== -1 || lowerTitle.indexOf('bộ thủ') !== -1) {
+      category = 'Lê Lê kể chữ';
+    } else if (lowerTitle.indexOf('slang') !== -1 || lowerTitle.indexOf('tiếng lóng') !== -1 || lowerTitle.indexOf('lóng') !== -1) {
+      category = 'Tiếng lóng';
+    } else if (lowerTitle.indexOf('vs') !== -1 || lowerTitle.indexOf('phân biệt') !== -1 || lowerTitle.indexOf('song đấu') !== -1) {
+      category = 'Song đấu từ vựng';
+    } else if (lowerTitle.indexOf('thành ngữ') !== -1 || lowerTitle.indexOf('idiom') !== -1) {
+      category = 'Thành ngữ';
+    }
+    
+    var charMatch = cleanTitle.match(/Câu chuyện chữ\s+([^\s\-]+)\s*[\-\:]\s*(.*)/i);
+    if (charMatch) {
+      cleanTitle = charMatch[1];
+    }
+    
+    newRows.push([videoId, cleanTitle, youtubeUrl, category, desc.slice(0, 150), '1']);
+  });
+  
+  if (newRows.length > 0) {
+    sheet.getRange(sheet.getLastRow() + 1, 1, newRows.length, 6).setValues(newRows);
+    Logger.log('Inserted ' + newRows.length + ' new videos into the sheet.');
   }
 }
 
