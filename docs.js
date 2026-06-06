@@ -287,6 +287,38 @@ function parseAndRenderDocs(data) {
       return { id, title, desc, category, icon, icon_color, pages, level, level_text, drive_url };
     }).filter(Boolean);
 
+    // Merge infographics fallback docs if they are not in the sheet response
+    FALLBACK_DOCS.forEach(fd => {
+      if (fd.category === 'infographics') {
+        if (!docs.some(d => d.id.toUpperCase() === fd.id.toUpperCase())) {
+          let title = fd.title;
+          let desc = fd.desc;
+          let pages = fd.pages;
+          let level_text = fd.level_text;
+          const lang = window.i18n ? window.i18n.currentLang : 'vi';
+          if (lang !== 'vi' && DOC_TRANSLATIONS[lang] && DOC_TRANSLATIONS[lang][fd.id]) {
+            const tDoc = DOC_TRANSLATIONS[lang][fd.id];
+            title = tDoc.title || title;
+            desc = tDoc.desc || desc;
+            pages = tDoc.pages || pages;
+            level_text = tDoc.level_text || level_text;
+          }
+          docs.push({
+            id: fd.id,
+            title: title,
+            desc: desc,
+            category: fd.category,
+            icon: fd.icon,
+            icon_color: fd.icon_color,
+            pages: pages,
+            level: fd.level,
+            level_text: level_text,
+            drive_url: fd.drive_url
+          });
+        }
+      }
+    });
+
     renderDocsList(docs);
   } catch (e) {
     console.error('Parse error docs:', e);
@@ -414,7 +446,7 @@ function setupFilters() {
   refreshedTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const filter = tab.dataset.filter;
-      const cards = document.querySelectorAll('.doc-big-card');
+      const cards = document.querySelectorAll('.doc-big-card, .doc-image-card');
 
       refreshedTabs.forEach(t => {
         t.classList.remove('active');
@@ -512,7 +544,7 @@ function setupActions() {
 
   // Respect reduced motion
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('.doc-big-card').forEach(c => c.style.animation = 'none');
+    document.querySelectorAll('.doc-big-card, .doc-image-card').forEach(c => c.style.animation = 'none');
   }
 }
 
