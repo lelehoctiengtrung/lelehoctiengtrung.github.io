@@ -69,7 +69,7 @@ const FALLBACK_DOCS = [
     id: 'DOC-STREETFOOD',
     title: 'Street Food Tiếng Trung Cực Dễ',
     desc: 'Tổng hợp tên gọi các món ăn đường phố Trung Hoa và mẫu câu giao tiếp tự tin khi đi ăn quán lề đường.',
-    category: 'street_food',
+    category: 'infographics',
     icon: '🍜',
     icon_color: '#E58F65',
     pages: 'PDF · 10 trang',
@@ -81,7 +81,7 @@ const FALLBACK_DOCS = [
     id: 'DOC-WORDORDERS',
     title: 'Sổ Tay Trật Tự Từ Trong Câu',
     desc: 'Bí kíp sắp xếp thứ tự từ trong câu tiếng Trung chuẩn xác, không bị lỗi dịch ngược hay nói bồi.',
-    category: 'word_orders',
+    category: 'infographics',
     icon: '🔤',
     icon_color: '#4A90E2',
     pages: 'PDF · 15 trang',
@@ -315,10 +315,10 @@ function renderDocsList(docs) {
     card.dataset.category = doc.category;
     card.id = `doc-${doc.id.toLowerCase()}`;
 
-    if (doc.category === 'street_food' || doc.category === 'word_orders') {
+    if (doc.category === 'infographics') {
       card.className = 'doc-image-card';
       const urls = doc.preview_images ? doc.preview_images.split(',').map(u => u.trim()).filter(Boolean) : [];
-      const fallbackCover = doc.category === 'street_food' ? 'POSTS/images/thuc_chien_cover_16_9.png' : 'POSTS/images/vs_vocabulary_cover_16_9.png';
+      const fallbackCover = doc.id === 'DOC-STREETFOOD' ? 'POSTS/images/thuc_chien_cover_16_9.png' : 'POSTS/images/vs_vocabulary_cover_16_9.png';
       const imageUrl = urls.length > 0 ? urls[0] : fallbackCover;
       
       card.innerHTML = `
@@ -340,7 +340,7 @@ function renderDocsList(docs) {
         const categoryDocs = docs.filter(d => d.category === doc.category);
         const allUrls = categoryDocs.map(d => {
           const uList = d.preview_images ? d.preview_images.split(',').map(u => u.trim()).filter(Boolean) : [];
-          return uList.length > 0 ? uList[0] : (d.category === 'street_food' ? 'POSTS/images/thuc_chien_cover_16_9.png' : 'POSTS/images/vs_vocabulary_cover_16_9.png');
+          return uList.length > 0 ? uList[0] : (d.id === 'DOC-STREETFOOD' ? 'POSTS/images/thuc_chien_cover_16_9.png' : 'POSTS/images/vs_vocabulary_cover_16_9.png');
         });
         const index = categoryDocs.indexOf(doc);
         openImageLightbox(index, allUrls);
@@ -519,9 +519,9 @@ function setupActions() {
 // ── Helpers ───────────────────────────────────────────────
 function getCategoryLabel(cat) {
   const lang = window.i18n ? window.i18n.currentLang : 'vi';
-  const viMap = { 'vocab': 'Từ vựng', 'grammar': 'Ngữ pháp', 'hsk': 'Thi HSK', 'writing': 'Luyện viết', 'street_food': 'Street Food', 'word_orders': 'Word Orders' };
-  const enMap = { 'vocab': 'Vocab', 'grammar': 'Grammar', 'hsk': 'HSK Exam', 'writing': 'Handwriting', 'street_food': 'Street Food', 'word_orders': 'Word Orders' };
-  const zhMap = { 'vocab': '词汇', 'grammar': '语法', 'hsk': 'HSK考试', 'writing': '字帖', 'street_food': '街头美食', 'word_orders': '语序' };
+  const viMap = { 'vocab': 'Từ vựng', 'grammar': 'Ngữ pháp', 'hsk': 'Thi HSK', 'writing': 'Luyện viết', 'infographics': 'Infographics' };
+  const enMap = { 'vocab': 'Vocab', 'grammar': 'Grammar', 'hsk': 'HSK Exam', 'writing': 'Handwriting', 'infographics': 'Infographics' };
+  const zhMap = { 'vocab': '词汇', 'grammar': '语法', 'hsk': 'HSK考试', 'writing': '字帖', 'infographics': '信息图' };
   
   const maps = { vi: viMap, en: enMap, zh: zhMap };
   const activeMap = maps[lang] || viMap;

@@ -215,6 +215,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// --- Category Normalizer to map sheet values to exact tabs ─
+function normalizeCategory(cat) {
+  if (!cat) return 'Tiếng Trung thực chiến';
+  const c = cat.toLowerCase();
+  if (c.includes('kể chữ') || c.includes('câu chuyện chữ') || c.includes('bộ thủ')) {
+    return 'Lê Lê kể chữ';
+  }
+  if (c.includes('slang') || c.includes('tiếng lóng') || c.includes('lóng')) {
+    return 'Tiếng lóng';
+  }
+  if (c.includes('vs') || c.includes('phân biệt') || c.includes('song đấu')) {
+    return 'Song đấu từ vựng';
+  }
+  if (c.includes('thực chiến') || c.includes('giao tiếp') || c.includes('thực tế')) {
+    return 'Tiếng Trung thực chiến';
+  }
+  if (c.includes('thành ngữ') || c.includes('idiom')) {
+    return 'Thành ngữ';
+  }
+  return 'Tiếng Trung thực chiến';
+}
+
 // --- Fetch from Google Sheets dynamically ──────────────────
 async function loadVideosFromSheet() {
   try {
@@ -255,7 +277,8 @@ async function loadVideosFromSheet() {
 
       const id = getVal(colMap.id, `VID-ROW-${rowIndex}`);
       const youtube_url = getVal(colMap.youtube_url);
-      const category = getVal(colMap.category, 'Tiếng Trung thực chiến');
+      const rawCategory = getVal(colMap.category, 'Tiếng Trung thực chiến');
+      const category = normalizeCategory(rawCategory);
       const desc = getVal(colMap.desc);
       const order = parseInt(getVal(colMap.order, String(rowIndex))) || rowIndex;
 
@@ -263,8 +286,18 @@ async function loadVideosFromSheet() {
     }).filter(Boolean);
 
     if (sheetVideos.length > 0) {
-      ALL_VIDEOS.length = 0;
-      ALL_VIDEOS.push(...sheetVideos);
+      // Merge sheet videos with the predefined local database by youtube_url
+      sheetVideos.forEach(sv => {
+        const svId = getYouTubeId(sv.youtube_url);
+        if (!svId) return;
+        const idx = ALL_VIDEOS.findIndex(v => getYouTubeId(v.youtube_url) === svId);
+        if (idx !== -1) {
+          // Update keeping the local details if sheet has placeholders
+          ALL_VIDEOS[idx] = { ...ALL_VIDEOS[idx], ...sv };
+        } else {
+          ALL_VIDEOS.push(sv);
+        }
+      });
       
       const categoriesPresent = [...new Set(ALL_VIDEOS.map(v => v.category))];
       if (!categoriesPresent.includes(currentCategory) && categoriesPresent.length > 0) {
@@ -406,10 +439,15 @@ async function renderGrid() {
     card.id = `video-card-${video.id}`;
 
     const thumbWrapId = `thumb-wrap-${video.id}`;
+    // Draw hqdefault immediately to avoid empty/spinner state
+    const cachedThumb = thumbCache[youtubeId] || `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`;
     card.innerHTML = `
       <div class="video-thumb-wrap" id="${thumbWrapId}">
-        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: #0d0d11;">
-          <div class="spinner" style="width: 24px; height: 24px; border-width: 2px;"></div>
+        <img src="${cachedThumb}" alt="${video.title}" loading="lazy" />
+        <div class="video-play-overlay">
+          <div class="play-btn-circle" aria-label="Phát video">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
         </div>
       </div>
       <div class="video-info">
@@ -419,29 +457,42 @@ async function renderGrid() {
 
     grid.appendChild(card);
 
-    // Asynchronously fetch high-res thumbnail
-    getYouTubeThumbnail(youtubeId).then(thumbUrl => {
-      const thumbWrap = document.getElementById(thumbWrapId);
-      if (!thumbWrap) return;
-
-      thumbWrap.innerHTML = `
-        <img src="${thumbUrl}" alt="${video.title}" loading="lazy" />
-        <div class="video-play-overlay">
-          <div class="play-btn-circle" aria-label="Phát video">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-        </div>
-      `;
-
+    const thumbWrap = document.getElementById(thumbWrapId);
+    if (thumbWrap) {
       // Inline playing trigger
       thumbWrap.addEventListener('click', (e) => {
         e.stopPropagation();
         playVideoInline(video, youtubeId, card, thumbWrap);
       });
-    });
+    }
+
+    // Asynchronously check and upgrade to maxresdefault if available
+    upgradeToMaxResThumbnail(youtubeId, thumbWrapId);
   }
 
   renderPagination(totalPages);
+}
+
+// --- Asynchronously upgrade thumbnail to maxresdefault if available ───
+function upgradeToMaxResThumbnail(videoId, wrapId) {
+  if (!videoId) return;
+  if (thumbCache[videoId]) return; // already upgraded/checked
+  
+  const maxres = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  const img = new Image();
+  img.onload = () => {
+    if (img.width !== 120 || img.height !== 90) {
+      const wrap = document.getElementById(wrapId);
+      if (wrap) {
+        const imgEl = wrap.querySelector('img');
+        if (imgEl) {
+          imgEl.src = maxres;
+          thumbCache[videoId] = maxres;
+        }
+      }
+    }
+  };
+  img.src = maxres;
 }
 
 // --- Play video inline in-place ───────────────────────────

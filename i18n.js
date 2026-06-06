@@ -82,8 +82,7 @@ const TRANSLATIONS = {
     docs_tab_grammar: "Ngữ pháp",
     docs_tab_hsk: "Thi HSK",
     docs_tab_writing: "Luyện viết",
-    docs_tab_street_food: "Street Food",
-    docs_tab_word_orders: "Word Orders",
+    docs_tab_infographics: "Infographics",
     docs_toast_copied: "Đã sao chép link!",
 
     // tools.html (Worksheet PDF Generator)
@@ -402,8 +401,7 @@ const TRANSLATIONS = {
     docs_tab_grammar: "Grammar",
     docs_tab_hsk: "HSK Exam",
     docs_tab_writing: "Writing",
-    docs_tab_street_food: "Street Food",
-    docs_tab_word_orders: "Word Orders",
+    docs_tab_infographics: "Infographics",
     docs_toast_copied: "Link copied!",
 
     // tools.html (Worksheet PDF Generator)
@@ -722,8 +720,7 @@ const TRANSLATIONS = {
     docs_tab_grammar: "语法",
     docs_tab_hsk: "HSK 考试",
     docs_tab_writing: "书写",
-    docs_tab_street_food: "街头美食",
-    docs_tab_word_orders: "语序",
+    docs_tab_infographics: "信息图",
     docs_toast_copied: "链接已复制！",
 
     // tools.html (Worksheet PDF Generator)
