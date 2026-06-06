@@ -72,10 +72,11 @@ const FALLBACK_DOCS = [
     category: 'infographics',
     icon: '🍜',
     icon_color: '#E58F65',
-    pages: 'PDF · 10 trang',
+    pages: 'Bộ ảnh · 3 ảnh',
     level: '2',
     level_text: 'Giao tiếp cơ bản',
-    drive_url: 'https://drive.google.com/file/d/1KF_c7CHdSljkl8Rme-C5LZpI0h9XMRAE/view?usp=sharing'
+    drive_url: 'https://drive.google.com/file/d/1KF_c7CHdSljkl8Rme-C5LZpI0h9XMRAE/view?usp=sharing',
+    preview_images: 'POSTS/images/street_food_意式冰淇淋.png,POSTS/images/street_food_泰式炒金边粉.png,POSTS/images/street_food_章鱼烧.png'
   },
   {
     id: 'DOC-WORDORDERS',
@@ -84,10 +85,11 @@ const FALLBACK_DOCS = [
     category: 'infographics',
     icon: '🔤',
     icon_color: '#4A90E2',
-    pages: 'PDF · 15 trang',
+    pages: 'Bộ ảnh · 6 ảnh',
     level: '3',
     level_text: 'Trung cấp · HSK 2-3',
-    drive_url: 'https://drive.google.com/file/d/1KF_c7CHdSljkl8Rme-C5LZpI0h9XMRAE/view?usp=sharing'
+    drive_url: 'https://drive.google.com/file/d/1KF_c7CHdSljkl8Rme-C5LZpI0h9XMRAE/view?usp=sharing',
+    preview_images: 'POSTS/images/word_order_故事_事故.png,POSTS/images/word_order_牛奶_奶牛.png,POSTS/images/word_order_现实_实现.png,POSTS/images/word_order_蜜蜂_蜂蜜.png,POSTS/images/word_order_语法_法语.png,POSTS/images/word_order_马上_上马.png'
   }
 ];
 
@@ -116,13 +118,13 @@ const DOC_TRANSLATIONS = {
       title: 'Easy Chinese Street Food Guide',
       desc: 'A collection of Chinese street food names and practical speaking phrases for dining out confidently.',
       level_text: 'Basic Speaking',
-      pages: 'Image Sheet'
+      pages: 'Images · 3 sheets'
     },
     'DOC-WORDORDERS': {
       title: 'Chinese Word Order Handbook',
       desc: 'Master correct sentence structure and word order in Chinese to avoid common translation errors.',
       level_text: 'Intermediate · HSK 2-3',
-      pages: 'Image Sheet'
+      pages: 'Images · 6 sheets'
     }
   },
   zh: {
@@ -148,13 +150,13 @@ const DOC_TRANSLATIONS = {
       title: '趣味汉语街头美食指南',
       desc: '整理了中国街头常见美食名称与实用就餐交际口语，让您轻松点餐。',
       level_text: '基础口语',
-      pages: '图片资料'
+      pages: '图集 · 3 张'
     },
     'DOC-WORDORDERS': {
       title: '汉语语序与句型手册',
       desc: '系统梳理汉语常用句型的语序规则，助您告别越式外语翻译腔。',
       level_text: '中级 · HSK 2–3',
-      pages: '图片资料'
+      pages: '图集 · 6 张'
     }
   }
 };
@@ -313,7 +315,8 @@ function parseAndRenderDocs(data) {
             pages: pages,
             level: fd.level,
             level_text: level_text,
-            drive_url: fd.drive_url
+            drive_url: fd.drive_url,
+            preview_images: fd.preview_images
           });
         }
       }
@@ -347,40 +350,7 @@ function renderDocsList(docs) {
     card.dataset.category = doc.category;
     card.id = `doc-${doc.id.toLowerCase()}`;
 
-    if (doc.category === 'infographics') {
-      card.className = 'doc-image-card';
-      const urls = doc.preview_images ? doc.preview_images.split(',').map(u => u.trim()).filter(Boolean) : [];
-      const fallbackCover = doc.id === 'DOC-STREETFOOD' ? 'POSTS/images/thuc_chien_cover_16_9.png' : 'POSTS/images/vs_vocabulary_cover_16_9.png';
-      const imageUrl = urls.length > 0 ? urls[0] : fallbackCover;
-      
-      card.innerHTML = `
-        <img src="${imageUrl}" alt="${doc.title}" loading="lazy" />
-        <div class="image-overlay">
-          <div class="zoom-icon" aria-label="Xem ảnh">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              <line x1="11" y1="8" x2="11" y2="14"></line>
-              <line x1="8" y1="11" x2="14" y2="11"></line>
-            </svg>
-          </div>
-        </div>
-      `;
-      
-      card.addEventListener('click', (e) => {
-        e.preventDefault();
-        const categoryDocs = docs.filter(d => d.category === doc.category);
-        const allUrls = categoryDocs.map(d => {
-          const uList = d.preview_images ? d.preview_images.split(',').map(u => u.trim()).filter(Boolean) : [];
-          return uList.length > 0 ? uList[0] : (d.id === 'DOC-STREETFOOD' ? 'POSTS/images/thuc_chien_cover_16_9.png' : 'POSTS/images/vs_vocabulary_cover_16_9.png');
-        });
-        const index = categoryDocs.indexOf(doc);
-        openImageLightbox(index, allUrls);
-      });
-      
-      grid.appendChild(card);
-      return;
-    }
+
 
     card.className = 'doc-big-card';
     const levelNum = parseInt(doc.level) || 2;
