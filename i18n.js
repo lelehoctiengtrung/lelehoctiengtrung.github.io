@@ -57,6 +57,7 @@ const TRANSLATIONS = {
     social_youtube_desc: "Bài học chi tiết, hướng dẫn luyện nghe & viết",
     social_facebook_desc: "Chia sẻ tài liệu học, cập nhật mới nhất",
     footer_text: "Cùng nhau học tiếng Trung mỗi ngày ♥",
+    footer_copyright: "© 2026 Lê Lê học tiếng Trung. All Rights Reserved. Thiết kế & Nội dung thuộc bản quyền của Lê Lê.",
 
     // shop.html (Bookstore)
     shop_title: "Bookstore – Lê Lê học tiếng Trung",
@@ -376,6 +377,7 @@ const TRANSLATIONS = {
     social_youtube_desc: "In-depth lessons, listening & writing guides",
     social_facebook_desc: "Free materials sharing & announcements",
     footer_text: "Let's learn Chinese together every day ♥",
+    footer_copyright: "© 2026 Le Le Learn Chinese. All Rights Reserved. Content & Design copyrighted by Le Le.",
 
     // shop.html (Bookstore)
     shop_title: "Bookstore – Le Le Learn Chinese",
@@ -695,6 +697,7 @@ const TRANSLATIONS = {
     social_youtube_desc: "深度教程，听力与书写进阶指南",
     social_facebook_desc: "共享学习资料与最新动态发布",
     footer_text: "一起每天学中文 ♥",
+    footer_copyright: "© 2026 乐乐学中文. 版权所有. 内容与设计归乐乐所有.",
 
     // shop.html (Bookstore)
     shop_title: "书店 – 乐乐学中文",

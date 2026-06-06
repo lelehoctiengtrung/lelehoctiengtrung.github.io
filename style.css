@@ -397,7 +397,7 @@ img { display: block; max-width: 100%; }
   letter-spacing: 0.1em;
   margin-bottom: 0.3rem;
 }
-.footer p:last-child {
+.footer-text {
   font-size: 0.74rem; color: var(--clr-cream-muted);
 }
 .footer span { color: var(--clr-red); }
@@ -1520,6 +1520,12 @@ img { display: block; max-width: 100%; }
 }
 .shop-footer p { font-size: 0.78rem; color: var(--clr-cream-muted); }
 .shop-footer span { color: var(--clr-red); }
+.footer-copyright {
+  font-size: 0.68rem !important;
+  opacity: 0.45;
+  margin-top: 0.25rem;
+  line-height: 1.4;
+}
 .footer-note {
   font-size: 0.68rem !important;
   opacity: 0.55;
