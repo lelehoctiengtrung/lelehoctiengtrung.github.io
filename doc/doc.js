@@ -79,6 +79,40 @@ const FALLBACK_DOCS = {
     cons: 'Cần in màu để đạt hiệu quả thị giác tốt nhất | Chưa có file nghe giọng phát âm trực tiếp',
     who_for: 'Dành cho các bé mầm non, học sinh tiểu học mới bắt đầu làm quen với tiếng Trung, hoặc các bậc phụ huynh/giáo viên muốn tìm tài liệu trực quan dạy cho bé.',
     preview_images: '../POSTS/images/DOC-RADICALS_cover_flat.png,../POSTS/images/DOC-RADICALS_page3_flat.png'
+  },
+  'DOC-STREETFOOD': {
+    id: 'DOC-STREETFOOD',
+    title: 'Street Food Tiếng Trung Cực Dễ',
+    desc: 'Tổng hợp tên gọi các món ăn đường phố Trung Hoa và mẫu câu giao tiếp tự tin khi đi ăn quán lề đường.',
+    category: 'infographics',
+    icon: '🍜',
+    icon_color: '#E58F65',
+    pages: 'Bộ ảnh · 3 ảnh',
+    level: '2',
+    level_text: 'Giao tiếp cơ bản',
+    drive_url: 'https://drive.google.com/file/d/1KF_c7CHdSljkl8Rme-C5LZpI0h9XMRAE/view?usp=sharing',
+    content: 'Khám phá văn hóa ẩm thực đường phố Trung Hoa qua bộ ảnh Infographics sinh động! Từ bánh bao chiên, 章鱼烧 (bánh bạch tuộc) cho đến các món tráng miệng hấp dẫn khác.\n\nMỗi bức ảnh đều được thiết kế trực quan, dễ hiểu, đi kèm phiên âm chuẩn và mẫu câu giao tiếp thông dụng giúp bạn tự tin gọi món khi đi du lịch hoặc ăn uống tại các quán ăn Trung Quốc.',
+    pros: 'Hình ảnh minh họa món ăn trực quan sinh động | Từ vựng thực tế và mẫu câu giao tiếp gọi món đi kèm | Định dạng 9:16 tối ưu hiển thị trên điện thoại',
+    cons: 'Mới chỉ có 3 món ăn phổ biến, chưa bao quát toàn bộ ẩm thực | Cần tự luyện phát âm để giao tiếp mượt mà hơn',
+    who_for: 'Dành cho tất cả các bạn yêu thích ẩm thực, đang học tiếng Trung giao tiếp cơ bản hoặc chuẩn bị đi du lịch Trung Quốc.',
+    preview_images: '../POSTS/images/street_food_意式冰淇淋.png,../POSTS/images/street_food_泰式炒金边粉.png,../POSTS/images/street_food_章鱼烧.png'
+  },
+  'DOC-WORDORDERS': {
+    id: 'DOC-WORDORDERS',
+    title: 'Sổ Tay Trật Tự Từ Trong Câu',
+    desc: 'Bí kíp sắp xếp thứ tự từ trong câu tiếng Trung chuẩn xác, không bị lỗi dịch ngược hay nói bồi.',
+    category: 'infographics',
+    icon: '🔤',
+    icon_color: '#4A90E2',
+    pages: 'Bộ ảnh · 6 ảnh',
+    level: '3',
+    level_text: 'Trung cấp · HSK 2-3',
+    drive_url: 'https://drive.google.com/file/d/1KF_c7CHdSljkl8Rme-C5LZpI0h9XMRAE/view?usp=sharing',
+    content: 'Trật tự từ trong câu (Word Orders) luôn là một trong những chủ đề ngữ pháp gây nhầm lẫn nhất cho người học tiếng Trung tại Việt Nam do sự tương đồng và khác biệt tinh tế giữa hai ngôn ngữ.\n\nBộ ảnh Infographics này tổng hợp các cặp từ dễ gây nhầm lẫn như: 故事 (câu chuyện) vs 事故 (sự cố), 牛奶 (sữa bò) vs 奶牛 (bò sữa), 蜜蜂 (con ong) vs 蜂蜜 (mật ong)... qua hình ảnh so sánh trực quan, dễ nhớ, giúp bạn nắm vững bản chất và tránh các lỗi sai kinh điển khi nói và viết!',
+    pros: 'Hình ảnh thiết kế đẹp mắt, so sánh trực quan các cặp từ đảo ngược | Giúp ghi nhớ từ vựng sâu hơn qua việc liên tưởng hình ảnh | Tránh các lỗi sai ngữ pháp và ngữ nghĩa phổ biến',
+    cons: 'Tài liệu tập trung vào các cặp từ cụ thể, chưa đi sâu vào ngữ pháp toàn diện | Cần luyện tập đặt câu thực tế',
+    who_for: 'Dành cho các bạn đang học tiếng Trung ở mọi trình độ, đặc biệt là những ai hay bị nhầm lẫn trật tự từ hoặc muốn cải thiện tư duy diễn đạt tự nhiên.',
+    preview_images: '../POSTS/images/word_order_故事_事故.png,../POSTS/images/word_order_牛奶_奶牛.png,../POSTS/images/word_order_现实_实现.png,../POSTS/images/word_order_蜜蜂_蜂蜜.png,../POSTS/images/word_order_语法_法语.png,../POSTS/images/word_order_马上_上马.png'
   }
 };
 
@@ -284,6 +318,41 @@ function renderDoc(doc) {
   dlBtn.href = doc.drive_url || '#';
   dlBtnBottom.href = doc.drive_url || '#';
 
+  const lang = window.i18n ? window.i18n.currentLang : 'vi';
+  if (doc.category === 'infographics') {
+    const dlText = {
+      vi: 'Tải bộ ảnh ngay',
+      en: 'Download Image Set',
+      zh: '下载图集'
+    }[lang] || 'Tải bộ ảnh ngay';
+    
+    const dlSpan = dlBtn.querySelector('span');
+    if (dlSpan) dlSpan.textContent = dlText;
+    const dlBottomSpan = dlBtnBottom.querySelector('span');
+    if (dlBottomSpan) dlBottomSpan.textContent = dlText;
+  } else {
+    const dlText = {
+      vi: 'Tải PDF ngay',
+      en: 'Download PDF',
+      zh: '下载PDF'
+    }[lang] || 'Tải PDF ngay';
+    
+    const dlSpan = dlBtn.querySelector('span');
+    if (dlSpan) dlSpan.textContent = dlText;
+    const dlBottomSpan = dlBtnBottom.querySelector('span');
+    if (dlBottomSpan) dlBottomSpan.textContent = dlText;
+  }
+
+  // Content grid class for infographics layout
+  const contentGrid = document.querySelector('.doc-content-grid');
+  if (contentGrid) {
+    if (doc.category === 'infographics') {
+      contentGrid.classList.add('is-infographics');
+    } else {
+      contentGrid.classList.remove('is-infographics');
+    }
+  }
+
   // Share action
   const shareBtn = document.getElementById('btn-share');
   shareBtn.dataset.title = doc.title;
@@ -322,7 +391,7 @@ function renderDoc(doc) {
   }
 
   // Preview Gallery
-  renderPreviewGallery(doc.preview_images);
+  renderPreviewGallery(doc.preview_images, doc.category === 'infographics');
 
   // Setup click listeners
   setupInteractions();
@@ -333,7 +402,7 @@ function renderDoc(doc) {
 }
 
 // ── Render Preview Gallery ──────────────────────────────────
-function renderPreviewGallery(previewImagesStr) {
+function renderPreviewGallery(previewImagesStr, isInfographics) {
   const galleryEl = document.getElementById('doc-gallery');
   if (!galleryEl) return;
 
@@ -345,8 +414,13 @@ function renderPreviewGallery(previewImagesStr) {
   const urls = previewImagesStr.split(',').map(u => u.trim()).filter(Boolean);
   if (!urls.length) { galleryEl.style.display = 'none'; return; }
 
+  const lang = window.i18n ? window.i18n.currentLang : 'vi';
+  const titleText = isInfographics
+    ? ({ vi: 'Bộ ảnh Infographics', en: 'Infographics Gallery', zh: '信息图集' }[lang] || 'Bộ ảnh Infographics')
+    : ({ vi: 'Trang xem trước', en: 'Preview Pages', zh: '预览页面' }[lang] || 'Trang xem trước');
+
   galleryEl.innerHTML = `
-    <div class="section-pill"><span>📸</span> Trang xem trước</div>
+    <div class="section-pill"><span>📸</span> ${titleText}</div>
     <div class="gallery-grid" id="gallery-grid">
       ${urls.map((url, i) => `
         <button class="gallery-thumb" onclick="openLightbox(${i})"
@@ -484,13 +558,14 @@ function setupInteractions() {
 
 // ── Helpers ───────────────────────────────────────────────
 function getCategoryLabel(cat) {
-  const map = {
-    'vocab': 'Từ vựng',
-    'grammar': 'Ngữ pháp',
-    'hsk': 'Thi HSK',
-    'writing': 'Luyện viết'
-  };
-  return map[cat] || 'Tài liệu';
+  const lang = window.i18n ? window.i18n.currentLang : 'vi';
+  const viMap = { 'vocab': 'Từ vựng', 'grammar': 'Ngữ pháp', 'hsk': 'Thi HSK', 'writing': 'Luyện viết', 'infographics': 'Infographics' };
+  const enMap = { 'vocab': 'Vocab', 'grammar': 'Grammar', 'hsk': 'HSK Exam', 'writing': 'Handwriting', 'infographics': 'Infographics' };
+  const zhMap = { 'vocab': '词汇', 'grammar': '语法', 'hsk': 'HSK考试', 'writing': '字帖', 'infographics': '信息图' };
+  
+  const maps = { vi: viMap, en: enMap, zh: zhMap };
+  const activeMap = maps[lang] || viMap;
+  return activeMap[cat] || cat;
 }
 
 function formatText(text) {

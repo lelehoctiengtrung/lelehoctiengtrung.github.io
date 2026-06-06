@@ -486,3 +486,40 @@
   .doc-title { font-size: 1.5rem; }
   .doc-highlights { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   Infographics Layout overrides (Full width with reordered grid)
+   ============================================================ */
+.doc-content-grid.is-infographics {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.doc-content-grid.is-infographics .doc-post-body {
+  display: contents;
+}
+.doc-content-grid.is-infographics .doc-body-section:first-child {
+  order: 1;
+}
+.doc-content-grid.is-infographics .doc-preview-column {
+  order: 2;
+  position: static;
+  width: 100%;
+}
+.doc-content-grid.is-infographics .doc-highlights {
+  order: 3;
+}
+.doc-content-grid.is-infographics .doc-target {
+  order: 4;
+}
+.doc-content-grid.is-infographics .gallery-grid {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+
+@media (max-width: 480px) {
+  .doc-content-grid.is-infographics .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+}
