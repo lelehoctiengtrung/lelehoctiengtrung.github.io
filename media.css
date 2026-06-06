@@ -192,23 +192,35 @@
   text-align: center;
 }
 
-.video-card-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 1.35;
-  margin: 0;
-  color: #e2e8f0;
+.video-card-title-zh {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 0.25rem 0;
+  color: #ffb834;
+  font-family: 'Noto Serif SC', serif;
+  text-align: center;
   transition: color 0.3s ease;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
   word-break: break-word;
 }
 
-.video-card:hover .video-card-title {
+.video-card-title-vi {
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.35;
+  margin: 0;
+  color: #ccd6f6;
+  text-align: center;
+  transition: color 0.3s ease;
+  opacity: 0.9;
+  word-break: break-word;
+}
+
+.video-card:hover .video-card-title-zh {
   color: #ff7b90;
+}
+.video-card:hover .video-card-title-vi {
+  color: #ffffff;
 }
 
 /* Inline YouTube Player */
