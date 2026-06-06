@@ -1838,7 +1838,7 @@ function setupDocsSheet() {
     ['DOC-500','500 Từ Vựng Thông Dụng Nhất','Danh sách 500 từ hay gặp nhất trong tiếng Trung hàng ngày, kèm pinyin và nghĩa tiếng Việt. Phù hợp cho người mới bắt đầu.','vocab','📝','#D4A843','PDF · 12 trang','2','Cơ bản · HSK 1–2','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','','',''],
     ['DOC-GRAMMAR','Ngữ Pháp Tiếng Trung Cơ Bản','Tổng hợp các cấu trúc ngữ pháp quan trọng nhất, ví dụ minh hoạ rõ ràng bằng tiếng Việt. Học xong nói câu đúng ngay.','grammar','📚','#C94535','PDF · 28 trang','3','Trung cấp · HSK 2–3','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','','',''],
     ['DOC-STREETFOOD','Ẩm thực đường phố Trung Hoa','','infographics','🍜','#E58F65','','','','','','','','','POSTS/images/thuc_chien_cover_16_9.png',''],
-    ['DOC-WORDORDERS','Sổ tay trật tự từ','','infographics','🔤','#4A90E2','','','','','','','','','POSTS/images/vs_vocabulary_cover_16_9.png','']
+    ['DOC-WORDORDERS','Trật tự từ','','infographics','🔤','#4A90E2','','','','','','','','','POSTS/images/vs_vocabulary_cover_16_9.png','']
   ];
   sheet.getRange(3,1,docs.length,h.length).setValues(docs);
   sheet.setFrozenRows(2);
