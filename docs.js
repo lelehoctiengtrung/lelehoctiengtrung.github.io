@@ -72,11 +72,11 @@ const FALLBACK_DOCS = [
     category: 'infographics',
     icon: '🍜',
     icon_color: '#E58F65',
-    pages: 'Bộ ảnh · 3 ảnh',
+    pages: 'Bộ ảnh · 4 ảnh',
     level: '2',
     level_text: 'Giao tiếp cơ bản',
     drive_url: 'https://drive.google.com/file/d/1KF_c7CHdSljkl8Rme-C5LZpI0h9XMRAE/view?usp=sharing',
-    preview_images: 'POSTS/images/street_food_意式冰淇淋.png,POSTS/images/street_food_泰式炒金边粉.png,POSTS/images/street_food_章鱼烧.png'
+    preview_images: 'POSTS/images/street_food_意式冰淇淋.png,POSTS/images/street_food_泰式炒金边粉.png,POSTS/images/street_food_章鱼烧.png,POSTS/images/street_food_塔可饼.png'
   },
   {
     id: 'DOC-WORDORDERS',
@@ -118,7 +118,7 @@ const DOC_TRANSLATIONS = {
       title: 'Easy Chinese Street Food Guide',
       desc: 'A collection of Chinese street food names and practical speaking phrases for dining out confidently.',
       level_text: 'Basic Speaking',
-      pages: 'Images · 3 sheets'
+      pages: 'Images · 4 sheets'
     },
     'DOC-WORDORDERS': {
       title: 'Chinese Word Order Handbook',
@@ -150,7 +150,7 @@ const DOC_TRANSLATIONS = {
       title: '趣味汉语街头美食指南',
       desc: '整理了中国街头常见美食名称与实用就餐交际口语，让您轻松点餐。',
       level_text: '基础口语',
-      pages: '图集 · 3 张'
+      pages: '图集 · 4 张'
     },
     'DOC-WORDORDERS': {
       title: '汉语语序与句型手册',

@@ -606,6 +606,26 @@ const ALL_VIDEOS = [
     "order": 11
   },
   {
+    "id": "kLQ1e0Jb-1M",
+    "title_zh": "割韭菜",
+    "title_vi": "Luộc rau (Cắt hẹ) - Trục lợi, lùa gà",
+    "youtube_url": "https://www.youtube.com/watch?v=kLQ1e0Jb-1M",
+    "category": "Tiếng lóng",
+    "desc": "Tìm hiểu từ lóng 割韭菜 chỉ việc bị doanh nghiệp hoặc khóa học kém chất lượng trục lợi.",
+    "thumbnail": "POSTS/images/luoc_rau_thumbnail.png",
+    "order": 12
+  },
+  {
+    "id": "pM9mY3c7aM0",
+    "title_zh": "海王",
+    "title_vi": "Thả thính - Chúa tể đại dương, bắt cá nhiều tay",
+    "youtube_url": "https://www.youtube.com/watch?v=pM9mY3c7aM0",
+    "category": "Tiếng lóng",
+    "desc": "Tìm hiểu từ lóng 海王 chỉ những kẻ lăng nhăng, thích tán tỉnh nhiều người cùng lúc.",
+    "thumbnail": "POSTS/images/tha_thinh_thumbnail.png",
+    "order": 13
+  },
+  {
     "id": "BoXL0hnHSZo",
     "title_zh": "一点儿 vs 有点儿",
     "title_vi": "Phân biệt cách nói Một chút",
@@ -688,7 +708,7 @@ const ALL_VIDEOS = [
   },
   {
     "id": "ys2Qxpz9cPM",
-    "title_zh": "Nhờ chụp ảnh",
+    "title_zh": "帮忙拍照",
     "title_vi": "Giao tiếp Nhờ chụp ảnh giúp",
     "youtube_url": "https://www.youtube.com/shorts/ys2Qxpz9cPM",
     "category": "Tiếng Trung thực chiến",
@@ -697,7 +717,7 @@ const ALL_VIDEOS = [
   },
   {
     "id": "Pkj1cLfuhGg",
-    "title_zh": "Đón taxi",
+    "title_zh": "打车",
     "title_vi": "Giao tiếp Đón taxi trên đường",
     "youtube_url": "https://www.youtube.com/shorts/Pkj1cLfuhGg",
     "category": "Tiếng Trung thực chiến",
@@ -706,7 +726,7 @@ const ALL_VIDEOS = [
   },
   {
     "id": "dxyWVUi7YdQ",
-    "title_zh": "Gặp bạn cũ",
+    "title_zh": "遇到老朋友",
     "title_vi": "Giao tiếp Gặp gỡ bạn cũ lâu năm",
     "youtube_url": "https://www.youtube.com/shorts/dxyWVUi7YdQ",
     "category": "Tiếng Trung thực chiến",
@@ -715,8 +735,8 @@ const ALL_VIDEOS = [
   },
   {
     "id": "aUMowaLuS3Y",
-    "title_zh": "Hỏi thăm sức khỏe",
-    "title_vi": "Giao tiếp Hỏi thăm sức khỏe xã giao",
+    "title_zh": "问候身体",
+    "title_vi": "Giao tiếp Hỏi thăm sức khỏe",
     "youtube_url": "https://www.youtube.com/shorts/aUMowaLuS3Y",
     "category": "Tiếng Trung thực chiến",
     "desc": "Cách hỏi thăm sức khỏe thông thường và lịch sự.",
@@ -724,8 +744,8 @@ const ALL_VIDEOS = [
   },
   {
     "id": "S4v2kkTVGHk",
-    "title_zh": "Đặt phòng khách sạn",
-    "title_vi": "Giao tiếp Đặt phòng khách sạn trực tiếp",
+    "title_zh": "预订酒店",
+    "title_vi": "Giao tiếp Đặt phòng khách sạn",
     "youtube_url": "https://www.youtube.com/shorts/S4v2kkTVGHk",
     "category": "Tiếng Trung thực chiến",
     "desc": "Mẫu câu hội thoại nhận phòng và đặt phòng.",
@@ -733,8 +753,8 @@ const ALL_VIDEOS = [
   },
   {
     "id": "zcFH0pis5HU",
-    "title_zh": "Gọi trà sữa",
-    "title_vi": "Giao tiếp Gọi trà sữa chuẩn như người bản xứ",
+    "title_zh": "点奶茶",
+    "title_vi": "Giao tiếp Gọi trà sữa",
     "youtube_url": "https://www.youtube.com/shorts/zcFH0pis5HU",
     "category": "Tiếng Trung thực chiến",
     "desc": "Mẫu câu thực chiến gọi trà sữa, lựa chọn đường đá và các loại topping.",
@@ -742,8 +762,8 @@ const ALL_VIDEOS = [
   },
   {
     "id": "_saPWt75YKI",
-    "title_zh": "Hỏi đường đi ga",
-    "title_vi": "Giao tiếp Hỏi đường đi ga tàu điện",
+    "title_zh": "问路",
+    "title_vi": "Giao tiếp Hỏi đường đi ga tàu",
     "youtube_url": "https://www.youtube.com/shorts/_saPWt75YKI",
     "category": "Tiếng Trung thực chiến",
     "desc": "Mẫu câu giao tiếp thực tế khi bạn cần hỏi đường tại ga tàu.",
@@ -751,7 +771,7 @@ const ALL_VIDEOS = [
   },
   {
     "id": "q4RitAE5OWI",
-    "title_zh": "Mặc cả quần áo",
+    "title_zh": "砍价",
     "title_vi": "Giao tiếp Mặc cả khi mua quần áo",
     "youtube_url": "https://www.youtube.com/shorts/q4RitAE5OWI",
     "category": "Tiếng Trung thực chiến",
