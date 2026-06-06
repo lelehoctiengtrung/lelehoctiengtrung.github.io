@@ -1525,6 +1525,24 @@ img { display: block; max-width: 100%; }
   opacity: 0.45;
   margin-top: 0.25rem;
   line-height: 1.4;
+  transition: opacity 0.25s ease;
+}
+.footer-copyright:hover {
+  opacity: 0.8;
+}
+.footer-link {
+  color: var(--clr-gold);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.25s ease, text-decoration 0.25s ease;
+}
+.footer-link:hover {
+  color: var(--clr-red);
+  text-decoration: underline;
+}
+.footer-divider {
+  margin: 0 0.3rem;
+  color: var(--clr-border);
 }
 .footer-note {
   font-size: 0.68rem !important;
@@ -1701,4 +1719,41 @@ img { display: block; max-width: 100%; }
   .btn-request-submit {
     margin-top: 0;
   }
+}
+
+/* ===================================================
+   Copyright & Terms of Use Page Styles
+   =================================================== */
+.copyright-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 1.5rem auto 3rem auto;
+}
+.copyright-section {
+  padding: 1.8rem;
+  border-radius: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.copyright-section:hover {
+  transform: translateY(-2px);
+}
+.copyright-section h2 {
+  font-size: 1.15rem;
+  color: var(--clr-gold);
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.copyright-section p {
+  font-size: 0.92rem;
+  color: var(--clr-cream);
+  line-height: 1.6;
+  opacity: 0.9;
+}
+.copyright-hero {
+  text-align: center;
+  margin-bottom: 2rem;
 }
