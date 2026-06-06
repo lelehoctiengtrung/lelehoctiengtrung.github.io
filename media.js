@@ -5,6 +5,7 @@
 
 const SHEET_ID   = '1n62ZrrUJlnf8CDU2gSxW3jPCxdkwE1GFpBBDJQLEg0o';
 const SHEET_NAME = 'media';
+const BLACKLISTED_YOUTUBE_IDS = ['Vz52s5wXhR4']; // Skip unavailable/broken videos (e.g. "chữ AN")
 const PAGE_SIZE = 8; // Số lượng video trên mỗi trang (2 hàng, mỗi hàng 4 video trên desktop)
 
 // ---- Predefined Video Database (Offline & Instant Load) ----
@@ -1084,7 +1085,11 @@ async function loadVideosFromSheet() {
       const order = parseInt(getVal(colMap.order, String(rowIndex))) || rowIndex;
 
       return { id, title, youtube_url, category, desc, order };
-    }).filter(Boolean);
+    }).filter(v => {
+      if (!v) return false;
+      const ytId = getYouTubeId(v.youtube_url);
+      return !BLACKLISTED_YOUTUBE_IDS.includes(ytId);
+    });
 
     if (sheetVideos.length > 0) {
       // Merge sheet videos with the predefined local database by youtube_url
