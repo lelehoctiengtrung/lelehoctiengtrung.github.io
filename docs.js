@@ -350,14 +350,16 @@ function renderDocsList(docs) {
     card.dataset.category = doc.category;
     card.id = `doc-${doc.id.toLowerCase()}`;
 
-
-
     card.className = 'doc-big-card';
     const levelNum = parseInt(doc.level) || 2;
     let dotsHtml = '';
     for (let d = 1; d <= 5; d++) {
       dotsHtml += `<span class="level-dot${d <= levelNum ? '' : ' empty'}"></span>`;
     }
+
+    const cardBtnText = doc.category === 'infographics'
+      ? ({ vi: 'Xem bộ ảnh', en: 'View Images', zh: '查看图集' }[lang] || 'Xem bộ ảnh')
+      : detailBtnText;
 
     card.innerHTML = `
       <div class="doc-big-top">
@@ -379,7 +381,7 @@ function renderDocsList(docs) {
             <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
           </svg>
-          ${detailBtnText}
+          ${cardBtnText}
         </a>
         <button class="btn-share-big" data-title="${doc.title}" data-url="${window.location.origin}/doc/doc.html?id=${doc.id}" id="share-${doc.id.toLowerCase()}" aria-label="Chia sẻ tài liệu">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

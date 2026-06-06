@@ -319,18 +319,28 @@ function renderDoc(doc) {
   dlBtnBottom.href = doc.drive_url || '#';
 
   const lang = window.i18n ? window.i18n.currentLang : 'vi';
+  const ctaNote = document.querySelector('.cta-note');
+  
   if (doc.category === 'infographics') {
-    const dlText = {
-      vi: 'Tải bộ ảnh ngay',
-      en: 'Download Image Set',
-      zh: '下载图集'
-    }[lang] || 'Tải bộ ảnh ngay';
-    
-    const dlSpan = dlBtn.querySelector('span');
-    if (dlSpan) dlSpan.textContent = dlText;
-    const dlBottomSpan = dlBtnBottom.querySelector('span');
-    if (dlBottomSpan) dlBottomSpan.textContent = dlText;
+    dlBtn.style.display = 'none';
+    if (dlBtnBottom) {
+      const bCta = dlBtnBottom.closest('.doc-bottom-cta');
+      if (bCta) bCta.style.display = 'none';
+    }
+    if (ctaNote) {
+      ctaNote.textContent = {
+        vi: 'Học trực quan qua hình ảnh, chia sẻ cho bạn bè cùng học nhé! 💚',
+        en: 'Visual learning via images, share it with your friends! 💚',
+        zh: '通过图表直观学习，分享给朋友一起学吧！💚'
+      }[lang] || 'Học trực quan qua hình ảnh, chia sẻ cho bạn bè cùng học nhé! 💚';
+    }
   } else {
+    dlBtn.style.display = '';
+    if (dlBtnBottom) {
+      const bCta = dlBtnBottom.closest('.doc-bottom-cta');
+      if (bCta) bCta.style.display = '';
+    }
+    
     const dlText = {
       vi: 'Tải PDF ngay',
       en: 'Download PDF',
@@ -341,6 +351,14 @@ function renderDoc(doc) {
     if (dlSpan) dlSpan.textContent = dlText;
     const dlBottomSpan = dlBtnBottom.querySelector('span');
     if (dlBottomSpan) dlBottomSpan.textContent = dlText;
+
+    if (ctaNote) {
+      ctaNote.textContent = {
+        vi: 'Tải về trực tiếp từ Google Drive, học được trên điện thoại & máy tính.',
+        en: 'Download directly from Google Drive, learn on phones & computers.',
+        zh: '从 Google Drive 直接下载，可在手机和电脑上学习。'
+      }[lang] || 'Tải về trực tiếp từ Google Drive, học được trên điện thoại & máy tính.';
+    }
   }
 
   // Content grid class for infographics layout
