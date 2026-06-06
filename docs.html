@@ -35,10 +35,18 @@
 
     <!-- Header -->
     <header class="shop-header">
-      <a href="index.html" class="back-btn" id="btn-back" aria-label="Quay lại trang chính">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-        <span data-i18n="nav_home">Trang chính</span>
-      </a>
+      <div class="header-nav">
+        <a href="index.html" class="back-btn" id="btn-back" aria-label="Quay lại trang chính">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          <span data-i18n="nav_home">Trang chính</span>
+        </a>
+        <a href="media.html" class="back-btn" id="btn-back-media" aria-label="Quay lại Video bài học">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <span data-i18n="nav_media">Video bài học</span>
+        </a>
+      </div>
       <div class="shop-brand">
         <img src="logo.png" alt="Logo Lê Lê" class="shop-logo" width="40" height="40" />
         <div>
@@ -93,6 +101,8 @@
       <button class="filter-tab" data-filter="grammar" role="tab" aria-selected="false" id="tab-grammar" data-i18n="docs_tab_grammar">Ngữ pháp</button>
       <button class="filter-tab" data-filter="hsk" role="tab" aria-selected="false" id="tab-hsk" data-i18n="docs_tab_hsk">Thi HSK</button>
       <button class="filter-tab" data-filter="writing" role="tab" aria-selected="false" id="tab-writing" data-i18n="docs_tab_writing">Luyện viết</button>
+      <button class="filter-tab" data-filter="street_food" role="tab" aria-selected="false" id="tab-street-food" data-i18n="docs_tab_street_food">Street Food</button>
+      <button class="filter-tab" data-filter="word_orders" role="tab" aria-selected="false" id="tab-word-orders" data-i18n="docs_tab_word_orders">Word Orders</button>
     </div>
 
     <!-- Documents grid -->

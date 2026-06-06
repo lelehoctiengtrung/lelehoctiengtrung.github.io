@@ -63,73 +63,22 @@ const FALLBACK_DOCS = {
     who_for: 'Dành cho các bạn đã có vốn từ vựng cơ bản và muốn học cách ghép câu chính xác (HSK 2-3).',
     preview_images: '../book3.png,../book5.png'
   },
-  'DOC-HSK': {
-    id: 'DOC-HSK',
-    title: 'Đề Thi Thử HSK 1 & 2',
-    desc: 'Bộ đề thi thử HSK cấp 1 và 2 với đáp án đầy đủ. Luyện xong tự tin thi thật! Lê Lê đã dùng đề này để ôn thi.',
-    category: 'hsk',
-    icon: '🎯',
-    icon_color: '#3b7fd4',
-    pages: 'PDF · 35 trang · Có đáp án',
-    level: '2',
-    level_text: 'Cơ bản · HSK 1–2',
-    drive_url: 'https://drive.google.com/LINK_GOOGLE_DRIVE',
-    content: 'Học mà không đi đôi với hành thì rất khó để biết thực lực của mình đến đâu. Kỳ thi HSK chính là thước đo chuẩn xác nhất cho quá trình học tiếng Trung của bạn.\n\nĐể giúp các bạn cởi bỏ tâm lý lo lắng trước phòng thi, Lê Lê đã tổng hợp bộ **Đề Thi Thử HSK 1 & 2** này. Đây là các bộ đề được thiết kế theo đúng form đề thi thật chuẩn của Hán Khảo Quốc Tế (CTCSOL).\n\nBộ đề bao gồm cả phần Nghe (Tingli) và phần Đọc hiểu (Yuedu) với thời gian làm bài giống như đi thi thật. Đặc biệt, ở cuối tài liệu có phần Đáp án chi tiết và giải thích lý do tại sao chọn đáp án đó. Lê Lê khuyên các bạn hãy tự làm bài nghiêm túc, canh thời gian chuẩn rồi mới tra đáp án để đạt hiệu quả ôn thi tốt nhất nhé!',
-    pros: 'Cấu trúc đề bám sát đề thi thật 100% | Có đáp án giải thích chi tiết | File nghe rõ ràng, tốc độ chuẩn',
-    cons: 'Chỉ phù hợp để luyện đề trước thi | Lượng kiến thức HSK 1-2 khá đơn giản',
-    who_for: 'Phù hợp cho các bạn đang chuẩn bị bước vào kỳ thi HSK 1 hoặc HSK 2 muốn thử sức và làm quen với áp lực phòng thi.',
-    preview_images: '../book4.png,../book2.png'
-  },
-  'DOC-WRITING': {
-    id: 'DOC-WRITING',
-    title: 'Bảng Luyện Viết Hán Tự',
-    desc: 'Tờ luyện viết nét chữ theo ô vuông chuẩn với 100 chữ Hán cơ bản nhất. In ra luyện mỗi ngày giúp nhớ chữ rất nhanh!',
-    category: 'writing',
-    icon: '✍️',
-    icon_color: '#7c5cbf',
-    pages: 'PDF · In được',
-    level: '1',
-    level_text: 'Người mới · 100 chữ',
-    drive_url: 'https://drive.google.com/LINK_GOOGLE_DRIVE',
-    content: 'Chữ Hán là chữ biểu ý, không phải chữ biểu âm như tiếng Việt. Đó chính là lý do viết chữ Hán luôn là "nỗi sợ hãi" lớn đối với nhiều bạn.\n\nTài liệu **Bảng Luyện Viết Hán Tự** này được thiết kế để giải quyết triệt để vấn đề này. Lê Lê đã thiết kế các ô vuông chuẩn (ô chữ Mễ 米) kèm theo hướng dẫn nét viết (quy tắc bút thuận) cho 100 chữ Hán thông dụng nhất.\n\nViệc luyện viết trong ô Mễ giúp nét chữ của bạn luôn cân đối, không bị lệch hoặc mất cân bằng. Bạn chỉ cần tải file PDF này về, in ra khổ giấy A4 là đã có ngay một cuốn vở tập viết xịn xò. Mỗi ngày dành 15-20 phút luyện viết vài trang, nét chữ của bạn sẽ nhanh chóng đẹp và ngay ngắn như người bản xứ!',
-    pros: 'Thiết kế ô ly chuẩn, rõ nét | Có thứ tự nét vẽ rõ ràng cho từng chữ | File PDF in ấn cực kỳ dễ dàng',
-    cons: 'Chỉ giới hạn trong 100 chữ cơ bản | Chất lượng in phụ thuộc vào máy in của bạn',
-    who_for: 'Cực kỳ phù hợp cho người mới bắt đầu làm quen với chữ Hán, muốn luyện viết chữ đẹp và chuẩn ngay từ đầu.',
-    preview_images: '../book4.png,../book1.png'
-  },
-  'DOC-CHUDE': {
-    id: 'DOC-CHUDE',
-    title: 'Từ Vựng Theo Chủ Đề',
-    desc: 'Từ vựng được phân loại theo 15 chủ đề thực tế: gia đình, công việc, du lịch, ăn uống… Học nhanh, nhớ lâu!',
+  'DOC-RADICALS': {
+    id: 'DOC-RADICALS',
+    title: '30 Bộ Thủ Tiếng Trung Thần Kỳ Cho Bé',
+    desc: 'Tài liệu 30 bộ thủ tiếng Trung thông dụng nhất cho các bé, được thiết kế sinh động, nhiều màu sắc và hình minh họa siêu dễ thương!',
     category: 'vocab',
-    icon: '🗂️',
-    icon_color: '#2ea078',
-    pages: 'PDF · 20 trang',
-    level: '2',
-    level_text: 'Sơ cấp · HSK 1–3',
-    drive_url: 'https://drive.google.com/LINK_GOOGLE_DRIVE',
-    content: 'Học từ vựng theo kiểu liệt kê bảng chữ cái rất dễ gây nhàm chán và khó nhớ. Một trong những phương pháp siêu đẳng giúp Lê Lê nhớ từ nhanh nhất chính là học theo cụm chủ đề.\n\nTài liệu **Từ Vựng Theo Chủ Đề** bao gồm từ vựng của 15 chủ đề phổ biến nhất trong cuộc sống: từ gia đình, bạn bè, ăn uống, mua sắm cho đến du lịch, công việc... Việc học các từ có liên quan đến nhau giúp não bộ liên kết thông tin tốt hơn và tăng khả năng phản xạ khi giao tiếp.\n\nMỗi từ đều đi kèm phiên âm chữ Hán và dịch nghĩa tiếng Việt. Tài liệu được thiết kế màu sắc rất dễ thương để kích thích thị giác, giúp bạn học say mê hơn và không bị mỏi mắt!',
-    pros: 'Học từ vựng theo sơ đồ liên tưởng | Chủ đề cực kỳ thực tế và gần gũi | Trình bày sinh động, bắt mắt',
-    cons: 'Lượng từ vựng lớn ở mỗi chủ đề | Cần kết hợp ôn tập thường xuyên',
-    who_for: 'Dành cho các bạn trình độ sơ cấp đến trung cấp (HSK 1-3) muốn mở rộng nhanh vốn từ vựng thực tế để giao tiếp hàng ngày.',
-    preview_images: '../book2.png,../book3.png'
-  },
-  'DOC-HSK3': {
-    id: 'DOC-HSK3',
-    title: 'Đề Thi Thử HSK 3',
-    desc: '3 đề thi thử HSK 3 đầy đủ các phần nghe – đọc – viết với đáp án chi tiết. Thích hợp ôn luyện trước kỳ thi.',
-    category: 'hsk',
-    icon: '📋',
-    icon_color: '#3b7fd4',
-    pages: 'PDF · 42 trang · Có đáp án',
-    level: '3',
-    level_text: 'Trung cấp · HSK 3',
-    drive_url: 'https://drive.google.com/LINK_GOOGLE_DRIVE',
-    content: 'Khi lên đến HSK 3, kỳ thi đã tăng độ khó đáng kể vì xuất hiện thêm phần Viết (Xiezuo) - nơi bạn bắt đầu phải tự viết chữ Hán và sắp xếp câu hoàn chỉnh.\n\nTài liệu **Đề Thi Thử HSK 3** này gồm 3 bộ đề được Lê Lê tuyển chọn kỹ lưỡng, bám sát cấu trúc đề thi chính thức mới nhất. Mỗi đề thi đều có đủ 3 phần: Nghe, Đọc và Viết.\n\nĐặc biệt, ở phần Viết, tài liệu cung cấp hướng dẫn ghép câu chi tiết, phân tích cấu trúc ngữ pháp từng câu để bạn hiểu tại sao lại sắp xếp từ theo thứ tự đó. Kèm theo đó là đáp án chi tiết cho toàn bộ các đề. Hãy in ra làm bài nghiêm túc để tự tin 100% giật điểm cao HSK 3 nhé!',
-    pros: 'Có phần hướng dẫn làm bài viết cực kỳ chi tiết | Trình bày chuyên nghiệp, rõ nét | Đáp án đầy đủ',
-    cons: 'File PDF khá dài (42 trang) nên in ấn tốn kém hơn | Cần rèn luyện viết chữ Hán cứng cáp trước',
-    who_for: 'Thích hợp cho các bạn chuẩn bị thi HSK 3 muốn làm quen cấu trúc đề thi và đặc biệt muốn đạt điểm tối đa phần viết câu.',
-    preview_images: '../book5.png,../book4.png'
+    icon: '🎨',
+    icon_color: '#FF7B90',
+    pages: 'PDF · 17 trang · Màu sắc',
+    level: '1',
+    level_text: 'Mầm non & Tiểu học',
+    drive_url: 'https://drive.google.com/file/d/1KF_c7CHdSljkl8Rme-C5LZpI0h9XMRAE/view?usp=sharing',
+    content: 'Chào các phụ huynh và các bé! Lê Lê đây. Bộ thủ giống như những mảnh ghép logo kỳ diệu, khi ghép chúng lại với nhau sẽ tạo nên các chữ Hán vô cùng sinh động. Nhằm giúp các bé tiếp cận chữ Hán một cách tự nhiên nhất, mình đã thiết kế bộ tài liệu **30 Bộ Thủ Tiếng Trung Thần Kỳ Cho Bé** này.\n\nĐược biên soạn theo phong cách trực quan sinh động với hình minh họa ngộ nghĩnh, màu sắc pastel tươi sáng, các câu đố nhỏ và bài hát/lời gợi ý cực kỳ dễ thương, tài liệu này sẽ biến việc học chữ Hán thành một trò chơi khám phá đầy hấp dẫn. Các con sẽ học được cách liên tưởng bộ thủ với hình dáng thực tế, ví dụ bộ Thủy (nước) giống như 3 giọt nước nhỏ, bộ Mộc (cây) giống như một cái cây xanh tươi... Hãy tải về và in màu để cùng bé luyện tập hàng ngày nhé!',
+    pros: 'Thiết kế sinh động, nhiều màu sắc thu hút trẻ nhỏ | Hình minh họa dễ thương, giúp bé ghi nhớ bằng phương pháp liên tưởng hình ảnh | Lời gợi ý (Say to kids) siêu gần gũi và dễ hiểu',
+    cons: 'Cần in màu để đạt hiệu quả thị giác tốt nhất | Chưa có file nghe giọng phát âm trực tiếp',
+    who_for: 'Dành cho các bé mầm non, học sinh tiểu học mới bắt đầu làm quen với tiếng Trung, hoặc các bậc phụ huynh/giáo viên muốn tìm tài liệu trực quan dạy cho bé.',
+    preview_images: '../POSTS/images/DOC-RADICALS_cover_flat.png,../POSTS/images/DOC-RADICALS_page3_flat.png'
   }
 };
 
@@ -172,10 +121,7 @@ function inferId(title, index) {
   const t = title.toUpperCase();
   if (t.includes('500')) return 'DOC-500';
   if (t.includes('NGỮ PHÁP') || t.includes('GRAMMAR')) return 'DOC-GRAMMAR';
-  if (t.includes('HSK 3') || t.includes('HSK3')) return 'DOC-HSK3';
-  if (t.includes('ĐỀ THI') || t.includes('HSK') || t.includes('MOCK')) return 'DOC-HSK';
-  if (t.includes('LUYỆN VIẾT') || t.includes('WRITING') || t.includes('CHỮ HÁN')) return 'DOC-WRITING';
-  if (t.includes('CHỦ ĐỀ') || t.includes('THEME')) return 'DOC-CHUDE';
+  if (t.includes('BỘ THỦ') || t.includes('RADICAL') || t.includes('THỦ')) return 'DOC-RADICALS';
   return `DOC-ROW-${index}`;
 }
 

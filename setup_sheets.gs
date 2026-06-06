@@ -283,6 +283,13 @@ function doPost(e) {
       responsePayload = updateBookRow(postData);
     } else if (action === 'update_doc') {
       responsePayload = updateDocRow(postData);
+    } else if (action === 'delete_doc') {
+      responsePayload = deleteDocRow(postData);
+    } else if (action === 'setup_media') {
+      setupMediaSheet();
+      syncYouTubeVideos();
+      createAutoSyncTrigger();
+      responsePayload = { success: true, message: 'Đã tạo và đồng bộ tab media thành công!' };
     } else if (action === 'generate_review') {
       responsePayload = generateReviewForSku(postData.sku);
     } else if (action === 'generate_doc_post') {
@@ -376,7 +383,24 @@ function getDataJson() {
     }
   }
   
-  return { books: books, docs: docs, affiliate: affiliate, logs: logs };
+  var media = [];
+  var mediaSheet = ss.getSheetByName('media');
+  if (mediaSheet) {
+    var lastRow = mediaSheet.getLastRow();
+    if (lastRow >= 3) {
+      var headers = mediaSheet.getRange(1, 1, 1, mediaSheet.getLastColumn()).getValues()[0];
+      var data = mediaSheet.getRange(3, 1, lastRow - 2, mediaSheet.getLastColumn()).getValues();
+      media = data.map(function(row) {
+        var obj = {};
+        headers.forEach(function(h, idx) {
+          obj[h] = row[idx];
+        });
+        return obj;
+      });
+    }
+  }
+  
+  return { books: books, docs: docs, affiliate: affiliate, logs: logs, media: media };
 }
 
 function updateBookRow(postData) {
@@ -485,6 +509,28 @@ function updateDocRow(postData) {
   }
   
   return { success: true, id: id, rowIndex: rowIndex, folder_url: existingFolderUrl };
+}
+
+function deleteDocRow(postData) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('docs');
+  if (!sheet) return { error: 'Không tìm thấy tab docs' };
+  
+  var id = postData.id;
+  if (!id) return { error: 'ID tài liệu là bắt buộc' };
+  
+  var lastRow = sheet.getLastRow();
+  var deleted = false;
+  if (lastRow >= 3) {
+    var idValues = sheet.getRange(3, 1, lastRow - 2, 1).getValues();
+    for (var i = idValues.length - 1; i >= 0; i--) {
+      if (String(idValues[i][0]).trim().toUpperCase() === id.trim().toUpperCase()) {
+        sheet.deleteRow(i + 3);
+        deleted = true;
+      }
+    }
+  }
+  return { success: deleted, id: id };
 }
 
 function generateReviewForSku(sku) {
@@ -1427,30 +1473,6 @@ function createPrewrittenDocPosts() {
       pros: 'Giải thích cấu trúc rõ ràng, dễ hiểu | Nhiều ví dụ thực tế đi kèm | Phân tích các lỗi sai ngữ pháp kinh diễn',
       cons: 'Học xong cấu trúc nào hãy tự đặt ít nhất 3 ví dụ | Tập viết tay các mẫu câu để nhớ lâu hơn',
       who_for: 'Các bạn muốn củng cố tư duy ngữ pháp chuẩn, khắc phục lỗi nói tiếng Trung bồi, chuẩn bị ôn thi HSK 2-3.'
-    },
-    'DOC-HSK': {
-      content: 'Chào các bạn, việc luyện đề trước khi đi thi thật là vô cùng quan trọng để làm quen với áp lực phòng thi và cấu trúc bài làm. Bộ **Đề Thi Thử HSK 1 & 2** này được Lê Lê biên soạn sát với đề thi thực tế nhất, giúp các bạn tự đánh giá năng lực của mình một cách chính xác. Bài thi có đầy đủ các phần thi Nghe và Đọc hiểu kèm đáp án giải thích chi tiết ở cuối trang. Đây chính là trợ thủ đắc lực giúp các bạn tự tin giật điểm tuyệt đối HSK 1 & 2 chỉ sau vài tuần ôn luyện tập trung.',
-      pros: 'Cấu trúc đề thi sát với đề thi thật | Có đáp án chi tiết và dịch nghĩa | Giúp rèn luyện kỹ năng quản lý thời gian làm bài',
-      cons: 'Hãy làm bài nghiêm túc trong phòng yên tĩnh và bấm giờ đúng 35-40 phút | Xem kỹ lỗi sai ở phần đáp án',
-      who_for: 'Các bạn đang ôn thi chứng chỉ HSK 1 và HSK 2, muốn tự đánh giá điểm số trước khi đăng ký thi thật.'
-    },
-    'DOC-WRITING': {
-      content: 'Nhiều bạn than thở với Lê Lê là viết chữ Hán khó quá, viết trước quên sau. Bí quyết duy nhất chính là luyện viết theo đúng quy tắc bút thuận mỗi ngày! File **Bảng Luyện Viết Hán Tự** này cung cấp các ô vuông chuẩn Mễ Tự kèm nét mờ hướng dẫn cho 100 chữ Hán cơ bản nhất. Việc tập tô và viết theo ô giúp tay các bạn quen với nhịp nét, chữ viết ra sẽ vuông vức, thanh thoát và nhớ mặt chữ sâu sắc hơn rất nhiều. Các bạn chỉ cần tải về, in ra giấy A4 và viết mỗi ngày 15 phút nhé.',
-      pros: 'Thiết kế ô vuông Mễ Tự chuẩn nét | Danh sách 100 chữ Hán cốt lõi nhất | Định dạng PDF sắc nét, cực kỳ tiết kiệm mực khi in',
-      cons: 'Hãy in ra giấy A4 chất lượng tốt để viết không bị nhòe | Tập trung viết đúng thứ tự các nét vẽ',
-      who_for: 'Người mới bắt đầu học tiếng Trung, muốn cải thiện nét chữ viết tay và ghi nhớ mặt chữ Hán lâu hơn.'
-    },
-    'DOC-CHUDE': {
-      content: 'Học từ vựng theo chủ đề là phương pháp ghi nhớ khoa học giúp não bộ liên kết các từ lại với nhau hiệu quả gấp 3 lần thông thường. Tài liệu **Từ Vựng Theo Chủ Đề** của Lê Lê bao gồm 15 chủ đề giao tiếp gần gũi nhất như gia đình, ăn uống, làm việc, mua sắm... Mỗi từ đều có phiên âm và ví dụ ngắn đi kèm. Thay vì học vẹt các từ rời rạc, hãy học theo cụm chủ đề để khi cần nói về một nội dung nào đó, các bạn có thể tuôn ra cả loạt từ vựng liên quan một cách tự nhiên nhất!',
-      pros: 'Phân loại 15 chủ đề thực tế, thông dụng | Hình ảnh và màu sắc trình bày bắt mắt | Có pinyin và dịch nghĩa tiếng Việt',
-      cons: 'Học theo từng chủ đề một và ôn tập lại sau 3 ngày | Thực hành tự nói một đoạn văn ngắn nói về chủ đề đó',
-      who_for: 'Mọi đối tượng từ sơ cấp đến trung cấp (HSK 1-3) muốn mở rộng vốn từ vựng giao tiếp thực tế.'
-    },
-    'DOC-HSK3': {
-      content: 'Lên đến HSK 3 là các bạn đã bắt đầu bước vào giai đoạn trung cấp với phần thi viết chữ Hán trực tiếp. Bộ **Đề Thi Thử HSK 3** này gồm 3 đề thi thử chuẩn hóa kèm theo file đáp án chi tiết từng câu. Lê Lê khuyên các bạn hãy làm đề này thật cẩn thận để kiểm tra khả năng ghép câu và viết chữ Hán của mình. Việc cọ xát với đề thi thử chất lượng cao sẽ giúp các bạn phát hiện ra những lỗ hổng kiến thức kịp thời để ôn tập bổ sung ngay.',
-      pros: 'Có cả 3 phần thi Nghe - Đọc - Viết chuẩn cấu trúc mới | Đáp án giải thích cặn kẽ từng câu | File PDF sạch đẹp, dễ học',
-      cons: 'Tự bấm giờ làm bài nghiêm túc | Luyện viết tay phần hoàn thành câu chữ Hán thay vì gõ máy',
-      who_for: 'Các bạn chuẩn bị bước vào kỳ thi HSK 3 thực tế, cần luyện đề để củng cố phản xạ phòng thi và kỹ năng làm bài.'
     }
   };
   
@@ -1565,15 +1587,127 @@ function appendLog(sheet, type, detail) {
   sheet.appendRow([new Date().toLocaleString('vi-VN'), type, detail, getCurrentKeyIndex()+1]);
 }
 
-// ── SETUP ALL ─────────────────────────────────────────────────────
 function setupAllSheets() {
   setupAffiliateSheet();
   setupBooksSheet();
   setupDocsSheet();
   setupRequestsSheet();
+  setupMediaSheet();
+  syncYouTubeVideos();
+  createAutoSyncTrigger();
   setupGuideSheet();
   setupConfigSheet();
 }
+
+function setupMediaSheet() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('media');
+  if (sheet) sheet.clear(); else sheet = ss.insertSheet('media');
+  
+  var h = ['id', 'title', 'youtube_url', 'category', 'desc', 'order'];
+  var l = ['⭐ ID video', 'Tiêu đề video', 'Đường dẫn YouTube', 'Chủ đề / Tab', 'Mô tả ngắn', 'Thứ tự hiển thị'];
+  
+  sheet.getRange(1, 1, 1, h.length).setValues([h]);
+  sheet.getRange(2, 1, 1, l.length).setValues([l]);
+  sheet.getRange(2, 1, 1, l.length).setBackground('#FF7B90').setFontColor('#ffffff').setFontWeight('bold');
+  sheet.setFrozenRows(2);
+}
+
+function createAutoSyncTrigger() {
+  var triggers = ScriptApp.getProjectTriggers();
+  for (var i = 0; i < triggers.length; i++) {
+    if (triggers[i].getHandlerFunction() === 'syncYouTubeVideos') {
+      return;
+    }
+  }
+  ScriptApp.newTrigger('syncYouTubeVideos')
+    .timeBased()
+    .everyHours(6)
+    .create();
+}
+
+function syncYouTubeVideos() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('media');
+  if (!sheet) {
+    setupMediaSheet();
+    sheet = ss.getSheetByName('media');
+  }
+  
+  try {
+    var url = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCGQfqOTElLYJ1-1OEDQJ8Cw';
+    var response = UrlFetchApp.fetch(url);
+    var xml = response.getContentText();
+    var document = XmlService.parse(xml);
+    var root = document.getRootElement();
+    
+    var atom = XmlService.getNamespace('http://www.w3.org/2005/Atom');
+    var yt = XmlService.getNamespace('http://www.youtube.com/xml/schemas/2015');
+    var media = XmlService.getNamespace('http://search.yahoo.com/mrss/');
+    
+    var entries = root.getChildren('entry', atom);
+    
+    var lastRow = sheet.getLastRow();
+    var existingIds = {};
+    if (lastRow >= 3) {
+      var data = sheet.getRange(3, 1, lastRow - 2, 1).getValues();
+      data.forEach(function(row) {
+        existingIds[row[0]] = true;
+      });
+    }
+    
+    var newRows = [];
+    
+    for (var i = entries.length - 1; i >= 0; i--) {
+      var entry = entries[i];
+      var videoId = entry.getChildText('videoId', yt);
+      if (!videoId) continue;
+      
+      if (existingIds[videoId]) continue;
+      
+      var title = entry.getChildText('title', atom) || '';
+      var youtubeUrl = 'https://www.youtube.com/watch?v=' + videoId;
+      
+      var mediaGroup = entry.getChild('group', media);
+      var desc = '';
+      if (mediaGroup) {
+        desc = mediaGroup.getChildText('description', media) || '';
+      }
+      
+      var category = 'Tiếng Trung thực chiến';
+      var cleanTitle = title;
+      
+      cleanTitle = cleanTitle.replace(/#\w+/g, '').trim();
+      cleanTitle = cleanTitle.replace(/\s+/g, ' ');
+      
+      var lowerTitle = title.toLowerCase();
+      
+      if (lowerTitle.indexOf('kể chữ') !== -1 || lowerTitle.indexOf('câu chuyện chữ') !== -1 || lowerTitle.indexOf('bộ thủ') !== -1) {
+        category = 'Lê Lê kể chữ';
+      } else if (lowerTitle.indexOf('slang') !== -1 || lowerTitle.indexOf('tiếng lóng') !== -1 || lowerTitle.indexOf('lóng') !== -1) {
+        category = 'Tiếng lóng';
+      } else if (lowerTitle.indexOf('vs') !== -1 || lowerTitle.indexOf('phân biệt') !== -1 || lowerTitle.indexOf('song đấu') !== -1) {
+        category = 'Song đấu từ vựng';
+      } else if (lowerTitle.indexOf('thành ngữ') !== -1 || lowerTitle.indexOf('idiom') !== -1) {
+        category = 'Thành ngữ';
+      }
+      
+      var charMatch = cleanTitle.match(/Câu chuyện chữ\s+([^\s\-]+)\s*[\-\:]\s*(.*)/i);
+      if (charMatch) {
+        cleanTitle = charMatch[1];
+      }
+      
+      newRows.push([videoId, cleanTitle, youtubeUrl, category, desc.slice(0, 150), '1']);
+    }
+    
+    if (newRows.length > 0) {
+      sheet.getRange(sheet.getLastRow() + 1, 1, newRows.length, 6).setValues(newRows);
+    }
+  } catch (err) {
+    Logger.log('Error syncing videos: ' + err.toString());
+  }
+}
+
 
 function setupConfigSheet() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -1644,10 +1778,8 @@ function setupDocsSheet() {
   var docs = [
     ['DOC-500','500 Từ Vựng Thông Dụng Nhất','Danh sách 500 từ hay gặp nhất trong tiếng Trung hàng ngày, kèm pinyin và nghĩa tiếng Việt. Phù hợp cho người mới bắt đầu.','vocab','📝','#D4A843','PDF · 12 trang','2','Cơ bản · HSK 1–2','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','','',''],
     ['DOC-GRAMMAR','Ngữ Pháp Tiếng Trung Cơ Bản','Tổng hợp các cấu trúc ngữ pháp quan trọng nhất, ví dụ minh hoạ rõ ràng bằng tiếng Việt. Học xong nói câu đúng ngay.','grammar','📚','#C94535','PDF · 28 trang','3','Trung cấp · HSK 2–3','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','','',''],
-    ['DOC-HSK','Đề Thi Thử HSK 1 & 2','Bộ đề thi thử HSK cấp 1 và 2 với đáp án đầy đủ. Luyện xong tự tin thi thật! Lê Lê đã dùng đề này để ôn thi.','hsk','🎯','#3b7fd4','PDF · 35 trang · Có đáp án','2','Cơ bản · HSK 1–2','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','','',''],
-    ['DOC-WRITING','Bảng Luyện Viết Hán Tự','Tờ luyện viết nét chữ theo ô vuông chuẩn với 100 chữ Hán cơ bản nhất. In ra luyện mỗi ngày giúp nhớ chữ rất nhanh!','writing','✍️','#7c5cbf','PDF · In được','1','Người mới · 100 chữ','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','','',''],
-    ['DOC-CHUDE','Từ Vựng Theo Chủ Đề','Từ vựng được phân loại theo 15 chủ đề thực tế: gia đình, công việc, du lịch, ăn uống… Học nhanh, nhớ lâu!','vocab','🗂️','#2ea078','PDF · 20 trang','2','Sơ cấp · HSK 1–3','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','','',''],
-    ['DOC-HSK3','Đề Thi Thử HSK 3','3 đề thi thử HSK 3 đầy đủ các phần nghe – đọc – viết với đáp án chi tiết. Thích hợp ôn luyện trước kỳ thi.','hsk','📋','#3b7fd4','PDF · 42 trang · Có đáp án','3','Trung cấp · HSK 3','https://drive.google.com/LINK_GOOGLE_DRIVE','','','','','','']
+    ['DOC-STREETFOOD','Ẩm thực đường phố Trung Hoa','','street_food','🍜','#E58F65','','','','','','','','','POSTS/images/thuc_chien_cover_16_9.png',''],
+    ['DOC-WORDORDERS','Sổ tay trật tự từ','','word_orders','🔤','#4A90E2','','','','','','','','','POSTS/images/vs_vocabulary_cover_16_9.png','']
   ];
   sheet.getRange(3,1,docs.length,h.length).setValues(docs);
   sheet.setFrozenRows(2);

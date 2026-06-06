@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png" />
+  <title data-i18n="media_title">Video bài học – Lê Lê học tiếng Trung</title>
+  <meta name="description" content="Xem các chuỗi video bài học tiếng Trung miễn phí từ Lê Lê – Lê Lê kể chữ, slang tiếng Trung và nhiều bài học thú vị khác." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css?v=1.0.8" />
+  <link rel="stylesheet" href="shop.css?v=1.0.8" />
+  <link rel="stylesheet" href="media.css?v=1.0.0" />
+</head>
+<body>
+
+  <!-- Floating background scene -->
+  <div class="bg-scene" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="hanzi" style="--x:6%;--y:8%;--s:2rem;--d:0s;--dur:15s">视</div>
+    <div class="hanzi" style="--x:87%;--y:5%;--s:1.4rem;--d:-5s;--dur:19s">频</div>
+    <div class="hanzi" style="--x:4%;--y:60%;--s:1.3rem;--d:-9s;--dur:21s">乐</div>
+    <div class="hanzi" style="--x:91%;--y:52%;--s:1.7rem;--d:-13s;--dur:17s">听</div>
+    <div class="hanzi" style="--x:48%;--y:90%;--s:1.5rem;--d:-7s;--dur:23s">说</div>
+  </div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <div class="shop-container">
+
+    <!-- Header navigation -->
+    <header class="shop-header">
+      <div class="header-nav">
+        <a href="index.html" class="back-btn" id="btn-back" aria-label="Quay lại trang chính">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          <span data-i18n="nav_home">Trang chính</span>
+        </a>
+        <a href="shop.html" class="back-btn" id="btn-back-shop" aria-label="Quay lại Bookstore">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span data-i18n="nav_bookstore">Bookstore</span>
+        </a>
+      </div>
+      <div class="shop-brand">
+        <img src="logo.png" alt="Logo Lê Lê" class="shop-logo" width="40" height="40" />
+        <div>
+          <p class="shop-brand-name">Lê Lê học tiếng Trung</p>
+          <p class="shop-brand-sub" lang="zh">乐乐学中文 · 视频</p>
+        </div>
+      </div>
+      <div id="lang-selector"></div>
+    </header>
+
+    <!-- Hero Introduction -->
+    <section class="shop-hero media-hero" aria-label="Giới thiệu video bài học">
+      <div class="hero-badge media-badge" data-i18n="media_hero_badge">📺 Tổng hợp từ YouTube</div>
+      <h1 class="hero-title" data-i18n="media_hero_title">Video<br/><span class="media-gradient">bài học</span></h1>
+      <p class="hero-sub" data-i18n="media_hero_sub">Học tiếng Trung qua các chuỗi video bài học thực tế, giải thích chi tiết và cực kỳ dễ hiểu từ kênh YouTube của Lê Lê! 🎥</p>
+    </section>
+
+    <!-- Filter tabs (dynamically loaded) -->
+    <div class="filter-tabs" id="media-tabs" role="tablist" aria-label="Lọc video theo chuỗi bài học">
+      <!-- Will be filled dynamically by media.js -->
+    </div>
+
+    <!-- Videos section -->
+    <section aria-label="Danh sách video bài học">
+      <!-- Loading state -->
+      <div class="doc-loading" id="media-loading">
+        <div class="spinner"></div>
+        <p data-i18n="media_loading">Đang tải danh sách video...</p>
+      </div>
+
+      <!-- Videos grid -->
+      <div class="media-grid hidden" id="media-grid"></div>
+
+      <!-- Pagination -->
+      <div class="pagination hidden" id="media-pagination"></div>
+
+      <!-- Empty state -->
+      <div class="empty-state hidden" id="media-empty">
+        <div class="empty-icon">📺</div>
+        <p data-i18n="media_empty">Chưa có video trong mục này.<br/>Lê Lê sẽ cập nhật sớm nhé!</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="shop-footer">
+      <img src="logo.png" alt="Logo Lê Lê" class="footer-logo" width="36" height="36" />
+      <p>Lê Lê học tiếng Trung <span>♥</span></p>
+      <p class="footer-note" data-i18n="shop_footer_note">Tất cả tài liệu và video bài học đều miễn phí — chúc các bạn học tập vui vẻ! 🌸</p>
+    </footer>
+
+  </div>
+
+  <script src="i18n.js"></script>
+  <script src="media.js?v=1.0.0"></script>
+</body>
+</html>

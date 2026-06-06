@@ -11,6 +11,7 @@ const TRANSLATIONS = {
     nav_practice: "Phát âm",
     nav_write: "Tập viết",
     nav_tools: "Góc học liệu",
+    nav_media: "Video bài học",
 
     // index.html (Homepage)
     home_title: "Lê Lê học tiếng Trung 🌸",
@@ -31,6 +32,9 @@ const TRANSLATIONS = {
     card_docs_label: "🎁 Tài Liệu Chia Sẻ",
     card_docs_sub: "Kho thư viện PDF từ vựng HSK, ngữ pháp chuẩn và phiếu luyện viết tải về hoàn toàn miễn phí.",
     card_docs_action: "Tải tài liệu ngay →",
+    card_media_label: "📺 Video bài học",
+    card_media_sub: "Học tiếng Trung sinh động qua các chuỗi video kể chuyện chữ Hán và tiếng lóng thực tế của Lê Lê.",
+    card_media_action: "Xem video ngay →",
     card_practice_label: "🎙️ Luyện Phát Âm",
     card_practice_sub: "Chấm điểm phát âm, thanh điệu và nhận diện giọng nói trực tiếp để cải thiện kỹ năng nói.",
     card_practice_action: "Luyện phát âm ngay →",
@@ -78,6 +82,8 @@ const TRANSLATIONS = {
     docs_tab_grammar: "Ngữ pháp",
     docs_tab_hsk: "Thi HSK",
     docs_tab_writing: "Luyện viết",
+    docs_tab_street_food: "Street Food",
+    docs_tab_word_orders: "Word Orders",
     docs_toast_copied: "Đã sao chép link!",
 
     // tools.html (Worksheet PDF Generator)
@@ -305,7 +311,17 @@ const TRANSLATIONS = {
     docs_request_success: "Đã ghi nhận yêu cầu của bạn! Cảm ơn bạn nhé 🥰",
     docs_request_error: "Gửi yêu cầu thất bại. Vui lòng thử lại sau nhé!",
     docs_request_invalid_email: "Vui lòng nhập email hợp lệ.",
-    docs_request_empty_fields: "Vui lòng nhập tên tài liệu."
+    docs_request_empty_fields: "Vui lòng nhập tên tài liệu.",
+
+    // Media
+    media_title: "Video bài học – Lê Lê học tiếng Trung",
+    media_hero_badge: "📺 Tổng hợp từ YouTube",
+    media_hero_title: "Video<br/><span class=\"media-gradient\">bài học</span>",
+    media_hero_sub: "Học tiếng Trung qua các chuỗi video bài học thực tế, giải thích chi tiết và cực kỳ dễ hiểu từ kênh YouTube của Lê Lê! 🎥",
+    media_loading: "Đang tải danh sách video...",
+    media_empty: "Chưa có video trong mục này.<br/>Lê Lê sẽ cập nhật sớm nhé!",
+    media_btn_watch: "Xem video",
+    media_modal_close: "Đóng"
   },
   en: {
     // Navigation
@@ -315,6 +331,7 @@ const TRANSLATIONS = {
     nav_practice: "Pronunciation",
     nav_write: "Writing",
     nav_tools: "Tools Hub",
+    nav_media: "Media",
 
     // index.html (Homepage)
     home_title: "Le Le Learn Chinese 🌸",
@@ -335,6 +352,9 @@ const TRANSLATIONS = {
     card_docs_label: "🎁 Shared PDF Library",
     card_docs_sub: "Download HSK vocabulary lists, standard grammar sheets, and handwriting files for free.",
     card_docs_action: "Get PDF Resources →",
+    card_media_label: "📺 Video Lessons",
+    card_media_sub: "Learn Chinese visually with Le Le's YouTube series on Hanzi stories and modern slang expressions.",
+    card_media_action: "Watch videos now →",
     card_practice_label: "🎙️ AI Pronunciation",
     card_practice_sub: "Practice speaking with automated tone pairing analysis and speech recognition inside the browser.",
     card_practice_action: "Start Practice →",
@@ -382,6 +402,8 @@ const TRANSLATIONS = {
     docs_tab_grammar: "Grammar",
     docs_tab_hsk: "HSK Exam",
     docs_tab_writing: "Writing",
+    docs_tab_street_food: "Street Food",
+    docs_tab_word_orders: "Word Orders",
     docs_toast_copied: "Link copied!",
 
     // tools.html (Worksheet PDF Generator)
@@ -609,7 +631,17 @@ const TRANSLATIONS = {
     docs_request_success: "Request submitted successfully! Thank you 🥰",
     docs_request_error: "Submission failed. Please try again later!",
     docs_request_invalid_email: "Please enter a valid email.",
-    docs_request_empty_fields: "Please enter the document name."
+    docs_request_empty_fields: "Please enter the document name.",
+
+    // Media
+    media_title: "Videos – Le Le Learn Chinese",
+    media_hero_badge: "📺 YouTube Playlists",
+    media_hero_title: "Video<br/><span class=\"media-gradient\">Lessons</span>",
+    media_hero_sub: "Learn Chinese through structured, detailed, and easy-to-understand video series directly from Le Le's YouTube channel! 🎥",
+    media_loading: "Loading video list...",
+    media_empty: "No videos in this category yet.<br/>Le Le will update it soon!",
+    media_btn_watch: "Watch video",
+    media_modal_close: "Close"
   },
   zh: {
     // Navigation
@@ -619,6 +651,7 @@ const TRANSLATIONS = {
     nav_practice: "发音练习",
     nav_write: "汉字书写",
     nav_tools: "学习工具",
+    nav_media: "视频",
 
     // index.html (Homepage)
     home_title: "乐乐学中文 🌸",
@@ -639,6 +672,9 @@ const TRANSLATIONS = {
     card_docs_label: "🎁 共享PDF资料",
     card_docs_sub: "免费下载HSK词汇表、语法要点、以及手写练习PDF模板。",
     card_docs_action: "获取学习资料 →",
+    card_media_label: "📺 视频课",
+    card_media_sub: "通过乐乐的 YouTube 汉字故事和流行语视频系列，更生动地学习中文。",
+    card_media_action: "立即观看视频 →",
     card_practice_label: "🎙️ AI发音评测",
     card_practice_sub: "通过浏览器内置的语音识别和声调配对分析，进行口语发音矫正。",
     card_practice_action: "开始练习口语 →",
@@ -686,6 +722,8 @@ const TRANSLATIONS = {
     docs_tab_grammar: "语法",
     docs_tab_hsk: "HSK 考试",
     docs_tab_writing: "书写",
+    docs_tab_street_food: "街头美食",
+    docs_tab_word_orders: "语序",
     docs_toast_copied: "链接已复制！",
 
     // tools.html (Worksheet PDF Generator)
@@ -873,7 +911,17 @@ const TRANSLATIONS = {
     docs_request_success: "请求已成功提交！谢谢您 🥰",
     docs_request_error: "提交失败。请稍后再试！",
     docs_request_invalid_email: "请输入有效的邮箱地址。",
-    docs_request_empty_fields: "请输入资料名称。"
+    docs_request_empty_fields: "请输入资料名称。",
+
+    // Media
+    media_title: "视频资源 – 乐乐学中文",
+    media_hero_badge: "📺 YouTube 视频精选",
+    media_hero_title: "乐乐的<br/><span class=\"media-gradient\">视频课</span>",
+    media_hero_sub: "通过乐乐的 YouTube 频道系列视频课，轻松、直观地学习实用中文！🎥",
+    media_loading: "正在加载视频列表...",
+    media_empty: "该分类下暂无视频。<br/>乐乐会尽快更新！",
+    media_btn_watch: "观看视频",
+    media_modal_close: "关闭"
   }
 };
 

@@ -1,0 +1,2277 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lê Lê Bookstore Admin Panel</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              DEFAULT: '#D4A843',
+              light: '#F0C866',
+              dim: 'rgba(212, 168, 67, 0.15)',
+              border: 'rgba(212, 168, 67, 0.3)'
+            },
+            reddeep: {
+              DEFAULT: '#C94535',
+              dim: 'rgba(201, 69, 53, 0.12)'
+            },
+            emeraldgreen: {
+              DEFAULT: '#4ecba0',
+              dim: 'rgba(78, 203, 160, 0.12)'
+            },
+            cream: {
+              DEFAULT: '#F5E8D0',
+              muted: 'rgba(245, 232, 208, 0.45)'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --clr-bg-deep: #0c0b0a;
+      --clr-bg: #141210;
+      --clr-gold: #D4A843;
+      --clr-border: rgba(212, 168, 67, 0.16);
+      --blur-glass: 20px;
+    }
+    
+    body {
+      background-color: var(--clr-bg-deep);
+      color: #F5E8D0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--clr-border);
+      border-radius: 99px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--clr-gold);
+    }
+
+    /* Background Orbs */
+    .bg-scene {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+      mix-blend-mode: screen;
+    }
+    .orb-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(212, 168, 67, 0.2) 0%, transparent 70%);
+      top: -150px; left: -100px;
+    }
+    .orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(201, 69, 53, 0.18) 0%, transparent 70%);
+      bottom: -100px; right: -50px;
+    }
+    .orb-3 {
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(78, 203, 160, 0.15) 0%, transparent 70%);
+      top: 40%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Glassmorphism styling */
+    .card-glass {
+      background: rgba(20, 18, 16, 0.45);
+      backdrop-filter: blur(var(--blur-glass));
+      -webkit-backdrop-filter: blur(var(--blur-glass));
+      border: 1px solid var(--clr-border);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+    }
+    
+    .sidebar-active {
+      color: #ffffff;
+      background: rgba(245, 232, 208, 0.09);
+      border-color: var(--clr-border);
+      box-shadow: inset 3px 0 0 var(--clr-gold);
+    }
+
+    /* Sliders and Range inputs styling */
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 4px;
+      border-radius: 2px;
+      background: var(--clr-border);
+      outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--clr-gold);
+      cursor: pointer;
+      border: 2px solid #fff;
+    }
+
+    /* Crop box styling overlay */
+    .crop-overlay-box {
+      position: absolute;
+      border: 1px dashed rgba(255,255,255,0.8);
+      box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.65);
+      cursor: move;
+      z-index: 10;
+    }
+    .crop-handle {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: #fff;
+      border: 2px solid var(--clr-gold);
+      border-radius: 50%;
+      z-index: 12;
+    }
+    .handle-nw { top: -6px; left: -6px; cursor: nwse-resize; }
+    .handle-ne { top: -6px; right: -6px; cursor: nesw-resize; }
+    .handle-sw { bottom: -6px; left: -6px; cursor: nesw-resize; }
+    .handle-se { bottom: -6px; right: -6px; cursor: nwse-resize; }
+    
+    .crop-grid-line {
+      position: absolute;
+      border-style: dotted;
+      border-color: rgba(255,255,255,0.3);
+      border-width: 0;
+      pointer-events: none;
+    }
+    .line-h1 { top: 33.33%; left: 0; right: 0; border-top-width: 1px; }
+    .line-h2 { top: 66.66%; left: 0; right: 0; border-top-width: 1px; }
+    .line-v1 { left: 33.33%; top: 0; bottom: 0; border-left-width: 1px; }
+    .line-v2 { left: 66.66%; top: 0; bottom: 0; border-left-width: 1px; }
+
+    /* Keyframes spinner */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .animate-spin-custom {
+      animation: spin 1s linear infinite;
+    }
+  </style>
+</head>
+<body class="flex flex-col relative w-full h-screen">
+
+  <!-- Background Orbs -->
+  <div class="bg-scene" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="h-[60px] px-6 flex items-center justify-between bg-[#141210]/70 backdrop-blur-md border-b border-gold/20 z-10 shrink-0">
+    <div class="flex items-center gap-3">
+      <img src="data:image/png;base64,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" class="w-9 h-9 rounded-full border border-gold/40 object-cover shadow-[0_4px_12px_rgba(212,168,67,0.25)]" alt="Lê Lê Logo" />
+      <div class="flex flex-col">
+        <span class="text-sm font-bold tracking-wide text-white">Lê Lê Bookstore</span>
+        <span class="text-[10px] text-cream/50">Hệ thống quản lý dữ liệu Google Sheets & AI</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="syncData()" class="btn-sync flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gold/30 hover:border-gold hover:bg-gold/10 text-xs font-semibold text-cream transition duration-150">
+        <svg id="sync-icon" class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>
+        Đồng bộ
+      </button>
+      <span class="text-[11px] text-cream/40 hidden sm:inline">Lần cuối: <span id="lbl-last-sync">Chưa đồng bộ</span></span>
+    </div>
+  </header>
+
+  <!-- Main Workspace Layout -->
+  <main class="flex-grow flex w-full overflow-hidden z-10 p-4 gap-4">
+    <!-- Sidebar Menu -->
+    <aside class="w-[220px] shrink-0 flex flex-col justify-between card-glass rounded-2xl p-4 overflow-hidden hidden md:flex">
+      <ul class="flex flex-col gap-1.5">
+        <li>
+          <button onclick="switchTab('overview')" class="tab-btn w-full bg-none border-none py-2.5 px-3.5 rounded-xl cursor-pointer flex items-center gap-3 text-cream/60 hover:text-cream hover:bg-white/5 transition duration-150 text-left sidebar-active" id="tab-overview">
+            <span class="text-base">📊</span>
+            <span class="text-xs font-medium">Tổng quan</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="switchTab('books')" class="tab-btn w-full bg-none border-none py-2.5 px-3.5 rounded-xl cursor-pointer flex items-center gap-3 text-cream/60 hover:text-cream hover:bg-white/5 transition duration-150 text-left" id="tab-books">
+            <span class="text-base">📖</span>
+            <span class="text-xs font-medium">Sách & Cửa hàng</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="switchTab('reviews')" class="tab-btn w-full bg-none border-none py-2.5 px-3.5 rounded-xl cursor-pointer flex items-center gap-3 text-cream/60 hover:text-cream hover:bg-white/5 transition duration-150 text-left" id="tab-reviews">
+            <span class="text-base">✍️</span>
+            <span class="text-xs font-medium">Bài viết Review (AI)</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="switchTab('documents')" class="tab-btn w-full bg-none border-none py-2.5 px-3.5 rounded-xl cursor-pointer flex items-center gap-3 text-cream/60 hover:text-cream hover:bg-white/5 transition duration-150 text-left" id="tab-documents">
+            <span class="text-base">📄</span>
+            <span class="text-xs font-medium">Tài liệu chia sẻ</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="switchTab('affiliate')" class="tab-btn w-full bg-none border-none py-2.5 px-3.5 rounded-xl cursor-pointer flex items-center gap-3 text-cream/60 hover:text-cream hover:bg-white/5 transition duration-150 text-left" id="tab-affiliate">
+            <span class="text-base">🔗</span>
+            <span class="text-xs font-medium">Cào link Đa Sàn</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="switchTab('images')" class="tab-btn w-full bg-none border-none py-2.5 px-3.5 rounded-xl cursor-pointer flex items-center gap-3 text-cream/60 hover:text-cream hover:bg-white/5 transition duration-150 text-left" id="tab-images">
+            <span class="text-base">🖼️</span>
+            <span class="text-xs font-medium">Canvas Image Editor</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="switchTab('logs')" class="tab-btn w-full bg-none border-none py-2.5 px-3.5 rounded-xl cursor-pointer flex items-center gap-3 text-cream/60 hover:text-cream hover:bg-white/5 transition duration-150 text-left" id="tab-logs">
+            <span class="text-base">📋</span>
+            <span class="text-xs font-medium">Nhật ký lỗi</span>
+          </button>
+        </li>
+        <li>
+          <button onclick="switchTab('config')" class="tab-btn w-full bg-none border-none py-2.5 px-3.5 rounded-xl cursor-pointer flex items-center gap-3 text-cream/60 hover:text-cream hover:bg-white/5 transition duration-150 text-left" id="tab-config">
+            <span class="text-base">⚙️</span>
+            <span class="text-xs font-medium">Cấu hình hệ thống</span>
+          </button>
+        </li>
+      </ul>
+      <div class="text-[10px] text-cream/30 text-center border-t border-gold/10 pt-3">
+        Lê Lê Bookstore Dashboard v5.0
+      </div>
+    </aside>
+
+    <!-- Mobile Nav Bar (Shown only in narrow screens/sidebar) -->
+    <div class="flex md:hidden fixed bottom-0 left-0 right-0 bg-[#141210]/95 border-t border-gold/20 z-50 h-[56px] px-1 items-center justify-around">
+      <button onclick="switchTab('overview')" class="mobile-tab-btn flex flex-col items-center text-gold text-[9px]" id="m-tab-overview"><span class="text-lg">📊</span><span>Tổng quan</span></button>
+      <button onclick="switchTab('books')" class="mobile-tab-btn flex flex-col items-center text-cream/50 text-[9px]" id="m-tab-books"><span class="text-lg">📖</span><span>Sách</span></button>
+      <button onclick="switchTab('reviews')" class="mobile-tab-btn flex flex-col items-center text-cream/50 text-[9px]" id="m-tab-reviews"><span class="text-lg">✍️</span><span>Review</span></button>
+      <button onclick="switchTab('documents')" class="mobile-tab-btn flex flex-col items-center text-cream/50 text-[9px]" id="m-tab-documents"><span class="text-lg">📄</span><span>Tài liệu</span></button>
+      <button onclick="switchTab('affiliate')" class="mobile-tab-btn flex flex-col items-center text-cream/50 text-[9px]" id="m-tab-affiliate"><span class="text-lg">🔗</span><span>Crawler</span></button>
+      <button onclick="switchTab('images')" class="mobile-tab-btn flex flex-col items-center text-cream/50 text-[9px]" id="m-tab-images"><span class="text-lg">🖼️</span><span>Canvas</span></button>
+      <button onclick="switchTab('config')" class="mobile-tab-btn flex flex-col items-center text-cream/50 text-[9px]" id="m-tab-config"><span class="text-lg">⚙️</span><span>Cấu hình</span></button>
+    </div>
+
+    <!-- Workspace Main Content Area -->
+    <div class="flex-grow h-full overflow-hidden relative pb-[60px] md:pb-0">
+      
+      <!-- ================= 1. TAB: OVERVIEW ================= -->
+      <div id="content-overview" class="tab-content h-full flex flex-col gap-4 overflow-y-auto">
+        <h2 class="text-lg font-bold text-gold-light" style="font-family:'Playfair Display', serif;">Tổng quan hệ thống</h2>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="card-glass p-4 rounded-xl flex flex-col justify-between h-[100px]">
+            <span class="text-xs text-cream/50">📚 Tổng số sách</span>
+            <span class="text-3xl font-extrabold text-white" id="stat-books">0</span>
+          </div>
+          <div class="card-glass p-4 rounded-xl flex flex-col justify-between h-[100px]">
+            <span class="text-xs text-cream/50">📄 Tài liệu chia sẻ</span>
+            <span class="text-3xl font-extrabold text-white" id="stat-docs">0</span>
+          </div>
+          <div class="card-glass p-4 rounded-xl flex flex-col justify-between h-[100px]">
+            <span class="text-xs text-cream/50">🔗 Link Affiliate</span>
+            <span class="text-3xl font-extrabold text-white" id="stat-affiliates">0</span>
+          </div>
+          <div class="card-glass p-4 rounded-xl flex flex-col justify-between h-[100px]">
+            <span class="text-xs text-cream/50">⚠️ Sự cố AI / Logs</span>
+            <span class="text-3xl font-extrabold text-red-400" id="stat-errors">0</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-grow">
+          <!-- Quick links & Guide -->
+          <div class="card-glass p-5 rounded-2xl flex flex-col gap-3">
+            <h3 class="text-sm font-bold text-gold-light">⚡ Phím tắt & Tác vụ nhanh</h3>
+            <div class="flex flex-col gap-2">
+              <button onclick="switchTab('affiliate')" class="w-full text-left bg-white/5 hover:bg-white/10 p-3 rounded-lg border border-gold/10 flex justify-between items-center text-xs">
+                <span>➕ Thêm sản phẩm Shopee, Tiki, Fahasa... để cào</span>
+                <span class="text-gold">🔗 Đi tới -></span>
+              </button>
+              <button onclick="switchTab('images')" class="w-full text-left bg-white/5 hover:bg-white/10 p-3 rounded-lg border border-gold/10 flex justify-between items-center text-xs">
+                <span>🎨 Crop / thiết kế ảnh bìa sách & tài liệu bằng Canvas</span>
+                <span class="text-gold">🖼️ Đi tới -></span>
+              </button>
+            </div>
+            <div class="mt-2 text-xs text-cream/70 leading-relaxed border-t border-gold/10 pt-3">
+              <p class="font-bold text-cream mb-1">💡 Hướng dẫn cào đa sàn:</p>
+              Hệ thống hiện tại đã nâng cấp cào AI hỗ trợ **Shopee, Fahasa, Tiki, Lazada và TikTok Shop**. Chỉ cần sang tab cào link, dán link sản phẩm bất kỳ và chọn chạy crawler, AI Gemini sẽ tự động bóc tách dữ liệu sạch cho bạn.
+            </div>
+          </div>
+          <!-- System log preview -->
+          <div class="card-glass p-5 rounded-2xl flex flex-col">
+            <h3 class="text-sm font-bold text-gold-light mb-3">📋 Nhật ký hoạt động gần đây</h3>
+            <div class="flex-grow overflow-y-auto max-h-[220px] text-xs flex flex-col gap-2" id="overview-logs-list">
+              <div class="text-cream/50 text-center py-6">Không có dữ liệu nhật ký.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 2. TAB: BOOKS ================= -->
+      <div id="content-books" class="tab-content h-full hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 h-full">
+          <!-- Left: List -->
+          <div class="lg:col-span-4 card-glass rounded-2xl p-4 flex flex-col h-full overflow-hidden">
+            <div class="flex items-center justify-between mb-3 shrink-0">
+              <h3 class="font-bold text-white text-sm">Danh sách Sách</h3>
+              <button onclick="clearBookForm()" class="btn-sm btn-outline text-[11px]">+ Thêm mới</button>
+            </div>
+            <div class="mb-3 shrink-0">
+              <input type="text" id="search-books" oninput="filterBooks()" placeholder="Tìm theo tên, SKU..." class="w-full bg-black/30 border border-gold/20 rounded-lg px-3 py-1.5 text-xs text-cream outline-none focus:border-gold" />
+            </div>
+            <div class="flex-grow overflow-y-auto pr-1">
+              <ul id="list-books" class="flex flex-col gap-1.5">
+                <li class="loading-item text-xs text-cream/50 text-center py-8">Đang tải dữ liệu sách...</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Right: Form -->
+          <div class="lg:col-span-8 card-glass rounded-2xl p-5 flex flex-col h-full overflow-hidden">
+            <h3 class="font-bold text-gold-light text-sm mb-4 shrink-0" id="book-editor-title">Chi tiết Sách</h3>
+            <form id="form-book-editor" onsubmit="saveBook(event)" class="classic-form overflow-y-auto flex-grow flex flex-col gap-3.5 pr-2">
+              <div class="grid grid-cols-2 gap-4">
+                <div class="form-group">
+                  <label for="bk-sku" class="text-[11px] font-semibold text-cream">SKU Sách *</label>
+                  <input type="text" id="bk-sku" required placeholder="Ví dụ: SACH-01" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+                </div>
+                <div class="form-group">
+                  <label for="bk-price" class="text-[11px] font-semibold text-cream">Giá tiền (VND) *</label>
+                  <input type="number" id="bk-price" required placeholder="99000" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="bk-title" class="text-[11px] font-semibold text-cream">Tên sách *</label>
+                <input type="text" id="bk-title" required placeholder="Tên sách tiếng Việt" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+              </div>
+
+              <div class="form-group">
+                <label for="bk-subtitle_zh" class="text-[11px] font-semibold text-cream">Tên gốc tiếng Trung (Subtitle)</label>
+                <input type="text" id="bk-subtitle_zh" placeholder="Tiếng Trung giản thể/phồn thể" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+              </div>
+
+              <div class="form-group">
+                <label for="bk-desc" class="text-[11px] font-semibold text-cream">Mô tả ngắn gọn</label>
+                <textarea id="bk-desc" rows="2" placeholder="Tóm tắt ngắn gọn hiển thị ngoài trang chủ" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white resize-none"></textarea>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div class="form-group">
+                  <label for="bk-tags" class="text-[11px] font-semibold text-cream">Thẻ phân loại (Tags)</label>
+                  <input type="text" id="bk-tags" placeholder="Từ vựng, Ngữ pháp, HSK" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+                </div>
+                <div class="form-group">
+                  <label for="bk-stars" class="text-[11px] font-semibold text-cream">Đánh giá (Sao: 1 - 5)</label>
+                  <input type="number" id="bk-stars" min="1" max="5" value="5" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div class="form-group">
+                  <label for="bk-buy_shopee" class="text-[11px] font-semibold text-cream">Link Mua Shopee</label>
+                  <input type="url" id="bk-buy_shopee" placeholder="https://shopee.vn/..." class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+                </div>
+                <div class="form-group">
+                  <label for="bk-buy_fahasa" class="text-[11px] font-semibold text-cream">Link Mua Fahasa</label>
+                  <input type="url" id="bk-buy_fahasa" placeholder="https://fahasa.com/..." class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div class="form-group">
+                  <label for="bk-buy_tiki" class="text-[11px] font-semibold text-cream">Link Mua Tiki</label>
+                  <input type="url" id="bk-buy_tiki" placeholder="https://tiki.vn/..." class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+                </div>
+                <div class="form-group">
+                  <label for="bk-buy_lazada" class="text-[11px] font-semibold text-cream">Link Mua Lazada</label>
+                  <input type="url" id="bk-buy_lazada" placeholder="https://lazada.vn/..." class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="bk-cover_url" class="text-[11px] font-semibold text-cream">URL Ảnh bìa (Cover URL)</label>
+                <input type="text" id="bk-cover_url" placeholder="Tải lên ở tab hình ảnh để tự điền..." class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+              </div>
+
+              <div class="form-group">
+                <label for="bk-shop_images" class="text-[11px] font-semibold text-cream">Ảnh slide Cửa hàng (Shop Images - cách nhau bằng dấu phẩy)</label>
+                <textarea id="bk-shop_images" rows="2" placeholder="https://..." class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white resize-none"></textarea>
+              </div>
+
+              <div class="flex gap-3 mt-4 shrink-0">
+                <button type="submit" class="flex-grow btn btn-primary py-2 text-xs">Lưu sách</button>
+                <button type="button" id="btn-delete-book" onclick="deleteBook()" class="btn btn-danger py-2 text-xs px-4 hidden">Xoá</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 3. TAB: REVIEWS ================= -->
+      <div id="content-reviews" class="tab-content h-full hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 h-full">
+          <!-- Left: List -->
+          <div class="lg:col-span-4 card-glass rounded-2xl p-4 flex flex-col h-full overflow-hidden">
+            <h3 class="font-bold text-white text-sm mb-3 shrink-0">Danh sách bài Review</h3>
+            <div class="mb-3 shrink-0">
+              <input type="text" id="search-reviews" oninput="filterReviews()" placeholder="Tìm kiếm sách..." class="w-full bg-black/30 border border-gold/20 rounded-lg px-3 py-1.5 text-xs text-cream outline-none focus:border-gold" />
+            </div>
+            <div class="flex-grow overflow-y-auto pr-1">
+              <ul id="list-reviews" class="flex flex-col gap-1.5">
+                <li class="loading-item text-xs text-cream/50 text-center py-8">Đang tải danh sách...</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Right: Form -->
+          <div class="lg:col-span-8 card-glass rounded-2xl p-5 flex flex-col h-full overflow-hidden">
+            <div class="flex items-center justify-between mb-4 shrink-0">
+              <h3 class="font-bold text-gold-light text-sm">Nội dung Review AI</h3>
+              <button type="button" onclick="aiWriteReview()" class="flex items-center gap-1 bg-gradient-to-r from-gold to-[#b2882c] text-black px-2.5 py-1 rounded-lg text-[11px] font-bold shadow-[0_4px_12px_rgba(212,168,67,0.2)] hover:brightness-110">
+                <span>✨</span> Viết bằng AI
+              </button>
+            </div>
+            
+            <form id="form-review-editor" onsubmit="saveReview(event)" class="classic-form overflow-y-auto flex-grow flex flex-col gap-3.5 pr-2">
+              <input type="hidden" id="rv-sku" />
+              
+              <div class="form-group">
+                <label for="rv-title-display" class="text-[11px] font-semibold text-cream">Sách đang chỉnh sửa</label>
+                <input type="text" id="rv-title-display" readonly class="bg-white/5 border border-gold/15 rounded-lg px-3 py-2 text-xs text-cream/50 cursor-not-allowed outline-none" />
+              </div>
+
+              <div class="form-group">
+                <label for="rv-content" class="text-[11px] font-semibold text-cream">Bài viết chi tiết (Review Content)</label>
+                <textarea id="rv-content" rows="10" placeholder="Nội dung viết chi tiết. Dùng **in đậm** cho các từ khoá. Xuống dòng bằng \n\n." class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white resize-y min-h-[160px]"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="rv-pros" class="text-[11px] font-semibold text-cream">Điểm mạnh / Điểm cộng (Phân cách bằng dấu |)</label>
+                <input type="text" id="rv-pros" placeholder="VD: Sách in màu đẹp | Bài tập phong phú" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+              </div>
+
+              <div class="form-group">
+                <label for="rv-cons" class="text-[11px] font-semibold text-cream">Điểm yếu / Lưu ý học (Phân cách bằng dấu |)</label>
+                <input type="text" id="rv-cons" placeholder="VD: Khá nhiều chữ Hán | Giá hơi cao" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+              </div>
+
+              <div class="form-group">
+                <label for="rv-who_for" class="text-[11px] font-semibold text-cream">Ai nên học cuốn này? (Who is this for)</label>
+                <input type="text" id="rv-who_for" placeholder="VD: Phù hợp với các bạn tự ôn thi HSK 3-4" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+              </div>
+
+              <div class="form-group">
+                <label for="rv-review_images" class="text-[11px] font-semibold text-cream">Ảnh minh hoạ bài viết (Review Images - cách nhau bằng dấu phẩy)</label>
+                <textarea id="rv-review_images" rows="2" placeholder="Tải lên ở tab hình ảnh để tự điền..." class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white resize-none"></textarea>
+              </div>
+
+              <div class="flex mt-4 shrink-0">
+                <button type="submit" class="flex-grow btn btn-primary py-2 text-xs">Lưu bài review</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 4. TAB: DOCUMENTS ================= -->
+      <div id="content-documents" class="tab-content h-full hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 h-full">
+          <!-- Left: List -->
+          <div class="lg:col-span-4 card-glass rounded-2xl p-4 flex flex-col h-full overflow-hidden">
+            <div class="flex items-center justify-between mb-3 shrink-0">
+              <h3 class="font-bold text-white text-sm">Tài liệu chia sẻ</h3>
+              <button onclick="clearDocForm()" class="btn-sm btn-outline text-[11px]">+ Thêm mới</button>
+            </div>
+            <div class="mb-3 shrink-0">
+              <input type="text" id="search-docs" oninput="filterDocs()" placeholder="Tìm theo tên, ID..." class="w-full bg-black/30 border border-gold/20 rounded-lg px-3 py-1.5 text-xs text-cream outline-none focus:border-gold" />
+            </div>
+            <div class="flex-grow overflow-y-auto pr-1">
+              <ul id="list-docs" class="flex flex-col gap-1.5">
+                <li class="loading-item text-xs text-cream/50 text-center py-8">Đang tải danh sách tài liệu...</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Right: Form -->
+          <div class="lg:col-span-8 card-glass rounded-2xl p-5 flex flex-col h-full overflow-hidden">
+            <div class="flex items-center justify-between mb-4 shrink-0">
+              <h3 class="font-bold text-gold-light text-sm">Chi tiết tài liệu & Bài viết AI</h3>
+              <button type="button" onclick="aiWriteDocPost()" class="flex items-center gap-1 bg-gradient-to-r from-emeraldgreen to-[#1e8560] text-white px-2.5 py-1 rounded-lg text-[11px] font-bold shadow-[0_4px_12px_rgba(78,203,160,0.2)] hover:brightness-110">
+                <span>✨</span> Tạo bài AI
+              </button>
+            </div>
+
+            <form id="form-doc-editor" onsubmit="saveDoc(event)" class="classic-form overflow-y-auto flex-grow flex flex-col gap-3.5 pr-2">
+              <div class="grid grid-cols-2 gap-4">
+                <div class="form-group">
+                  <label for="dc-id" class="text-[11px] font-semibold text-cream">ID Tài liệu *</label>
+                  <input type="text" id="dc-id" required placeholder="Ví dụ: DOC-500" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+                </div>
+                <div class="form-group">
+                  <label for="dc-category" class="text-[11px] font-semibold text-cream">Danh mục (Category) *</label>
+                  <select id="dc-category" required class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white outline-none">
+                    <option value="vocab">Từ vựng (vocab)</option>
+                    <option value="grammar">Ngữ pháp (grammar)</option>
+                    <option value="hsk">Luyện thi HSK (hsk)</option>
+                    <option value="writing">Luyện viết nét (writing)</option>
+                    <option value="other">Tài liệu khác (other)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="dc-title" class="text-[11px] font-semibold text-cream">Tên tài liệu *</label>
+                <input type="text" id="dc-title" required placeholder="Tên file hoặc tài liệu" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+              </div>
+
+              <div class="form-group">
+                <label for="dc-desc" class="text-[11px] font-semibold text-cream">Mô tả ngắn</label>
+                <textarea id="dc-desc" rows="2" placeholder="Hiển thị nhanh ngoài trang danh sách" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white resize-none"></textarea>
+              </div>
+
+              <div class="grid grid-cols-3 gap-4">
+                <div class="form-group">
+                  <label for="dc-pages" class="text-[11px] font-semibold text-cream">Định dạng & số trang</label>
+                  <input type="text" id="dc-pages" placeholder="PDF · 12 trang" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+                </div>
+                <div class="form-group">
+                  <label for="dc-level" class="text-[11px] font-semibold text-cream">Độ khó (1 - 5)</label>
+                  <input type="number" id="dc-level" min="1" max="5" value="2" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+                </div>
+                <div class="form-group">
+                  <label for="dc-level_text" class="text-[11px] font-semibold text-cream">Mô tả độ khó</label>
+                  <input type="text" id="dc-level_text" placeholder="Cơ bản · HSK 1-2" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div class="form-group">
+                  <label for="dc-icon" class="text-[11px] font-semibold text-cream">Emoji biểu tượng</label>
+                  <input type="text" id="dc-icon" placeholder="📝" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+                </div>
+                <div class="form-group">
+                  <label for="dc-icon_color" class="text-[11px] font-semibold text-cream">Màu biểu tượng (Mã Hex)</label>
+                  <input type="color" id="dc-icon_color" value="#4ecba0" class="h-9 w-full bg-black/30 border border-gold/20 rounded-lg px-1.5 py-0.5 outline-none cursor-pointer" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="dc-drive_url" class="text-[11px] font-semibold text-cream">Đường link download (Google Drive PDF)</label>
+                <input type="url" id="dc-drive_url" placeholder="https://drive.google.com/..." class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+              </div>
+
+              <div class="form-group">
+                <label for="dc-folder_url" class="text-[11px] font-semibold text-cream">Thư mục Google Drive lưu trữ tài liệu</label>
+                <div class="flex gap-2">
+                  <input type="url" id="dc-folder_url" placeholder="Đang tạo tự động khi lưu tài liệu..." readonly class="flex-grow bg-white/5 border border-gold/15 rounded-lg px-3 py-2 text-xs text-cream/50 cursor-not-allowed outline-none" />
+                  <a id="btn-open-dc-folder" href="#" target="_blank" class="btn btn-secondary text-xs py-2 px-3 disabled pointer-events-none opacity-50 flex items-center justify-center min-w-[110px]" style="text-decoration:none">
+                    📁 Mở thư mục
+                  </a>
+                </div>
+              </div>
+
+              <div class="border-t border-gold/10 pt-3 mt-2">
+                <h4 class="text-xs font-bold text-gold-light mb-3">Nội dung bài viết chi tiết (AI generated)</h4>
+                
+                <div class="form-group mb-3">
+                  <label for="dc-content" class="text-[11px] font-semibold text-cream">Nội dung bài giới thiệu (HTML/Markdown)</label>
+                  <textarea id="dc-content" rows="6" placeholder="Giới thiệu tài liệu..." class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white resize-y min-h-[120px]"></textarea>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="dc-pros" class="text-[11px] font-semibold text-cream">Điểm cộng / Lợi ích tài liệu (Phân cách bằng dấu |)</label>
+                  <input type="text" id="dc-pros" placeholder="VD: Giao diện dễ in ấn | Pinyin chuẩn" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="dc-cons" class="text-[11px] font-semibold text-cream">Hướng dẫn / Lưu ý tự học (Phân cách bằng dấu |)</label>
+                  <input type="text" id="dc-cons" placeholder="VD: Hãy in ra giấy để luyện | Kết hợp nghe audio" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+                </div>
+
+                <div class="form-group">
+                  <label for="dc-who_for" class="text-[11px] font-semibold text-cream">Đối tượng phù hợp nhất</label>
+                  <input type="text" id="dc-who_for" placeholder="VD: Dành cho người mới học Hán tự" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="dc-preview_images" class="text-[11px] font-semibold text-cream">Ảnh xem trước (Preview Images - cách nhau bằng dấu phẩy)</label>
+                <textarea id="dc-preview_images" rows="2" placeholder="Tải lên ở tab hình ảnh để tự điền..." class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white resize-none"></textarea>
+              </div>
+
+              <div class="flex gap-3 mt-4 shrink-0">
+                <button type="submit" class="flex-grow btn btn-primary py-2 text-xs">Lưu tài liệu</button>
+                <button type="button" id="btn-delete-doc" onclick="deleteDoc()" class="btn btn-danger py-2 text-xs px-4 hidden">Xoá</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 5. TAB: AFFILIATE (CÀO LINK ĐA SÀN) ================= -->
+      <div id="content-affiliate" class="tab-content h-full hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 h-full">
+          <!-- Left: List -->
+          <div class="lg:col-span-5 card-glass rounded-2xl p-4 flex flex-col h-full overflow-hidden">
+            <div class="flex items-center justify-between mb-3 shrink-0">
+              <h3 class="font-bold text-white text-sm">Danh sách link cần cào</h3>
+              <div class="flex gap-2">
+                <button onclick="runCrawler()" id="btn-run-crawler" class="btn-sm btn-gold text-[10px] py-1 font-bold">🤖 Crawler AI</button>
+                <button onclick="runPullBooks()" id="btn-pull-books" class="btn-sm btn-green text-[10px] py-1 font-bold">📥 Kéo vào Kho</button>
+              </div>
+            </div>
+            <div class="mb-3 shrink-0">
+              <input type="text" id="search-affiliates" oninput="filterAffiliates()" placeholder="Tìm theo SKU, link..." class="w-full bg-black/30 border border-gold/20 rounded-lg px-3 py-1.5 text-xs text-cream outline-none focus:border-gold" />
+            </div>
+            <div class="flex-grow overflow-y-auto pr-1">
+              <div class="overflow-x-auto w-full">
+                <table class="w-full text-xs text-left text-cream/80">
+                  <thead class="bg-black/40 text-gold-light border-b border-gold/10">
+                    <tr>
+                      <th class="p-2 font-semibold">SKU</th>
+                      <th class="p-2 font-semibold">Tiêu đề (AI)</th>
+                      <th class="p-2 font-semibold">Trạng thái</th>
+                    </tr>
+                  </thead>
+                  <tbody id="list-affiliates">
+                    <tr>
+                      <td colspan="3" class="text-center py-8 text-cream/40">Đang tải dữ liệu...</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- Right: Form to add link -->
+          <div class="lg:col-span-7 card-glass rounded-2xl p-5 flex flex-col h-full justify-start overflow-y-auto">
+            <h3 class="font-bold text-gold-light text-sm mb-4">Thêm liên kết sản phẩm cần cào (Shopee, Tiki, Fahasa, Lazada, TikTok...)</h3>
+            <form onsubmit="addAffiliate(event)" class="flex flex-col gap-4">
+              <div class="form-group">
+                <label for="aff-sku" class="text-[11px] font-semibold text-cream">Mã SKU tự đặt (Ví dụ: SACH-50)</label>
+                <input type="text" id="aff-sku" required placeholder="SACH-XX" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+              </div>
+              <div class="form-group">
+                <label for="aff-url" class="text-[11px] font-semibold text-cream">Liên kết sản phẩm</label>
+                <input type="url" id="aff-url" required placeholder="Dán link Shopee, Tiki, Fahasa, Lazada, TikTok Shop..." class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+              </div>
+              <button type="submit" class="btn btn-primary py-2.5 text-xs font-bold mt-2">Thêm vào hàng chờ cào ➕</button>
+            </form>
+
+            <div class="mt-6 text-xs text-cream/70 leading-relaxed border-t border-gold/10 pt-4">
+              <p class="font-bold text-gold-light mb-1.5">📌 Các bước làm việc với Affiliate tab:</p>
+              <ul class="list-decimal list-inside flex flex-col gap-1.5 pl-1">
+                <li>Nhập SKU và dán link sản phẩm (bất kỳ sàn nào) ở form phía trên, rồi bấm **Thêm**.</li>
+                <li>Nhấp vào nút **🤖 Crawler AI** để bắt đầu cào thông tin. AI Gemini sẽ tự cào và điền giá, tên sách, mô tả tự động vào hàng chờ.</li>
+                <li>Kiểm tra lại trên Sheets nếu cần thiết.</li>
+                <li>Bấm **📥 Kéo vào Kho** để đồng bộ sách tự động từ tab affiliate sang tab quản lý sách chính thức (`books`).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 6. TAB: IMAGES (CANVAS IMAGE EDITOR) ================= -->
+      <div id="content-images" class="tab-content h-full hidden">
+        <div class="image-editor-workspace">
+          <!-- Left: Canvas Area -->
+          <div class="editor-main-card card-glass rounded-2xl flex items-center justify-center p-4 overflow-hidden relative">
+            <div id="drop-zone" class="drag-drop-zone w-full max-w-[420px] h-[260px] border-2 border-dashed border-gold/30 rounded-2xl flex items-center justify-center cursor-pointer hover:border-gold hover:bg-gold/5 transition duration-200">
+              <div class="drop-zone-content text-center flex flex-col items-center gap-2.5">
+                <span class="drop-icon text-3xl">📤</span>
+                <p class="drop-text text-sm font-semibold text-cream">Kéo thả ảnh hoặc click để chọn tệp</p>
+                <span class="drop-hint text-[10px] text-cream/40">Hỗ trợ PNG, JPG, JPEG (Tỉ lệ chuẩn 2:3 cho bìa sách)</span>
+              </div>
+              <input type="file" id="file-input" accept="image/*" class="hidden" onchange="loadImageFile(event)" />
+            </div>
+
+            <div id="canvas-container" class="canvas-container hidden max-h-[85%] relative border border-gold/25 rounded-lg">
+              <canvas id="editor-canvas" class="block max-h-[60vh] max-w-full object-contain"></canvas>
+              <!-- Crop overlay -->
+              <div id="crop-box" class="crop-overlay-box hidden">
+                <div class="crop-handle handle-nw" data-handle="nw"></div>
+                <div class="crop-handle handle-ne" data-handle="ne"></div>
+                <div class="crop-handle handle-sw" data-handle="sw"></div>
+                <div class="crop-handle handle-se" data-handle="se"></div>
+                <div class="crop-grid-line line-h1"></div>
+                <div class="crop-grid-line line-h2"></div>
+                <div class="crop-grid-line line-v1"></div>
+                <div class="crop-grid-line line-v2"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Controls -->
+          <div class="editor-sidebar-card card-glass rounded-2xl p-4 flex flex-col gap-4 overflow-y-auto h-full">
+            <h3 class="editor-title text-sm font-bold text-white shrink-0">Bộ lọc & Công cụ</h3>
+            
+            <div class="tool-section border-b border-gold/10 pb-3.5">
+              <span class="text-xs font-semibold text-gold-light block mb-2">Cắt ảnh (Crop Tool)</span>
+              <div class="flex flex-col gap-2">
+                <label class="flex items-center gap-2 cursor-pointer text-xs text-cream/80">
+                  <input type="checkbox" id="chk-aspect-lock" checked onchange="toggleAspectLock()" class="accent-gold" />
+                  Khóa tỉ lệ bìa sách (2:3)
+                </label>
+                <button onclick="resetCropBox()" class="btn-sm btn-outline w-full py-1 text-xs">Reset Khung Cắt</button>
+              </div>
+            </div>
+
+            <div class="tool-section border-b border-gold/10 pb-3.5">
+              <span class="text-xs font-semibold text-gold-light block mb-2">Thao tác nhanh</span>
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="rotateImage()" class="btn-sm btn-outline py-1 text-xs">Xoay 90°</button>
+                <button onclick="flipImage()" class="btn-sm btn-outline py-1 text-xs">Lật ngang</button>
+              </div>
+            </div>
+
+            <div class="tool-section border-b border-gold/10 pb-3.5">
+              <span class="text-xs font-semibold text-gold-light block mb-2">Bộ lọc màu & Ánh sáng</span>
+              <div class="flex flex-col gap-3">
+                <div class="slider-group flex flex-col gap-1">
+                  <div class="flex justify-between text-[10px] text-cream/70">
+                    <span>Độ sáng</span>
+                    <span id="val-brightness">100%</span>
+                  </div>
+                  <input type="range" id="sld-brightness" min="50" max="150" value="100" oninput="updateFilters()" />
+                </div>
+                <div class="slider-group flex flex-col gap-1">
+                  <div class="flex justify-between text-[10px] text-cream/70">
+                    <span>Độ tương phản</span>
+                    <span id="val-contrast">100%</span>
+                  </div>
+                  <input type="range" id="sld-contrast" min="50" max="150" value="100" oninput="updateFilters()" />
+                </div>
+                <div class="slider-group flex flex-col gap-1">
+                  <div class="flex justify-between text-[10px] text-cream/70">
+                    <span>Độ bão hòa</span>
+                    <span id="val-saturation">100%</span>
+                  </div>
+                  <input type="range" id="sld-saturation" min="0" max="200" value="100" oninput="updateFilters()" />
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-1.5 mt-3">
+                <button onclick="applyPreset('normal')" class="btn-sm btn-outline py-1 text-[10px]" id="preset-normal">Mặc định</button>
+                <button onclick="applyPreset('grayscale')" class="btn-sm btn-outline py-1 text-[10px]" id="preset-grayscale">Trắng đen</button>
+                <button onclick="applyPreset('warm')" class="btn-sm btn-outline py-1 text-[10px]" id="preset-warm">Ấm áp</button>
+                <button onclick="applyPreset('cool')" class="btn-sm btn-outline py-1 text-[10px]" id="preset-cool">Dịu mát</button>
+              </div>
+            </div>
+
+            <div class="tool-section border-b border-gold/10 pb-3.5">
+              <span class="text-xs font-semibold text-gold-light block mb-2">Kích thước đầu ra</span>
+              <div class="grid grid-cols-2 gap-2">
+                <div class="flex flex-col gap-1">
+                  <input type="number" id="img-width" value="600" oninput="changeWidth()" class="bg-black/35 border border-gold/20 rounded px-2 py-1 text-xs text-white" />
+                  <span class="text-[9px] text-cream/40">px (rộng)</span>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <input type="number" id="img-height" value="900" readonly class="bg-white/5 border border-gold/15 rounded px-2 py-1 text-xs text-cream/50 cursor-not-allowed" />
+                  <span class="text-[9px] text-cream/40">px (cao)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="tool-section mt-auto">
+              <span class="text-xs font-semibold text-gold-light block mb-2">Mục tiêu tải lên Drive</span>
+              <div class="flex flex-col gap-3">
+                <div class="form-group">
+                  <label for="img-upload-target" class="text-[10px] text-cream/70">Loại đối tượng</label>
+                  <select id="img-upload-target" onchange="updateImageTargetSkuDropdown()" class="bg-black/35 border border-gold/20 rounded px-2 py-1.5 text-xs text-white outline-none">
+                    <option value="book-shop">Ảnh Shop Sách (shop)</option>
+                    <option value="book-review">Ảnh Review Sách (review)</option>
+                    <option value="doc-preview">Ảnh Preview Tài liệu (preview)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="img-upload-sku" class="text-[10px] text-cream/70">SKU / ID cụ thể</label>
+                  <select id="img-upload-sku" class="bg-black/35 border border-gold/20 rounded px-2 py-1.5 text-xs text-white outline-none">
+                    <!-- Filled dynamically -->
+                  </select>
+                </div>
+
+                <button onclick="uploadImage()" id="btn-upload-drive" disabled class="btn btn-green w-full py-2 text-xs font-bold mt-1">
+                  Tải lên Drive & Đồng bộ
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 7. TAB: LOGS ================= -->
+      <div id="content-logs" class="tab-content h-full hidden">
+        <div class="card-glass rounded-2xl p-5 flex flex-col h-full overflow-hidden">
+          <div class="flex items-center justify-between mb-4 shrink-0">
+            <h3 class="font-bold text-white text-sm">Nhật ký lỗi hệ thống (System Logs)</h3>
+            <button onclick="clearLogs()" class="btn-sm btn-danger text-[11px] font-semibold">🗑️ Xoá lịch sử nhật ký</button>
+          </div>
+          
+          <div class="flex-grow overflow-y-auto pr-1">
+            <table class="w-full text-xs text-left text-cream/80 border-collapse">
+              <thead class="bg-black/40 text-gold-light border-b border-gold/10 sticky top-0">
+                <tr>
+                  <th class="p-2 font-semibold">Thời gian</th>
+                  <th class="p-2 font-semibold">Loại</th>
+                  <th class="p-2 font-semibold">Chi tiết lỗi / hoạt động</th>
+                  <th class="p-2 font-semibold">Key index</th>
+                </tr>
+              </thead>
+              <tbody id="table-logs-body">
+                <tr>
+                  <td colspan="4" class="text-center py-12 text-cream/40">Không có dữ liệu nhật ký.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 8. TAB: CONFIG ================= -->
+      <div id="content-config" class="tab-content h-full hidden">
+        <div class="card-glass rounded-2xl p-5 flex flex-col h-full overflow-hidden">
+          <div class="flex items-center justify-between mb-4 shrink-0">
+            <h3 class="font-bold text-white text-sm" style="font-family:'Playfair Display', serif;">Cấu hình hệ thống (Settings)</h3>
+            <div class="flex gap-2">
+              <button onclick="checkApiKeys()" class="btn-sm btn-outline text-[11px] font-semibold">🔑 Check Keys</button>
+              <button onclick="saveSystemConfig()" class="btn-sm btn-gold text-[11px] font-bold">💾 Lưu cấu hình</button>
+            </div>
+          </div>
+          
+          <form id="form-config" class="classic-form overflow-y-auto flex-grow flex flex-col gap-4 pr-2" onsubmit="event.preventDefault(); saveSystemConfig();">
+            <!-- Google AI Studio Config -->
+            <div class="border-b border-gold/10 pb-4">
+              <h4 class="text-xs font-bold text-gold-light mb-3">🤖 Google AI Studio (Gemini API)</h4>
+              <div class="form-group mb-3">
+                <label for="cfg-gemini_keys" class="text-[11px] font-semibold text-cream">Danh sách API Keys (Ngăn cách bằng dấu phẩy)</label>
+                <textarea id="cfg-gemini_keys" rows="3" placeholder="AIzaSy..., AIzaSy..." class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white resize-y font-mono"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="cfg-gemini_model" class="text-[11px] font-semibold text-cream">Gemini Model</label>
+                <input type="text" id="cfg-gemini_model" placeholder="gemini-2.0-flash" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white font-mono" />
+              </div>
+            </div>
+
+            <!-- Google Drive Config -->
+            <div class="border-b border-gold/10 pb-4">
+              <h4 class="text-xs font-bold text-gold-light mb-3">📁 Google Drive Storage</h4>
+              <div class="form-group mb-3">
+                <label for="cfg-docs_folder_id" class="text-[11px] font-semibold text-cream">ID Thư mục Tài liệu Chia sẻ (Docs Folder ID)</label>
+                <input type="text" id="cfg-docs_folder_id" placeholder="1XdzdpnxPyPH..." class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white font-mono" />
+              </div>
+              <div class="form-group mb-3">
+                <label for="cfg-books_folder_id" class="text-[11px] font-semibold text-cream">ID Thư mục Review Sách (Books/Reviews Folder ID)</label>
+                <input type="text" id="cfg-books_folder_id" placeholder="14hhgqz03Ftb..." class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white font-mono" />
+              </div>
+              <div class="form-group">
+                <label for="cfg-root_folder_id" class="text-[11px] font-semibold text-cream">ID Thư mục gốc dự phòng (Root Folder ID)</label>
+                <input type="text" id="cfg-root_folder_id" placeholder="1gP-4vafPZiuHX..." class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white font-mono" />
+              </div>
+            </div>
+
+            <!-- Custom Endpoint Config -->
+            <div>
+              <h4 class="text-xs font-bold text-gold-light mb-3">🔌 Custom API Endpoint (OpenAI-compatible)</h4>
+              <div class="grid grid-cols-2 gap-4 mb-3">
+                <div class="form-group">
+                  <label for="cfg-custom_name" class="text-[11px] font-semibold text-cream">Tên nhà cung cấp (Name)</label>
+                  <input type="text" id="cfg-custom_name" placeholder="9router" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white" />
+                </div>
+                <div class="form-group">
+                  <label for="cfg-custom_model" class="text-[11px] font-semibold text-cream">Model</label>
+                  <input type="text" id="cfg-custom_model" placeholder="gpt-4o-mini" class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white font-mono" />
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label for="cfg-custom_endpoint" class="text-[11px] font-semibold text-cream">Endpoint URL</label>
+                <input type="url" id="cfg-custom_endpoint" placeholder="https://..." class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white font-mono" />
+              </div>
+              <div class="form-group">
+                <label for="cfg-custom_key" class="text-[11px] font-semibold text-cream">API Key</label>
+                <input type="text" id="cfg-custom_key" placeholder="Bearer key..." class="bg-black/30 border border-gold/20 rounded-lg px-3 py-2 text-xs text-white font-mono" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Global Fullscreen Loader -->
+  <div id="global-loading" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+    <div class="bg-[#141210] border border-gold/20 p-6 rounded-2xl flex flex-col items-center gap-4 max-w-xs shadow-2xl">
+      <div class="w-10 h-10 border-4 border-gold/30 border-t-gold rounded-full animate-spin-custom"></div>
+      <p id="loading-message" class="text-xs text-cream text-center leading-relaxed">Đang tải và cập nhật dữ liệu...</p>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-16 right-4 md:bottom-6 md:right-6 bg-[#1a1c24] border border-emeraldgreen/30 px-4 py-3 rounded-xl flex items-center gap-2.5 text-xs text-emeraldgreen font-semibold shadow-2xl transition duration-300 transform translate-y-20 opacity-0 z-50">
+    <svg class="w-4 h-4 text-emeraldgreen shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+    <span id="toast-message">Cập nhật thành công!</span>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // State Store
+    const state = {
+      activeTab: 'overview',
+      books: [],
+      docs: [],
+      affiliate: [],
+      logs: [],
+      selectedBookSku: null,
+      selectedDocId: null,
+      
+      // Image Editor properties
+      imageState: {
+        originalImage: null,
+        rotation: 0,
+        flipH: false,
+        brightness: 100,
+        contrast: 100,
+        saturation: 100,
+        grayscale: 0,
+        sepia: 0
+      }
+    };
+
+    // DOM ready
+    document.addEventListener('DOMContentLoaded', () => {
+      syncData();
+      syncConfig();
+      initImageEditorDragEvents();
+      initCropBoxInteraction();
+    });
+
+    // Toggle Tabs
+    function switchTab(tabName) {
+      state.activeTab = tabName;
+      
+      // Update sidebar desktop buttons active class
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('sidebar-active', btn.id === `tab-${tabName}`);
+      });
+      
+      // Update sidebar mobile tabs active state
+      document.querySelectorAll('.mobile-tab-btn').forEach(btn => {
+        const isActive = btn.id === `m-tab-${tabName}`;
+        btn.classList.toggle('text-gold', isActive);
+        btn.classList.toggle('text-cream/50', !isActive);
+      });
+
+      // Show hide sections
+      document.querySelectorAll('.tab-content').forEach(sect => {
+        sect.classList.toggle('hidden', sect.id !== `content-${tabName}`);
+      });
+
+      // If switching to images, re-render cropbox and target sku selector
+      if (tabName === 'images') {
+        updateImageTargetSkuDropdown();
+        if (state.imageState.originalImage) {
+          setTimeout(initCropBoxPosition, 100);
+        }
+      }
+    }
+
+    // Call RPC GAS
+    function callGAS(funcName, args, onSuccess, onFailure) {
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        let runner = google.script.run;
+        if (onSuccess) runner = runner.withSuccessHandler(onSuccess);
+        if (onFailure) {
+          runner = runner.withFailureHandler(onFailure);
+        } else {
+          runner = runner.withFailureHandler(err => {
+            hideLoading();
+            showToast(`Lỗi hệ thống: ${err.message}`, 'error');
+          });
+        }
+        runner[funcName].apply(runner, args || []);
+      } else {
+        console.warn(`Simulating call to GAS: ${funcName}`, args);
+        // Simulate local response when testing file directly in browser
+        setTimeout(() => {
+          if (onSuccess) onSuccess({ success: true, books: [], docs: [], affiliate: [], logs: [] });
+        }, 800);
+      }
+    }
+
+    // Sync Data
+    function syncData(manual = false) {
+      if (manual) showLoading('Đang tải lại dữ liệu từ Google Sheets...');
+      
+      // Spin sync button
+      const icon = document.getElementById('sync-icon');
+      if (icon) icon.classList.add('animate-spin-custom');
+
+      callGAS('getDataJson', [], (data) => {
+        state.books = data.books || [];
+        state.docs = data.docs || [];
+        state.affiliate = data.affiliate || [];
+        state.logs = data.logs || [];
+        
+        // Render panels
+        renderOverview();
+        renderBooks();
+        renderReviews();
+        renderDocs();
+        renderAffiliates();
+        renderLogs();
+        
+        // Stop spinning
+        if (icon) icon.classList.remove('animate-spin-custom');
+        
+        syncConfig();
+        
+        const now = new Date();
+        document.getElementById('lbl-last-sync').innerText = now.toLocaleTimeString();
+        
+        if (manual) {
+          showToast('Đồng bộ dữ liệu thành công!', 'success');
+          hideLoading();
+        }
+      }, (err) => {
+        if (icon) icon.classList.remove('animate-spin-custom');
+        hideLoading();
+        showToast(`Đồng bộ thất bại: ${err.message}`, 'error');
+      });
+    }
+
+    // Load system config
+    function syncConfig() {
+      callGAS('getConfigJson', [], (config) => {
+        if (!config) return;
+        document.getElementById('cfg-gemini_keys').value = config.gemini_keys || '';
+        document.getElementById('cfg-gemini_model').value = config.gemini_model || '';
+        document.getElementById('cfg-docs_folder_id').value = config.docs_folder_id || '';
+        document.getElementById('cfg-books_folder_id').value = config.books_folder_id || '';
+        document.getElementById('cfg-root_folder_id').value = config.root_folder_id || '';
+        document.getElementById('cfg-custom_name').value = config.custom_name || '';
+        document.getElementById('cfg-custom_endpoint').value = config.custom_endpoint || '';
+        document.getElementById('cfg-custom_key').value = config.custom_key || '';
+        document.getElementById('cfg-custom_model').value = config.custom_model || '';
+      }, (err) => {
+        console.error('Lỗi nạp cấu hình:', err);
+      });
+    }
+
+    // Save system config
+    function saveSystemConfig() {
+      const configData = {
+        gemini_keys: document.getElementById('cfg-gemini_keys').value.trim(),
+        gemini_model: document.getElementById('cfg-gemini_model').value.trim(),
+        docs_folder_id: document.getElementById('cfg-docs_folder_id').value.trim(),
+        books_folder_id: document.getElementById('cfg-books_folder_id').value.trim(),
+        root_folder_id: document.getElementById('cfg-root_folder_id').value.trim(),
+        custom_name: document.getElementById('cfg-custom_name').value.trim(),
+        custom_endpoint: document.getElementById('cfg-custom_endpoint').value.trim(),
+        custom_key: document.getElementById('cfg-custom_key').value.trim(),
+        custom_model: document.getElementById('cfg-custom_model').value.trim()
+      };
+      
+      showLoading('Đang lưu cấu hình hệ thống...');
+      callGAS('saveConfigFromUI', [configData], (res) => {
+        hideLoading();
+        if (res && res.success) {
+          showToast('Đã lưu cấu hình và cập nhật hệ thống thành công!', 'success');
+          syncConfig();
+        } else {
+          showToast('Lỗi lưu cấu hình!', 'error');
+        }
+      }, (err) => {
+        hideLoading();
+        showToast('Lỗi lưu cấu hình: ' + err.message, 'error');
+      });
+    }
+
+    // Check API Keys
+    function checkApiKeys() {
+      showLoading('Đang kiểm tra hoạt động các API keys...');
+      callGAS('checkAllKeys', [], (res) => {
+        hideLoading();
+        showToast('Đã chạy kiểm tra keys! Chi tiết xem ở tab Nhật ký hoặc tab log trên Sheets.', 'success');
+        syncData();
+      }, (err) => {
+        hideLoading();
+        showToast('Lỗi kiểm tra keys: ' + err.message, 'error');
+      });
+    }
+
+    // Overview Tab Rendering
+    function renderOverview() {
+      document.getElementById('stat-books').innerText = state.books.length;
+      document.getElementById('stat-docs').innerText = state.docs.length;
+      document.getElementById('stat-affiliates').innerText = state.affiliate.length;
+      
+      const errorCount = state.logs.filter(l => l.type === 'ERR').length;
+      document.getElementById('stat-errors').innerText = errorCount;
+
+      const logPreview = document.getElementById('overview-logs-list');
+      if (state.logs.length === 0) {
+        logPreview.innerHTML = '<div class="text-cream/50 text-center py-6">Không có dữ liệu nhật ký.</div>';
+        return;
+      }
+      
+      logPreview.innerHTML = state.logs.slice(0, 5).map(l => {
+        let badgeColor = 'bg-green-500/20 text-green-400 border border-green-500/30';
+        if (l.type === 'ERR') badgeColor = 'bg-red-500/20 text-red-400 border border-red-500/30';
+        else if (l.type === 'START') badgeColor = 'bg-blue-500/20 text-blue-400 border border-blue-500/30';
+        
+        return `
+          <div class="flex items-start gap-3 bg-white/5 p-2 rounded-lg border border-gold/5">
+            <span class="px-1.5 py-0.5 rounded text-[9px] font-bold shrink-0 ${badgeColor}">${l.type}</span>
+            <div class="flex-grow">
+              <p class="text-[11px] text-cream/90 font-medium">${l.detail}</p>
+              <span class="text-[9px] text-cream/45">${l.time}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // ==========================================
+    // BOOKS TAB LOGIC
+    // ==========================================
+    function renderBooks() {
+      const list = document.getElementById('list-books');
+      list.innerHTML = '';
+      
+      if (state.books.length === 0) {
+        list.innerHTML = '<li class="text-xs text-cream/50 text-center py-8">Không có sách nào.</li>';
+        return;
+      }
+
+      state.books.forEach(bk => {
+        const li = document.createElement('li');
+        li.className = `p-2.5 rounded-xl border cursor-pointer hover:bg-white/5 hover:border-gold/30 text-left transition duration-150 flex flex-col gap-0.5 ${state.selectedBookSku === bk.sku ? 'bg-gold-dim border-gold/45' : 'bg-white/5 border-transparent'}`;
+        li.innerHTML = `
+          <span class="text-xs font-semibold text-white truncate">${bk.title || 'Sách chưa đặt tên'}</span>
+          <div class="flex justify-between text-[10px] text-cream/50 font-mono">
+            <span>${bk.sku}</span>
+            <span>${bk.price ? Number(bk.price).toLocaleString() + 'đ' : '0đ'}</span>
+          </div>
+        `;
+        li.onclick = () => selectBook(bk.sku);
+        list.appendChild(li);
+      });
+    }
+
+    function selectBook(sku) {
+      state.selectedBookSku = sku;
+      renderBooks(); // Update highlight
+      
+      const book = state.books.find(b => b.sku === sku);
+      if (!book) return;
+
+      document.getElementById('bk-sku').value = book.sku || '';
+      document.getElementById('bk-sku').readOnly = true;
+      document.getElementById('bk-price').value = book.price || '';
+      document.getElementById('bk-title').value = book.title || '';
+      document.getElementById('bk-subtitle_zh').value = book.subtitle_zh || '';
+      document.getElementById('bk-desc').value = book.desc || '';
+      document.getElementById('bk-tags').value = book.tags || '';
+      document.getElementById('bk-stars').value = book.stars || '5';
+      document.getElementById('bk-buy_shopee').value = book.buy_shopee || '';
+      document.getElementById('bk-buy_fahasa').value = book.buy_fahasa || '';
+      document.getElementById('bk-buy_tiki').value = book.buy_tiki || '';
+      document.getElementById('bk-buy_lazada').value = book.buy_lazada || '';
+      document.getElementById('bk-cover_url').value = book.cover_url || '';
+      document.getElementById('bk-shop_images').value = book.shop_images || '';
+
+      document.getElementById('btn-delete-book').classList.remove('hidden');
+      document.getElementById('book-editor-title').innerText = `Chỉnh sửa Sách: ${sku}`;
+      
+      // Sync form review tab as well
+      selectReview(sku);
+    }
+
+    function clearBookForm() {
+      state.selectedBookSku = null;
+      document.getElementById('form-book-editor').reset();
+      document.getElementById('bk-sku').readOnly = false;
+      document.getElementById('bk-sku').focus();
+      document.getElementById('btn-delete-book').classList.add('hidden');
+      document.getElementById('book-editor-title').innerText = 'Thêm Sách Mới';
+      renderBooks();
+    }
+
+    function filterBooks() {
+      const q = document.getElementById('search-books').value.toLowerCase().trim();
+      const list = document.getElementById('list-books');
+      const filtered = state.books.filter(b => 
+        (b.title || '').toLowerCase().includes(q) || 
+        (b.sku || '').toLowerCase().includes(q)
+      );
+      
+      list.innerHTML = '';
+      if (filtered.length === 0) {
+        list.innerHTML = '<li class="text-xs text-cream/50 text-center py-8">Không có sách phù hợp.</li>';
+        return;
+      }
+
+      filtered.forEach(bk => {
+        const li = document.createElement('li');
+        li.className = `p-2.5 rounded-xl border cursor-pointer hover:bg-white/5 hover:border-gold/30 text-left transition duration-150 flex flex-col gap-0.5 ${state.selectedBookSku === bk.sku ? 'bg-gold-dim border-gold/45' : 'bg-white/5 border-transparent'}`;
+        li.innerHTML = `
+          <span class="text-xs font-semibold text-white truncate">${bk.title || 'Sách chưa đặt tên'}</span>
+          <div class="flex justify-between text-[10px] text-cream/50 font-mono">
+            <span>${bk.sku}</span>
+            <span>${bk.price ? Number(bk.price).toLocaleString() + 'đ' : '0đ'}</span>
+          </div>
+        `;
+        li.onclick = () => selectBook(bk.sku);
+        list.appendChild(li);
+      });
+    }
+
+    function saveBook(e) {
+      e.preventDefault();
+      const sku = document.getElementById('bk-sku').value.trim();
+      const price = Number(document.getElementById('bk-price').value);
+      const title = document.getElementById('bk-title').value.trim();
+      const subtitle_zh = document.getElementById('bk-subtitle_zh').value.trim();
+      const desc = document.getElementById('bk-desc').value.trim();
+      const tags = document.getElementById('bk-tags').value.trim();
+      const stars = Number(document.getElementById('bk-stars').value);
+      const buy_shopee = document.getElementById('bk-buy_shopee').value.trim();
+      const buy_fahasa = document.getElementById('bk-buy_fahasa').value.trim();
+      const buy_tiki = document.getElementById('bk-buy_tiki').value.trim();
+      const buy_lazada = document.getElementById('bk-buy_lazada').value.trim();
+      const cover_url = document.getElementById('bk-cover_url').value.trim();
+      const shop_images = document.getElementById('bk-shop_images').value.trim();
+
+      showLoading('Đang lưu thông tin sách lên Google Sheets...');
+
+      const payload = {
+        action: 'update_book',
+        sku, price, title, subtitle_zh, desc, tags, stars, buy_shopee, buy_fahasa, buy_tiki, buy_lazada, cover_url, shop_images
+      };
+
+      callGAS('updateBookRow', [payload], (res) => {
+        if (res.error) {
+          hideLoading();
+          showToast(`Lỗi: ${res.error}`, 'error');
+          return;
+        }
+        showToast('Lưu thông tin sách thành công!', 'success');
+        syncData();
+        setTimeout(() => selectBook(sku), 1000);
+      });
+    }
+
+    function deleteBook() {
+      const sku = state.selectedBookSku;
+      if (!sku) return;
+      if (!confirm(`Bạn chắc chắn muốn xoá cuốn sách với SKU ${sku}?`)) return;
+
+      showLoading('Đang xoá sách trên Google Sheets...');
+      callGAS('deleteBookBySku', [sku], (res) => {
+        if (res.error) {
+          hideLoading();
+          showToast(`Lỗi: ${res.error}`, 'error');
+          return;
+        }
+        showToast('Đã xoá sách thành công!', 'success');
+        clearBookForm();
+        syncData();
+      });
+    }
+
+    // ==========================================
+    // REVIEWS TAB LOGIC
+    // ==========================================
+    function renderReviews() {
+      const list = document.getElementById('list-reviews');
+      list.innerHTML = '';
+      
+      if (state.books.length === 0) {
+        list.innerHTML = '<li class="text-xs text-cream/50 text-center py-8">Không có sách nào.</li>';
+        return;
+      }
+
+      state.books.forEach(bk => {
+        const hasReview = bk.review && bk.review.trim().length > 10;
+        const li = document.createElement('li');
+        li.className = `p-2.5 rounded-xl border cursor-pointer hover:bg-white/5 hover:border-gold/30 text-left transition duration-150 flex flex-col gap-0.5 ${state.selectedBookSku === bk.sku ? 'bg-gold-dim border-gold/45' : 'bg-white/5 border-transparent'}`;
+        li.innerHTML = `
+          <span class="text-xs font-semibold text-white truncate">${bk.title || 'Sách chưa đặt tên'}</span>
+          <div class="flex justify-between text-[10px] font-mono">
+            <span class="text-cream/55">${bk.sku}</span>
+            <span style="color: ${hasReview ? '#4ecba0' : 'rgba(245,232,208,0.4)'}">${hasReview ? 'Đã viết review ✅' : 'Chưa viết review 📝'}</span>
+          </div>
+        `;
+        li.onclick = () => {
+          state.selectedBookSku = bk.sku;
+          selectBook(bk.sku);
+          selectReview(bk.sku);
+        };
+        list.appendChild(li);
+      });
+    }
+
+    function selectReview(sku) {
+      renderReviews(); // Update active highlights
+      const book = state.books.find(b => b.sku === sku);
+      if (!book) return;
+
+      document.getElementById('rv-sku').value = book.sku || '';
+      document.getElementById('rv-title-display').value = `${book.title} (${book.sku})`;
+      document.getElementById('rv-content').value = book.review || '';
+      document.getElementById('rv-pros').value = book.pros || '';
+      document.getElementById('rv-cons').value = book.cons || '';
+      document.getElementById('rv-who_for').value = book.who_for || '';
+      document.getElementById('rv-review_images').value = book.review_images || '';
+    }
+
+    function filterReviews() {
+      const q = document.getElementById('search-reviews').value.toLowerCase().trim();
+      const list = document.getElementById('list-reviews');
+      const filtered = state.books.filter(b => 
+        (b.title || '').toLowerCase().includes(q) || 
+        (b.sku || '').toLowerCase().includes(q)
+      );
+      
+      list.innerHTML = '';
+      if (filtered.length === 0) {
+        list.innerHTML = '<li class="text-xs text-cream/50 text-center py-8">Không có sách phù hợp.</li>';
+        return;
+      }
+
+      filtered.forEach(bk => {
+        const hasReview = bk.review && bk.review.trim().length > 10;
+        const li = document.createElement('li');
+        li.className = `p-2.5 rounded-xl border cursor-pointer hover:bg-white/5 hover:border-gold/30 text-left transition duration-150 flex flex-col gap-0.5 ${state.selectedBookSku === bk.sku ? 'bg-gold-dim border-gold/45' : 'bg-white/5 border-transparent'}`;
+        li.innerHTML = `
+          <span class="text-xs font-semibold text-white truncate">${bk.title || 'Sách chưa đặt tên'}</span>
+          <div class="flex justify-between text-[10px] font-mono">
+            <span class="text-cream/55">${bk.sku}</span>
+            <span style="color: ${hasReview ? '#4ecba0' : 'rgba(245,232,208,0.4)'}">${hasReview ? 'Đã viết review ✅' : 'Chưa viết review 📝'}</span>
+          </div>
+        `;
+        li.onclick = () => {
+          state.selectedBookSku = bk.sku;
+          selectBook(bk.sku);
+          selectReview(bk.sku);
+        };
+        list.appendChild(li);
+      });
+    }
+
+    function saveReview(e) {
+      e.preventDefault();
+      const sku = document.getElementById('rv-sku').value.trim();
+      if (!sku) {
+        showToast('Vui lòng chọn một cuốn sách!', 'error');
+        return;
+      }
+
+      const review = document.getElementById('rv-content').value.trim();
+      const pros = document.getElementById('rv-pros').value.trim();
+      const cons = document.getElementById('rv-cons').value.trim();
+      const who_for = document.getElementById('rv-who_for').value.trim();
+      const review_images = document.getElementById('rv-review_images').value.trim();
+
+      showLoading('Đang lưu bài review lên Google Sheets...');
+
+      const payload = {
+        action: 'update_book',
+        sku, review, pros, cons, who_for, review_images
+      };
+
+      callGAS('updateBookRow', [payload], (res) => {
+        if (res.error) {
+          hideLoading();
+          showToast(`Lỗi: ${res.error}`, 'error');
+          return;
+        }
+        showToast('Lưu review thành công!', 'success');
+        syncData();
+        setTimeout(() => selectReview(sku), 1000);
+      });
+    }
+
+    function aiWriteReview() {
+      const sku = document.getElementById('rv-sku').value.trim();
+      if (!sku) {
+        showToast('Hãy chọn cuốn sách cần viết review!', 'error');
+        return;
+      }
+
+      showLoading('Lê Lê AI đang biên soạn bài review (khoảng 10-20 giây)...');
+      callGAS('generateReviewForSku', [sku], (res) => {
+        if (res.error) {
+          hideLoading();
+          showToast(`Lỗi viết AI: ${res.error}`, 'error');
+          return;
+        }
+        
+        const aiData = res.data;
+        document.getElementById('rv-content').value = aiData.review || '';
+        document.getElementById('rv-pros').value = aiData.pros || '';
+        document.getElementById('rv-cons').value = aiData.cons || '';
+        document.getElementById('rv-who_for').value = aiData.who_for || '';
+        
+        showToast('Đã tạo bài review bằng AI thành công!', 'success');
+        hideLoading();
+      });
+    }
+
+    // ==========================================
+    // DOCUMENTS TAB LOGIC
+    // ==========================================
+    function renderDocs() {
+      const list = document.getElementById('list-docs');
+      list.innerHTML = '';
+      
+      if (state.docs.length === 0) {
+        list.innerHTML = '<li class="text-xs text-cream/50 text-center py-8">Không có tài liệu nào.</li>';
+        return;
+      }
+
+      state.docs.forEach(doc => {
+        const li = document.createElement('li');
+        li.className = `p-2.5 rounded-xl border cursor-pointer hover:bg-white/5 hover:border-gold/30 text-left transition duration-150 flex flex-col gap-0.5 ${state.selectedDocId === doc.id ? 'bg-gold-dim border-gold/45' : 'bg-white/5 border-transparent'}`;
+        li.innerHTML = `
+          <span class="text-xs font-semibold text-white truncate">${doc.icon || '📄'} ${doc.title || 'Tài liệu chưa đặt tên'}</span>
+          <div class="flex justify-between text-[10px] text-cream/50 font-mono">
+            <span>${doc.id}</span>
+            <span>${doc.category || 'vocab'}</span>
+          </div>
+        `;
+        li.onclick = () => selectDoc(doc.id);
+        list.appendChild(li);
+      });
+    }
+
+    function selectDoc(id) {
+      state.selectedDocId = id;
+      renderDocs();
+      
+      const doc = state.docs.find(d => d.id === id);
+      if (!doc) return;
+
+      document.getElementById('dc-id').value = doc.id || '';
+      document.getElementById('dc-id').readOnly = true;
+      document.getElementById('dc-category').value = doc.category || 'vocab';
+      document.getElementById('dc-title').value = doc.title || '';
+      document.getElementById('dc-desc').value = doc.desc || '';
+      document.getElementById('dc-pages').value = doc.pages || '';
+      document.getElementById('dc-level').value = doc.level || '2';
+      document.getElementById('dc-level_text').value = doc.level_text || '';
+      document.getElementById('dc-icon').value = doc.icon || '📝';
+      document.getElementById('dc-icon_color').value = doc.icon_color || '#4ecba0';
+      document.getElementById('dc-drive_url').value = doc.drive_url || '';
+      document.getElementById('dc-content').value = doc.content || '';
+      document.getElementById('dc-pros').value = doc.pros || '';
+      document.getElementById('dc-cons').value = doc.cons || '';
+      document.getElementById('dc-who_for').value = doc.who_for || '';
+      document.getElementById('dc-preview_images').value = doc.preview_images || '';
+
+      const folderUrl = doc.folder_url || '';
+      document.getElementById('dc-folder_url').value = folderUrl;
+      const openBtn = document.getElementById('btn-open-dc-folder');
+      if (folderUrl) {
+        openBtn.href = folderUrl;
+        openBtn.classList.remove('disabled', 'pointer-events-none', 'opacity-50');
+      } else {
+        openBtn.href = '#';
+        openBtn.classList.add('disabled', 'pointer-events-none', 'opacity-50');
+      }
+
+      document.getElementById('btn-delete-doc').classList.remove('hidden');
+    }
+
+    function clearDocForm() {
+      state.selectedDocId = null;
+      document.getElementById('form-doc-editor').reset();
+      document.getElementById('dc-id').readOnly = false;
+      document.getElementById('dc-id').focus();
+      document.getElementById('dc-folder_url').value = '';
+      
+      const openBtn = document.getElementById('btn-open-dc-folder');
+      openBtn.href = '#';
+      openBtn.classList.add('disabled', 'pointer-events-none', 'opacity-50');
+      document.getElementById('btn-delete-doc').classList.add('hidden');
+      
+      renderDocs();
+    }
+
+    function filterDocs() {
+      const q = document.getElementById('search-docs').value.toLowerCase().trim();
+      const list = document.getElementById('list-docs');
+      const filtered = state.docs.filter(d => 
+        (d.title || '').toLowerCase().includes(q) || 
+        (d.id || '').toLowerCase().includes(q)
+      );
+      
+      list.innerHTML = '';
+      if (filtered.length === 0) {
+        list.innerHTML = '<li class="text-xs text-cream/50 text-center py-8">Không có tài liệu phù hợp.</li>';
+        return;
+      }
+
+      filtered.forEach(doc => {
+        const li = document.createElement('li');
+        li.className = `p-2.5 rounded-xl border cursor-pointer hover:bg-white/5 hover:border-gold/30 text-left transition duration-150 flex flex-col gap-0.5 ${state.selectedDocId === doc.id ? 'bg-gold-dim border-gold/45' : 'bg-white/5 border-transparent'}`;
+        li.innerHTML = `
+          <span class="text-xs font-semibold text-white truncate">${doc.icon || '📄'} ${doc.title || 'Tài liệu chưa đặt tên'}</span>
+          <div class="flex justify-between text-[10px] text-cream/50 font-mono">
+            <span>${doc.id}</span>
+            <span>${doc.category || 'vocab'}</span>
+          </div>
+        `;
+        li.onclick = () => selectDoc(doc.id);
+        list.appendChild(li);
+      });
+    }
+
+    function saveDoc(e) {
+      e.preventDefault();
+      const id = document.getElementById('dc-id').value.trim();
+      const category = document.getElementById('dc-category').value.trim();
+      const title = document.getElementById('dc-title').value.trim();
+      const desc = document.getElementById('dc-desc').value.trim();
+      const pages = document.getElementById('dc-pages').value.trim();
+      const level = Number(document.getElementById('dc-level').value);
+      const level_text = document.getElementById('dc-level_text').value.trim();
+      const icon = document.getElementById('dc-icon').value.trim();
+      const icon_color = document.getElementById('dc-icon_color').value.trim();
+      const drive_url = document.getElementById('dc-drive_url').value.trim();
+      const content = document.getElementById('dc-content').value.trim();
+      const pros = document.getElementById('dc-pros').value.trim();
+      const cons = document.getElementById('dc-cons').value.trim();
+      const who_for = document.getElementById('dc-who_for').value.trim();
+      const preview_images = document.getElementById('dc-preview_images').value.trim();
+      const folder_url = document.getElementById('dc-folder_url').value.trim();
+
+      showLoading('Đang lưu thông tin tài liệu lên Google Sheets...');
+
+      const payload = {
+        action: 'update_doc',
+        id, category, title, desc, pages, level, level_text, icon, icon_color, drive_url, content, pros, cons, who_for, preview_images, folder_url
+      };
+
+      callGAS('updateDocRow', [payload], (res) => {
+        if (res.error) {
+          hideLoading();
+          showToast(`Lỗi: ${res.error}`, 'error');
+          return;
+        }
+        showToast('Lưu tài liệu thành công!', 'success');
+        syncData();
+        setTimeout(() => selectDoc(id), 1000);
+      });
+    }
+
+    function deleteDoc() {
+      const id = state.selectedDocId;
+      if (!id) return;
+      if (!confirm(`Bạn chắc chắn muốn xoá tài liệu với ID ${id}?`)) return;
+
+      showLoading('Đang xoá tài liệu trên Google Sheets...');
+      callGAS('deleteDocById', [id], (res) => {
+        if (res.error) {
+          hideLoading();
+          showToast(`Lỗi: ${res.error}`, 'error');
+          return;
+        }
+        showToast('Đã xoá tài liệu thành công!', 'success');
+        clearDocForm();
+        syncData();
+      });
+    }
+
+    function aiWriteDocPost() {
+      const id = document.getElementById('dc-id').value.trim();
+      if (!id) {
+        showToast('Hãy chọn tài liệu cần tạo bài giới thiệu!', 'error');
+        return;
+      }
+
+      showLoading('Lê Lê AI đang biên tập bài giới thiệu (khoảng 10-20 giây)...');
+      callGAS('generateDocPostForId', [id], (res) => {
+        if (res.error) {
+          hideLoading();
+          showToast(`Lỗi viết AI: ${res.error}`, 'error');
+          return;
+        }
+        
+        const aiData = res.data;
+        document.getElementById('dc-content').value = aiData.content || '';
+        document.getElementById('dc-pros').value = aiData.pros || '';
+        document.getElementById('dc-cons').value = aiData.cons || '';
+        document.getElementById('dc-who_for').value = aiData.who_for || '';
+        
+        showToast('Đã biên tập bài giới thiệu bằng AI thành công!', 'success');
+        hideLoading();
+      });
+    }
+
+    // ==========================================
+    // AFFILIATE / CRAWLER TAB LOGIC
+    // ==========================================
+    function renderAffiliates() {
+      const tbody = document.getElementById('list-affiliates');
+      tbody.innerHTML = '';
+      
+      if (state.affiliate.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="3" class="text-center py-8 text-cream/40">Không có link affiliate nào.</td></tr>';
+        return;
+      }
+
+      state.affiliate.forEach(aff => {
+        tbody.innerHTML += `
+          <tr class="border-b border-gold/5 hover:bg-white/5">
+            <td class="p-2 font-mono text-[10px] font-bold text-white">${aff.sku}</td>
+            <td class="p-2 truncate max-w-[140px] text-cream/80" title="${aff.title || ''}">${aff.title || '<span class="text-cream/30">(Chưa cào)</span>'}</td>
+            <td class="p-2 text-[10px] font-medium" style="color: ${aff.status.indexOf('✅') !== -1 ? '#4ecba0' : '#f59e0b'}">${aff.status}</td>
+          </tr>
+        `;
+      });
+    }
+
+    function addAffiliate(e) {
+      e.preventDefault();
+      const sku = document.getElementById('aff-sku').value.trim();
+      const url = document.getElementById('aff-url').value.trim();
+
+      if (!sku || !url) return;
+
+      showLoading('Đang thêm liên kết vào hàng chờ cào...');
+      callGAS('addAffiliateRow', [sku, url], (res) => {
+        if (res.error) {
+          hideLoading();
+          showToast(`Lỗi: ${res.error}`, 'error');
+          return;
+        }
+        showToast('Đã thêm thành công!', 'success');
+        document.getElementById('aff-sku').value = '';
+        document.getElementById('aff-url').value = '';
+        syncData();
+      });
+    }
+
+    function runCrawler() {
+      showLoading('Hệ thống đang tải nội dung và sử dụng Gemini để bóc tách thông tin đa sàn. Tác vụ này có thể mất 1-3 phút tuỳ số lượng link...');
+      callGAS('runCrawlerFromUI', [], (res) => {
+        if (res.error) {
+          hideLoading();
+          showToast(`Lỗi Crawler: ${res.error}`, 'error');
+          return;
+        }
+        showToast('Crawler đã chạy hoàn tất!', 'success');
+        syncData();
+      });
+    }
+
+    function runPullBooks() {
+      showLoading('Đang đồng bộ và kéo các cuốn sách đã cào thành công vào tab sách chính...');
+      callGAS('runPullToBooksFromUI', [], (res) => {
+        if (res.error) {
+          hideLoading();
+          showToast(`Lỗi đồng bộ: ${res.error}`, 'error');
+          return;
+        }
+        showToast('Đồng bộ sang sách chính thành công!', 'success');
+        syncData();
+      });
+    }
+
+    // ==========================================
+    // LOGS TAB LOGIC
+    // ==========================================
+    function renderLogs() {
+      const tbody = document.getElementById('table-logs-body');
+      tbody.innerHTML = '';
+      
+      if (state.logs.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" class="text-center py-12 text-cream/40">Không có nhật ký nào được ghi lại.</td></tr>';
+        return;
+      }
+
+      state.logs.forEach(l => {
+        let badgeColor = 'text-green-400 bg-green-500/10 border border-green-500/25';
+        if (l.type === 'ERR') badgeColor = 'text-red-400 bg-red-500/10 border border-red-500/25';
+        else if (l.type === 'START') badgeColor = 'text-blue-400 bg-blue-500/10 border border-blue-500/25';
+        
+        tbody.innerHTML += `
+          <tr class="border-b border-gold/5 hover:bg-white/5">
+            <td class="p-2 text-cream/50 text-[10px] whitespace-nowrap">${l.time}</td>
+            <td class="p-2 shrink-0"><span class="px-1.5 py-0.5 rounded font-bold text-[9px] ${badgeColor}">${l.type}</span></td>
+            <td class="p-2 text-cream/90 font-medium leading-relaxed">${l.detail}</td>
+            <td class="p-2 font-mono text-cream/40 text-[10px]">${l.key_index}</td>
+          </tr>
+        `;
+      });
+    }
+
+    function clearLogs() {
+      if (!confirm('Bạn chắc chắn muốn xoá toàn bộ lịch sử lỗi và nhật ký hệ thống?')) return;
+      showLoading('Đang xoá nhật ký...');
+      callGAS('clearLogsFromUI', [], (res) => {
+        if (res.error) {
+          hideLoading();
+          showToast(`Lỗi: ${res.error}`, 'error');
+          return;
+        }
+        showToast('Đã xoá nhật ký thành công!', 'success');
+        syncData();
+      });
+    }
+
+    // ==========================================
+    // CANVAS IMAGE EDITOR WORKSPACE
+    // ==========================================
+    function updateImageTargetSkuDropdown() {
+      const type = document.getElementById('img-upload-target').value;
+      const select = document.getElementById('img-upload-sku');
+      select.innerHTML = '';
+
+      if (type === 'book-shop' || type === 'book-review') {
+        if (state.books.length === 0) {
+          select.innerHTML = '<option value="">(Không có sách)</option>';
+          return;
+        }
+        state.books.forEach(b => {
+          select.innerHTML += `<option value="${b.sku}" ${state.selectedBookSku === b.sku ? 'selected' : ''}>${b.sku} - ${b.title || ''}</option>`;
+        });
+      } else {
+        if (state.docs.length === 0) {
+          select.innerHTML = '<option value="">(Không có tài liệu)</option>';
+          return;
+        }
+        state.docs.forEach(d => {
+          select.innerHTML += `<option value="${d.id}" ${state.selectedDocId === d.id ? 'selected' : ''}>${d.id} - ${d.title || ''}</option>`;
+        });
+      }
+    }
+
+    function updateImageTargetSkuDropdown() {
+      const type = document.getElementById('img-upload-target').value;
+      const select = document.getElementById('img-upload-sku');
+      select.innerHTML = '';
+
+      if (type.startsWith('book-')) {
+        if (state.books.length === 0) {
+          select.innerHTML = '<option value="">(Không có sách)</option>';
+          return;
+        }
+        state.books.forEach(b => {
+          select.innerHTML += `<option value="${b.sku}" ${state.selectedBookSku === b.sku ? 'selected' : ''}>${b.sku} - ${b.title || ''}</option>`;
+        });
+      } else {
+        if (state.docs.length === 0) {
+          select.innerHTML = '<option value="">(Không có tài liệu)</option>';
+          return;
+        }
+        state.docs.forEach(d => {
+          select.innerHTML += `<option value="${d.id}" ${state.selectedDocId === d.id ? 'selected' : ''}>${d.id} - ${d.title || ''}</option>`;
+        });
+      }
+    }
+
+    function initImageEditorDragEvents() {
+      const dropZone = document.getElementById('drop-zone');
+      dropZone.onclick = () => document.getElementById('file-input').click();
+
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          dropZone.classList.add('bg-gold/10', 'border-gold');
+        });
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          dropZone.classList.remove('bg-gold/10', 'border-gold');
+        });
+      });
+
+      dropZone.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        if (files.length > 0) {
+          processLoadedImageFile(files[0]);
+        }
+      });
+    }
+
+    function loadImageFile(e) {
+      if (e.target.files.length > 0) {
+        processLoadedImageFile(e.target.files[0]);
+      }
+    }
+
+    function processLoadedImageFile(file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          state.imageState.originalImage = img;
+          state.imageState.rotation = 0;
+          state.imageState.flipH = false;
+          
+          // Reset sliders
+          document.getElementById('sld-brightness').value = 100;
+          document.getElementById('sld-contrast').value = 100;
+          document.getElementById('sld-saturation').value = 100;
+          state.imageState.brightness = 100;
+          state.imageState.contrast = 100;
+          state.imageState.saturation = 100;
+          state.imageState.grayscale = 0;
+          state.imageState.sepia = 0;
+
+          document.getElementById('val-brightness').innerText = '100%';
+          document.getElementById('val-contrast').innerText = '100%';
+          document.getElementById('val-saturation').innerText = '100%';
+          
+          document.getElementById('drop-zone').classList.add('hidden');
+          document.getElementById('canvas-container').classList.remove('hidden');
+          document.getElementById('btn-upload-drive').disabled = false;
+
+          renderCanvas();
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function getFiltersString() {
+      const s = state.imageState;
+      return `brightness(${s.brightness}%) contrast(${s.contrast}%) saturate(${s.saturation}%) grayscale(${s.grayscale}%) sepia(${s.sepia}%)`;
+    }
+
+    function renderCanvas() {
+      const img = state.imageState.originalImage;
+      if (!img) return;
+
+      const canvas = document.getElementById('editor-canvas');
+      const ctx = canvas.getContext('2d');
+
+      const isRotated = (state.imageState.rotation % 180 !== 0);
+      const w = isRotated ? img.height : img.width;
+      const h = isRotated ? img.width : img.height;
+
+      canvas.width = w;
+      canvas.height = h;
+
+      ctx.save();
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.rotate((state.imageState.rotation * Math.PI) / 180);
+
+      if (state.imageState.flipH) {
+        ctx.scale(-1, 1);
+      }
+
+      ctx.filter = getFiltersString();
+      ctx.drawImage(img, -img.width / 2, -img.height / 2);
+      ctx.restore();
+
+      initCropBoxPosition();
+    }
+
+    function initCropBoxPosition() {
+      const canvas = document.getElementById('editor-canvas');
+      const cropBox = document.getElementById('crop-box');
+      if (!canvas.clientWidth) {
+        setTimeout(initCropBoxPosition, 50);
+        return;
+      }
+
+      const aspectLocked = document.getElementById('chk-aspect-lock').checked;
+      let w, h;
+
+      if (aspectLocked) {
+        if (canvas.clientHeight > canvas.clientWidth * 1.5) {
+          w = canvas.clientWidth * 0.8;
+          h = w * 1.5;
+        } else {
+          h = canvas.clientHeight * 0.8;
+          w = h / 1.5;
+        }
+      } else {
+        w = canvas.clientWidth * 0.8;
+        h = canvas.clientHeight * 0.8;
+      }
+
+      const left = (canvas.clientWidth - w) / 2;
+      const top = (canvas.clientHeight - h) / 2;
+
+      cropBox.style.width = `${w}px`;
+      cropBox.style.height = `${h}px`;
+      cropBox.style.left = `${left}px`;
+      cropBox.style.top = `${top}px`;
+      cropBox.classList.remove('hidden');
+
+      updateOutputDimensions();
+    }
+
+    function toggleAspectLock() {
+      const lock = document.getElementById('chk-aspect-lock').checked;
+      const hInput = document.getElementById('img-height');
+      
+      if (lock) {
+        hInput.classList.add('bg-white/5', 'cursor-not-allowed', 'text-cream/50');
+        hInput.classList.remove('bg-black/35', 'text-white');
+      } else {
+        hInput.classList.remove('bg-white/5', 'cursor-not-allowed', 'text-cream/50');
+        hInput.classList.add('bg-black/35', 'text-white');
+      }
+      
+      if (state.imageState.originalImage) {
+        initCropBoxPosition();
+      }
+    }
+
+    function resetCropBox() {
+      if (state.imageState.originalImage) initCropBoxPosition();
+    }
+
+    function rotateImage() {
+      if (!state.imageState.originalImage) return;
+      state.imageState.rotation = (state.imageState.rotation + 90) % 360;
+      renderCanvas();
+    }
+
+    function flipImage() {
+      if (!state.imageState.originalImage) return;
+      state.imageState.flipH = !state.imageState.flipH;
+      renderCanvas();
+    }
+
+    function updateFilters() {
+      if (!state.imageState.originalImage) return;
+
+      const br = document.getElementById('sld-brightness').value;
+      const co = document.getElementById('sld-contrast').value;
+      const sa = document.getElementById('sld-saturation').value;
+
+      state.imageState.brightness = br;
+      state.imageState.contrast = co;
+      state.imageState.saturation = sa;
+
+      document.getElementById('val-brightness').innerText = `${br}%`;
+      document.getElementById('val-contrast').innerText = `${co}%`;
+      document.getElementById('val-saturation').innerText = `${sa}%`;
+
+      renderCanvas();
+    }
+
+    function applyPreset(preset) {
+      if (!state.imageState.originalImage) return;
+      
+      state.imageState.brightness = 100;
+      state.imageState.contrast = 100;
+      state.imageState.saturation = 100;
+      state.imageState.grayscale = 0;
+      state.imageState.sepia = 0;
+
+      if (preset === 'grayscale') {
+        state.imageState.grayscale = 100;
+        state.imageState.contrast = 115;
+      } else if (preset === 'warm') {
+        state.imageState.sepia = 22;
+        state.imageState.saturation = 115;
+        state.imageState.brightness = 102;
+      } else if (preset === 'cool') {
+        state.imageState.saturation = 85;
+        state.imageState.contrast = 98;
+      }
+
+      document.getElementById('sld-brightness').value = state.imageState.brightness;
+      document.getElementById('sld-contrast').value = state.imageState.contrast;
+      document.getElementById('sld-saturation').value = state.imageState.saturation;
+
+      document.getElementById('val-brightness').innerText = `${state.imageState.brightness}%`;
+      document.getElementById('val-contrast').innerText = `${state.imageState.contrast}%`;
+      document.getElementById('val-saturation').innerText = `${state.imageState.saturation}%`;
+
+      renderCanvas();
+    }
+
+    function changeWidth() {
+      updateOutputDimensions();
+    }
+
+    function updateOutputDimensions() {
+      const wInput = document.getElementById('img-width');
+      const hInput = document.getElementById('img-height');
+      const aspectLocked = document.getElementById('chk-aspect-lock').checked;
+      const cropBox = document.getElementById('crop-box');
+
+      const width = parseInt(wInput.value) || 600;
+      if (aspectLocked) {
+        hInput.value = Math.round(width * 1.5);
+      } else {
+        if (cropBox && cropBox.offsetWidth) {
+          const ratio = cropBox.offsetHeight / cropBox.offsetWidth;
+          hInput.value = Math.round(width * ratio);
+        } else {
+          hInput.value = width;
+        }
+      }
+    }
+
+    // Drag / Touch cropbox interactions
+    function initCropBoxInteraction() {
+      const cropBox = document.getElementById('crop-box');
+      const canvas = document.getElementById('editor-canvas');
+
+      let currentAction = null; // 'move' or 'resize-handle'
+      let activeHandle = null;
+      let startMouseX = 0, startMouseY = 0;
+      let startBoxX = 0, startBoxY = 0;
+      let startBoxW = 0, startBoxH = 0;
+
+      // Handle mousedown & touchstart
+      cropBox.addEventListener('mousedown', dragStart);
+      cropBox.addEventListener('touchstart', dragStart, { passive: false });
+
+      function dragStart(e) {
+        if (!state.imageState.originalImage) return;
+        
+        const isTouch = e.type === 'touchstart';
+        const clientX = isTouch ? e.touches[0].clientX : e.clientX;
+        const clientY = isTouch ? e.touches[0].clientY : e.clientY;
+
+        if (e.target.classList.contains('crop-handle')) {
+          currentAction = 'resize';
+          activeHandle = e.target.getAttribute('data-handle');
+        } else {
+          currentAction = 'move';
+        }
+
+        e.preventDefault();
+
+        startMouseX = clientX;
+        startMouseY = clientY;
+        startBoxX = parseFloat(cropBox.style.left) || 0;
+        startBoxY = parseFloat(cropBox.style.top) || 0;
+        startBoxW = cropBox.offsetWidth;
+        startBoxH = cropBox.offsetHeight;
+
+        document.addEventListener(isTouch ? 'touchmove' : 'mousemove', dragging, { passive: false });
+        document.addEventListener(isTouch ? 'touchend' : 'mouseup', dragEnd);
+      }
+
+      function dragging(e) {
+        if (!currentAction) return;
+        e.preventDefault();
+
+        const isTouch = e.type === 'touchmove';
+        const clientX = isTouch ? e.touches[0].clientX : e.clientX;
+        const clientY = isTouch ? e.touches[0].clientY : e.clientY;
+
+        const deltaX = clientX - startMouseX;
+        const deltaY = clientY - startMouseY;
+
+        const limitW = canvas.clientWidth;
+        const limitH = canvas.clientHeight;
+
+        if (currentAction === 'move') {
+          let newLeft = startBoxX + deltaX;
+          let newTop = startBoxY + deltaY;
+
+          // Constraints
+          newLeft = Math.max(0, Math.min(newLeft, limitW - startBoxW));
+          newTop = Math.max(0, Math.min(newTop, limitH - startBoxH));
+
+          cropBox.style.left = `${newLeft}px`;
+          cropBox.style.top = `${newTop}px`;
+        } else if (currentAction === 'resize') {
+          const lockRatio = document.getElementById('chk-aspect-lock').checked;
+          const ratio = 1.5; // height / width = 1.5 for 2:3 ratio
+
+          let newL = startBoxX;
+          let newT = startBoxY;
+          let newW = startBoxW;
+          let newH = startBoxH;
+
+          if (activeHandle === 'se') {
+            newW = startBoxW + deltaX;
+            if (lockRatio) {
+              newH = newW * ratio;
+            } else {
+              newH = startBoxH + deltaY;
+            }
+          } else if (activeHandle === 'sw') {
+            newW = startBoxW - deltaX;
+            if (newW > 40) {
+              newL = startBoxX + deltaX;
+              if (lockRatio) {
+                newH = newW * ratio;
+              } else {
+                newH = startBoxH + deltaY;
+              }
+            }
+          } else if (activeHandle === 'ne') {
+            newW = startBoxW + deltaX;
+            if (lockRatio) {
+              newH = newW * ratio;
+              newT = startBoxY - (newH - startBoxH);
+            } else {
+              newH = startBoxH - deltaY;
+              if (newH > 40) newT = startBoxY + deltaY;
+            }
+          } else if (activeHandle === 'nw') {
+            newW = startBoxW - deltaX;
+            if (newW > 40) {
+              newL = startBoxX + deltaX;
+              if (lockRatio) {
+                newH = newW * ratio;
+                newT = startBoxY - (newH - startBoxH);
+              } else {
+                newH = startBoxH - deltaY;
+                if (newH > 40) newT = startBoxY + deltaY;
+              }
+            }
+          }
+
+          // Safety constraints
+          if (newW > 40 && newH > 40 && newL >= 0 && newT >= 0 && (newL + newW) <= limitW && (newT + newH) <= limitH) {
+            cropBox.style.left = `${newL}px`;
+            cropBox.style.top = `${newT}px`;
+            cropBox.style.width = `${newW}px`;
+            cropBox.style.height = `${newH}px`;
+          }
+        }
+        updateOutputDimensions();
+      }
+
+      function dragEnd(e) {
+        currentAction = null;
+        activeHandle = null;
+        const isTouch = e.type === 'touchend';
+        document.removeEventListener(isTouch ? 'touchmove' : 'mousemove', dragging);
+        document.removeEventListener(isTouch ? 'touchend' : 'mouseup', dragEnd);
+      }
+    }
+
+    function uploadImage() {
+      if (!state.imageState.originalImage) return;
+
+      const canvas = document.getElementById('editor-canvas');
+      const cropBox = document.getElementById('crop-box');
+      const targetType = document.getElementById('img-upload-target').value;
+      const sku = document.getElementById('img-upload-sku').value;
+
+      if (!sku) {
+        showToast('Vui lòng chọn SKU / ID cụ thể!', 'error');
+        return;
+      }
+
+      showLoading('Đang xử lý cắt ảnh và upload lên Google Drive...');
+
+      // Cắt ảnh dựa trên tỉ lệ crop-box trên canvas render thực tế
+      const scaleX = canvas.width / canvas.clientWidth;
+      const scaleY = canvas.height / canvas.clientHeight;
+
+      const cropX = parseFloat(cropBox.style.left) * scaleX;
+      const cropY = parseFloat(cropBox.style.top) * scaleY;
+      const cropW = cropBox.offsetWidth * scaleX;
+      const cropH = cropBox.offsetHeight * scaleY;
+
+      // Tạo canvas cắt trung gian
+      const cropCanvas = document.createElement('canvas');
+      const outWidth = parseInt(document.getElementById('img-width').value) || 600;
+      const outHeight = parseInt(document.getElementById('img-height').value) || 900;
+
+      cropCanvas.width = outWidth;
+      cropCanvas.height = outHeight;
+
+      const cropCtx = cropCanvas.getContext('2d');
+      cropCtx.drawImage(canvas, cropX, cropY, cropW, cropH, 0, 0, outWidth, outHeight);
+
+      // Trích xuất base64
+      const base64Data = cropCanvas.toDataURL('image/png');
+      const typeLabel = targetType.replace('book-', '').replace('doc-', ''); // 'shop', 'review' hoặc 'preview'
+      
+      const payload = {
+        sku: sku,
+        type: typeLabel,
+        fileName: `${sku}_${typeLabel}_${Date.now()}.png`,
+        base64Data: base64Data
+      };
+
+      callGAS('uploadBase64Image', [payload], (res) => {
+        if (res.error) {
+          hideLoading();
+          showToast(`Lỗi upload: ${res.error}`, 'error');
+          return;
+        }
+
+        showToast('Tải ảnh lên Drive & Đồng bộ thành công!', 'success');
+        
+        // Reset canvas editor & show dropzone again
+        document.getElementById('drop-zone').classList.remove('hidden');
+        document.getElementById('canvas-container').classList.add('hidden');
+        document.getElementById('btn-upload-drive').disabled = true;
+        state.imageState.originalImage = null;
+
+        // Refresh and select tab
+        syncData();
+      });
+    }
+
+    // ==========================================
+    // UTILS & TIMERS
+    // ==========================================
+    function showLoading(msg) {
+      document.getElementById('loading-message').innerText = msg;
+      document.getElementById('global-loading').classList.remove('hidden');
+    }
+
+    function hideLoading() {
+      document.getElementById('global-loading').classList.add('hidden');
+    }
+
+    function showToast(msg, type = 'success') {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      
+      toastMsg.innerText = msg;
+      
+      // Update color based on type
+      if (type === 'success') {
+        toast.className = 'fixed bottom-16 right-4 md:bottom-6 md:right-6 bg-[#0f1b15] border border-emeraldgreen/30 px-4 py-3 rounded-xl flex items-center gap-2.5 text-xs text-emeraldgreen font-semibold shadow-2xl z-50 transition duration-300';
+      } else {
+        toast.className = 'fixed bottom-16 right-4 md:bottom-6 md:right-6 bg-[#210d0a] border border-reddeep/30 px-4 py-3 rounded-xl flex items-center gap-2.5 text-xs text-reddeep font-semibold shadow-2xl z-50 transition duration-300';
+      }
+
+      toast.style.transform = 'translateY(0)';
+      toast.style.opacity = '1';
+
+      setTimeout(() => {
+        toast.style.transform = 'translateY(80px)';
+        toast.style.opacity = '0';
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

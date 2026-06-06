@@ -54,52 +54,40 @@ const FALLBACK_DOCS = [
     drive_url: 'https://drive.google.com/LINK_GOOGLE_DRIVE'
   },
   {
-    id: 'DOC-HSK',
-    title: 'Đề Thi Thử HSK 1 & 2',
-    desc: 'Bộ đề thi thử HSK cấp 1 và 2 với đáp án đầy đủ. Luyện xong tự tin thi thật! Lê Lê đã dùng đề này để ôn thi.',
-    category: 'hsk',
-    icon: '🎯',
-    icon_color: '#3b7fd4',
-    pages: 'PDF · 35 trang · Có đáp án',
-    level: '2',
-    level_text: 'Cơ bản · HSK 1–2',
-    drive_url: 'https://drive.google.com/LINK_GOOGLE_DRIVE'
-  },
-  {
-    id: 'DOC-WRITING',
-    title: 'Bảng Luyện Viết Hán Tự',
-    desc: 'Tờ luyện viết nét chữ theo ô vuông chuẩn với 100 chữ Hán cơ bản nhất. In ra luyện mỗi ngày giúp nhớ chữ rất nhanh!',
-    category: 'writing',
-    icon: '✍️',
-    icon_color: '#7c5cbf',
-    pages: 'PDF · In được',
-    level: '1',
-    level_text: 'Người mới · 100 chữ',
-    drive_url: 'https://drive.google.com/LINK_GOOGLE_DRIVE'
-  },
-  {
-    id: 'DOC-CHUDE',
-    title: 'Từ Vựng Theo Chủ Đề',
-    desc: 'Từ vựng được phân loại theo 15 chủ đề thực tế: gia đình, công việc, du lịch, ăn uống… Học nhanh, nhớ lâu!',
+    id: 'DOC-RADICALS',
+    title: '30 Bộ Thủ Tiếng Trung Thần Kỳ Cho Bé',
+    desc: 'Tài liệu 30 bộ thủ tiếng Trung thông dụng nhất cho các bé, được thiết kế sinh động, nhiều màu sắc và hình minh họa siêu dễ thương!',
     category: 'vocab',
-    icon: '🗂️',
-    icon_color: '#2ea078',
-    pages: 'PDF · 20 trang',
-    level: '2',
-    level_text: 'Sơ cấp · HSK 1–3',
-    drive_url: 'https://drive.google.com/LINK_GOOGLE_DRIVE'
+    icon: '🎨',
+    icon_color: '#FF7B90',
+    pages: 'PDF · 17 trang · Màu sắc',
+    level: '1',
+    level_text: 'Mầm non & Tiểu học',
+    drive_url: 'https://drive.google.com/file/d/1KF_c7CHdSljkl8Rme-C5LZpI0h9XMRAE/view?usp=sharing'
   },
   {
-    id: 'DOC-HSK3',
-    title: 'Đề Thi Thử HSK 3',
-    desc: '3 đề thi thử HSK 3 đầy đủ các phần nghe – đọc – viết với đáp án chi tiết. Thích hợp ôn luyện trước kỳ thi.',
-    category: 'hsk',
-    icon: '📋',
-    icon_color: '#3b7fd4',
-    pages: 'PDF · 42 trang · Có đáp án',
+    id: 'DOC-STREETFOOD',
+    title: 'Street Food Tiếng Trung Cực Dễ',
+    desc: 'Tổng hợp tên gọi các món ăn đường phố Trung Hoa và mẫu câu giao tiếp tự tin khi đi ăn quán lề đường.',
+    category: 'street_food',
+    icon: '🍜',
+    icon_color: '#E58F65',
+    pages: 'PDF · 10 trang',
+    level: '2',
+    level_text: 'Giao tiếp cơ bản',
+    drive_url: 'https://drive.google.com/file/d/1KF_c7CHdSljkl8Rme-C5LZpI0h9XMRAE/view?usp=sharing'
+  },
+  {
+    id: 'DOC-WORDORDERS',
+    title: 'Sổ Tay Trật Tự Từ Trong Câu',
+    desc: 'Bí kíp sắp xếp thứ tự từ trong câu tiếng Trung chuẩn xác, không bị lỗi dịch ngược hay nói bồi.',
+    category: 'word_orders',
+    icon: '🔤',
+    icon_color: '#4A90E2',
+    pages: 'PDF · 15 trang',
     level: '3',
-    level_text: 'Trung cấp · HSK 3',
-    drive_url: 'https://drive.google.com/LINK_GOOGLE_DRIVE'
+    level_text: 'Trung cấp · HSK 2-3',
+    drive_url: 'https://drive.google.com/file/d/1KF_c7CHdSljkl8Rme-C5LZpI0h9XMRAE/view?usp=sharing'
   }
 ];
 
@@ -118,29 +106,23 @@ const DOC_TRANSLATIONS = {
       level_text: 'Intermediate · HSK 2-3',
       pages: 'PDF · 28 pages'
     },
-    'DOC-HSK': {
-      title: 'HSK 1 & 2 Mock Exams',
-      desc: 'HSK Level 1 and 2 mock test bundle with complete answers. Practice and build confidence for the real exam!',
-      level_text: 'Basic · HSK 1-2',
-      pages: 'PDF · 35 pages · Answer Key'
+    'DOC-RADICALS': {
+      title: '30 Magical Chinese Radicals for Kids',
+      desc: 'The 30 most common Chinese radicals for kids, designed with colorful, cartoonish graphics and visual mnemonics!',
+      level_text: 'Preschool & Primary',
+      pages: 'PDF · 17 pages · Colored'
     },
-    'DOC-WRITING': {
-      title: 'Character Practice Sheets',
-      desc: 'Standard grid practice sheets with 100 of the most fundamental Chinese characters. Print out to write daily!',
-      level_text: 'Beginner · 100 chars',
-      pages: 'PDF · Printable'
+    'DOC-STREETFOOD': {
+      title: 'Easy Chinese Street Food Guide',
+      desc: 'A collection of Chinese street food names and practical speaking phrases for dining out confidently.',
+      level_text: 'Basic Speaking',
+      pages: 'Image Sheet'
     },
-    'DOC-CHUDE': {
-      title: 'Thematic Vocabulary Lists',
-      desc: 'Vocabulary organized into 15 practical real-life themes: family, work, travel, dining... Learn fast, remember long!',
-      level_text: 'Basic · HSK 1-3',
-      pages: 'PDF · 20 pages'
-    },
-    'DOC-HSK3': {
-      title: 'HSK 3 Mock Exams',
-      desc: '3 complete HSK 3 mock exams covering listening, reading, and writing with detailed answer keys.',
-      level_text: 'Intermediate · HSK 3',
-      pages: 'PDF · 42 pages · Answer Key'
+    'DOC-WORDORDERS': {
+      title: 'Chinese Word Order Handbook',
+      desc: 'Master correct sentence structure and word order in Chinese to avoid common translation errors.',
+      level_text: 'Intermediate · HSK 2-3',
+      pages: 'Image Sheet'
     }
   },
   zh: {
@@ -156,29 +138,23 @@ const DOC_TRANSLATIONS = {
       level_text: '中级 · HSK 2–3',
       pages: 'PDF · 28 页'
     },
-    'DOC-HSK': {
-      title: 'HSK 1 & 2 模拟试题',
-      desc: '包含完整答案的 HSK 1级和2级模拟套题，模拟真实考试场景，助您自信通关。',
-      level_text: '基础 · HSK 1–2',
-      pages: 'PDF · 35 页 · 附答案'
+    'DOC-RADICALS': {
+      title: '儿童趣味部首三十',
+      desc: '专为儿童设计的30个最常用汉语部首，配备生动有趣的彩色插图和象形联想！',
+      level_text: '幼儿与小学阶段',
+      pages: 'PDF · 17 页 · 彩色版'
     },
-    'DOC-WRITING': {
-      title: '汉字书写田字格字帖',
-      desc: '专为100个最基础汉字设计的田字格书写练习模板。可直接打印，每日练习！',
-      level_text: '零基础 · 100 字',
-      pages: 'PDF · 可打印'
+    'DOC-STREETFOOD': {
+      title: '趣味汉语街头美食指南',
+      desc: '整理了中国街头常见美食名称与实用就餐交际口语，让您轻松点餐。',
+      level_text: '基础口语',
+      pages: '图片资料'
     },
-    'DOC-CHUDE': {
-      title: '分类主题词汇表',
-      desc: '涵盖家庭、工作、旅游、饮食等 15 个实用生活场景的分类词汇表。高效记忆！',
-      level_text: '基础 · HSK 1–3',
-      pages: 'PDF · 20 页'
-    },
-    'DOC-HSK3': {
-      title: 'HSK 3 模拟试卷',
-      desc: '3套完整的 HSK 3级模拟试卷，覆盖听力、阅读和书写，并附有详细答案解析。',
-      level_text: '中级 · HSK 3',
-      pages: 'PDF · 42 页 · 附答案'
+    'DOC-WORDORDERS': {
+      title: '汉语语序与句型手册',
+      desc: '系统梳理汉语常用句型的语序规则，助您告别越式外语翻译腔。',
+      level_text: '中级 · HSK 2–3',
+      pages: '图片资料'
     }
   }
 };
@@ -225,10 +201,9 @@ function inferId(title, index) {
   const t = title.toUpperCase();
   if (t.includes('500')) return 'DOC-500';
   if (t.includes('NGỮ PHÁP') || t.includes('GRAMMAR')) return 'DOC-GRAMMAR';
-  if (t.includes('HSK 3') || t.includes('HSK3')) return 'DOC-HSK3';
-  if (t.includes('ĐỀ THI') || t.includes('HSK') || t.includes('MOCK')) return 'DOC-HSK';
-  if (t.includes('LUYỆN VIẾT') || t.includes('WRITING') || t.includes('CHỮ HÁN')) return 'DOC-WRITING';
-  if (t.includes('CHỦ ĐỀ') || t.includes('THEME')) return 'DOC-CHUDE';
+  if (t.includes('BỘ THỦ') || t.includes('RADICAL') || t.includes('THỦ')) return 'DOC-RADICALS';
+  if (t.includes('STREET FOOD') || t.includes('ẨM THỰC') || t.includes('FOOD')) return 'DOC-STREETFOOD';
+  if (t.includes('WORD ORDER') || t.includes('TRẬT TỰ') || t.includes('CÂU')) return 'DOC-WORDORDERS';
   return `DOC-ROW-${index}`;
 }
 
@@ -337,11 +312,45 @@ function renderDocsList(docs) {
 
   docs.forEach(doc => {
     const card = document.createElement('div');
-    card.className = 'doc-big-card';
     card.dataset.category = doc.category;
     card.id = `doc-${doc.id.toLowerCase()}`;
 
-    // Level dots markup
+    if (doc.category === 'street_food' || doc.category === 'word_orders') {
+      card.className = 'doc-image-card';
+      const urls = doc.preview_images ? doc.preview_images.split(',').map(u => u.trim()).filter(Boolean) : [];
+      const fallbackCover = doc.category === 'street_food' ? 'POSTS/images/thuc_chien_cover_16_9.png' : 'POSTS/images/vs_vocabulary_cover_16_9.png';
+      const imageUrl = urls.length > 0 ? urls[0] : fallbackCover;
+      
+      card.innerHTML = `
+        <img src="${imageUrl}" alt="${doc.title}" loading="lazy" />
+        <div class="image-overlay">
+          <div class="zoom-icon" aria-label="Xem ảnh">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <line x1="11" y1="8" x2="11" y2="14"></line>
+              <line x1="8" y1="11" x2="14" y2="11"></line>
+            </svg>
+          </div>
+        </div>
+      `;
+      
+      card.addEventListener('click', (e) => {
+        e.preventDefault();
+        const categoryDocs = docs.filter(d => d.category === doc.category);
+        const allUrls = categoryDocs.map(d => {
+          const uList = d.preview_images ? d.preview_images.split(',').map(u => u.trim()).filter(Boolean) : [];
+          return uList.length > 0 ? uList[0] : (d.category === 'street_food' ? 'POSTS/images/thuc_chien_cover_16_9.png' : 'POSTS/images/vs_vocabulary_cover_16_9.png');
+        });
+        const index = categoryDocs.indexOf(doc);
+        openImageLightbox(index, allUrls);
+      });
+      
+      grid.appendChild(card);
+      return;
+    }
+
+    card.className = 'doc-big-card';
     const levelNum = parseInt(doc.level) || 2;
     let dotsHtml = '';
     for (let d = 1; d <= 5; d++) {
@@ -510,9 +519,9 @@ function setupActions() {
 // ── Helpers ───────────────────────────────────────────────
 function getCategoryLabel(cat) {
   const lang = window.i18n ? window.i18n.currentLang : 'vi';
-  const viMap = { 'vocab': 'Từ vựng', 'grammar': 'Ngữ pháp', 'hsk': 'Thi HSK', 'writing': 'Luyện viết' };
-  const enMap = { 'vocab': 'Vocab', 'grammar': 'Grammar', 'hsk': 'HSK Exam', 'writing': 'Handwriting' };
-  const zhMap = { 'vocab': '词汇', 'grammar': '语法', 'hsk': 'HSK考试', 'writing': '字帖' };
+  const viMap = { 'vocab': 'Từ vựng', 'grammar': 'Ngữ pháp', 'hsk': 'Thi HSK', 'writing': 'Luyện viết', 'street_food': 'Street Food', 'word_orders': 'Word Orders' };
+  const enMap = { 'vocab': 'Vocab', 'grammar': 'Grammar', 'hsk': 'HSK Exam', 'writing': 'Handwriting', 'street_food': 'Street Food', 'word_orders': 'Word Orders' };
+  const zhMap = { 'vocab': '词汇', 'grammar': '语法', 'hsk': 'HSK考试', 'writing': '字帖', 'street_food': '街头美食', 'word_orders': '语序' };
   
   const maps = { vi: viMap, en: enMap, zh: zhMap };
   const activeMap = maps[lang] || viMap;
@@ -611,3 +620,90 @@ function validateEmail(email) {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return re.test(email);
 }
+
+// ── Lightbox for Image-only Document Grid ─────────────────
+let activeGalleryUrls = [];
+let activeGalleryIndex = 0;
+
+function openImageLightbox(index, urls) {
+  activeGalleryUrls = urls;
+  activeGalleryIndex = index;
+  
+  let lb = document.getElementById('docs-lightbox');
+  if (!lb) {
+    lb = document.createElement('div');
+    lb.id = 'docs-lightbox';
+    lb.style.cssText = `
+      position: fixed; inset: 0; z-index: 9999;
+      display: none; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.3s ease;
+    `;
+    lb.innerHTML = `
+      <div class="lb-backdrop" onclick="closeImageLightbox()" style="position: absolute; inset: 0; background: rgba(10,8,7,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);"></div>
+      <div class="lb-content" style="position: relative; z-index: 2; width: 90%; max-width: 580px; max-height: 85vh; display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+        <button class="lb-close" onclick="closeImageLightbox()" aria-label="Đóng" style="position: absolute; top: -2.8rem; right: 0; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;">✕</button>
+        <button class="lb-prev" onclick="shiftImageLightbox(-1)" aria-label="Ảnh trước" style="position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #fff; font-size: 1.8rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; left: -3.8rem; user-select: none;">‹</button>
+        <img id="docs-lb-img" src="" alt="Ảnh phóng to" style="max-width: 100%; max-height: 72vh; object-fit: contain; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.1);" />
+        <button class="lb-next" onclick="shiftImageLightbox(1)" aria-label="Ảnh tiếp" style="position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #fff; font-size: 1.8rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; right: -3.8rem; user-select: none;">›</button>
+        <p class="lb-counter" id="docs-lb-counter" style="font-size: 0.78rem; color: var(--clr-cream-muted); letter-spacing: 0.05em; margin: 0;"></p>
+      </div>
+    `;
+    document.body.appendChild(lb);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+      #docs-lightbox .lb-close:hover { background: #C94535; border-color: #C94535; transform: scale(1.1) rotate(90deg); }
+      #docs-lightbox .lb-prev:hover, #docs-lightbox .lb-next:hover { background: rgba(78,203,160,0.2); border-color: #4ecba0; color: #4ecba0; }
+      #docs-lightbox .lb-prev:active { transform: translateY(-50%) translateX(-3px); }
+      #docs-lightbox .lb-next:active { transform: translateY(-50%) translateX(3px); }
+      @media (max-width: 900px) {
+        #docs-lightbox .lb-prev { left: 0.5rem; z-index: 10; }
+        #docs-lightbox .lb-next { right: 0.5rem; z-index: 10; }
+        #docs-lightbox .lb-content { width: 95%; }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  updateImageLightbox();
+  lb.style.display = 'flex';
+  setTimeout(() => {
+    lb.style.opacity = '1';
+  }, 10);
+  document.body.style.overflow = 'hidden';
+}
+
+window.closeImageLightbox = function() {
+  const lb = document.getElementById('docs-lightbox');
+  if (lb) {
+    lb.style.opacity = '0';
+    setTimeout(() => {
+      lb.style.display = 'none';
+    }, 300);
+  }
+  document.body.style.overflow = '';
+};
+
+window.shiftImageLightbox = function(dir) {
+  if (!activeGalleryUrls.length) return;
+  activeGalleryIndex = (activeGalleryIndex + dir + activeGalleryUrls.length) % activeGalleryUrls.length;
+  updateImageLightbox();
+};
+
+window.updateImageLightbox = function() {
+  const urls = activeGalleryUrls;
+  const i = activeGalleryIndex;
+  const img = document.getElementById('docs-lb-img');
+  if (img) img.src = urls[i];
+  const counter = document.getElementById('docs-lb-counter');
+  if (counter) counter.textContent = `${i + 1} / ${urls.length}`;
+};
+
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('docs-lightbox');
+  if (lb && lb.style.display === 'flex') {
+    if (e.key === 'Escape') closeImageLightbox();
+    if (e.key === 'ArrowLeft') shiftImageLightbox(-1);
+    if (e.key === 'ArrowRight') shiftImageLightbox(1);
+  }
+});

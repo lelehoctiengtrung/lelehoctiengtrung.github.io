@@ -1178,7 +1178,6 @@ img { display: block; max-width: 100%; }
 
 /* 5. Documents */
 .card-documents {
-  grid-column: span 2;
   background: linear-gradient(145deg, rgba(46, 160, 120, 0.08), rgba(22, 19, 16, 0.8));
   border-color: rgba(46, 160, 120, 0.25);
 }
@@ -1197,6 +1196,27 @@ img { display: block; max-width: 100%; }
   border: 1px solid rgba(46, 160, 120, 0.2);
 }
 .card-documents .showcase-card-action { color: #8affd1; }
+
+/* 6. Media */
+.card-media {
+  background: linear-gradient(145deg, rgba(255, 107, 139, 0.08), rgba(22, 19, 16, 0.8));
+  border-color: rgba(255, 107, 139, 0.25);
+}
+.card-media:hover {
+  border-color: rgba(255, 107, 139, 0.55);
+  box-shadow: 0 15px 40px rgba(255, 107, 139, 0.15);
+}
+.card-media .showcase-card-icon {
+  background: rgba(255, 107, 139, 0.15);
+  border-color: rgba(255, 107, 139, 0.3);
+  color: #ff7b90;
+}
+.card-media .showcase-card-badge {
+  background: rgba(255, 107, 139, 0.12);
+  color: #ff99ac;
+  border: 1px solid rgba(255, 107, 139, 0.2);
+}
+.card-media .showcase-card-action { color: #ff99ac; }
 
 /* ===================================================
    Bio & Creator Section
