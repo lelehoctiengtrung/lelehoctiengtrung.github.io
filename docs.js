@@ -85,11 +85,11 @@ const FALLBACK_DOCS = [
     category: 'infographics',
     icon: '🔤',
     icon_color: '#4A90E2',
-    pages: 'Bộ ảnh · 6 ảnh',
+    pages: 'Bộ ảnh · 11 ảnh',
     level: '3',
     level_text: 'Trung cấp · HSK 2-3',
     drive_url: 'https://drive.google.com/file/d/1KF_c7CHdSljkl8Rme-C5LZpI0h9XMRAE/view?usp=sharing',
-    preview_images: 'POSTS/images/word_order_故事_事故.png,POSTS/images/word_order_牛奶_奶牛.png,POSTS/images/word_order_现实_实现.png,POSTS/images/word_order_蜜蜂_蜂蜜.png,POSTS/images/word_order_语法_法语.png,POSTS/images/word_order_马上_上马.png'
+    preview_images: 'POSTS/images/word_order_故事_事故.png,POSTS/images/word_order_牛奶_奶牛.png,POSTS/images/word_order_现实_实现.png,POSTS/images/word_order_蜜蜂_蜂蜜.png,POSTS/images/word_order_语法_法语.png,POSTS/images/word_order_马上_上马.png,POSTS/images/word_order_报警_警报.png,POSTS/images/word_order_盘算_算盘.png,POSTS/images/word_order_带领_领带.png,POSTS/images/word_order_牙刷_刷牙.png,POSTS/images/word_order_国外_外国.png'
   }
 ];
 
@@ -124,7 +124,7 @@ const DOC_TRANSLATIONS = {
       title: 'Chinese Word Order Handbook',
       desc: 'Master correct sentence structure and word order in Chinese to avoid common translation errors.',
       level_text: 'Intermediate · HSK 2-3',
-      pages: 'Images · 6 sheets'
+      pages: 'Images · 11 sheets'
     }
   },
   zh: {
@@ -156,7 +156,7 @@ const DOC_TRANSLATIONS = {
       title: '汉语语序与句型手册',
       desc: '系统梳理汉语常用句型的语序规则，助您告别越式外语翻译腔。',
       level_text: '中级 · HSK 2–3',
-      pages: '图集 · 6 张'
+      pages: '图集 · 11 张'
     }
   }
 };
