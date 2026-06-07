@@ -113,6 +113,23 @@ const FALLBACK_DOCS = {
     cons: 'Tài liệu tập trung vào các cặp từ cụ thể, chưa đi sâu vào ngữ pháp toàn diện | Cần luyện tập đặt câu thực tế',
     who_for: 'Dành cho các bạn đang học tiếng Trung ở mọi trình độ, đặc biệt là những ai hay bị nhầm lẫn trật tự từ hoặc muốn cải thiện tư duy diễn đạt tự nhiên.',
     preview_images: '../POSTS/images/word_order_故事_事故.png,../POSTS/images/word_order_牛奶_奶牛.png,../POSTS/images/word_order_现实_实现.png,../POSTS/images/word_order_蜜蜂_蜂蜜.png,../POSTS/images/word_order_语法_法语.png,../POSTS/images/word_order_马上_上马.png,../POSTS/images/word_order_报警_警报.png,../POSTS/images/word_order_盘算_算盘.png,../POSTS/images/word_order_带领_领带.png,../POSTS/images/word_order_牙刷_刷牙.png,../POSTS/images/word_order_国外_外国.png'
+  },
+  'DOC-SUMMER': {
+    id: 'DOC-SUMMER',
+    title: 'Học Tiếng Trung Mùa Hè Cực Vui',
+    desc: 'Cẩm nang học tiếng Trung chủ đề mùa hè đầy đủ nhất cho bé: từ vựng thời tiết, bãi biển, các hoạt động trò chơi, bài thơ thiếu nhi và lộ trình 12 tuần cụ thể.',
+    category: 'vocab',
+    icon: '☀️',
+    icon_color: '#FF8A5B',
+    pages: 'PDF · 30 trang · Màu sắc',
+    level: '1',
+    level_text: 'Mầm non & Tiểu học',
+    drive_url: '../POSTS/docs/DOC-SUMMER.pdf',
+    content: 'Chào mừng các bé và phụ huynh đến với **Cẩm Nang Học Tiếng Trung Mùa Hè Cực Vui**! Mùa hè là khoảng thời gian lý tưởng để con học ngôn ngữ mà không gặp áp lực bài vở ở trường.\n\nTài liệu này biên soạn đầy đủ mọi thứ ba mẹ cần: các từ vựng thời tiết và bãi biển quen thuộc hằng ngày, bài thơ thiếu nhi "Trùng Trùng Phi" nhịp điệu sinh động, hoạt động bán kem Gelato nhập vai lý thú và lộ trình 12 tuần cụ thể để con làm quen với 72 từ vựng cốt lõi. Tài liệu được thiết kế theo phong cách ngộ nghĩnh, sticker viền đậm dễ thương kích thích thị giác của trẻ.\n\nBa mẹ hãy in màu khổ giấy A4 để con chơi các trò chơi Scavenger Hunt ngoài trời, tô màu theo chữ số Hán và đánh dấu hành trình 30 ngày kiên trì tự học nhé!',
+    pros: 'Thiết kế sticker viền đậm ngộ nghĩnh, màu sắc pastel thu hút trẻ em | Nội dung dịch nghĩa Việt-Trung chuẩn kèm pinyin | Lộ trình 12 tuần thiết lập thói quen học tập nhẹ nhàng hằng ngày',
+    cons: 'Để đạt hiệu quả tốt nhất cần in màu trên giấy dày | Cần ba mẹ đồng hành chỉ dẫn các hoạt động ngoài trời',
+    who_for: 'Dành cho các bé từ 3-10 tuổi (mầm non & tiểu học) mới làm quen với chữ Hán, hoặc ba mẹ/giáo viên muốn tìm tài liệu trực quan, chơi mà học.',
+    preview_images: '../POSTS/images/DOC-SUMMER_cover.png,../POSTS/images/DOC-SUMMER_page3.png,../POSTS/images/DOC-SUMMER_page7.png'
   }
 };
 
@@ -156,6 +173,7 @@ function inferId(title, index) {
   if (t.includes('500')) return 'DOC-500';
   if (t.includes('NGỮ PHÁP') || t.includes('GRAMMAR')) return 'DOC-GRAMMAR';
   if (t.includes('BỘ THỦ') || t.includes('RADICAL') || t.includes('THỦ')) return 'DOC-RADICALS';
+  if (t.includes('MÙA HÈ') || t.includes('SUMMER')) return 'DOC-SUMMER';
   return `DOC-ROW-${index}`;
 }
 
