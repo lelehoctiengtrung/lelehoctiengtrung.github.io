@@ -9,8 +9,8 @@ const BLACKLISTED_YOUTUBE_IDS = ['Vz52s5wXhR4']; // Skip unavailable/broken vide
 const PAGE_SIZE = 8; // Số lượng video trên mỗi trang (2 hàng, mỗi hàng 4 video trên desktop)
 
 // ---- Predefined Video Database (Offline & Instant Load) ----
-const ALL_VIDEOS = [
-  {
+const ALL_VIDEOS = [[
+{
     "id": "ZKFGnZu36C4",
     "title_zh": "作",
     "title_vi": "Tác - Người bắt tay sáng tạo cái mới",
@@ -19,52 +19,52 @@ const ALL_VIDEOS = [
     "desc": "Giải nghĩa chữ Tác (作) - hình ảnh người đứng bắt tay vào làm việc, sáng tạo cái mới.",
     "order": 61
   },
-  {
+{
     "id": "1zrczoa-3gc",
     "title_zh": "看 / 看见",
     "title_vi": "Khán & Khán kiến - Nhìn xem và nhìn thấy",
     "youtube_url": "https://www.youtube.com/shorts/1zrczoa-3gc",
-    "category": "Lê Lê kể chữ",
+    "category": "Song đấu từ vựng",
     "desc": "Phân biệt chữ Khán (看 - che mắt nhìn xa) và Khán kiến (看见 - kết quả của việc nhìn thấy).",
     "order": 60
   },
-  {
+{
     "id": "ObBKQUg3Ma4",
     "title_zh": "忽然 / 突然",
     "title_vi": "Đột nhiên & Hốt nhiên - Sự khác biệt tinh tế",
     "youtube_url": "https://www.youtube.com/shorts/ObBKQUg3Ma4",
-    "category": "Lê Lê kể chữ",
+    "category": "Song đấu từ vựng",
     "desc": "Phân biệt cách dùng của 突然 (tūrán - đột nhiên) và 忽然 (hūrán - hốt nhiên) trong giao tiếp.",
     "order": 59
   },
-  {
+{
     "id": "jkOIuGDpDns",
     "title_zh": "以后 / 后来",
     "title_vi": "Dĩ hậu & Hậu lai - Sau này và sau đó",
     "youtube_url": "https://www.youtube.com/shorts/jkOIuGDpDns",
-    "category": "Lê Lê kể chữ",
+    "category": "Song đấu từ vựng",
     "desc": "Phân biệt từ chỉ thời gian 以后 (yǐhòu - sau này) và 后来 (hòulái - sau đó, hậu lai).",
     "order": 58
   },
-  {
+{
     "id": "U3dYr5EqQOA",
     "title_zh": "还是 / 或者",
     "title_vi": "Hoàn thị & Hoặc giả - Hoặc là và hay là",
     "youtube_url": "https://www.youtube.com/shorts/U3dYr5EqQOA",
-    "category": "Lê Lê kể chữ",
+    "category": "Song đấu từ vựng",
     "desc": "Phân biệt cách dùng từ liên kết 还是 (háishi - hay là trong câu hỏi) và 或者 (huòzhě - hoặc là trong câu trần thuật).",
     "order": 57
   },
-  {
+{
     "id": "SG4XEMgsEbE",
     "title_zh": "怎么 / 怎么样",
     "title_vi": "Chẩm ma & Chẩm ma dạng - Như thế nào và ra sao",
     "youtube_url": "https://www.youtube.com/shorts/SG4XEMgsEbE",
-    "category": "Lê Lê kể chữ",
+    "category": "Song đấu từ vựng",
     "desc": "Phân biệt cách dùng của phó từ 怎么 (zěnme - thế nào, làm sao) và 怎么样 (zěnmeyàng - ra sao, thế nào).",
     "order": 56
   },
-  {
+{
     "id": "ycoBAmSHaIk",
     "title_zh": "老",
     "title_vi": "Lão - Người già chống gậy bước đi",
@@ -73,7 +73,7 @@ const ALL_VIDEOS = [
     "desc": "Giải thích nguồn gốc chữ Lão hình ảnh người già chống gậy.",
     "order": 55
   },
-  {
+{
     "id": "GRCVyX1NVKc",
     "title_zh": "汉",
     "title_vi": "Hán - Đôi tay xây nghiệp bên dòng Hán",
@@ -82,7 +82,7 @@ const ALL_VIDEOS = [
     "desc": "Ý nghĩa chữ Hán từ đôi tay đắp đê sông Hán.",
     "order": 54
   },
-  {
+{
     "id": "DrGtgLX5B38",
     "title_zh": "尖",
     "title_vi": "Tiêm - Đầu nhỏ thân to tạo mũi nhọn",
@@ -91,7 +91,7 @@ const ALL_VIDEOS = [
     "desc": "Chữ Tiêm ghép từ chữ Tiểu (nhỏ) và Đại (to).",
     "order": 53
   },
-  {
+{
     "id": "yPB0kkFBfDA",
     "title_zh": "喜",
     "title_vi": "Hỷ - Kẻ sĩ mở miệng ca hát mừng hỷ",
@@ -100,7 +100,7 @@ const ALL_VIDEOS = [
     "desc": "Chữ Hỷ tượng trưng cho niềm vui và may mắn.",
     "order": 52
   },
-  {
+{
     "id": "LRSlWafLcdc",
     "title_zh": "名",
     "title_vi": "Danh - Gọi tên nhau trong đêm tối",
@@ -109,7 +109,7 @@ const ALL_VIDEOS = [
     "desc": "Chữ Danh ghép từ chữ Tịch (tối) và Khẩu (miệng).",
     "order": 51
   },
-  {
+{
     "id": "gcdxpViyblE",
     "title_zh": "衣",
     "title_vi": "Y - Chiếc áo dài cổ xòe rộng tà",
@@ -118,7 +118,7 @@ const ALL_VIDEOS = [
     "desc": "Nguồn gốc tượng hình của chữ Y (trang phục).",
     "order": 50
   },
-  {
+{
     "id": "q_9fy1F5vbE",
     "title_zh": "家",
     "title_vi": "Gia - Nuôi lợn dưới mái nhà ấm no",
@@ -127,7 +127,7 @@ const ALL_VIDEOS = [
     "desc": "Chữ Gia gồm bộ Miên (mái nhà) và chữ Thỉ (con heo).",
     "order": 49
   },
-  {
+{
     "id": "jMB51QqslDU",
     "title_zh": "女",
     "title_vi": "Nữ - Người phụ nữ quỳ gối cung kính",
@@ -137,7 +137,7 @@ const ALL_VIDEOS = [
     "thumbnail": "POSTS/images/nu_thumbnail.png",
     "order": 48
   },
-  {
+{
     "id": "OqhxB504-u8",
     "title_zh": "休",
     "title_vi": "Hưu - Người mệt mỏi tựa gốc cây nghỉ mát",
@@ -146,7 +146,7 @@ const ALL_VIDEOS = [
     "desc": "Chữ Hưu ghép từ chữ Nhân (người) và Mộc (cây).",
     "order": 47
   },
-  {
+{
     "id": "tSqPD1uCg2Y",
     "title_zh": "水",
     "title_vi": "Thủy - Dòng sông chảy xiết tung bọt trắng",
@@ -155,7 +155,7 @@ const ALL_VIDEOS = [
     "desc": "Hình tượng dòng chảy nước tự nhiên của chữ Thủy.",
     "order": 46
   },
-  {
+{
     "id": "s1WhwmGbo_s",
     "title_zh": "不",
     "title_vi": "Bất - Rễ cây bị nhổ không thể mọc",
@@ -164,7 +164,7 @@ const ALL_VIDEOS = [
     "desc": "Nguồn gốc hình tượng chữ Bất thời cổ đại.",
     "order": 45
   },
-  {
+{
     "id": "5i27wCursTA",
     "title_zh": "东",
     "title_vi": "Đông - Mặt trời mọc sau bao tải hàng",
@@ -173,7 +173,7 @@ const ALL_VIDEOS = [
     "desc": "Giải nghĩa chữ Đông tượng trưng cho hướng mặt trời mọc.",
     "order": 44
   },
-  {
+{
     "id": "Mx6Svocgil4",
     "title_zh": "车",
     "title_vi": "Xa - Chiếc xe cổ nhìn từ trên cao",
@@ -182,7 +182,7 @@ const ALL_VIDEOS = [
     "desc": "Hình dáng chiếc xe ngựa cổ nhìn từ trên xuống.",
     "order": 43
   },
-  {
+{
     "id": "DBvjz-UjKcs",
     "title_zh": "对",
     "title_vi": "Đối - Dùng tay đo đạc chuẩn xác",
@@ -191,7 +191,7 @@ const ALL_VIDEOS = [
     "desc": "Nguồn gốc chữ Đối trong tiếng Trung.",
     "order": 42
   },
-  {
+{
     "id": "lg4m_lqlQac",
     "title_zh": "机",
     "title_vi": "Cơ - Cỗ máy gỗ vận hành thời cơ",
@@ -200,7 +200,7 @@ const ALL_VIDEOS = [
     "desc": "Giải nghĩa chữ Cơ ghép từ bộ Mộc và chữ Kỷ.",
     "order": 41
   },
-  {
+{
     "id": "yVobRj4s42M",
     "title_zh": "会",
     "title_vi": "Hội - Mọi người tụ họp bàn luận kiến thức",
@@ -209,7 +209,7 @@ const ALL_VIDEOS = [
     "desc": "Nguồn gốc cấu tạo chữ Hội thời cổ đại.",
     "order": 40
   },
-  {
+{
     "id": "sK3g_j5PN3A",
     "title_zh": "服",
     "title_vi": "Phục - Đôi tay khoác áo cho người quỳ",
@@ -218,7 +218,7 @@ const ALL_VIDEOS = [
     "desc": "Hình tượng mặc phục trang cung kính thời cổ.",
     "order": 39
   },
-  {
+{
     "id": "GTXKMZugW-M",
     "title_zh": "谁",
     "title_vi": "Thùy - Cất tiếng hỏi tên chú chim nhỏ",
@@ -227,7 +227,7 @@ const ALL_VIDEOS = [
     "desc": "Giải thích nguồn gốc chữ Thùy dùng để hỏi.",
     "order": 38
   },
-  {
+{
     "id": "EXHGG43gVlk",
     "title_zh": "馆",
     "title_vi": "Quán - Nơi quan dừng chân ăn uống",
@@ -236,7 +236,7 @@ const ALL_VIDEOS = [
     "desc": "Giải nghĩa chữ Quán (nơi ăn ở, hội quán).",
     "order": 37
   },
-  {
+{
     "id": "cJ7U9Olpx7U",
     "title_zh": "晶",
     "title_vi": "Tinh - Ba mặt trời cùng tỏa sáng lấp lánh",
@@ -245,7 +245,7 @@ const ALL_VIDEOS = [
     "desc": "Giải nghĩa chữ Tinh gồm ba chữ Nhật xếp lại.",
     "order": 36
   },
-  {
+{
     "id": "0vVPcmv9sZo",
     "title_zh": "些",
     "title_vi": "Ta - Chỉ tay gom nhặt một vài thứ",
@@ -254,7 +254,7 @@ const ALL_VIDEOS = [
     "desc": "Ý nghĩa chữ Ta (些) dùng để chỉ một vài, một số lượng ít.",
     "order": 35
   },
-  {
+{
     "id": "XznUKXARWeA",
     "title_zh": "人",
     "title_vi": "Nhân - Người đứng vững chãi trên mặt đất",
@@ -263,7 +263,7 @@ const ALL_VIDEOS = [
     "desc": "Giải nghĩa chữ Nhân (人) hình ảnh người đứng nghiêng vững chãi.",
     "order": 34
   },
-  {
+{
     "id": "ukbAYcmktm8",
     "title_zh": "他",
     "title_vi": "Tha - Người đàn ông khác cũng ở đó",
@@ -272,7 +272,7 @@ const ALL_VIDEOS = [
     "desc": "Chữ Tha (他) chỉ người nam khác, ghép từ bộ Nhân đứng.",
     "order": 33
   },
-  {
+{
     "id": "zrRg18tXyxI",
     "title_zh": "众",
     "title_vi": "Chúng - Ba người tụ họp thành đám đông",
@@ -281,7 +281,7 @@ const ALL_VIDEOS = [
     "desc": "Giải nghĩa chữ Chúng (众) gồm ba chữ Nhân (人) ghép lại.",
     "order": 32
   },
-  {
+{
     "id": "5t9w_awJZUk",
     "title_zh": "六",
     "title_vi": "Lục - Ngôi nhà nhỏ mang lại bình an",
@@ -290,7 +290,7 @@ const ALL_VIDEOS = [
     "desc": "Ý nghĩa tượng hình chữ Lục (六) xuất phát từ ngôi nhà vững chãi.",
     "order": 31
   },
-  {
+{
     "id": "lCTp91wuBGA",
     "title_zh": "几",
     "title_vi": "Kỷ - Chiếc bàn nhỏ kê sát vách tường",
@@ -299,7 +299,7 @@ const ALL_VIDEOS = [
     "desc": "Tìm hiểu nguồn gốc chữ Kỷ (几) tượng hình chiếc ghế hoặc bàn nhỏ.",
     "order": 30
   },
-  {
+{
     "id": "ErVxrJVrvXc",
     "title_zh": "出",
     "title_vi": "Xuất - Mầm cây vượt hai ngọn núi",
@@ -308,7 +308,7 @@ const ALL_VIDEOS = [
     "desc": "Nguồn gốc chữ Xuất (出) tượng trưng cho việc đi ra, vượt ra ngoài.",
     "order": 29
   },
-  {
+{
     "id": "3t8i3Zt-bKg",
     "title_zh": "北",
     "title_vi": "Bắc - Hai người tựa lưng tránh gió lạnh",
@@ -317,7 +317,7 @@ const ALL_VIDEOS = [
     "desc": "Ý nghĩa chữ Bắc (北) mô tả hai người quay lưng vào nhau.",
     "order": 28
   },
-  {
+{
     "id": "r--MW0Qj5H8",
     "title_zh": "卡",
     "title_vi": "Tạp - Vật bị kẹt giữa trên và dưới",
@@ -326,7 +326,7 @@ const ALL_VIDEOS = [
     "desc": "Chữ Tạp (卡) ghép từ chữ Thượng (上 - trên) và Hạ (下 - dưới).",
     "order": 27
   },
-  {
+{
     "id": "CBXwISkgwHE",
     "title_zh": "吗",
     "title_vi": "Ma - Dùng miệng hỏi thăm con ngựa",
@@ -335,7 +335,7 @@ const ALL_VIDEOS = [
     "desc": "Chữ Ma (吗) dùng để hỏi cuối câu, ghép từ Khẩu và Mã.",
     "order": 26
   },
-  {
+{
     "id": "y_nLw3euYQk",
     "title_zh": "和",
     "title_vi": "Hòa - Miệng có lúa ăn, đời thái bình",
@@ -344,7 +344,7 @@ const ALL_VIDEOS = [
     "desc": "Chữ Hòa (和) ghép từ chữ Hòa (禾 - lúa) và Khẩu (口 - miệng).",
     "order": 25
   },
-  {
+{
     "id": "8MEt2ZkrGMU",
     "title_zh": "商",
     "title_vi": "Thương - Thương nhân đội mũ đi buôn khắp nơi",
@@ -353,7 +353,7 @@ const ALL_VIDEOS = [
     "desc": "Giải thích nguồn gốc chữ Thương (商) hình ảnh người đội mũ đi buôn.",
     "order": 24
   },
-  {
+{
     "id": "Kapx7qHDQzM",
     "title_zh": "在",
     "title_vi": "Tại - Cánh tay cắm cọc định vị trên đất",
@@ -362,7 +362,7 @@ const ALL_VIDEOS = [
     "desc": "Nguồn gốc chữ Tại (在) tượng trưng cho sự tồn tại, ở đâu đó.",
     "order": 23
   },
-  {
+{
     "id": "OBu4HxmACaw",
     "title_zh": "坐",
     "title_vi": "Tọa - Hai người ngồi đối diện trên gò đất",
@@ -371,7 +371,7 @@ const ALL_VIDEOS = [
     "desc": "Nguồn gốc chữ Tọa (坐) mô tả hai người ngồi trên đất đối diện nhau.",
     "order": 22
   },
-  {
+{
     "id": "j2myKWgjbYI",
     "title_zh": "太",
     "title_vi": "Thái - Đã to lớn còn thêm một điểm dư",
@@ -380,7 +380,7 @@ const ALL_VIDEOS = [
     "desc": "Giải nghĩa chữ Thái (太) từ chữ Đại (大) thêm dấu chấm.",
     "order": 21
   },
-  {
+{
     "id": "jsj0YX3iTz0",
     "title_zh": "少",
     "title_vi": "Thiểu - Vật nhỏ bị cắt bớt thành ít",
@@ -389,7 +389,7 @@ const ALL_VIDEOS = [
     "desc": "Nguồn gốc chữ Thiểu (少) tượng trưng cho việc chia nhỏ cát.",
     "order": 20
   },
-  {
+{
     "id": "4V2sohAIBbI",
     "title_zh": "年",
     "title_vi": "Niên - Người vác bó lúa mừng mùa vụ",
@@ -398,7 +398,7 @@ const ALL_VIDEOS = [
     "desc": "Nguồn gốc chữ Niên (年) tượng hình người gánh lúa mừng vụ mùa.",
     "order": 19
   },
-  {
+{
     "id": "TcKDmAP-HVs",
     "title_zh": "日",
     "title_vi": "Nhật - Mặt trời tỏa sáng giữa bầu trời",
@@ -407,7 +407,7 @@ const ALL_VIDEOS = [
     "desc": "Nguồn gốc tượng hình chữ Nhật (日) đại diện cho mặt trời.",
     "order": 18
   },
-  {
+{
     "id": "2WaXAJrvP3c",
     "title_zh": "日",
     "title_vi": "Nhật - Mặt trời tỏa sáng giữa bầu trời",
@@ -416,7 +416,7 @@ const ALL_VIDEOS = [
     "desc": "Nguồn gốc tượng hình chữ Nhật (日) đại diện cho mặt trời.",
     "order": 17
   },
-  {
+{
     "id": "q-TwRb12JxU",
     "title_zh": "期",
     "title_vi": "Kỳ - Đợi trăng lên đúng kỳ hẹn ước",
@@ -425,7 +425,7 @@ const ALL_VIDEOS = [
     "desc": "Ý nghĩa chữ Kỳ (期) từ hình ảnh chờ trăng lên đúng hẹn.",
     "order": 16
   },
-  {
+{
     "id": "zH4vIE5vCU0",
     "title_zh": "杯",
     "title_vi": "Bôi - Chén gỗ mộc mạc không làm đổ",
@@ -434,7 +434,7 @@ const ALL_VIDEOS = [
     "desc": "Chữ Bôi (杯) chỉ chiếc cốc uống nước, chén gỗ cổ.",
     "order": 15
   },
-  {
+{
     "id": "ddwbrAlJwbQ",
     "title_zh": "样",
     "title_vi": "Dạng - Tạc tượng cừu gỗ làm khuôn mẫu",
@@ -443,7 +443,7 @@ const ALL_VIDEOS = [
     "desc": "Giải nghĩa chữ Dạng (样) tượng trưng cho hình mẫu, khuôn mẫu.",
     "order": 14
   },
-  {
+{
     "id": "y3gX36hb-bQ",
     "title_zh": "没",
     "title_vi": "Một - Vật rơi xuống nước biến mất hút",
@@ -452,7 +452,7 @@ const ALL_VIDEOS = [
     "desc": "Chữ Một (没) chỉ việc không có, chìm vào trong nước.",
     "order": 13
   },
-  {
+{
     "id": "Pw8odtts1h4",
     "title_zh": "火",
     "title_vi": "Hỏa - Ngọn lửa bùng cháy rực rỡ",
@@ -461,7 +461,7 @@ const ALL_VIDEOS = [
     "desc": "Ý nghĩa tượng hình chữ Hỏa (火) mô phỏng ngọn lửa đang cháy.",
     "order": 12
   },
-  {
+{
     "id": "v7icfPBTn1k",
     "title_zh": "爱",
     "title_vi": "Ái - Đôi tay che chở người tri kỷ",
@@ -470,7 +470,7 @@ const ALL_VIDEOS = [
     "desc": "Chữ Ái (爱) thể hiện tình yêu qua đôi tay che chở con tim.",
     "order": 11
   },
-  {
+{
     "id": "24RscCfC5dM",
     "title_zh": "米",
     "title_vi": "Mễ - Hạt gạo vãi ra từ bông lúa",
@@ -479,7 +479,7 @@ const ALL_VIDEOS = [
     "desc": "Nguồn gốc chữ Mễ (米) tượng hình những hạt gạo rời.",
     "order": 10
   },
-  {
+{
     "id": "v6-uJwe3GYY",
     "title_zh": "菜",
     "title_vi": "Thái - Tay hái rau xanh trên cành cây",
@@ -488,7 +488,7 @@ const ALL_VIDEOS = [
     "desc": "Giải thích chữ Thái (菜) gồm bộ Thảo, bộ Trảo và bộ Mộc.",
     "order": 9
   },
-  {
+{
     "id": "NF10Doada1g",
     "title_zh": "见",
     "title_vi": "Kiến - Đôi mắt dõi theo bước chân đi",
@@ -497,7 +497,7 @@ const ALL_VIDEOS = [
     "desc": "Nguồn gốc tượng hình chữ Kiến (见) thể hiện qua đôi mắt dõi theo.",
     "order": 8
   },
-  {
+{
     "id": "EWxYnBFH44s",
     "title_zh": "里",
     "title_vi": "Lý - Dặm đường đất giữa cánh đồng",
@@ -506,7 +506,7 @@ const ALL_VIDEOS = [
     "desc": "Chữ Lý (里) ghép từ bộ Điền (ruộng) và bộ Thổ (đất).",
     "order": 7
   },
-  {
+{
     "id": "1YH2H-HPPaQ",
     "title_zh": "院",
     "title_vi": "Viện - Tường cao bao quanh viện học",
@@ -515,7 +515,7 @@ const ALL_VIDEOS = [
     "desc": "Giải nghĩa chữ Viện (院) chỉ khoảng sân, tòa nhà có tường bao.",
     "order": 6
   },
-  {
+{
     "id": "p1cP_bUs41o",
     "title_zh": "零",
     "title_vi": "Linh - Giọt mưa nhỏ rơi theo lệnh",
@@ -524,7 +524,7 @@ const ALL_VIDEOS = [
     "desc": "Giải thích chữ Linh (零) tượng hình những giọt mưa rơi tí tách.",
     "order": 5
   },
-  {
+{
     "id": "ligtDefdack",
     "title_zh": "面",
     "title_vi": "Diện - Ngũ quan hiện rõ trên mặt",
@@ -533,7 +533,7 @@ const ALL_VIDEOS = [
     "desc": "Ý nghĩa tượng hình chữ Diện (面) phác họa khuôn mặt người.",
     "order": 4
   },
-  {
+{
     "id": "KcpcsVDNOzg",
     "title_zh": "飞",
     "title_vi": "Phi - Chim tung cánh vút lên trời",
@@ -542,7 +542,7 @@ const ALL_VIDEOS = [
     "desc": "Ý nghĩa tượng hình chữ Phi (飞) mô phỏng chú chim đang bay.",
     "order": 3
   },
-  {
+{
     "id": "TaHKq_2wdNE",
     "title_zh": "鸣",
     "title_vi": "Minh - Con chim mở miệng hót vang",
@@ -551,7 +551,7 @@ const ALL_VIDEOS = [
     "desc": "Chữ Minh (鸣) gồm chữ Điểu (chim) và Khẩu (miệng) đang hót.",
     "order": 2
   },
-  {
+{
     "id": "Fj79PruA8j8",
     "title_zh": "好",
     "title_vi": "Hảo - Bí ẩn đằng sau chữ Hảo",
@@ -561,7 +561,7 @@ const ALL_VIDEOS = [
     "thumbnail": "POSTS/images/hao_thumbnail.png",
     "order": 1
   },
-  {
+{
     "id": "7_fGQYFzSSs",
     "title_zh": "打工人",
     "title_vi": "Đả công nhân - Người làm công ăn lương",
@@ -570,7 +570,7 @@ const ALL_VIDEOS = [
     "desc": "Từ lóng tự trào đầy tinh thần lạc quan, kiên trì của người đi làm thuê.",
     "order": 18
   },
-  {
+{
     "id": "SLWQwn4LcQI",
     "title_zh": "YYDS",
     "title_vi": "Mãi đỉnh - Vị thần vĩnh cửu",
@@ -579,7 +579,7 @@ const ALL_VIDEOS = [
     "desc": "Giải mã từ viết tắt bính âm của 'Mãi mãi là vị thần', tương đương G.O.A.T.",
     "order": 17
   },
-  {
+{
     "id": "AfZW2Guw1X8",
     "title_zh": "逆袭",
     "title_vi": "Nghịch kích - Lội ngược dòng",
@@ -588,7 +588,7 @@ const ALL_VIDEOS = [
     "desc": "Từ lóng mô tả việc bứt phá vươn lên thành công từ vị thế yếu thế.",
     "order": 16
   },
-  {
+{
     "id": "1kq16kDeasI",
     "title_zh": "尬聊",
     "title_vi": "Gượng nói - Nói chuyện nhạt nhẽo",
@@ -597,7 +597,7 @@ const ALL_VIDEOS = [
     "desc": "Từ lóng miêu tả những cuộc nói chuyện gượng ép, thiếu chủ đề chung.",
     "order": 15
   },
-  {
+{
     "id": "ppv34AVHcuI",
     "title_zh": "秒杀",
     "title_vi": "Miểu sát - Săn sale chớp nhoáng",
@@ -606,7 +606,7 @@ const ALL_VIDEOS = [
     "desc": "Giải mã từ lóng chỉ việc săn sale chớp nhoáng (flash sale) trong thương mại điện tử.",
     "order": 14
   },
-  {
+{
     "id": "pM9mY3c7aM0",
     "title_zh": "海王",
     "title_vi": "Thả thính - Chúa tể đại dương, bắt cá nhiều tay",
@@ -616,7 +616,7 @@ const ALL_VIDEOS = [
     "thumbnail": "POSTS/images/tha_thinh_thumbnail.png",
     "order": 13
   },
-  {
+{
     "id": "kLQ1e0Jb-1M",
     "title_zh": "割韭菜",
     "title_vi": "Luộc rau (Cắt hẹ) - Trục lợi, lùa gà",
@@ -626,7 +626,7 @@ const ALL_VIDEOS = [
     "thumbnail": "POSTS/images/luoc_rau_thumbnail.png",
     "order": 12
   },
-  {
+{
     "id": "s_uES_h9c1I",
     "title_zh": "躺平",
     "title_vi": "Thảng bình - Trào lưu nằm phẳng, mặc kệ đời",
@@ -635,7 +635,7 @@ const ALL_VIDEOS = [
     "desc": "Giải thích từ lóng 'Thảng bình' thể hiện lối sống tối giản, từ chối áp lực xã hội.",
     "order": 11
   },
-  {
+{
     "id": "5NS9Pa7MvAU",
     "title_zh": "芭比Q了",
     "title_vi": "Ba tỷ Q liễu - Toang rồi, xong đời",
@@ -644,7 +644,7 @@ const ALL_VIDEOS = [
     "desc": "Nguồn gốc từ lóng mạng cực hot 'Barbecue le' chỉ sự bất lực, thất bại.",
     "order": 10
   },
-  {
+{
     "id": "M6En9Z-R_Ho",
     "title_zh": "社恐",
     "title_vi": "Xã khủng - Hội chứng sợ giao tiếp xã hội",
@@ -653,7 +653,7 @@ const ALL_VIDEOS = [
     "desc": "Tìm hiểu từ lóng 'Xã khủng' viết tắt của chứng sợ giao tiếp đám đông.",
     "order": 9
   },
-  {
+{
     "id": "wlhCQ54T-nY",
     "title_zh": "柠檬精",
     "title_vi": "Chanh tinh - Kẻ hay ghen tị, chua ngoa",
@@ -662,7 +662,7 @@ const ALL_VIDEOS = [
     "desc": "Giải thích từ lóng 'Chanh tinh' ví những người hay ghen tị với hạnh phúc của người khác.",
     "order": 8
   },
-  {
+{
     "id": "3FmBZdbRPOY",
     "title_zh": "带货",
     "title_vi": "Đới hóa - Livestream bán hàng",
@@ -671,7 +671,7 @@ const ALL_VIDEOS = [
     "desc": "Tìm hiểu từ lóng 'Đới hóa' chỉ trào lưu livestream bán hàng tại Trung Quốc.",
     "order": 7
   },
-  {
+{
     "id": "E1H94KocfQo",
     "title_zh": "吃瓜",
     "title_vi": "Ăn dưa - Hóng biến, hóng phốt mạng xã hội",
@@ -680,7 +680,7 @@ const ALL_VIDEOS = [
     "desc": "Nguồn gốc từ lóng 'Ăn dưa quần chúng' chỉ những người hóng drama.",
     "order": 6
   },
-  {
+{
     "id": "jSX5WKL2DQ8",
     "title_zh": "剁手",
     "title_vi": "Đoạt thủ - Chặt tay vì cuồng mua sắm online",
@@ -689,7 +689,7 @@ const ALL_VIDEOS = [
     "desc": "Ý nghĩa từ lóng vui nhộn 'Chặt tay' tự hứa không mua sắm trực tuyến vô tội vạ nữa.",
     "order": 5
   },
-  {
+{
     "id": "_sf7WsNAjvw",
     "title_zh": "凡尔赛",
     "title_vi": "Phàm nhĩ sài - Khoe mẽ một cách khiêm tốn",
@@ -698,7 +698,7 @@ const ALL_VIDEOS = [
     "desc": "Tìm hiểu phong cách từ lóng 'Phàm nhĩ sài' (Versailles) khoe khoang gián tiếp.",
     "order": 4
   },
-  {
+{
     "id": "2K3oyBG6K3A",
     "title_zh": "内卷",
     "title_vi": "Nội quyển - Cạnh tranh khốc liệt vô nghĩa",
@@ -707,7 +707,7 @@ const ALL_VIDEOS = [
     "desc": "Thuật ngữ lóng 'Nội quyển' chỉ sự cạnh tranh tiêu cực, tự bào mòn lẫn nhau.",
     "order": 3
   },
-  {
+{
     "id": "IpskgDTghTI",
     "title_zh": "社牛",
     "title_vi": "Xã ngưu - Hội chứng tự tin giao tiếp",
@@ -716,7 +716,7 @@ const ALL_VIDEOS = [
     "desc": "Từ lóng khen người cực kỳ tự tin, hoạt bát chốn đông người.",
     "order": 2
   },
-  {
+{
     "id": "K-vukz9rtow",
     "title_zh": "破防",
     "title_vi": "Phá phòng - Phá vỡ phòng ngự tâm lý",
@@ -725,7 +725,7 @@ const ALL_VIDEOS = [
     "desc": "Từ lóng chỉ trạng thái tâm lý bị tổn thương, sụp đổ.",
     "order": 1
   },
-  {
+{
     "id": "dPbXeQYc-4E",
     "title_zh": "能 vs 会",
     "title_vi": "Phân biệt cách nói Có thể, Biết làm",
@@ -734,7 +734,7 @@ const ALL_VIDEOS = [
     "desc": "Phân biệt hai động từ năng nguyện chỉ khả năng hành động '能' và '会'.",
     "order": 5
   },
-  {
+{
     "id": "qAoS_7LxJe0",
     "title_zh": "想 vs 觉得",
     "title_vi": "Phân biệt cách nói Nghĩ, Cảm thấy",
@@ -743,7 +743,7 @@ const ALL_VIDEOS = [
     "desc": "Phân biệt chi tiết sự khác nhau giữa hai từ '想' và '觉得' dễ nhầm lẫn.",
     "order": 4
   },
-  {
+{
     "id": "nRr3vt2G12s",
     "title_zh": "刚 vs 刚才",
     "title_vi": "Phân biệt phó từ Vừa và danh từ Vừa nãy",
@@ -752,7 +752,7 @@ const ALL_VIDEOS = [
     "desc": "Phân biệt cách dùng ngữ pháp phó từ '刚' và danh từ chỉ thời gian '刚才'.",
     "order": 3
   },
-  {
+{
     "id": "r-XLeTWWKao",
     "title_zh": "二 vs 两",
     "title_vi": "Phân biệt cách dùng Nhị và Lưỡng khi đếm số",
@@ -761,7 +761,7 @@ const ALL_VIDEOS = [
     "desc": "Khi nào dùng '二' và khi nào dùng '两'? Tìm hiểu ngay mẹo nhớ cực nhanh.",
     "order": 2
   },
-  {
+{
     "id": "BoXL0hnHSZo",
     "title_zh": "一点儿 vs 有点儿",
     "title_vi": "Phân biệt cách nói Một chút",
@@ -770,7 +770,7 @@ const ALL_VIDEOS = [
     "desc": "Mẹo cực nhanh để phân biệt hai từ chỉ mức độ '一点儿' và '有点儿'.",
     "order": 1
   },
-  {
+{
     "id": "toswvKnlQGo",
     "title_zh": "买电影票",
     "title_vi": "Giao tiếp Mua vé xem phim",
@@ -780,7 +780,7 @@ const ALL_VIDEOS = [
     "thumbnail": "POSTS/images/thuc_chien_xem_phim_thumbnail.png",
     "order": 16
   },
-  {
+{
     "id": "CyVJhwGebXY",
     "title_zh": "学会转念",
     "title_vi": "Giao tiếp Học cách chuyển niệm",
@@ -790,7 +790,7 @@ const ALL_VIDEOS = [
     "thumbnail": "POSTS/images/thuc_chien_chuyen_niem_thumbnail.png",
     "order": 15
   },
-  {
+{
     "id": "jG5u_xrsIQE",
     "title_zh": "买单",
     "title_vi": "Giao tiếp Thanh toán tiền ăn",
@@ -800,7 +800,7 @@ const ALL_VIDEOS = [
     "thumbnail": "POSTS/images/thuc_chien_thanh_toan_thumbnail.png",
     "order": 14
   },
-  {
+{
     "id": "h7MSLsoYKEk",
     "title_zh": "预订餐桌",
     "title_vi": "Giao tiếp Đặt bàn ở nhà hàng",
@@ -810,7 +810,7 @@ const ALL_VIDEOS = [
     "thumbnail": "POSTS/images/thuc_chien_dat_ban_thumbnail.png",
     "order": 13
   },
-  {
+{
     "id": "q4RitAE5OWI",
     "title_zh": "砍价",
     "title_vi": "Giao tiếp Mặc cả khi mua quần áo",
@@ -819,7 +819,7 @@ const ALL_VIDEOS = [
     "desc": "Mẫu câu hội thoại đàm thoại thực tế giúp bạn mặc cả mua đồ tại Trung Quốc.",
     "order": 12
   },
-  {
+{
     "id": "_saPWt75YKI",
     "title_zh": "问路",
     "title_vi": "Giao tiếp Hỏi đường đi ga tàu",
@@ -828,7 +828,7 @@ const ALL_VIDEOS = [
     "desc": "Mẫu câu giao tiếp thực tế khi bạn cần hỏi đường tại ga tàu.",
     "order": 11
   },
-  {
+{
     "id": "zcFH0pis5HU",
     "title_zh": "点奶茶",
     "title_vi": "Giao tiếp Gọi trà sữa",
@@ -837,7 +837,7 @@ const ALL_VIDEOS = [
     "desc": "Mẫu câu thực chiến gọi trà sữa, lựa chọn đường đá và các loại topping.",
     "order": 10
   },
-  {
+{
     "id": "S4v2kkTVGHk",
     "title_zh": "预订酒店",
     "title_vi": "Giao tiếp Đặt phòng khách sạn",
@@ -846,7 +846,7 @@ const ALL_VIDEOS = [
     "desc": "Mẫu câu hội thoại nhận phòng và đặt phòng.",
     "order": 9
   },
-  {
+{
     "id": "aUMowaLuS3Y",
     "title_zh": "问候身体",
     "title_vi": "Giao tiếp Hỏi thăm sức khỏe",
@@ -855,7 +855,7 @@ const ALL_VIDEOS = [
     "desc": "Cách hỏi thăm sức khỏe thông thường và lịch sự.",
     "order": 8
   },
-  {
+{
     "id": "dxyWVUi7YdQ",
     "title_zh": "遇到老朋友",
     "title_vi": "Giao tiếp Gặp gỡ bạn cũ lâu năm",
@@ -864,7 +864,7 @@ const ALL_VIDEOS = [
     "desc": "Hội thoại xã giao khi vô tình gặp lại bạn cũ.",
     "order": 7
   },
-  {
+{
     "id": "Pkj1cLfuhGg",
     "title_zh": "打车",
     "title_vi": "Giao tiếp Đón taxi trên đường",
@@ -873,7 +873,7 @@ const ALL_VIDEOS = [
     "desc": "Hội thoại giao tiếp đón xe taxi phổ thông.",
     "order": 6
   },
-  {
+{
     "id": "ys2Qxpz9cPM",
     "title_zh": "帮忙拍照",
     "title_vi": "Giao tiếp Nhờ chụp ảnh giúp",
@@ -882,7 +882,7 @@ const ALL_VIDEOS = [
     "desc": "Hội thoại nhờ vả chụp ảnh khi đi du lịch.",
     "order": 5
   },
-  {
+{
     "id": "hizk3Fro9JQ",
     "title_zh": "退货退款",
     "title_vi": "Giao tiếp Trả hàng hoàn tiền",
@@ -891,7 +891,7 @@ const ALL_VIDEOS = [
     "desc": "Mẫu câu khiếu nại trả hàng mua sắm.",
     "order": 4
   },
-  {
+{
     "id": "Kp1j5TqeI38",
     "title_zh": "请假",
     "title_vi": "Giao tiếp Xin nghỉ phép",
@@ -900,7 +900,7 @@ const ALL_VIDEOS = [
     "desc": "Mẫu câu xin nghỉ phép văn phòng lịch sự.",
     "order": 3
   },
-  {
+{
     "id": "2QZ4Sw0hrUI",
     "title_zh": "兑换外币",
     "title_vi": "Giao tiếp Đổi tiền ngoại tệ",
@@ -909,7 +909,7 @@ const ALL_VIDEOS = [
     "desc": "Hội thoại giao tiếp thực tế khi đổi tiền.",
     "order": 2
   },
-  {
+{
     "id": "IppkMx_ep6g",
     "title_zh": "健身房登记",
     "title_vi": "Giao tiếp Đăng ký tập gym",
@@ -918,7 +918,7 @@ const ALL_VIDEOS = [
     "desc": "Mẫu câu đàm thoại đăng ký tại phòng gym.",
     "order": 1
   },
-  {
+{
     "id": "BxC4vGPwt6s",
     "title_zh": "胸有成竹",
     "title_vi": "Hung hữu thành trúc - Trong lòng đã có tre",
@@ -927,7 +927,7 @@ const ALL_VIDEOS = [
     "desc": "Thành ngữ ví von việc đã có kế hoạch sẵn sàng và tự tin.",
     "order": 20
   },
-  {
+{
     "id": "lwiZmQ04gWI",
     "title_zh": "叶公好龙",
     "title_vi": "Diệp Công hiếu long - Yêu thích giả tạo",
@@ -936,7 +936,7 @@ const ALL_VIDEOS = [
     "desc": "Câu chuyện châm biếm người ngoài miệng thì thích nhưng thực tế lại sợ.",
     "order": 19
   },
-  {
+{
     "id": "E9XS8J52fjo",
     "title_zh": "刻舟求剑",
     "title_vi": "Khắc chu cầu kiếm - Khắc thuyền tìm kiếm",
@@ -945,7 +945,7 @@ const ALL_VIDEOS = [
     "desc": "Bài học phê phán những người ngoan cố, cứng nhắc không biết biến đổi.",
     "order": 18
   },
-  {
+{
     "id": "ebPSABEdUMI",
     "title_zh": "掩耳盗铃",
     "title_vi": "Yểm nhĩ đạo linh - Bịt tai trộm chuông",
@@ -954,7 +954,7 @@ const ALL_VIDEOS = [
     "desc": "Chỉ hành vi tự lừa mình dối người, trốn tránh thực tại.",
     "order": 17
   },
-  {
+{
     "id": "A0VwRz8IGno",
     "title_zh": "自相矛盾",
     "title_vi": "Tự tương mâu thuẫn - Tự mâu thuẫn",
@@ -963,7 +963,7 @@ const ALL_VIDEOS = [
     "desc": "Chỉ lời nói hoặc hành động trước sau không nhất quán.",
     "order": 16
   },
-  {
+{
     "id": "Xxzo0rprdQc",
     "title_zh": "井底之蛙",
     "title_vi": "Tỉnh để chi oa - Con ếch ngồi đáy giếng",
@@ -972,7 +972,7 @@ const ALL_VIDEOS = [
     "desc": "Chỉ những người tầm nhìn hạn hẹp nhưng lại tự phụ.",
     "order": 15
   },
-  {
+{
     "id": "eDap3fEhWrA",
     "title_zh": "指鹿为马",
     "title_vi": "Chỉ lộc vi mã - Chỉ hươu bảo ngựa",
@@ -981,7 +981,7 @@ const ALL_VIDEOS = [
     "desc": "Chỉ hành vi đổi trắng thay đen, uy quyền ép bức người khác.",
     "order": 14
   },
-  {
+{
     "id": "55PH0e1jm2w",
     "title_zh": "愚公移山",
     "title_vi": "Ngu Công di sơn - Ngu Công dời núi",
@@ -990,7 +990,7 @@ const ALL_VIDEOS = [
     "desc": "Biểu trưng cho ý chí kiên trì, bền bỉ vượt qua khó khăn.",
     "order": 13
   },
-  {
+{
     "id": "2JoOBSlNib4",
     "title_zh": "狐假虎威",
     "title_vi": "Hồ giả hổ uy - Cáo mượn oai hùm",
@@ -999,7 +999,7 @@ const ALL_VIDEOS = [
     "desc": "Chỉ kẻ dựa hơi người có quyền thế để bắt nạt kẻ yếu.",
     "order": 12
   },
-  {
+{
     "id": "NLkHvt7Wu5A",
     "title_zh": "亡羊补牢",
     "title_vi": "Mất cừu mới sửa chuồng - Sửa sai kịp thời",
@@ -1008,7 +1008,7 @@ const ALL_VIDEOS = [
     "desc": "Khám phá bài học sâu sắc từ câu chuyện mất cừu đắp lại chuồng vẫn chưa muộn.",
     "order": 11
   },
-  {
+{
     "id": "vtL-7_lONnM",
     "title_zh": "塞翁失马",
     "title_vi": "Tái ông thất mã - Trong họa có phúc",
@@ -1017,7 +1017,7 @@ const ALL_VIDEOS = [
     "desc": "Triết lý sâu sắc về việc phúc họa khôn lường, nên giữ tâm bình thản trước biến cố.",
     "order": 10
   },
-  {
+{
     "id": "BgmL-8aKnaA",
     "title_zh": "守株待兔",
     "title_vi": "Ôm cây đợi thỏ - Siêng ăn nhác làm",
@@ -1026,7 +1026,7 @@ const ALL_VIDEOS = [
     "desc": "Phê phán lối sống trông chờ vào may mắn bất ngờ mà không tự lao động.",
     "order": 9
   },
-  {
+{
     "id": "M4VYa6BEsOY",
     "title_zh": "对牛弹琴",
     "title_vi": "Đàn gảy tai trâu - Không đúng đối tượng",
@@ -1035,7 +1035,7 @@ const ALL_VIDEOS = [
     "desc": "Châm biếm hành vi giải thích lý lẽ cao siêu cho người không hiểu biết.",
     "order": 8
   },
-  {
+{
     "id": "4VE-eeXsCOE",
     "title_zh": "画蛇添足",
     "title_vi": "Vẽ rắn thêm chân - Làm việc thừa thãi",
@@ -1044,7 +1044,7 @@ const ALL_VIDEOS = [
     "desc": "Câu chuyện châm biếm người vẽ rắn vẽ thêm chân, làm hỏng việc chính.",
     "order": 7
   },
-  {
+{
     "id": "xJwB52xBYwc",
     "title_zh": "画龙点睛",
     "title_vi": "Vẽ rồng điểm mắt - Thêm nét quyết định",
@@ -1053,7 +1053,7 @@ const ALL_VIDEOS = [
     "desc": "Nguồn gốc thành ngữ 'Vẽ rồng vẽ thêm con mắt' giúp bức tranh sinh động xuất thần.",
     "order": 6
   },
-  {
+{
     "id": "H3lmJfw8K3E",
     "title_zh": "盲人摸象",
     "title_vi": "Thầy bói xem voi - Nhìn nhận phiến diện",
@@ -1062,7 +1062,7 @@ const ALL_VIDEOS = [
     "desc": "Câu chuyện ngụ ngôn phê phán những người đánh giá sự việc một chiều.",
     "order": 5
   },
-  {
+{
     "id": "LPKHs2v7ar8",
     "title_zh": "破釜沉舟",
     "title_vi": "Đập nồi dìm thuyền - Quyết tâm không lùi bước",
@@ -1071,7 +1071,7 @@ const ALL_VIDEOS = [
     "desc": "Thành ngữ chỉ ý chí quyết thắng, tự cắt đường lui để tiến lên phía trước.",
     "order": 4
   },
-  {
+{
     "id": "rPLRT1uPd30",
     "title_zh": "舍己为人",
     "title_vi": "Xả thân vì người khác - Hy sinh lợi ích riêng",
@@ -1080,7 +1080,7 @@ const ALL_VIDEOS = [
     "desc": "Câu chuyện thành ngữ 'Xả thân cứu người', quên đi lợi ích bản thân.",
     "order": 3
   },
-  {
+{
     "id": "q90BrVJxBGg",
     "title_zh": "拔苗助长",
     "title_vi": "Bạt miêu trợ trưởng - Nóng vội hỏng việc",
@@ -1089,7 +1089,7 @@ const ALL_VIDEOS = [
     "desc": "Thành ngữ phê phán việc nóng vội, đốt cháy giai đoạn dẫn đến hỏng việc.",
     "order": 2
   },
-  {
+{
     "id": "fFQ7FpDxfaI",
     "title_zh": "杯弓蛇影",
     "title_vi": "Bôi cung xà ảnh - Tự mình dọa mình",

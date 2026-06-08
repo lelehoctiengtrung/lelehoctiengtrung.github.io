@@ -1647,36 +1647,51 @@ function syncYouTubeVideos() {
   var fetchedVideos = [];
   var usedAdvancedService = false;
   
-  // Try using Advanced YouTube Service to get ALL videos
+  // Try using Advanced YouTube Service to get ALL videos from specific playlists
   try {
     if (typeof YouTube !== 'undefined') {
-      var playlistId = 'UUGQfqOTElLYJ1-1OEDQJ8Cw'; // Channel ID UCGQfqOTElLYJ1-1OEDQJ8Cw with C -> U
-      var nextPageToken = '';
-      do {
-        var playlistResponse = YouTube.PlaylistItems.list('snippet', {
-          playlistId: playlistId,
-          maxResults: 50,
-          pageToken: nextPageToken
-        });
-        
-        if (playlistResponse && playlistResponse.items) {
-          playlistResponse.items.forEach(function(item) {
-            var snippet = item.snippet;
-            var videoId = snippet.resourceId.videoId;
-            var title = snippet.title || '';
-            var desc = snippet.description || '';
-            fetchedVideos.push({
-              id: videoId,
-              title: title,
-              desc: desc
-            });
+      var playlists = [
+        { id: 'PLvJ8vmRjcTPqLQQ9D52csDmKdedouCGDT', category: 'Lê Lê kể chữ' },
+        { id: 'PLvJ8vmRjcTPpXE4WXjeTJP9qRfO5aShvA', category: 'Song đấu từ vựng' },
+        { id: 'PLvJ8vmRjcTPquOuOG0C31MqR_js_4Onx9', category: 'Tiếng lóng' },
+        { id: 'PLvJ8vmRjcTPpk7FB72P-YrJedsq2MlZD9', category: 'Thành ngữ' },
+        { id: 'PLvJ8vmRjcTPrh8zWUkNdtouHwz0-CCW2k', category: 'Tiếng Trung thực chiến' }
+      ];
+      
+      var seenInThisRun = {};
+      
+      playlists.forEach(function(pl) {
+        var nextPageToken = '';
+        do {
+          var playlistResponse = YouTube.PlaylistItems.list('snippet', {
+            playlistId: pl.id,
+            maxResults: 50,
+            pageToken: nextPageToken
           });
-        }
-        nextPageToken = playlistResponse.nextPageToken;
-      } while (nextPageToken);
+          
+          if (playlistResponse && playlistResponse.items) {
+            playlistResponse.items.forEach(function(item) {
+              var snippet = item.snippet;
+              var videoId = snippet.resourceId.videoId;
+              if (seenInThisRun[videoId]) return;
+              seenInThisRun[videoId] = true;
+              
+              var title = snippet.title || '';
+              var desc = snippet.description || '';
+              fetchedVideos.push({
+                id: videoId,
+                title: title,
+                desc: desc,
+                category: pl.category
+              });
+            });
+          }
+          nextPageToken = playlistResponse.nextPageToken;
+        } while (nextPageToken);
+      });
       
       usedAdvancedService = true;
-      Logger.log('Successfully fetched ' + fetchedVideos.length + ' videos using YouTube Service.');
+      Logger.log('Successfully fetched ' + fetchedVideos.length + ' videos from playlists using YouTube Service.');
     }
   } catch (err) {
     Logger.log('YouTube Advanced Service failed or not enabled: ' + err.toString());
@@ -1735,22 +1750,23 @@ function syncYouTubeVideos() {
     var youtubeUrl = 'https://www.youtube.com/watch?v=' + videoId;
     var desc = video.desc || '';
     
-    var category = 'Tiếng Trung thực chiến';
+    var category = video.category || 'Tiếng Trung thực chiến';
     var cleanTitle = title;
     
     cleanTitle = cleanTitle.replace(/#\w+/g, '').trim();
     cleanTitle = cleanTitle.replace(/\s+/g, ' ');
     
-    var lowerTitle = title.toLowerCase();
-    
-    if (lowerTitle.indexOf('kể chữ') !== -1 || lowerTitle.indexOf('câu chuyện chữ') !== -1 || lowerTitle.indexOf('bộ thủ') !== -1) {
-      category = 'Lê Lê kể chữ';
-    } else if (lowerTitle.indexOf('slang') !== -1 || lowerTitle.indexOf('tiếng lóng') !== -1 || lowerTitle.indexOf('lóng') !== -1) {
-      category = 'Tiếng lóng';
-    } else if (lowerTitle.indexOf('vs') !== -1 || lowerTitle.indexOf('phân biệt') !== -1 || lowerTitle.indexOf('song đấu') !== -1) {
-      category = 'Song đấu từ vựng';
-    } else if (lowerTitle.indexOf('thành ngữ') !== -1 || lowerTitle.indexOf('idiom') !== -1) {
-      category = 'Thành ngữ';
+    if (!video.category) {
+      var lowerTitle = title.toLowerCase();
+      if (lowerTitle.indexOf('kể chữ') !== -1 || lowerTitle.indexOf('câu chuyện chữ') !== -1 || lowerTitle.indexOf('bộ thủ') !== -1) {
+        category = 'Lê Lê kể chữ';
+      } else if (lowerTitle.indexOf('slang') !== -1 || lowerTitle.indexOf('tiếng lóng') !== -1 || lowerTitle.indexOf('lóng') !== -1) {
+        category = 'Tiếng lóng';
+      } else if (lowerTitle.indexOf('vs') !== -1 || lowerTitle.indexOf('phân biệt') !== -1 || lowerTitle.indexOf('song đấu') !== -1) {
+        category = 'Song đấu từ vựng';
+      } else if (lowerTitle.indexOf('thành ngữ') !== -1 || lowerTitle.indexOf('idiom') !== -1) {
+        category = 'Thành ngữ';
+      }
     }
     
     var charMatch = cleanTitle.match(/Câu chuyện chữ\s+([^\s\-]+)\s*[\-\:]\s*(.*)/i);
