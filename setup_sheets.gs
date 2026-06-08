@@ -662,7 +662,8 @@ function uploadBase64Image(postData) {
   }
   
   var decodedBytes = Utilities.base64Decode(base64String);
-  var blob = Utilities.newBlob(decodedBytes, 'image/png', fileName);
+  var mimeType = postData.mimeType || 'image/png';
+  var blob = Utilities.newBlob(decodedBytes, mimeType, fileName);
   
   var isDoc = sku.indexOf('DOC-') === 0;
   var rootId = isDoc ? (DOCS_FOLDER_ID || ROOT_FOLDER_ID) : (BOOKS_FOLDER_ID || ROOT_FOLDER_ID);
@@ -676,18 +677,20 @@ function uploadBase64Image(postData) {
     skuFolder = rootFolder.createFolder(sku);
   }
   
-  var targetSubfolderName = 'shop';
-  if (type === 'review') {
-    targetSubfolderName = 'review';
-  } else if (type === 'preview' || type === 'doc-preview') {
-    targetSubfolderName = 'preview';
-  }
-  var subfolder;
-  var subfolders = skuFolder.getFoldersByName(targetSubfolderName);
-  if (subfolders.hasNext()) {
-    subfolder = subfolders.next();
-  } else {
-    subfolder = skuFolder.createFolder(targetSubfolderName);
+  var subfolder = skuFolder;
+  if (type === 'shop' || type === 'review' || type === 'preview' || type === 'doc-preview') {
+    var targetSubfolderName = 'shop';
+    if (type === 'review') {
+      targetSubfolderName = 'review';
+    } else if (type === 'preview' || type === 'doc-preview') {
+      targetSubfolderName = 'preview';
+    }
+    var subfolders = skuFolder.getFoldersByName(targetSubfolderName);
+    if (subfolders.hasNext()) {
+      subfolder = subfolders.next();
+    } else {
+      subfolder = skuFolder.createFolder(targetSubfolderName);
+    }
   }
   
   var file = subfolder.createFile(blob);
