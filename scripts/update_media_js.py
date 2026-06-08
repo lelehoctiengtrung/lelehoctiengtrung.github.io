@@ -67,7 +67,7 @@ def main():
         content = f.read()
         
     # Find ALL_VIDEOS block
-    start_pattern = "const ALL_VIDEOS = ["
+    start_pattern = "const ALL_VIDEOS = "
     start_idx = content.find(start_pattern)
     if start_idx == -1:
         print("Error: Could not find ALL_VIDEOS in media.js")
@@ -117,8 +117,11 @@ def main():
             v_thumb = re.search(r'"thumbnail":\s*"([^"]+)"', normalized)
             v_thumb = v_thumb.group(1) if v_thumb else None
             
+            # Skip if this video is already in new_videos to avoid duplicates
+            if any(nv["id"] == v_id for nv in new_videos):
+                continue
+                
             v_order = int(re.search(r'"order":\s*(\d+)', normalized).group(1))
-            
             video_obj = {
                 "id": v_id,
                 "title_zh": v_title_zh,
