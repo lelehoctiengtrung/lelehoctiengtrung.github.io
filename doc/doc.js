@@ -130,6 +130,23 @@ const FALLBACK_DOCS = {
     cons: 'Để đạt hiệu quả tốt nhất cần in màu trên giấy dày | Cần ba mẹ đồng hành chỉ dẫn các hoạt động ngoài trời',
     who_for: 'Dành cho các bé từ 3-10 tuổi (mầm non & tiểu học) mới làm quen với chữ Hán, hoặc ba mẹ/giáo viên muốn tìm tài liệu trực quan, chơi mà học.',
     preview_images: '../POSTS/images/DOC-SUMMER_cover.png,../POSTS/images/DOC-SUMMER_page3.png,../POSTS/images/DOC-SUMMER_page7.png'
+  },
+  'DOC-COSO1': {
+    id: 'DOC-COSO1',
+    title: 'Hán Ngữ Cơ Sở 1',
+    desc: 'Cẩm nang tự học tiếng Trung nhập môn từ con số 0: tổng hợp phát âm Pinyin, quy tắc viết chữ Hán và các mẫu câu giao tiếp cơ bản nhất.',
+    category: 'vocab',
+    icon: '📖',
+    icon_color: '#4ECCA3',
+    pages: 'PDF · 20 trang · Tổng hợp',
+    level: '2',
+    level_text: 'Nhập môn · HSK 1',
+    drive_url: 'https://drive.google.com/file/d/1Lhsm9Te8njkIGDMFzajOlAgriAFXUm0G/view?usp=sharing',
+    content: 'Tự học tiếng Trung từ con số 0 có khó không? Đó là câu hỏi mà Lê Lê nhận được nhiều nhất từ các bạn mới bắt đầu. Sự thật là, nếu có một lộ trình khoa học và một cuốn tài liệu hướng dẫn chi tiết ngay từ những bước đi đầu tiên, bạn hoàn toàn có thể tự làm chủ ngôn ngữ này!\n\nTập tài liệu **Hán Ngữ Cơ Sở 1** này được biên soạn để trở thành người bạn đồng hành tin cậy cho bạn. Nội dung tập trung hoàn toàn vào nền tảng cơ bản nhất:\n- **Phần 1 - Pinyin phát âm**: Hướng dẫn chi tiết cách đọc các nguyên âm (vận mẫu), phụ âm (thanh mẫu) và 4 thanh điệu chính kèm theo quy tắc biến điệu quan trọng.\n- **Phần 2 - Bút thuận & Luyện viết**: Tổng hợp các nét vẽ cơ bản nhất của chữ Hán, thứ tự viết các nét và hệ thống ô ly Mễ Tự (米字格) chuẩn kèm chữ mẫu mờ để bạn có thể in ra luyện viết tay ngay lập tức.\n- **Phần 3 - Giao tiếp nhập môn**: Cung cấp các từ vựng và câu nói thông dụng nhất cho việc chào hỏi, giới thiệu bản thân, cảm ơn, xin lỗi...\n\nCuốn sách được trình bày trực quan, ngắn gọn, lược bỏ những lý thuyết rườm rà để bạn học nhanh nhất, nhớ lâu nhất và có thể ứng dụng giao tiếp ngay lập tức.',
+    pros: 'Trình bày cực kỳ trực quan, khoa học, dễ học cho người tự học từ con số 0 | Đầy đủ kiến thức nhập môn từ phát âm Pinyin, bút thuận chữ Hán đến giao tiếp cơ bản | Có ô ly Mễ Tự (米字格) chuẩn kèm chữ mẫu nét mờ để luyện viết tay dễ dàng',
+    cons: 'Tài liệu tập trung vào nhập môn cơ bản, chưa đi sâu vào các cấu trúc phức tạp | Cần kết hợp xem thêm video hướng dẫn phát âm để sửa giọng chuẩn nhất',
+    who_for: 'Dành cho các bạn mới bắt đầu học tiếng Trung từ con số 0, muốn xây dựng nền tảng vững chắc về phát âm, viết chữ Hán và các mẫu câu giao tiếp cơ bản.',
+    preview_images: '../POSTS/images/DOC-COSO1_cover_flat.png,../POSTS/images/DOC-COSO1_page3_flat.png,../POSTS/images/DOC-COSO1_page8_flat.png'
   }
 };
 
@@ -174,6 +191,7 @@ function inferId(title, index) {
   if (t.includes('NGỮ PHÁP') || t.includes('GRAMMAR')) return 'DOC-GRAMMAR';
   if (t.includes('BỘ THỦ') || t.includes('RADICAL') || t.includes('THỦ')) return 'DOC-RADICALS';
   if (t.includes('MÙA HÈ') || t.includes('SUMMER')) return 'DOC-SUMMER';
+  if (t.includes('CƠ SỞ 1') || t.includes('HÁN NGỮ 1') || t.includes('BASIC CHINESE 1')) return 'DOC-COSO1';
   return `DOC-ROW-${index}`;
 }
 

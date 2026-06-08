@@ -102,6 +102,19 @@ const FALLBACK_DOCS = [
     level: '1',
     level_text: 'Mầm non & Tiểu học',
     drive_url: 'POSTS/docs/DOC-SUMMER.pdf'
+  },
+  {
+    id: 'DOC-COSO1',
+    title: 'Hán Ngữ Cơ Sở 1',
+    desc: 'Cẩm nang tự học tiếng Trung nhập môn từ con số 0: tổng hợp phát âm Pinyin, quy tắc viết chữ Hán và các mẫu câu giao tiếp cơ bản nhất.',
+    category: 'vocab',
+    icon: '📖',
+    icon_color: '#4ECCA3',
+    pages: 'PDF · 20 trang · Tổng hợp',
+    level: '2',
+    level_text: 'Nhập môn · HSK 1',
+    drive_url: 'https://drive.google.com/file/d/1Lhsm9Te8njkIGDMFzajOlAgriAFXUm0G/view?usp=sharing',
+    preview_images: 'POSTS/images/DOC-COSO1_cover_flat.png,POSTS/images/DOC-COSO1_page3_flat.png,POSTS/images/DOC-COSO1_page8_flat.png'
   }
 ];
 
@@ -143,6 +156,12 @@ const DOC_TRANSLATIONS = {
       desc: 'The complete summer Chinese learning guide for kids: weather, beach vocabulary, activities, kids poems, and a 12-week vocabulary roadmap.',
       level_text: 'Preschool & Primary',
       pages: 'PDF · 30 pages · Colored'
+    },
+    'DOC-COSO1': {
+      title: 'Basic Chinese 1 Handbook',
+      desc: 'Comprehensive self-study handbook for Chinese beginners: Pinyin pronunciation, Chinese characters writing rules, and core conversation phrases.',
+      level_text: 'Beginner · HSK 1',
+      pages: 'PDF · 20 pages'
     }
   },
   zh: {
@@ -178,9 +197,15 @@ const DOC_TRANSLATIONS = {
     },
     'DOC-SUMMER': {
       title: '快乐暑期汉语手册',
-      desc: '专为儿童设计的暑期汉语学习指南：包含天气与海滩词汇、趣味互动游戏、经典童谣及12周词汇学习计划。',
+      desc: '专为儿童设计的暑期汉语学习指南：包含天气与海滩词汇、趣味互动游戏、经典童谣 & 12周词汇学习计划。',
       level_text: '幼儿与小学阶段',
       pages: 'PDF · 30 页 · 彩色版'
+    },
+    'DOC-COSO1': {
+      title: '基础汉语一自学手册',
+      desc: '零基础汉语初学者自学手册：拼音发音、汉字笔顺规则以及核心日常交际口语。',
+      level_text: '入门 · HSK 1',
+      pages: 'PDF · 20 页'
     }
   }
 };
@@ -231,6 +256,7 @@ function inferId(title, index) {
   if (t.includes('STREET FOOD') || t.includes('ẨM THỰC') || t.includes('FOOD')) return 'DOC-STREETFOOD';
   if (t.includes('WORD ORDER') || t.includes('TRẬT TỰ') || t.includes('CÂU')) return 'DOC-WORDORDERS';
   if (t.includes('MÙA HÈ') || t.includes('SUMMER')) return 'DOC-SUMMER';
+  if (t.includes('CƠ SỞ 1') || t.includes('HÁN NGỮ 1') || t.includes('BASIC CHINESE 1')) return 'DOC-COSO1';
   return `DOC-ROW-${index}`;
 }
 
@@ -314,9 +340,9 @@ function parseAndRenderDocs(data) {
       return { id, title, desc, category, icon, icon_color, pages, level, level_text, drive_url };
     }).filter(Boolean);
 
-    // Merge infographics fallback docs if they are not in the sheet response (also merge DOC-SUMMER)
+    // Merge infographics fallback docs if they are not in the sheet response (also merge DOC-SUMMER & DOC-COSO1)
     FALLBACK_DOCS.forEach(fd => {
-      if (fd.category === 'infographics' || fd.id === 'DOC-SUMMER') {
+      if (fd.category === 'infographics' || fd.id === 'DOC-SUMMER' || fd.id === 'DOC-COSO1') {
         if (!docs.some(d => d.id.toUpperCase() === fd.id.toUpperCase())) {
           let title = fd.title;
           let desc = fd.desc;

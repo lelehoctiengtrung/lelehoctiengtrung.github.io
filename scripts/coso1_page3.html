@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Hán Ngữ Cơ Sở 1 - Lê Lê học tiếng Trung</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f3f4f6;
+      font-family: 'Inter', sans-serif;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    
+    /* Page frame */
+    .page {
+      width: 210mm;
+      height: 297mm;
+      box-sizing: border-box;
+      padding: 20mm 15mm 18mm 15mm;
+      position: relative;
+      background: #ffffff;
+      page-break-after: always;
+      overflow: hidden;
+    }
+    
+    /* Running header & footer */
+    .header {
+      position: absolute;
+      top: 8mm;
+      left: 15mm;
+      right: 15mm;
+      height: 8mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 0.5px solid rgba(212, 168, 67, 0.25);
+      font-size: 9px;
+      color: #7c7365;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      z-index: 10;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .header-left .logo-text {
+      color: #C94535;
+      font-weight: 700;
+    }
+    .footer {
+      position: absolute;
+      bottom: 8mm;
+      left: 15mm;
+      right: 15mm;
+      height: 8mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 0.5px solid rgba(212, 168, 67, 0.25);
+      font-size: 8px;
+      color: #9ca3af;
+      z-index: 10;
+    }
+    
+    /* Page 1: Cover Page (Website Dark Gold & Chinese Red Style) */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      padding: 42mm 20mm 32mm 20mm;
+      height: 297mm;
+      box-sizing: border-box;
+      background-color: #161310; /* Website background color */
+      color: #F5E8D0; /* Website cream text color */
+      position: relative;
+      page-break-after: always;
+      border: 8px double #D4A843; /* double gold border */
+      margin: 0;
+      overflow: hidden;
+    }
+    .cover-decor {
+      position: absolute;
+      top: 10px; left: 10px; right: 10px; bottom: 10px;
+      border: 1px dashed rgba(212, 168, 67, 0.3);
+      pointer-events: none;
+      z-index: 3;
+    }
+    .cover-hanzi-decor {
+      position: absolute;
+      font-family: 'Noto Serif SC', serif;
+      font-size: 110px;
+      color: #D4A843;
+      opacity: 0.05;
+      font-weight: 900;
+      z-index: 2;
+    }
+    .hz-1 { top: 12%; left: 15%; transform: rotate(-15deg); }
+    .hz-2 { top: 18%; right: 15%; transform: rotate(10deg); }
+    .hz-3 { bottom: 25%; left: 12%; transform: rotate(8deg); }
+    .hz-4 { bottom: 20%; right: 18%; transform: rotate(-12deg); }
+    
+    .cover-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+    }
+    .cover-badge {
+      border: 1px solid #D4A843;
+      color: #D4A843;
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: rgba(212, 168, 67, 0.08);
+    }
+    .cover-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 38px;
+      font-weight: 900;
+      color: #F5E8D0;
+      margin: 15px 0 5px 0;
+      letter-spacing: 1.5px;
+      line-height: 1.25;
+    }
+    .cover-subtitle {
+      font-size: 14.5px;
+      letter-spacing: 3px;
+      color: #D4A843;
+      font-weight: 500;
+      margin: 0;
+    }
+    .cover-divider {
+      width: 60px;
+      height: 2.5px;
+      background: #C94535;
+      margin: 25px auto 0 auto;
+    }
+    .cover-mid {
+      z-index: 10;
+      margin-top: -3mm;
+    }
+    .cover-seal {
+      width: 125px;
+      height: 125px;
+      background: #C94535;
+      border: 3px solid #D4A843;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 8px 24px rgba(201, 69, 53, 0.4);
+      margin: 0 auto;
+      transform: rotate(-3deg);
+    }
+    .cover-seal::before {
+      content: "";
+      position: absolute;
+      top: 4px; left: 4px; right: 4px; bottom: 4px;
+      border: 1px solid rgba(212, 168, 67, 0.6);
+    }
+    .cover-seal span {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 60px;
+      font-weight: 900;
+      color: #F5E8D0;
+      line-height: 1;
+      text-shadow: 2px 2px 0px rgba(0,0,0,0.15);
+    }
+    .cover-bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      z-index: 10;
+    }
+    .cover-desc {
+      font-size: 13px;
+      color: #F5E8D0;
+      opacity: 0.85;
+      max-width: 480px;
+      line-height: 1.8;
+    }
+    .cover-author {
+      font-size: 12px;
+      color: #D4A843;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      letter-spacing: 1px;
+    }
+    .cover-author::before, .cover-author::after {
+      content: "";
+      width: 25px;
+      height: 1.5px;
+      background: #C94535;
+    }
+    
+    /* General Pages Structure */
+    .page-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 19px;
+      color: #161310;
+      border-bottom: 2.5px solid #C94535;
+      padding-bottom: 8px;
+      margin-top: 6mm;
+      margin-bottom: 5mm;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+    }
+    .page-title-zh {
+      color: #7c7365;
+      font-size: 13px;
+      font-weight: 500;
+      margin-left: auto;
+    }
+    
+    .section-desc {
+      font-size: 12.5px;
+      line-height: 1.7;
+      color: #4b5563;
+      margin-top: 0;
+      margin-bottom: 4mm;
+    }
+    
+    /* Info Box */
+    .info-box {
+      border: 1px solid rgba(212, 168, 67, 0.22);
+      background: #faf9f6;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 4mm;
+    }
+    .info-box-title {
+      font-weight: 700;
+      font-size: 12.5px;
+      color: #161310;
+      margin-top: 0;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .info-box-title.accent { color: #C94535; }
+    .info-box-title.gold { color: #D4A843; }
+    .info-box ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 11.5px;
+      color: #4b5563;
+      line-height: 1.7;
+    }
+    .info-box li {
+      margin-bottom: 6px;
+    }
+    
+    /* Tables */
+    table.content-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 4mm;
+      font-size: 11.5px;
+    }
+    table.content-table th {
+      background: #161310;
+      color: #F5E8D0;
+      font-weight: 600;
+      text-align: left;
+      padding: 8px 10px;
+      border: 1px solid #161310;
+    }
+    table.content-table td {
+      padding: 8px 10px;
+      border: 1px solid #e5e7eb;
+      color: #374151;
+      line-height: 1.5;
+    }
+    table.content-table tr:nth-child(even) {
+      background: #fdfbf7;
+    }
+    .pinyin-cell {
+      font-weight: 600;
+      color: #C94535;
+    }
+    .zh-cell {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #161310;
+    }
+    
+    /* Pinyin Grid Layout */
+    .pinyin-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 4mm;
+    }
+    .pinyin-card {
+      background: #fdfbf7;
+      border: 1px solid rgba(212, 168, 67, 0.15);
+      border-radius: 6px;
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .pinyin-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #C94535;
+    }
+    .pinyin-card-desc {
+      font-size: 10px;
+      color: #6b7280;
+      line-height: 1.3;
+    }
+    .pinyin-card-ex {
+      font-size: 11px;
+      color: #161310;
+      font-weight: 500;
+      border-top: 1px dashed rgba(0,0,0,0.06);
+      padding-top: 4px;
+      margin-top: 2px;
+    }
+    
+    /* Tone diagram */
+    .tone-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 5mm;
+    }
+    .tone-card {
+      flex: 1;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      background: white;
+      position: relative;
+    }
+    .tone-card.active-1 { border-color: #C94535; background: #fff5f5; }
+    .tone-card.active-2 { border-color: #D4A843; background: #fffdf5; }
+    .tone-card.active-3 { border-color: #319795; background: #f0fdfa; }
+    .tone-card.active-4 { border-color: #4A90E2; background: #f0f7ff; }
+    
+    .tone-num {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: 2px 8px;
+      font-size: 9.5px;
+      font-weight: 700;
+      border-radius: 99px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .tone-card.active-1 .tone-num { border: 1.5px solid #C94535; color: #C94535; }
+    .tone-card.active-2 .tone-num { border: 1.5px solid #D4A843; color: #D4A843; }
+    .tone-card.active-3 .tone-num { border: 1.5px solid #319795; color: #319795; }
+    .tone-card.active-4 .tone-num { border: 1.5px solid #4A90E2; color: #4A90E2; }
+    
+    .tone-mark {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 5px;
+      margin-bottom: 2px;
+      color: #161310;
+    }
+    .tone-name {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 4px;
+    }
+    .tone-pitch {
+      font-size: 9px;
+      color: #6b7280;
+    }
+    
+    /* Mễ Tự 格 */
+    .mezi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 5mm;
+    }
+    .mezi-box {
+      border: 1px solid rgba(212, 168, 67, 0.25);
+      border-radius: 6px;
+      background: #faf9f6;
+      padding: 10px;
+      text-align: center;
+    }
+    .mezi-cell {
+      width: 50px;
+      height: 50px;
+      border: 1px dashed rgba(201, 69, 53, 0.4);
+      background: #ffffff;
+      margin: 0 auto 8px auto;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mezi-cell::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background: rgba(201, 69, 53, 0.15);
+      top: 50%; left: 0;
+    }
+    .mezi-cell::after {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 1px;
+      background: rgba(201, 69, 53, 0.15);
+      left: 50%; top: 0;
+    }
+    .mezi-diagonal-1 {
+      position: absolute;
+      width: 141%;
+      height: 1px;
+      background: rgba(201, 69, 53, 0.08);
+      transform: rotate(45deg);
+    }
+    .mezi-diagonal-2 {
+      position: absolute;
+      width: 141%;
+      height: 1px;
+      background: rgba(201, 69, 53, 0.08);
+      transform: rotate(-45deg);
+    }
+    .mezi-char-trace {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 34px;
+      color: rgba(201, 69, 53, 0.18); /* Trace gray-red color */
+      z-index: 2;
+    }
+    .mezi-label-zh {
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #161310;
+      margin-bottom: 2px;
+    }
+    .mezi-label-pinyin {
+      font-weight: 600;
+      font-size: 10.5px;
+      color: #C94535;
+      margin-bottom: 2px;
+    }
+    .mezi-label-vi {
+      font-size: 10px;
+      color: #6b7280;
+    }
+    
+    /* Dialogue Box */
+    .dialogue-box {
+      border-left: 3.5px solid #C94535;
+      background: #fdfbf7;
+      padding: 12px 15px;
+      margin-bottom: 4mm;
+      border-radius: 0 8px 8px 0;
+    }
+    .dialogue-title {
+      font-weight: 700;
+      font-size: 11.5px;
+      color: #7c7365;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .dialogue-line {
+      margin-bottom: 8px;
+      font-size: 11.5px;
+      line-height: 1.5;
+    }
+    .dialogue-line:last-child {
+      margin-bottom: 0;
+    }
+    .speaker {
+      font-weight: 700;
+      color: #161310;
+      margin-right: 5px;
+    }
+    .speaker-zh {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #C94535;
+    }
+    .dialogue-zh {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #161310;
+    }
+    
+    /* Vocabulary list */
+    .vocab-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 4mm;
+    }
+    .vocab-item {
+      display: flex;
+      align-items: center;
+      background: #faf9f6;
+      border-radius: 5px;
+      padding: 6px 10px;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+    .vocab-item-zh {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #161310;
+      width: 45px;
+    }
+    .vocab-item-py {
+      font-weight: 600;
+      color: #C94535;
+      font-size: 10.5px;
+      width: 70px;
+    }
+    .vocab-item-vi {
+      font-size: 10.5px;
+      color: #4b5563;
+      flex: 1;
+    }
+  </style>
+
+  <style>
+    body {
+      margin: 0 !important;
+      padding: 0 !important;
+      background: white !important;
+    }
+    .cover-page, .page {
+      margin: 0 !important;
+      box-shadow: none !important;
+      page-break-after: avoid !important;
+    }
+  </style>
+</head>
+<body>
+<!-- PAGE 3: PINYIN INITIALS -->
+  <div class="page">
+    <div class="header">
+      <div class="header-left"><span class="logo-text">乐乐学中文</span> · Hán Ngữ Cơ Sở 1</div>
+      <div>Trang 3</div>
+    </div>
+    
+    <h2 class="page-title">
+      <span>Phát âm Pinyin: Thanh Mẫu (Phụ âm)</span>
+      <span class="page-title-zh">声母表</span>
+    </h2>
+    
+    <p class="section-desc">
+      Hệ phiên âm Pinyin gồm 21 Thanh mẫu (phụ âm). Dưới đây là bảng tổng hợp chi tiết phân nhóm theo vị trí phát âm, kèm theo âm tương đương trong tiếng Việt để các bạn dễ hình dung và bắt chước:
+    </p>
+    
+    <div class="pinyin-grid">
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">b</span>
+        <span class="pinyin-card-desc">Âm hai môi. Gần giống âm "p" của tiếng Việt (không bật hơi).</span>
+        <span class="pinyin-card-ex">Ví dụ: 爸 bà (bố)</span>
+      </div>
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">p</span>
+        <span class="pinyin-card-desc">Âm hai môi, bật hơi mạnh. Khẩu hình giống "b" nhưng đẩy hơi ra ngoài.</span>
+        <span class="pinyin-card-ex">Ví dụ: 苹果 píngguǒ</span>
+      </div>
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">m</span>
+        <span class="pinyin-card-desc">Âm hai môi. Giống âm "m" trong tiếng Việt.</span>
+        <span class="pinyin-card-ex">Ví dụ: 妈 mā (mẹ)</span>
+      </div>
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">f</span>
+        <span class="pinyin-card-desc">Âm răng môi. Giống âm "ph" trong tiếng Việt.</span>
+        <span class="pinyin-card-ex">Ví dụ: 发 fā (phát)</span>
+      </div>
+      
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">d</span>
+        <span class="pinyin-card-desc">Âm đầu lưỡi. Gần giống âm "t" của tiếng Việt (không bật hơi).</span>
+        <span class="pinyin-card-ex">Ví dụ: 大 dà (lớn)</span>
+      </div>
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">t</span>
+        <span class="pinyin-card-desc">Âm đầu lưỡi, bật hơi mạnh. Khẩu hình giống "d" nhưng đẩy hơi ra.</span>
+        <span class="pinyin-card-ex">Ví dụ: 天 tiān (trời)</span>
+      </div>
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">n</span>
+        <span class="pinyin-card-desc">Âm đầu lưỡi. Giống âm "n" trong tiếng Việt.</span>
+        <span class="pinyin-card-ex">Ví dụ: 你 nǐ (bạn)</span>
+      </div>
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">l</span>
+        <span class="pinyin-card-desc">Âm đầu lưỡi. Giống âm "l" trong tiếng Việt.</span>
+        <span class="pinyin-card-ex">Ví dụ: 累 lèi (mệt)</span>
+      </div>
+      
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">g</span>
+        <span class="pinyin-card-desc">Âm cuống lưỡi. Gần giống âm "c/k" của tiếng Việt (không bật hơi).</span>
+        <span class="pinyin-card-ex">Ví dụ: 哥 gē (anh trai)</span>
+      </div>
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">k</span>
+        <span class="pinyin-card-desc">Âm cuống lưỡi, bật hơi mạnh. Hơi đẩy ra từ cuống họng sâu.</span>
+        <span class="pinyin-card-ex">Ví dụ: 课 kè (bài học)</span>
+      </div>
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">h</span>
+        <span class="pinyin-card-desc">Âm cuống lưỡi. Gần giống âm "h" nhưng nhẹ và sát cuống lưỡi hơn.</span>
+        <span class="pinyin-card-ex">Ví dụ: 好 hǎo (tốt)</span>
+      </div>
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">j</span>
+        <span class="pinyin-card-desc">Âm mặt lưỡi. Gần giống âm "ch" trong tiếng Việt (không bật hơi).</span>
+        <span class="pinyin-card-ex">Ví dụ: 叫 jiào (gọi)</span>
+      </div>
+      
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">q</span>
+        <span class="pinyin-card-desc">Âm mặt lưỡi, bật hơi mạnh. Khẩu hình giống "j" nhưng bật hơi.</span>
+        <span class="pinyin-card-ex">Ví dụ: 钱 qián (tiền)</span>
+      </div>
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">x</span>
+        <span class="pinyin-card-desc">Âm mặt lưỡi. Gần giống âm "x" của tiếng Việt.</span>
+        <span class="pinyin-card-ex">Ví dụ: 谢 xiè (cảm ơn)</span>
+      </div>
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">zh</span>
+        <span class="pinyin-card-desc">Âm đầu lưỡi quặt (tròn môi). Gần giống "tr" (không bật hơi).</span>
+        <span class="pinyin-card-ex">Ví dụ: 这 zhè (đây)</span>
+      </div>
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">ch</span>
+        <span class="pinyin-card-desc">Âm quặt lưỡi, bật hơi mạnh. Khẩu hình giống "zh" nhưng bật hơi.</span>
+        <span class="pinyin-card-ex">Ví dụ: 吃 chī (ăn)</span>
+      </div>
+      
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">sh</span>
+        <span class="pinyin-card-desc">Âm quặt lưỡi. Gần giống âm "s" (uốn lưỡi) của tiếng Việt.</span>
+        <span class="pinyin-card-ex">Ví dụ: 是 shì (là)</span>
+      </div>
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">r</span>
+        <span class="pinyin-card-desc">Âm quặt lưỡi. Gần giống âm "r" tiếng Việt nhưng không rung lưỡi.</span>
+        <span class="pinyin-card-ex">Ví dụ: 人 rén (người)</span>
+      </div>
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">z</span>
+        <span class="pinyin-card-desc">Âm đầu lưỡi trước. Gần giống âm "ch" kết hợp "x" (không bật hơi).</span>
+        <span class="pinyin-card-ex">Ví dụ: 再 zài (lại)</span>
+      </div>
+      <div class="pinyin-card">
+        <span class="pinyin-card-title">c</span>
+        <span class="pinyin-card-desc">Âm đầu lưỡi trước, bật hơi mạnh. Đầu lưỡi chặn hơi rồi đẩy hơi ra.</span>
+        <span class="pinyin-card-ex">Ví dụ: 菜 cài (món ăn)</span>
+      </div>
+    </div>
+    
+    <div class="info-box">
+      <div class="info-box-title gold">
+        💡 Lưu ý quan trọng về Âm bật hơi (Aspirated sounds)
+      </div>
+      <p class="section-desc" style="font-size: 11px; margin-bottom: 0;">
+        Trong tiếng Trung, sự phân biệt giữa <strong>bật hơi</strong> và <strong>không bật hơi</strong> cực kỳ quan trọng. Các cặp âm đối lập như: <strong>b/p</strong>, <strong>d/t</strong>, <strong>g/k</strong>, <strong>j/q</strong>, <strong>zh/ch</strong>, <strong>z/c</strong>. Cách luyện tập: Hãy đặt một tờ giấy mỏng trước miệng. Khi đọc âm bật hơi (ví dụ "p", "t", "q"), luồng hơi thoát ra mạnh làm tờ giấy rung mạnh. Khi đọc âm không bật hơi (ví dụ "b", "d", "j"), tờ giấy hầu như không chuyển động.
+      </p>
+    </div>
+    
+    <div class="footer">
+      <div>© Lê Lê học tiếng Trung</div>
+      <div>lelehoctiengtrung.com</div>
+    </div>
+  </div>
+
+  
+</body>
+</html>
