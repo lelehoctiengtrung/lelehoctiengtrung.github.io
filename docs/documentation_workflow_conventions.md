@@ -97,10 +97,8 @@ SKU: [Mã SKU, VD: SACH-BOYA-1]
    - Sử dụng hình ảnh bìa và trang sách thu thập được để tạo mockup sách 3D đặt trên bàn thư viện gỗ và hình ảnh phóng to góc chéo nghệ thuật của các trang nội dung bên trong sách.
    - Lưu trữ các mockup này tại `POSTS/images/`.
 4. **Sản xuất bài viết Markdown**:
-   - Tạo bài viết tại [POSTS/reviews/](file:///Users/hanario/Documents/YTF-Productions/Lê Lê học tiếng Trung/Website lelehoctiengtrung/POSTS/reviews/) với tên tệp là `[SKU].md`.
+   - Tạo bài viết tại [POSTS/reviews/](../POSTS/reviews/) với tên tệp là `[SKU].md`.
    - Bài viết sẽ chứa đầy đủ: Tên sách, SKU, Đối tượng phù hợp, Link mua sách Shopee (Affiliate), các hình ảnh Mockup 3D, phần đánh giá chi tiết nội dung, danh sách Pros/Cons rõ ràng.
 5. **Đồng bộ GDrive & Git**:
    - Sao chép toàn bộ hình ảnh mockup và bài viết liên quan vào thư mục Google Drive cục bộ của bạn (`Docs/[SKU]/`) để đồng bộ lên mây.
    - Commit và push bài viết mới lên Git (nhánh `main`).
-
-
