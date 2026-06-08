@@ -17,7 +17,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/ZKFGnZu36C4",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa chữ Tác (作) - hình ảnh người đứng bắt tay vào làm việc, sáng tạo cái mới.",
-    "order": 65
+    "order": 66
   },
   {
     "id": "ycoBAmSHaIk",
@@ -26,7 +26,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/ycoBAmSHaIk",
     "category": "Lê Lê kể chữ",
     "desc": "Giải thích nguồn gốc chữ Lão hình ảnh người già chống gậy.",
-    "order": 64
+    "order": 65
   },
   {
     "id": "GRCVyX1NVKc",
@@ -35,7 +35,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/GRCVyX1NVKc",
     "category": "Lê Lê kể chữ",
     "desc": "Ý nghĩa chữ Hán từ đôi tay đắp đê sông Hán.",
-    "order": 63
+    "order": 64
   },
   {
     "id": "DrGtgLX5B38",
@@ -44,7 +44,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/DrGtgLX5B38",
     "category": "Lê Lê kể chữ",
     "desc": "Chữ Tiêm ghép từ chữ Tiểu (nhỏ) và Đại (to).",
-    "order": 62
+    "order": 63
   },
   {
     "id": "yPB0kkFBfDA",
@@ -53,7 +53,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/yPB0kkFBfDA",
     "category": "Lê Lê kể chữ",
     "desc": "Chữ Hỷ tượng trưng cho niềm vui và may mắn.",
-    "order": 61
+    "order": 62
   },
   {
     "id": "LRSlWafLcdc",
@@ -62,7 +62,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/LRSlWafLcdc",
     "category": "Lê Lê kể chữ",
     "desc": "Chữ Danh ghép từ chữ Tịch (tối) và Khẩu (miệng).",
-    "order": 60
+    "order": 61
   },
   {
     "id": "gcdxpViyblE",
@@ -71,7 +71,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/gcdxpViyblE",
     "category": "Lê Lê kể chữ",
     "desc": "Nguồn gốc tượng hình của chữ Y (trang phục).",
-    "order": 59
+    "order": 60
   },
   {
     "id": "q_9fy1F5vbE",
@@ -80,7 +80,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/q_9fy1F5vbE",
     "category": "Lê Lê kể chữ",
     "desc": "Chữ Gia gồm bộ Miên (mái nhà) và chữ Thỉ (con heo).",
-    "order": 58
+    "order": 59
   },
   {
     "id": "jMB51QqslDU",
@@ -90,7 +90,7 @@ const ALL_VIDEOS = [
     "category": "Lê Lê kể chữ",
     "desc": "Hình ảnh tượng hình chữ Nữ thời cổ đại.",
     "thumbnail": "POSTS/images/nu_thumbnail.png",
-    "order": 57
+    "order": 58
   },
   {
     "id": "OqhxB504-u8",
@@ -99,7 +99,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/OqhxB504-u8",
     "category": "Lê Lê kể chữ",
     "desc": "Chữ Hưu ghép từ chữ Nhân (người) và Mộc (cây).",
-    "order": 56
+    "order": 57
   },
   {
     "id": "tSqPD1uCg2Y",
@@ -108,7 +108,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/tSqPD1uCg2Y",
     "category": "Lê Lê kể chữ",
     "desc": "Hình tượng dòng chảy nước tự nhiên của chữ Thủy.",
-    "order": 55
+    "order": 56
   },
   {
     "id": "s1WhwmGbo_s",
@@ -117,7 +117,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/s1WhwmGbo_s",
     "category": "Lê Lê kể chữ",
     "desc": "Nguồn gốc hình tượng chữ Bất thời cổ đại.",
-    "order": 54
+    "order": 55
   },
   {
     "id": "5i27wCursTA",
@@ -126,7 +126,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/5i27wCursTA",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa chữ Đông tượng trưng cho hướng mặt trời mọc.",
-    "order": 53
+    "order": 54
   },
   {
     "id": "Mx6Svocgil4",
@@ -135,7 +135,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/Mx6Svocgil4",
     "category": "Lê Lê kể chữ",
     "desc": "Hình dáng chiếc xe ngựa cổ nhìn từ trên xuống.",
-    "order": 52
+    "order": 53
   },
   {
     "id": "DBvjz-UjKcs",
@@ -144,7 +144,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/DBvjz-UjKcs",
     "category": "Lê Lê kể chữ",
     "desc": "Nguồn gốc chữ Đối trong tiếng Trung.",
-    "order": 51
+    "order": 52
   },
   {
     "id": "lg4m_lqlQac",
@@ -153,7 +153,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/lg4m_lqlQac",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa chữ Cơ ghép từ bộ Mộc và chữ Kỷ.",
-    "order": 50
+    "order": 51
   },
   {
     "id": "yVobRj4s42M",
@@ -162,7 +162,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/yVobRj4s42M",
     "category": "Lê Lê kể chữ",
     "desc": "Nguồn gốc cấu tạo chữ Hội thời cổ đại.",
-    "order": 49
+    "order": 50
   },
   {
     "id": "sK3g_j5PN3A",
@@ -171,7 +171,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/sK3g_j5PN3A",
     "category": "Lê Lê kể chữ",
     "desc": "Hình tượng mặc phục trang cung kính thời cổ.",
-    "order": 48
+    "order": 49
   },
   {
     "id": "GTXKMZugW-M",
@@ -180,7 +180,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/GTXKMZugW-M",
     "category": "Lê Lê kể chữ",
     "desc": "Giải thích nguồn gốc chữ Thùy dùng để hỏi.",
-    "order": 47
+    "order": 48
   },
   {
     "id": "EXHGG43gVlk",
@@ -189,7 +189,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/EXHGG43gVlk",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa chữ Quán (nơi ăn ở, hội quán).",
-    "order": 46
+    "order": 47
   },
   {
     "id": "cJ7U9Olpx7U",
@@ -198,7 +198,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/cJ7U9Olpx7U",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa chữ Tinh gồm ba chữ Nhật xếp lại.",
-    "order": 45
+    "order": 46
   },
   {
     "id": "0vVPcmv9sZo",
@@ -207,7 +207,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/0vVPcmv9sZo",
     "category": "Lê Lê kể chữ",
     "desc": "Ý nghĩa chữ Ta (些) dùng để chỉ một vài, một số lượng ít.",
-    "order": 44
+    "order": 45
   },
   {
     "id": "XznUKXARWeA",
@@ -216,7 +216,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/XznUKXARWeA",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa chữ Nhân (人) hình ảnh người đứng nghiêng vững chãi.",
-    "order": 43
+    "order": 44
   },
   {
     "id": "ukbAYcmktm8",
@@ -225,7 +225,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/ukbAYcmktm8",
     "category": "Lê Lê kể chữ",
     "desc": "Chữ Tha (他) chỉ người nam khác, ghép từ bộ Nhân đứng.",
-    "order": 42
+    "order": 43
   },
   {
     "id": "zrRg18tXyxI",
@@ -234,7 +234,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/zrRg18tXyxI",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa chữ Chúng (众) gồm ba chữ Nhân (人) ghép lại.",
-    "order": 41
+    "order": 42
   },
   {
     "id": "5t9w_awJZUk",
@@ -243,7 +243,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/5t9w_awJZUk",
     "category": "Lê Lê kể chữ",
     "desc": "Ý nghĩa tượng hình chữ Lục (六) xuất phát từ ngôi nhà vững chãi.",
-    "order": 40
+    "order": 41
   },
   {
     "id": "lCTp91wuBGA",
@@ -252,7 +252,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/lCTp91wuBGA",
     "category": "Lê Lê kể chữ",
     "desc": "Tìm hiểu nguồn gốc chữ Kỷ (几) tượng hình chiếc ghế hoặc bàn nhỏ.",
-    "order": 39
+    "order": 40
   },
   {
     "id": "ErVxrJVrvXc",
@@ -261,7 +261,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/ErVxrJVrvXc",
     "category": "Lê Lê kể chữ",
     "desc": "Nguồn gốc chữ Xuất (出) tượng trưng cho việc đi ra, vượt ra ngoài.",
-    "order": 38
+    "order": 39
   },
   {
     "id": "3t8i3Zt-bKg",
@@ -270,7 +270,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/3t8i3Zt-bKg",
     "category": "Lê Lê kể chữ",
     "desc": "Ý nghĩa chữ Bắc (北) mô tả hai người quay lưng vào nhau.",
-    "order": 37
+    "order": 38
   },
   {
     "id": "r--MW0Qj5H8",
@@ -279,7 +279,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/r--MW0Qj5H8",
     "category": "Lê Lê kể chữ",
     "desc": "Chữ Tạp (卡) ghép từ chữ Thượng (上 - trên) và Hạ (下 - dưới).",
-    "order": 36
+    "order": 37
   },
   {
     "id": "CBXwISkgwHE",
@@ -288,7 +288,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/CBXwISkgwHE",
     "category": "Lê Lê kể chữ",
     "desc": "Chữ Ma (吗) dùng để hỏi cuối câu, ghép từ Khẩu và Mã.",
-    "order": 35
+    "order": 36
   },
   {
     "id": "y_nLw3euYQk",
@@ -297,7 +297,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/y_nLw3euYQk",
     "category": "Lê Lê kể chữ",
     "desc": "Chữ Hòa (和) ghép từ chữ Hòa (禾 - lúa) và Khẩu (口 - miệng).",
-    "order": 34
+    "order": 35
   },
   {
     "id": "8MEt2ZkrGMU",
@@ -306,7 +306,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/8MEt2ZkrGMU",
     "category": "Lê Lê kể chữ",
     "desc": "Giải thích nguồn gốc chữ Thương (商) hình ảnh người đội mũ đi buôn.",
-    "order": 33
+    "order": 34
   },
   {
     "id": "Kapx7qHDQzM",
@@ -315,7 +315,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/Kapx7qHDQzM",
     "category": "Lê Lê kể chữ",
     "desc": "Nguồn gốc chữ Tại (在) tượng trưng cho sự tồn tại, ở đâu đó.",
-    "order": 32
+    "order": 33
   },
   {
     "id": "OBu4HxmACaw",
@@ -324,7 +324,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/OBu4HxmACaw",
     "category": "Lê Lê kể chữ",
     "desc": "Nguồn gốc chữ Tọa (坐) mô tả hai người ngồi trên đất đối diện nhau.",
-    "order": 31
+    "order": 32
   },
   {
     "id": "j2myKWgjbYI",
@@ -333,7 +333,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/j2myKWgjbYI",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa chữ Thái (太) từ chữ Đại (大) thêm dấu chấm.",
-    "order": 30
+    "order": 31
   },
   {
     "id": "jsj0YX3iTz0",
@@ -342,7 +342,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/jsj0YX3iTz0",
     "category": "Lê Lê kể chữ",
     "desc": "Nguồn gốc chữ Thiểu (少) tượng trưng cho việc chia nhỏ cát.",
-    "order": 29
+    "order": 30
   },
   {
     "id": "4V2sohAIBbI",
@@ -351,7 +351,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/4V2sohAIBbI",
     "category": "Lê Lê kể chữ",
     "desc": "Nguồn gốc chữ Niên (年) tượng hình người gánh lúa mừng vụ mùa.",
-    "order": 28
+    "order": 29
   },
   {
     "id": "TcKDmAP-HVs",
@@ -360,7 +360,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/TcKDmAP-HVs",
     "category": "Lê Lê kể chữ",
     "desc": "Nguồn gốc tượng hình chữ Nhật (日) đại diện cho mặt trời.",
-    "order": 27
+    "order": 28
   },
   {
     "id": "2WaXAJrvP3c",
@@ -369,7 +369,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/2WaXAJrvP3c",
     "category": "Lê Lê kể chữ",
     "desc": "Nguồn gốc tượng hình chữ Nhật (日) đại diện cho mặt trời.",
-    "order": 26
+    "order": 27
   },
   {
     "id": "q-TwRb12JxU",
@@ -378,7 +378,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/q-TwRb12JxU",
     "category": "Lê Lê kể chữ",
     "desc": "Ý nghĩa chữ Kỳ (期) từ hình ảnh chờ trăng lên đúng hẹn.",
-    "order": 25
+    "order": 26
   },
   {
     "id": "zH4vIE5vCU0",
@@ -387,7 +387,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/zH4vIE5vCU0",
     "category": "Lê Lê kể chữ",
     "desc": "Chữ Bôi (杯) chỉ chiếc cốc uống nước, chén gỗ cổ.",
-    "order": 24
+    "order": 25
   },
   {
     "id": "ddwbrAlJwbQ",
@@ -396,7 +396,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/ddwbrAlJwbQ",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa chữ Dạng (样) tượng trưng cho hình mẫu, khuôn mẫu.",
-    "order": 23
+    "order": 24
   },
   {
     "id": "y3gX36hb-bQ",
@@ -405,7 +405,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/y3gX36hb-bQ",
     "category": "Lê Lê kể chữ",
     "desc": "Chữ Một (没) chỉ việc không có, chìm vào trong nước.",
-    "order": 22
+    "order": 23
   },
   {
     "id": "Pw8odtts1h4",
@@ -414,7 +414,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/Pw8odtts1h4",
     "category": "Lê Lê kể chữ",
     "desc": "Ý nghĩa tượng hình chữ Hỏa (火) mô phỏng ngọn lửa đang cháy.",
-    "order": 21
+    "order": 22
   },
   {
     "id": "v7icfPBTn1k",
@@ -423,7 +423,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/v7icfPBTn1k",
     "category": "Lê Lê kể chữ",
     "desc": "Chữ Ái (爱) thể hiện tình yêu qua đôi tay che chở con tim.",
-    "order": 20
+    "order": 21
   },
   {
     "id": "24RscCfC5dM",
@@ -432,7 +432,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/24RscCfC5dM",
     "category": "Lê Lê kể chữ",
     "desc": "Nguồn gốc chữ Mễ (米) tượng hình những hạt gạo rời.",
-    "order": 19
+    "order": 20
   },
   {
     "id": "v6-uJwe3GYY",
@@ -441,7 +441,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/v6-uJwe3GYY",
     "category": "Lê Lê kể chữ",
     "desc": "Giải thích chữ Thái (菜) gồm bộ Thảo, bộ Trảo và bộ Mộc.",
-    "order": 18
+    "order": 19
   },
   {
     "id": "NF10Doada1g",
@@ -450,7 +450,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/NF10Doada1g",
     "category": "Lê Lê kể chữ",
     "desc": "Nguồn gốc tượng hình chữ Kiến (见) thể hiện qua đôi mắt dõi theo.",
-    "order": 17
+    "order": 18
   },
   {
     "id": "EWxYnBFH44s",
@@ -459,7 +459,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/EWxYnBFH44s",
     "category": "Lê Lê kể chữ",
     "desc": "Chữ Lý (里) ghép từ bộ Điền (ruộng) và bộ Thổ (đất).",
-    "order": 16
+    "order": 17
   },
   {
     "id": "1YH2H-HPPaQ",
@@ -468,7 +468,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/1YH2H-HPPaQ",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa chữ Viện (院) chỉ khoảng sân, tòa nhà có tường bao.",
-    "order": 15
+    "order": 16
   },
   {
     "id": "p1cP_bUs41o",
@@ -477,7 +477,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/p1cP_bUs41o",
     "category": "Lê Lê kể chữ",
     "desc": "Giải thích chữ Linh (零) tượng hình những giọt mưa rơi tí tách.",
-    "order": 14
+    "order": 15
   },
   {
     "id": "ligtDefdack",
@@ -486,7 +486,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/ligtDefdack",
     "category": "Lê Lê kể chữ",
     "desc": "Ý nghĩa tượng hình chữ Diện (面) phác họa khuôn mặt người.",
-    "order": 13
+    "order": 14
   },
   {
     "id": "KcpcsVDNOzg",
@@ -495,7 +495,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/KcpcsVDNOzg",
     "category": "Lê Lê kể chữ",
     "desc": "Ý nghĩa tượng hình chữ Phi (飞) mô phỏng chú chim đang bay.",
-    "order": 12
+    "order": 13
   },
   {
     "id": "TaHKq_2wdNE",
@@ -504,7 +504,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/TaHKq_2wdNE",
     "category": "Lê Lê kể chữ",
     "desc": "Chữ Minh (鸣) gồm chữ Điểu (chim) và Khẩu (miệng) đang hót.",
-    "order": 11
+    "order": 12
   },
   {
     "id": "Fj79PruA8j8",
@@ -514,7 +514,7 @@ const ALL_VIDEOS = [
     "category": "Lê Lê kể chữ",
     "desc": "Giải thích nguồn gốc thú vị của chữ Hảo - ghép từ bộ Nữ và bộ Tử.",
     "thumbnail": "POSTS/images/hao_thumbnail.png",
-    "order": 10
+    "order": 11
   },
   {
     "id": "6BZutg5fb8s",
@@ -523,7 +523,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/6BZutg5fb8s",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa chữ Hữu (友) - hình ảnh hai bàn tay nắm chặt cùng nhau đồng hành.",
-    "order": 9
+    "order": 10
   },
   {
     "id": "zU7zXOXqcZE",
@@ -532,7 +532,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/zU7zXOXqcZE",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa chữ Cá (个) - hình ảnh nhánh tre đơn độc dùng làm lượng từ đếm từng vật.",
-    "order": 8
+    "order": 9
   },
   {
     "id": "PGKzmpolLkE",
@@ -541,7 +541,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/PGKzmpolLkE",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa chữ Ngọ (午) - hình ảnh mặt trời đứng bóng vào giữa trưa.",
-    "order": 7
+    "order": 8
   },
   {
     "id": "jus9TjzjgXs",
@@ -550,7 +550,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/jus9TjzjgXs",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa chữ Minh (明) - sự kết hợp giữa mặt trời (Nhật) và mặt trăng (Nguyệt) cùng tỏa sáng rõ ràng.",
-    "order": 6
+    "order": 7
   },
   {
     "id": "7joBUVu_k4c",
@@ -559,7 +559,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/7joBUVu_k4c",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa chữ Lượng (亮) - hình ảnh ánh sáng rạng ngời chiếu qua lầu cao.",
-    "order": 5
+    "order": 6
   },
   {
     "id": "GcFxUmA0POE",
@@ -568,7 +568,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/GcFxUmA0POE",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa chữ Tử (子) - hình ảnh đứa trẻ sơ sinh quấn tã và quan niệm về con cái của người xưa.",
-    "order": 4
+    "order": 5
   },
   {
     "id": "wjnNJDtH1p0",
@@ -577,7 +577,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/wjnNJDtH1p0",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa chữ Ngã (我) - nguồn gốc chữ Tôi từ hình ảnh thứ vũ khí cổ đại trong lịch sử Trung Hoa.",
-    "order": 3
+    "order": 4
   },
   {
     "id": "4lOk_iySKhA",
@@ -586,7 +586,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/4lOk_iySKhA",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa chữ Hảo (好) - hình ảnh người mẹ ôm con và quan niệm của người xưa về sự tốt đẹp.",
-    "order": 2
+    "order": 3
   },
   {
     "id": "_Y4KtpD4w-w",
@@ -595,6 +595,15 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/_Y4KtpD4w-w",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa chữ Điền (田) - hình ảnh các thửa ruộng được phân chia ranh giới từ thời thượng cổ.",
+    "order": 2
+  },
+  {
+    "id": "ym86dYdxUiM",
+    "title_zh": "冷",
+    "title_vi": "Lãnh - Mệnh lệnh băng giá của thiên nhiên",
+    "youtube_url": "https://www.youtube.com/shorts/ym86dYdxUiM",
+    "category": "Lê Lê kể chữ",
+    "desc": "Giải nghĩa chữ Lãnh (冷) - hình ảnh mệnh lệnh băng giá của thiên nhiên.",
     "order": 1
   },
   {
