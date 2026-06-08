@@ -98,6 +98,10 @@ def get_gdrive_path(config_path):
                 return candidate_path
 
     # 3. Fallback: Prompt user if running interactively
+    if not sys.stdin.isatty():
+        print("ℹ️ Môi trường không tương tác (non-interactive). Bỏ qua bước nhập đường dẫn.")
+        return None
+
     print("❌ Không tìm thấy thư mục Google Drive tự động.")
     try:
         user_path = input("Vui lòng nhập đường dẫn thư mục Google Drive cục bộ của bạn: ").strip()
