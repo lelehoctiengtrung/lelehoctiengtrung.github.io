@@ -87,15 +87,15 @@ const FALLBACK_DOCS = {
     category: 'infographics',
     icon: '🍜',
     icon_color: '#E58F65',
-    pages: 'Bộ ảnh · 4 ảnh',
+    pages: 'Bộ ảnh · 10 ảnh',
     level: '2',
     level_text: 'Giao tiếp cơ bản',
     drive_url: 'https://drive.google.com/file/d/1KF_c7CHdSljkl8Rme-C5LZpI0h9XMRAE/view?usp=sharing',
     content: 'Khám phá văn hóa ẩm thực đường phố Trung Hoa qua bộ ảnh Infographics sinh động! Từ bánh bao chiên, 章鱼烧 (bánh bạch tuộc) cho đến các món tráng miệng hấp dẫn khác.\n\nMỗi bức ảnh đều được thiết kế trực quan, dễ hiểu, đi kèm phiên âm chuẩn và mẫu câu giao tiếp thông dụng giúp bạn tự tin gọi món khi đi du lịch hoặc ăn uống tại các quán ăn Trung Quốc.',
     pros: 'Hình ảnh minh họa món ăn trực quan sinh động | Từ vựng thực tế và mẫu câu giao tiếp gọi món đi kèm | Định dạng 9:16 tối ưu hiển thị trên điện thoại',
-    cons: 'Mới chỉ có 4 món ăn phổ biến, chưa bao quát toàn bộ ẩm thực | Cần tự luyện phát âm để giao tiếp mượt mà hơn',
+    cons: 'Mới chỉ có 10 món ăn phổ biến, chưa bao quát toàn bộ ẩm thực | Cần tự luyện phát âm để giao tiếp mượt mà hơn',
     who_for: 'Dành cho tất cả các bạn yêu thích ẩm thực, đang học tiếng Trung giao tiếp cơ bản hoặc chuẩn bị đi du lịch Trung Quốc.',
-    preview_images: '../POSTS/images/street_food_意式冰淇淋.png,../POSTS/images/street_food_泰式炒金边粉.png,../POSTS/images/street_food_章鱼烧.png,../POSTS/images/street_food_塔可饼.png'
+    preview_images: '../POSTS/images/street_food_意式冰淇淋.png,../POSTS/images/street_food_泰式炒金边粉.png,../POSTS/images/street_food_章鱼烧.png,../POSTS/images/street_food_塔可饼.png,../POSTS/images/street_food_吉拿棒.png,../POSTS/images/street_food_土耳其烤肉.png,../POSTS/images/street_food_炸鱼薯条.png,../POSTS/images/street_food_热狗.png,../POSTS/images/street_food_越南夹肉面包.png,../POSTS/images/street_food_辣炒年糕.png'
   },
   'DOC-WORDORDERS': {
     id: 'DOC-WORDORDERS',
