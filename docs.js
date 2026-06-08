@@ -76,7 +76,7 @@ const FALLBACK_DOCS = [
     level: '2',
     level_text: 'Giao tiếp cơ bản',
     drive_url: 'https://drive.google.com/file/d/1KF_c7CHdSljkl8Rme-C5LZpI0h9XMRAE/view?usp=sharing',
-    preview_images: 'POSTS/images/street_food_意式冰淇淋.png,POSTS/images/street_food_泰式炒金边粉.png,POSTS/images/street_food_章鱼烧.png,POSTS/images/street_food_塔可饼.png,POSTS/images/street_food_吉拿棒.png,POSTS/images/street_food_土耳其烤肉.png,POSTS/images/street_food_炸鱼薯条.png,POSTS/images/street_food_热狗.png,POSTS/images/street_food_越南夹肉面包.png,POSTS/images/street_food_辣炒年糕.png'
+    preview_images: 'POSTS/images/street_food_辣炒年糕.png,POSTS/images/street_food_越南夹肉面包.png,POSTS/images/street_food_热狗.png,POSTS/images/street_food_炸鱼薯条.png,POSTS/images/street_food_土耳其烤肉.png,POSTS/images/street_food_吉拿棒.png,POSTS/images/street_food_塔可饼.png,POSTS/images/street_food_章鱼烧.png,POSTS/images/street_food_泰式炒金边粉.png,POSTS/images/street_food_意式冰淇淋.png'
   },
   {
     id: 'DOC-WORDORDERS',
@@ -89,7 +89,7 @@ const FALLBACK_DOCS = [
     level: '3',
     level_text: 'Trung cấp · HSK 2-3',
     drive_url: 'https://drive.google.com/file/d/1KF_c7CHdSljkl8Rme-C5LZpI0h9XMRAE/view?usp=sharing',
-    preview_images: 'POSTS/images/word_order_故事_事故.png,POSTS/images/word_order_牛奶_奶牛.png,POSTS/images/word_order_现实_实现.png,POSTS/images/word_order_蜜蜂_蜂蜜.png,POSTS/images/word_order_语法_法语.png,POSTS/images/word_order_马上_上马.png,POSTS/images/word_order_报警_警报.png,POSTS/images/word_order_盘算_算盘.png,POSTS/images/word_order_带领_领带.png,POSTS/images/word_order_牙刷_刷牙.png,POSTS/images/word_order_国外_外国.png'
+    preview_images: 'POSTS/images/word_order_国外_外国.png,POSTS/images/word_order_牙刷_刷牙.png,POSTS/images/word_order_带领_领带.png,POSTS/images/word_order_盘算_算盘.png,POSTS/images/word_order_报警_警报.png,POSTS/images/word_order_马上_上马.png,POSTS/images/word_order_语法_法语.png,POSTS/images/word_order_蜜蜂_蜂蜜.png,POSTS/images/word_order_现实_实现.png,POSTS/images/word_order_牛奶_奶牛.png,POSTS/images/word_order_故事_事故.png'
   },
   {
     id: 'DOC-SUMMER',

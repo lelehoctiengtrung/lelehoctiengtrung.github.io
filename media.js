@@ -1323,8 +1323,8 @@ async function renderGrid() {
   if (emptyState) emptyState.classList.add('hidden');
   grid.classList.remove('hidden');
 
-  // Sort by order ascending
-  filtered.sort((a, b) => a.order - b.order);
+  // Sort by order descending (newest first)
+  filtered.sort((a, b) => b.order - a.order);
 
   // Pagination bounds
   const totalItems = filtered.length;

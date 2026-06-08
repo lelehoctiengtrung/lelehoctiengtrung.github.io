@@ -95,7 +95,7 @@ const FALLBACK_DOCS = {
     pros: 'Hình ảnh minh họa món ăn trực quan sinh động | Từ vựng thực tế và mẫu câu giao tiếp gọi món đi kèm | Định dạng 9:16 tối ưu hiển thị trên điện thoại',
     cons: 'Mới chỉ có 10 món ăn phổ biến, chưa bao quát toàn bộ ẩm thực | Cần tự luyện phát âm để giao tiếp mượt mà hơn',
     who_for: 'Dành cho tất cả các bạn yêu thích ẩm thực, đang học tiếng Trung giao tiếp cơ bản hoặc chuẩn bị đi du lịch Trung Quốc.',
-    preview_images: '../POSTS/images/street_food_意式冰淇淋.png,../POSTS/images/street_food_泰式炒金边粉.png,../POSTS/images/street_food_章鱼烧.png,../POSTS/images/street_food_塔可饼.png,../POSTS/images/street_food_吉拿棒.png,../POSTS/images/street_food_土耳其烤肉.png,../POSTS/images/street_food_炸鱼薯条.png,../POSTS/images/street_food_热狗.png,../POSTS/images/street_food_越南夹肉面包.png,../POSTS/images/street_food_辣炒年糕.png'
+    preview_images: '../POSTS/images/street_food_辣炒年糕.png,../POSTS/images/street_food_越南夹肉面包.png,../POSTS/images/street_food_热狗.png,../POSTS/images/street_food_炸鱼薯条.png,../POSTS/images/street_food_土耳其烤肉.png,../POSTS/images/street_food_吉拿棒.png,../POSTS/images/street_food_塔可饼.png,../POSTS/images/street_food_章鱼烧.png,../POSTS/images/street_food_泰式炒金边粉.png,../POSTS/images/street_food_意式冰淇淋.png'
   },
   'DOC-WORDORDERS': {
     id: 'DOC-WORDORDERS',
@@ -112,7 +112,7 @@ const FALLBACK_DOCS = {
     pros: 'Hình ảnh thiết kế đẹp mắt, so sánh trực quan các cặp từ đảo ngược | Giúp ghi nhớ từ vựng sâu hơn qua việc liên tưởng hình ảnh | Tránh các lỗi sai ngữ pháp và ngữ nghĩa phổ biến',
     cons: 'Tài liệu tập trung vào các cặp từ cụ thể, chưa đi sâu vào ngữ pháp toàn diện | Cần luyện tập đặt câu thực tế',
     who_for: 'Dành cho các bạn đang học tiếng Trung ở mọi trình độ, đặc biệt là những ai hay bị nhầm lẫn trật tự từ hoặc muốn cải thiện tư duy diễn đạt tự nhiên.',
-    preview_images: '../POSTS/images/word_order_故事_事故.png,../POSTS/images/word_order_牛奶_奶牛.png,../POSTS/images/word_order_现实_实现.png,../POSTS/images/word_order_蜜蜂_蜂蜜.png,../POSTS/images/word_order_语法_法语.png,../POSTS/images/word_order_马上_上马.png,../POSTS/images/word_order_报警_警报.png,../POSTS/images/word_order_盘算_算盘.png,../POSTS/images/word_order_带领_领带.png,../POSTS/images/word_order_牙刷_刷牙.png,../POSTS/images/word_order_国外_外国.png'
+    preview_images: '../POSTS/images/word_order_国外_外国.png,../POSTS/images/word_order_牙刷_刷牙.png,../POSTS/images/word_order_带领_领带.png,../POSTS/images/word_order_盘算_算盘.png,../POSTS/images/word_order_报警_警报.png,../POSTS/images/word_order_马上_上马.png,../POSTS/images/word_order_语法_法语.png,../POSTS/images/word_order_蜜蜂_蜂蜜.png,../POSTS/images/word_order_现实_实现.png,../POSTS/images/word_order_牛奶_奶牛.png,../POSTS/images/word_order_故事_事故.png'
   },
   'DOC-SUMMER': {
     id: 'DOC-SUMMER',
