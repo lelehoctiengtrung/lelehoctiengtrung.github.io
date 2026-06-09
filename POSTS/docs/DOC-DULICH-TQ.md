@@ -26,7 +26,7 @@ Cẩm nang được chia thành các chủ đề cực kỳ logic và dễ tra c
 
 ### 📥 Tải tài liệu ngay tại đây:
 Các bạn hãy click vào link bên dưới để sở hữu bộ cẩm nang siêu chất này hoàn toàn miễn phí nhé. Đừng quên lưu về điện thoại để mang theo bên mình suốt chuyến đi nha!
-👉 [Link Download Tài Liệu](drive_url)
+👉 [Link Download Tài Liệu](https://drive.google.com/drive/folders/1K04CiMYUBOfScPA3E8QrlavUOjNI874b)
 
 Chúc các bạn có một chuyến đi thật rực rỡ, ăn thật ngon và nói tiếng Trung "vèo vèo" cùng người bản địa nha! Yêu các bạn rất nhiều! ❤️
 

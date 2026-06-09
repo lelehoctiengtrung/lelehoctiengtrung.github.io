@@ -29,7 +29,7 @@ Tài liệu bao gồm 36 thẻ hình ảnh tương ứng với 36 chữ tượng
 
 ### ⬇️ Link Download Tài Liệu
 Các bạn có thể tải trọn bộ tài liệu sắc nét này tại đây nhé: 
-👉 [Link Download Drive]({{drive_url}})
+👉 [Link Download Drive](https://drive.google.com/drive/folders/1nZ_rJRny_L99mFM1BumLkEPT2KSOSlZF)
 
 Chúc các bạn học tiếng Trung thật vui và tràn đầy năng lượng cùng Lê Lê nhé! Đừng quên theo dõi kênh để nhận thêm nhiều tài liệu bổ ích nha! ❤️
 
