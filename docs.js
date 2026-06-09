@@ -39,7 +39,8 @@ const FALLBACK_DOCS = [
     pages: 'PDF · 12 trang',
     level: '2',
     level_text: 'Cơ bản · HSK 1–2',
-    drive_url: 'https://drive.google.com/LINK_GOOGLE_DRIVE'
+    drive_url: 'https://drive.google.com/LINK_GOOGLE_DRIVE',
+    preview_images: 'POSTS/images/DOC-500_cover.png,POSTS/images/DOC-500_page3.png'
   },
   {
     id: 'DOC-GRAMMAR',
@@ -51,7 +52,8 @@ const FALLBACK_DOCS = [
     pages: 'PDF · 28 trang',
     level: '3',
     level_text: 'Trung cấp · HSK 2–3',
-    drive_url: 'https://drive.google.com/LINK_GOOGLE_DRIVE'
+    drive_url: 'https://drive.google.com/LINK_GOOGLE_DRIVE',
+    preview_images: 'POSTS/images/DOC-GRAMMAR_mockup.png,POSTS/images/DOC-GRAMMAR_page3.png'
   },
   {
     id: 'DOC-RADICALS',
@@ -63,7 +65,8 @@ const FALLBACK_DOCS = [
     pages: 'PDF · 17 trang · Màu sắc',
     level: '1',
     level_text: 'Mầm non & Tiểu học',
-    drive_url: 'https://drive.google.com/file/d/1KF_c7CHdSljkl8Rme-C5LZpI0h9XMRAE/view?usp=sharing'
+    drive_url: 'https://drive.google.com/file/d/1KF_c7CHdSljkl8Rme-C5LZpI0h9XMRAE/view?usp=sharing',
+    preview_images: 'POSTS/images/DOC-RADICALS_cover_flat.png,POSTS/images/DOC-RADICALS_page3_flat.png'
   },
   {
     id: 'DOC-STREETFOOD',
@@ -89,7 +92,7 @@ const FALLBACK_DOCS = [
     level: '3',
     level_text: 'Trung cấp · HSK 2-3',
     drive_url: 'https://drive.google.com/file/d/1KF_c7CHdSljkl8Rme-C5LZpI0h9XMRAE/view?usp=sharing',
-    preview_images: 'POSTS/images/word_order_国外_外国.png,POSTS/images/word_order_牙刷_刷牙.png,POSTS/images/word_order_带领_领带.png,POSTS/images/word_order_盘算_算盘.png,POSTS/images/word_order_报警_警报.png,POSTS/images/word_order_马上_上马.png,POSTS/images/word_order_语法_法语.png,POSTS/images/word_order_蜜蜂_蜂蜜.png,POSTS/images/word_order_现实_实现.png,POSTS/images/word_order_牛奶_奶牛.png,POSTS/images/word_order_故事_事故.png'
+    preview_images: 'POSTS/images/word_order_国外_外国.png,POSTS/images/word_order_带领_领带.png,POSTS/images/word_order_报警_警报.png,POSTS/images/word_order_故事_事故.png,POSTS/images/word_order_牙刷_刷牙.png,POSTS/images/word_order_牛奶_奶牛.png,POSTS/images/word_order_现实_实现.png,POSTS/images/word_order_盘算_算盘.png,POSTS/images/word_order_蜜蜂_蜂蜜.png,POSTS/images/word_order_语法_法语.png,POSTS/images/word_order_马上_上马.png'
   },
   {
     id: 'DOC-SUMMER',
@@ -101,7 +104,8 @@ const FALLBACK_DOCS = [
     pages: 'PDF · 30 trang · Màu sắc',
     level: '1',
     level_text: 'Mầm non & Tiểu học',
-    drive_url: 'POSTS/docs/DOC-SUMMER.pdf'
+    drive_url: 'POSTS/docs/DOC-SUMMER.pdf',
+    preview_images: 'POSTS/images/DOC-SUMMER_cover.png,POSTS/images/DOC-SUMMER_page3.png,POSTS/images/DOC-SUMMER_page7.png'
   },
   {
     id: 'DOC-COSO1',
@@ -282,6 +286,7 @@ function parseAndRenderDocs(data) {
     colMap.level_text = 7;
     colMap.drive_url = 8;
     colMap.id = -1;
+    colMap.preview_images = -1;
 
     cols.forEach((col, index) => {
       const label = (col.label || '').toLowerCase();
@@ -295,6 +300,7 @@ function parseAndRenderDocs(data) {
       else if (label.includes('level') || label.includes('độ khó')) colMap.level = index;
       else if (label.includes('drive_url') || label.includes('link drive')) colMap.drive_url = index;
       else if (label.includes('id') || label.includes('id tài liệu')) colMap.id = index;
+      else if (label.includes('preview_images') || label.includes('link ảnh') || label.includes('ảnh xem trước')) colMap.preview_images = index;
     });
 
     const docs = rows.map((r, rowIndex) => {
@@ -326,6 +332,7 @@ function parseAndRenderDocs(data) {
       const icon_color = get(colMap.icon_color, fallbackItem?.icon_color || '#D4A843');
       const level = get(colMap.level, fallbackItem?.level || '2');
       const drive_url = get(colMap.drive_url, fallbackItem?.drive_url || '#');
+      const preview_images = get(colMap.preview_images, fallbackItem?.preview_images || '');
 
       // Localize metadata fields if active language is not vi
       const lang = window.i18n ? window.i18n.currentLang : 'vi';
@@ -337,7 +344,7 @@ function parseAndRenderDocs(data) {
         level_text = tDoc.level_text || level_text;
       }
 
-      return { id, title, desc, category, icon, icon_color, pages, level, level_text, drive_url };
+      return { id, title, desc, category, icon, icon_color, pages, level, level_text, drive_url, preview_images };
     }).filter(Boolean);
 
     // Merge infographics fallback docs if they are not in the sheet response (also merge DOC-SUMMER & DOC-COSO1)
@@ -381,6 +388,53 @@ function parseAndRenderDocs(data) {
 }
 
 // --- Render list to HTML ──────────────────────────────────
+// --- Get Document Cover HTML ─────────────────────────────
+function getDocCoverHtml(doc) {
+  let coverUrl = '';
+  if (doc.preview_images) {
+    const urls = doc.preview_images.split(',').map(u => u.trim()).filter(Boolean);
+    if (urls.length > 0) {
+      coverUrl = urls[0];
+    }
+  }
+
+  // If no cover, try known mappings or fallbacks
+  if (!coverUrl) {
+    const id = doc.id.toUpperCase();
+    if (id === 'DOC-500') coverUrl = 'POSTS/images/DOC-500_cover.png';
+    else if (id === 'DOC-GRAMMAR') coverUrl = 'POSTS/images/DOC-GRAMMAR_mockup.png';
+    else if (id === 'DOC-RADICALS') coverUrl = 'POSTS/images/DOC-RADICALS_cover_flat.png';
+    else if (id === 'DOC-SUMMER') coverUrl = 'POSTS/images/DOC-SUMMER_cover.png';
+    else if (id === 'DOC-COSO1') coverUrl = 'POSTS/images/DOC-COSO1_cover_flat.png';
+  }
+
+  if (coverUrl) {
+    return `
+      <div class="doc-cover-section">
+        <div class="doc-cover-wrapper">
+          <img class="doc-cover-img" src="${coverUrl}" alt="${doc.title}" loading="lazy" />
+          <div class="doc-cover-spine"></div>
+          <div class="doc-cover-shadow"></div>
+        </div>
+      </div>
+    `;
+  } else {
+    return `
+      <div class="doc-cover-section">
+        <div class="doc-cover-wrapper fallback-bg" style="--cover-color: ${doc.icon_color || '#4ecba0'}">
+          <div class="doc-cover-fallback">
+            <div class="fallback-icon">${doc.icon || '📚'}</div>
+            <div class="fallback-title">${doc.title}</div>
+            <div class="fallback-brand">Lê Lê Học Tiếng Trung</div>
+          </div>
+          <div class="doc-cover-spine"></div>
+          <div class="doc-cover-shadow"></div>
+        </div>
+      </div>
+    `;
+  }
+}
+
 function renderDocsList(docs) {
   const grid = document.getElementById('docs-grid');
   const loading = document.getElementById('docs-loading');
@@ -413,12 +467,10 @@ function renderDocsList(docs) {
       : detailBtnText;
 
     card.innerHTML = `
+      ${getDocCoverHtml(doc)}
       <div class="doc-big-top">
-        <div class="doc-big-icon" style="--c:${doc.icon_color}">${doc.icon}</div>
-        <div class="doc-big-meta">
-          <span class="doc-cat-tag ${doc.category}">${getCategoryLabel(doc.category)}</span>
-          <span class="doc-size">${doc.pages}</span>
-        </div>
+        <span class="doc-cat-tag ${doc.category}">${getCategoryLabel(doc.category)}</span>
+        <span class="doc-size">${doc.pages}</span>
       </div>
       <h3 class="doc-big-title">${doc.title}</h3>
       <p class="doc-big-desc">${doc.desc}</p>
