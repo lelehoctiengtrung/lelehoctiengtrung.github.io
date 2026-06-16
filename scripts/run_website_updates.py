@@ -131,22 +131,38 @@ def main():
                 
                 # Category logic
                 lower_title = title.lower()
-                category = "Tiếng Trung thực chiến"
-                if 'slang' in lower_title or 'tiếng lóng' in lower_title or 'lóng' in lower_title or 'bá đạo' in lower_title:
-                    category = "Tiếng lóng"
-                elif 'vs' in lower_title or 'phân biệt' in lower_title or 'song đấu' in lower_title:
+                
+                # 1. Song đấu từ vựng (Comparisons)
+                if ' vs ' in lower_title or ' & ' in lower_title or 'phân biệt' in lower_title or 'song đấu' in lower_title:
                     category = "Song đấu từ vựng"
-                elif 'thành ngữ' in lower_title or 'idiom' in lower_title:
+                # 2. Tiếng Trung thực chiến (Situational conversations)
+                elif lower_title.startswith('giao tiếp') or 'ngữ cảnh:' in lower_title or 'thực chiến' in lower_title:
+                    category = "Tiếng Trung thực chiến"
+                # 3. Thành ngữ (Idioms)
+                elif (
+                    'thành ngữ' in lower_title or 'idiom' in lower_title or 'thần thoại' in lower_title or 'cổ tích' in lower_title or
+                    any(k in lower_title for k in [
+                        'thành trúc', 'hiếu long', 'cầu kiếm', 'đạo linh', 'mâu thuẫn', 'chi oa',
+                        'vi mã', 'di sơn', 'hổ uy', 'vị nhân', 'điểm mắt', 'bổ lao', 'đàn cầm',
+                        'trầm chu', 'mạc tượng', 'đãi thỏ', 'thiêm túc', 'thất mã', 'lộng phủ',
+                        'trợ trưởng', 'xà ảnh', 'tùy tục'
+                    ])
+                ):
                     category = "Thành ngữ"
+                # 4. Lê Lê kể chữ (Etymology)
                 elif (
                     "chữ" in lower_title or 
                     "kể chữ" in lower_title or 
                     "nhớ chữ" in lower_title or 
-                    "nguồn gốc chữ" in lower_title or 
+                    "nguồn gốc" in lower_title or 
                     "giải mã chữ" in lower_title or
-                    v_id in HAN_VIET_MAP
+                    v_id in HAN_VIET_MAP or
+                    v_id == "sPFjgmSqyGg"
                 ):
                     category = "Lê Lê kể chữ"
+                # 5. Tiếng lóng (Slangs)
+                else:
+                    category = "Tiếng lóng"
 
                 # Parse title_zh and title_vi
                 title_zh = ""

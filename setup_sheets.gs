@@ -1761,14 +1761,35 @@ function syncYouTubeVideos() {
     
     if (!video.category) {
       var lowerTitle = title.toLowerCase();
-      if (lowerTitle.indexOf('kể chữ') !== -1 || lowerTitle.indexOf('câu chuyện chữ') !== -1 || lowerTitle.indexOf('bộ thủ') !== -1) {
-        category = 'Lê Lê kể chữ';
-      } else if (lowerTitle.indexOf('slang') !== -1 || lowerTitle.indexOf('tiếng lóng') !== -1 || lowerTitle.indexOf('lóng') !== -1) {
-        category = 'Tiếng lóng';
-      } else if (lowerTitle.indexOf('vs') !== -1 || lowerTitle.indexOf('phân biệt') !== -1 || lowerTitle.indexOf('song đấu') !== -1) {
+      
+      // 1. Song đấu từ vựng (Comparisons)
+      if (lowerTitle.indexOf(' vs ') !== -1 || lowerTitle.indexOf(' & ') !== -1 || lowerTitle.indexOf('phân biệt') !== -1 || lowerTitle.indexOf('song đấu') !== -1) {
         category = 'Song đấu từ vựng';
-      } else if (lowerTitle.indexOf('thành ngữ') !== -1 || lowerTitle.indexOf('idiom') !== -1) {
+      }
+      // 2. Tiếng Trung thực chiến (Situational conversations)
+      else if (lowerTitle.indexOf('giao tiếp') === 0 || lowerTitle.indexOf('ngữ cảnh:') !== -1 || lowerTitle.indexOf('thực chiến') !== -1) {
+        category = 'Tiếng Trung thực chiến';
+      }
+      // 3. Thành ngữ (Idioms)
+      else if (
+        lowerTitle.indexOf('thành ngữ') !== -1 || lowerTitle.indexOf('idiom') !== -1 || lowerTitle.indexOf('thần thoại') !== -1 || lowerTitle.indexOf('cổ tích') !== -1 ||
+        ['thành trúc', 'hiếu long', 'cầu kiếm', 'đạo linh', 'mâu thuẫn', 'chi oa',
+         'vi mã', 'di sơn', 'hổ uy', 'vị nhân', 'điểm mắt', 'bổ lao', 'đàn cầm',
+         'trầm chu', 'mạc tượng', 'đãi thỏ', 'thiêm túc', 'thất mã', 'lộng phủ',
+         'trợ trưởng', 'xà ảnh', 'tùy tục'].some(function(k) { return lowerTitle.indexOf(k) !== -1; })
+      ) {
         category = 'Thành ngữ';
+      }
+      // 4. Lê Lê kể chữ (Etymology)
+      else if (
+        lowerTitle.indexOf('chữ') !== -1 || lowerTitle.indexOf('kể chữ') !== -1 || lowerTitle.indexOf('nhớ chữ') !== -1 || lowerTitle.indexOf('nguồn gốc') !== -1 || lowerTitle.indexOf('giải mã chữ') !== -1 ||
+        videoId === 'sPFjgmSqyGg'
+      ) {
+        category = 'Lê Lê kể chữ';
+      }
+      // 5. Tiếng lóng (Slangs)
+      else {
+        category = 'Tiếng lóng';
       }
     }
     
