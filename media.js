@@ -17,7 +17,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/y_G-fvofAM4",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã chữ 雨 (Mưa) siêu dễ nhớ qua hình vẽ | Lê Lê Học Tiếng Trung' trong giao tiếp thực tế.",
-    "order": 89
+    "order": 88
   },
   {
     "id": "CvkdL2Rt6eI",
@@ -26,7 +26,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/CvkdL2Rt6eI",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Chữ ĐỒNG 同 trong tiếng Trung có gì thú vị? Học tiếng Trung cùng Lê Lê' trong giao tiếp thực tế.",
-    "order": 88
+    "order": 87
   },
   {
     "id": "ZJqOZvdVeWg",
@@ -35,7 +35,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/ZJqOZvdVeWg",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã chữ 喝 (Hē' trong giao tiếp thực tế.",
-    "order": 87
+    "order": 86
   },
   {
     "id": "Q3OvNSVJPg0",
@@ -44,7 +44,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/Q3OvNSVJPg0",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Ý nghĩa sâu sắc của chữ 语 (yǔ) trong tiếng Trung | Lê Lê học tiếng Trung' trong giao tiếp thực tế.",
-    "order": 86
+    "order": 85
   },
   {
     "id": "s7GQCeCQkD4",
@@ -53,7 +53,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/s7GQCeCQkD4",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã chữ 校 (xiào)' trong giao tiếp thực tế.",
-    "order": 85
+    "order": 84
   },
   {
     "id": "WVFZLgWtfRg",
@@ -62,7 +62,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/WVFZLgWtfRg",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Mẹo nhớ chữ 客 (Khách) cực nhanh trong 60 giây' trong giao tiếp thực tế.",
-    "order": 84
+    "order": 83
   },
   {
     "id": "8fsY2N4lOks",
@@ -71,7 +71,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/8fsY2N4lOks",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã chữ TIỀN 钱 trong tiếng Trung: Sự tranh giành của hai thanh kiếm' trong giao tiếp thực tế.",
-    "order": 83
+    "order": 82
   },
   {
     "id": "N_egVdqwUtc",
@@ -80,7 +80,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/N_egVdqwUtc",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã chữ CÓNG 从 trong 30 giây' trong giao tiếp thực tế.",
-    "order": 82
+    "order": 81
   },
   {
     "id": "9r6x0U0RNfc",
@@ -89,7 +89,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/9r6x0U0RNfc",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Ý nghĩa chữ 钟 (Chuông) trong tiếng Trung dễ nhớ vô cùng!' trong giao tiếp thực tế.",
-    "order": 81
+    "order": 80
   },
   {
     "id": "jWbwcpqXsF4",
@@ -98,7 +98,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/jWbwcpqXsF4",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Nguồn gốc chữ QUẢ 果 cực dễ nhᬛ | Học tiếng Trung cùng Lê Lê' trong giao tiếp thực tế.",
-    "order": 80
+    "order": 79
   },
   {
     "id": "wSugdlXjcjw",
@@ -107,7 +107,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/wSugdlXjcjw",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Chữ 椅 (yǐ): Chiếc ghế gỗ có tựa lưng lạ | Học tiếng Trung cùng Lê Lê' trong giao tiếp thực tế.",
-    "order": 79
+    "order": 78
   },
   {
     "id": "l4Rg9ukO8U4",
@@ -116,7 +116,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/l4Rg9ukO8U4",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Ý nghĩa sâu sắc của chữ 话 (Huà)' trong giao tiếp thực tế.",
-    "order": 78
+    "order": 77
   },
   {
     "id": "2LFEepG_1Ys",
@@ -125,7 +125,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/2LFEepG_1Ys",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã chữ 岁 (Tuổi, Năm tháng) qua câu chuyện cực hay | Lê Lê học tiếng Trung' trong giao tiếp thực tế.",
-    "order": 77
+    "order": 76
   },
   {
     "id": "gAsw8SkAUkU",
@@ -134,7 +134,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/gAsw8SkAUkU",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Bí quyết nhớ chữ 下 (Hạ) siêu dễ qua hình ảnh rễ cây!' trong giao tiếp thực tế.",
-    "order": 76
+    "order": 75
   },
   {
     "id": "mP6brE6xiUc",
@@ -143,7 +143,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/mP6brE6xiUc",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã chữ 气 (Khí): Từ dải mây trời đến năng lượng sống' trong giao tiếp thực tế.",
-    "order": 75
+    "order": 74
   },
   {
     "id": "-Lu6gR_ERx4",
@@ -152,7 +152,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/-Lu6gR_ERx4",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã chữ ĐẢ (打) qua hình ảnh cực dễ nhớ' trong giao tiếp thực tế.",
-    "order": 74
+    "order": 73
   },
   {
     "id": "7yWzxg_n9DA",
@@ -161,7 +161,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/7yWzxg_n9DA",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Cách nhớ chữ 狗 (Con Chó) cực nhanh qua câu chuyện bộ thủ | Học tiếng Trung cùng Lê Lê' trong giao tiếp thực tế.",
-    "order": 73
+    "order": 72
   },
   {
     "id": "9Qi9jyMoS0A",
@@ -170,15 +170,6 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/9Qi9jyMoS0A",
     "category": "Lê Lê kể chữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Bí ẩn chữ 什 (shén)' trong giao tiếp thực tế.",
-    "order": 72
-  },
-  {
-    "id": "sPFjgmSqyGg",
-    "title_zh": "得",
-    "title_vi": "Tên Đắc Nhân tiếng Trung: 得人 hay 得仁? Giải mã ý nghĩa!",
-    "youtube_url": "https://www.youtube.com/shorts/sPFjgmSqyGg",
-    "category": "Lê Lê kể chữ",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Tên Đắc Nhân tiếng Trung: 得人 hay 得仁? Giải mã ý nghĩa!' trong giao tiếp thực tế.",
     "order": 71
   },
   {
@@ -820,7 +811,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/RTzRx0KwNkM",
     "category": "Song đấu từ vựng",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Phân biệt 以为 và 认为: Tưởng là đúng nhưng lại sai VS. Phát biểu ý kiến!' trong giao tiếp thực tế.",
-    "order": 15
+    "order": 16
   },
   {
     "id": "Vwmq5rcGr5w",
@@ -829,7 +820,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/Vwmq5rcGr5w",
     "category": "Song đấu từ vựng",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Học tiếng Trung: Phân biệt 合适 và 适合 cực dễ!' trong giao tiếp thực tế.",
-    "order": 14
+    "order": 15
   },
   {
     "id": "pKLR6T9kpkU",
@@ -838,7 +829,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/pKLR6T9kpkU",
     "category": "Song đấu từ vựng",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Phân biệt 认识 và 知道: Khi nào dùng 'quen biết', khi nào dùng 'biết thông tin'?' trong giao tiếp thực tế.",
-    "order": 13
+    "order": 14
   },
   {
     "id": "WDM3tD_h58Y",
@@ -847,7 +838,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/WDM3tD_h58Y",
     "category": "Song đấu từ vựng",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Phân biệt Thời gian (时间) và Thời điểm (时候) trong tiếng Trung' trong giao tiếp thực tế.",
-    "order": 12
+    "order": 13
   },
   {
     "id": "Wwlaa4hVBNs",
@@ -856,6 +847,15 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/Wwlaa4hVBNs",
     "category": "Song đấu từ vựng",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Phân biệt Không (不) và Chưa/Không (没) trong tiếng Trung' trong giao tiếp thực tế.",
+    "order": 12
+  },
+  {
+    "id": "sPFjgmSqyGg",
+    "title_zh": "得人 / 得仁",
+    "title_vi": "Phân biệt 得人 và 得仁 - Tên Đắc Nhân trong tiếng Trung",
+    "youtube_url": "https://www.youtube.com/shorts/sPFjgmSqyGg",
+    "category": "Song đấu từ vựng",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Tên Đắc Nhân tiếng Trung: 得人 hay 得仁? Giải mã ý nghĩa!' trong giao tiếp thực tế.",
     "order": 11
   },
   {
@@ -1946,7 +1946,8 @@ function normalizeCategory(cat, title, id) {
     const songDauIds = [
       "RTzRx0KwNkM", "Vwmq5rcGr5w", "pKLR6T9kpkU", "WDM3tD_h58Y", "Wwlaa4hVBNs",
       "qAoS_7LxJe0", "BoXL0hnHSZo", "r-XLeTWWKao", "dPbXeQYc-4E", "nRr3vt2G12s",
-      "1zrczoa-3gc", "ObBKQUg3Ma4", "jkOIuGDpDns", "U3dYr5EqQOA", "SG4XEMgsEbE"
+      "1zrczoa-3gc", "ObBKQUg3Ma4", "jkOIuGDpDns", "U3dYr5EqQOA", "SG4XEMgsEbE",
+      "sPFjgmSqyGg"
     ];
     if (songDauIds.includes(id) || t.includes(' vs ') || t.includes(' & ') || t.includes('phân biệt') || t.includes('song đấu')) {
       return 'Song đấu từ vựng';
@@ -1972,7 +1973,7 @@ function normalizeCategory(cat, title, id) {
     }
     
     // 3. Lê Lê kể chữ
-    if (t.includes('chữ') || t.includes('kể chữ') || t.includes('nhớ chữ') || t.includes('nguồn gốc') || t.includes('giải mã chữ') || id === 'sPFjgmSqyGg') {
+    if (t.includes('chữ') || t.includes('kể chữ') || t.includes('nhớ chữ') || t.includes('nguồn gốc') || t.includes('giải mã chữ')) {
       return 'Lê Lê kể chữ';
     }
     

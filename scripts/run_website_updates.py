@@ -133,7 +133,7 @@ def main():
                 lower_title = title.lower()
                 
                 # 1. Song đấu từ vựng (Comparisons)
-                if ' vs ' in lower_title or ' & ' in lower_title or 'phân biệt' in lower_title or 'song đấu' in lower_title:
+                if ' vs ' in lower_title or ' & ' in lower_title or 'phân biệt' in lower_title or 'song đấu' in lower_title or v_id == "sPFjgmSqyGg":
                     category = "Song đấu từ vựng"
                 # 2. Tiếng Trung thực chiến (Situational conversations)
                 elif lower_title.startswith('giao tiếp') or 'ngữ cảnh:' in lower_title or 'thực chiến' in lower_title:
@@ -156,8 +156,7 @@ def main():
                     "nhớ chữ" in lower_title or 
                     "nguồn gốc" in lower_title or 
                     "giải mã chữ" in lower_title or
-                    v_id in HAN_VIET_MAP or
-                    v_id == "sPFjgmSqyGg"
+                    v_id in HAN_VIET_MAP
                 ):
                     category = "Lê Lê kể chữ"
                 # 5. Tiếng lóng (Slangs)

@@ -1763,7 +1763,7 @@ function syncYouTubeVideos() {
       var lowerTitle = title.toLowerCase();
       
       // 1. Song đấu từ vựng (Comparisons)
-      if (lowerTitle.indexOf(' vs ') !== -1 || lowerTitle.indexOf(' & ') !== -1 || lowerTitle.indexOf('phân biệt') !== -1 || lowerTitle.indexOf('song đấu') !== -1) {
+      if (lowerTitle.indexOf(' vs ') !== -1 || lowerTitle.indexOf(' & ') !== -1 || lowerTitle.indexOf('phân biệt') !== -1 || lowerTitle.indexOf('song đấu') !== -1 || videoId === 'sPFjgmSqyGg') {
         category = 'Song đấu từ vựng';
       }
       // 2. Tiếng Trung thực chiến (Situational conversations)
@@ -1782,8 +1782,7 @@ function syncYouTubeVideos() {
       }
       // 4. Lê Lê kể chữ (Etymology)
       else if (
-        lowerTitle.indexOf('chữ') !== -1 || lowerTitle.indexOf('kể chữ') !== -1 || lowerTitle.indexOf('nhớ chữ') !== -1 || lowerTitle.indexOf('nguồn gốc') !== -1 || lowerTitle.indexOf('giải mã chữ') !== -1 ||
-        videoId === 'sPFjgmSqyGg'
+        lowerTitle.indexOf('chữ') !== -1 || lowerTitle.indexOf('kể chữ') !== -1 || lowerTitle.indexOf('nhớ chữ') !== -1 || lowerTitle.indexOf('nguồn gốc') !== -1 || lowerTitle.indexOf('giải mã chữ') !== -1
       ) {
         category = 'Lê Lê kể chữ';
       }
