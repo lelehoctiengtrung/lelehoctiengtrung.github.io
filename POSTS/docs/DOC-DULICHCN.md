@@ -24,9 +24,9 @@ Mỗi từ vựng đều có sẵn chữ Hán, Pinyin, nghĩa tiếng Việt và
 ### 🖼️ Ảnh minh họa bên trong tài liệu
 Dưới đây là một vài hình ảnh "nhá hàng" sương sương về độ đáng yêu và dễ nhìn của em nó nè:
 
-![Minh họa 1](/images/docs/DOC-DULICHCN/1.png)
-![Minh họa 2](/images/docs/DOC-DULICHCN/2.png)
-![Minh họa 3](/images/docs/DOC-DULICHCN/3.png)
+![Minh họa 1](https://placehold.co/600x400?text=Tu+vung+Du+lich+1)
+![Minh họa 2](https://placehold.co/600x400?text=Tu+vung+Du+lich+2)
+![Minh họa 3](https://placehold.co/600x400?text=Tu+vung+Du+lich+3)
 
 ### 📥 Tải xuống tài liệu ngay thôi!
 Các bạn nhớ tải về, lưu vào điện thoại hoặc in ra thành một cuốn sổ tay nhỏ mang theo bên mình nhé. Nó sẽ là "bùa hộ mệnh" cực kỳ đắc lực cho chuyến đi của các bạn đấy!

@@ -2,7 +2,7 @@
 **ID/SKU**: DOC-SUMMER
 **Phù hợp với**: Dành cho các bé mầm non, học sinh tiểu học mới bắt đầu làm quen với tiếng Trung, hoặc phụ huynh/giáo viên muốn xây dựng lộ trình học tập trực quan dưới dạng trò chơi khám phá trong kỳ nghỉ hè dài.
 
-![Học Tiếng Trung Mùa Hè Cực Vui](../POSTS/images/DOC-SUMMER_cover.png)
+![Học Tiếng Trung Mùa Hè Cực Vui](../images/DOC-SUMMER_cover.png)
 
 ## Giới thiệu tài liệu:
 Chào mừng các phụ huynh và các bé yêu! Lê Lê đây. Mùa hè là khoảng thời gian **"vàng"** vô giá để các con làm quen với một ngôn ngữ mới. Khi không còn bị bó buộc bởi lịch học dày đặc ở trường, con có thể vừa vui chơi, ăn kem, tắm biển, vừa tích lũy phản xạ tiếng Trung tự nhiên qua thế giới xung quanh.
@@ -21,11 +21,11 @@ Dưới đây là một số hình ảnh xem trước các trang thiết kế th
 
 | Mục lục & Hướng dẫn (Trang 3) | Bài thơ "Trùng Trùng Phi" (Trang 7) |
 |:---:|:---:|
-| ![Trang Mục lục](../POSTS/images/DOC-SUMMER_page3.png) | ![Trang Bài thơ](../POSTS/images/DOC-SUMMER_page7.png) |
+| ![Trang Mục lục](../images/DOC-SUMMER_page3.png) | ![Trang Bài thơ](../images/DOC-SUMMER_page7.png) |
 
 ## Đường dẫn tải tài liệu:
 Các bạn có thể tải bản PDF chất lượng cao để in màu sắc nét cho bé học tập tại đây:
-👉 **[Tải xuống PDF Học Tiếng Trung Mùa Hè Cực Vui](../POSTS/docs/DOC-SUMMER.pdf)**
+👉 **[Tải xuống PDF Học Tiếng Trung Mùa Hè Cực Vui](../docs/DOC-SUMMER.pdf)**
 
 ## Điểm nổi bật (Pros):
 - Thiết kế sticker viền đậm, tông màu pastel rực rỡ thu hút sự chú ý của trẻ em.

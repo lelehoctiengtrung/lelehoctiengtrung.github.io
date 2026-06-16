@@ -26,13 +26,13 @@ Tài liệu được Lê Lê thiết kế dựa trên phương pháp học chữ
 
 Để Lê Lê hé lộ một chút xíu "nhan sắc" bên trong của em nó nhé:
 
-![Trang 1 - Nguồn gốc chữ Tượng hình](placeholder_image_1_url)
+![Trang 1 - Nguồn gốc chữ Tượng hình](https://placehold.co/600x400?text=Nguon+goc+Chu+Hantong+hinh)
 *Chữ Hán ban đầu trông như những bức tranh siêu dễ thương!* 
 
-![Trang 2 - Các nét cơ bản](placeholder_image_2_url)
+![Trang 2 - Các nét cơ bản](https://placehold.co/600x400?text=Cac+net+chu+Han+co+ban)
 *Phân tích từng nét viết cơ bản cực kỳ trực quan và chi tiết.*
 
-![Trang 3 - Quy tắc bút thuận](placeholder_image_3_url)
+![Trang 3 - Quy tắc bút thuận](https://placehold.co/600x400?text=Quy+tac+viet+chu+Han)
 *Áp dụng ngay quy tắc viết để nét chữ luôn mềm mại, chuẩn xác nha!*
 
 ---
@@ -41,7 +41,7 @@ Tài liệu được Lê Lê thiết kế dựa trên phương pháp học chữ
 
 Các bạn đã sẵn sàng chinh phục chữ Hán cùng Lê Lê chưa? Chần chờ gì nữa mà không lưu ngay bảo bối này về máy:
 
-👉 **[TẢI TÀI LIỆU NHẬP MÔN CHỮ HÁN CƠ BẢN TẠI ĐÂY]({https://drive.google.com/drive/folders/1ylZl2Ub184W-mZ5QgxAEE0N6dG2988gz})**
+👉 **[TẢI TÀI LIỆU NHẬP MÔN CHỮ HÁN CƠ BẢN TẠI ĐÂY](https://drive.google.com/drive/folders/1ylZl2Ub184W-mZ5QgxAEE0N6dG2988gz)**
 
 Hy vọng tài liệu này sẽ giúp hành trình bắt đầu học tiếng Trung của các bạn trở nên nhẹ nhàng và tràn ngập niềm vui. Tải về nhớ in ra để thực hành nhé. Nếu thấy hiệu quả, đừng quên khoe thành quả nét chữ với Lê Lê nha! Chúc các bạn học tập thật tốt! 加油! ❤️
 

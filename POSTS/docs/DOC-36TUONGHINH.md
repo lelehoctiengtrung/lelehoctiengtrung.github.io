@@ -24,8 +24,8 @@ Tài liệu bao gồm 36 thẻ hình ảnh tương ứng với 36 chữ tượng
 3. **Phiên âm (Pinyin) và Nghĩa tiếng Việt:** Giúp bạn đọc đúng và hiểu đúng.
 
 ### 🖼️ Ảnh minh họa bên trong tài liệu
-![Minh họa 36 Chữ Tượng Hình 1](https://via.placeholder.com/800x450?text=Minh+hoa+36+Chu+Tuong+Hinh+1)
-![Minh họa 36 Chữ Tượng Hình 2](https://via.placeholder.com/800x450?text=Minh+hoa+36+Chu+Tuong+Hinh+2)
+![Minh họa 36 Chữ Tượng Hình 1](https://placehold.co/800x450?text=Minh+hoa+36+Chu+Tuong+Hinh+1)
+![Minh họa 36 Chữ Tượng Hình 2](https://placehold.co/800x450?text=Minh+hoa+36+Chu+Tuong+Hinh+2)
 
 ### ⬇️ Link Download Tài Liệu
 Các bạn có thể tải trọn bộ tài liệu sắc nét này tại đây nhé: 
