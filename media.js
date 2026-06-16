@@ -955,7 +955,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/4zbwWedN5so",
     "category": "Thành ngữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng '入乡随俗 | Hòa nhập văn hóa' trong giao tiếp thực tế.",
-    "order": 21
+    "order": 22
   },
   {
     "id": "7FqNFl8ky0g",
@@ -964,7 +964,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/7FqNFl8ky0g",
     "category": "Thành ngữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng '班门弄斧: Cười ra nước mắt với câu chuyện 'múa rìu qua mắt thợ'!' trong giao tiếp thực tế.",
-    "order": 20
+    "order": 21
   },
   {
     "id": "BxC4vGPwt6s",
@@ -973,7 +973,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/BxC4vGPwt6s",
     "category": "Thành ngữ",
     "desc": "Thành ngữ ví von việc đã có kế hoạch sẵn sàng và tự tin.",
-    "order": 19
+    "order": 20
   },
   {
     "id": "lwiZmQ04gWI",
@@ -982,7 +982,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/lwiZmQ04gWI",
     "category": "Thành ngữ",
     "desc": "Câu chuyện châm biếm người ngoài miệng thì thích nhưng thực tế lại sợ.",
-    "order": 18
+    "order": 19
   },
   {
     "id": "E9XS8J52fjo",
@@ -991,7 +991,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/E9XS8J52fjo",
     "category": "Thành ngữ",
     "desc": "Bài học phê phán những người ngoan cố, cứng nhắc không biết biến đổi.",
-    "order": 17
+    "order": 18
   },
   {
     "id": "ebPSABEdUMI",
@@ -1000,7 +1000,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/ebPSABEdUMI",
     "category": "Thành ngữ",
     "desc": "Chỉ hành vi tự lừa mình dối người, trốn tránh thực tại.",
-    "order": 16
+    "order": 17
   },
   {
     "id": "A0VwRz8IGno",
@@ -1009,7 +1009,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/A0VwRz8IGno",
     "category": "Thành ngữ",
     "desc": "Chỉ lời nói hoặc hành động trước sau không nhất quán.",
-    "order": 15
+    "order": 16
   },
   {
     "id": "Xxzo0rprdQc",
@@ -1018,7 +1018,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/Xxzo0rprdQc",
     "category": "Thành ngữ",
     "desc": "Chỉ những người tầm nhìn hạn hẹp nhưng lại tự phụ.",
-    "order": 14
+    "order": 15
   },
   {
     "id": "eDap3fEhWrA",
@@ -1027,7 +1027,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/eDap3fEhWrA",
     "category": "Thành ngữ",
     "desc": "Chỉ hành vi đổi trắng thay đen, uy quyền ép bức người khác.",
-    "order": 13
+    "order": 14
   },
   {
     "id": "55PH0e1jm2w",
@@ -1036,7 +1036,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/55PH0e1jm2w",
     "category": "Thành ngữ",
     "desc": "Biểu trưng cho ý chí kiên trì, bền bỉ vượt qua khó khăn.",
-    "order": 12
+    "order": 13
   },
   {
     "id": "2JoOBSlNib4",
@@ -1045,7 +1045,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/2JoOBSlNib4",
     "category": "Thành ngữ",
     "desc": "Chỉ kẻ dựa hơi người có quyền thế để bắt nạt kẻ yếu.",
-    "order": 11
+    "order": 12
   },
   {
     "id": "NLkHvt7Wu5A",
@@ -1054,7 +1054,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/NLkHvt7Wu5A",
     "category": "Thành ngữ",
     "desc": "Khám phá bài học sâu sắc từ câu chuyện mất cừu đắp lại chuồng vẫn chưa muộn.",
-    "order": 10
+    "order": 11
   },
   {
     "id": "vtL-7_lONnM",
@@ -1063,7 +1063,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/vtL-7_lONnM",
     "category": "Thành ngữ",
     "desc": "Triết lý sâu sắc về việc phúc họa khôn lường, nên giữ tâm bình thản trước biến cố.",
-    "order": 9
+    "order": 10
   },
   {
     "id": "BgmL-8aKnaA",
@@ -1072,7 +1072,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/BgmL-8aKnaA",
     "category": "Thành ngữ",
     "desc": "Phê phán lối sống trông chờ vào may mắn bất ngờ mà không tự lao động.",
-    "order": 8
+    "order": 9
   },
   {
     "id": "M4VYa6BEsOY",
@@ -1081,7 +1081,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/M4VYa6BEsOY",
     "category": "Thành ngữ",
     "desc": "Châm biếm hành vi giải thích lý lẽ cao siêu cho người không hiểu biết.",
-    "order": 7
+    "order": 8
   },
   {
     "id": "4VE-eeXsCOE",
@@ -1090,7 +1090,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/4VE-eeXsCOE",
     "category": "Thành ngữ",
     "desc": "Câu chuyện châm biếm người vẽ rắn vẽ thêm chân, làm hỏng việc chính.",
-    "order": 6
+    "order": 7
   },
   {
     "id": "xJwB52xBYwc",
@@ -1099,7 +1099,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/xJwB52xBYwc",
     "category": "Thành ngữ",
     "desc": "Nguồn gốc thành ngữ 'Vẽ rồng vẽ thêm con mắt' giúp bức tranh sinh động xuất thần.",
-    "order": 5
+    "order": 6
   },
   {
     "id": "H3lmJfw8K3E",
@@ -1108,6 +1108,15 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/H3lmJfw8K3E",
     "category": "Thành ngữ",
     "desc": "Câu chuyện ngụ ngôn phê phán những người đánh giá sự việc một chiều.",
+    "order": 5
+  },
+  {
+    "id": "LPKHs2v7ar8",
+    "title_zh": "破釜沉舟",
+    "title_vi": "Phá phủ trầm chu - Đập nồi dìm thuyền, quyết tâm không lùi bước",
+    "youtube_url": "https://www.youtube.com/shorts/LPKHs2v7ar8",
+    "category": "Thành ngữ",
+    "desc": "Thành ngữ chỉ ý chí quyết thắng, tự cắt đường lui để tiến lên phía trước.",
     "order": 4
   },
   {
@@ -1139,425 +1148,416 @@ const ALL_VIDEOS = [
   },
   {
     "id": "jHYuII4gbAE",
-    "title_zh": "吃",
-    "title_vi": "Giải mã '吃货': Bạn có phải là tín đồ ẩm thực chính hiệu?",
+    "title_zh": "吃货",
+    "title_vi": "Cật hóa - Tín đồ ăn uống",
     "youtube_url": "https://www.youtube.com/shorts/jHYuII4gbAE",
     "category": "Tiếng lóng",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã '吃货': Bạn có phải là tín đồ ẩm thực chính hiệu?' trong giao tiếp thực tế.",
-    "order": 65
-  },
-  {
-    "id": "7omYbW4eeTc",
-    "title_zh": "Học ngay '格局打开'",
-    "title_vi": "Từ lóng Trung Quốc cực hay cho người thích nhìn xa trông rộng!",
-    "youtube_url": "https://www.youtube.com/shorts/7omYbW4eeTc",
-    "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Học ngay '格局打开'' trong giao tiếp thực tế.",
     "order": 64
   },
   {
-    "id": "3V2EUxO7oMQ",
-    "title_zh": "精",
-    "title_vi": "Học từ lóng Trung Quốc cực chuẩn: 精神内耗",
-    "youtube_url": "https://www.youtube.com/shorts/3V2EUxO7oMQ",
+    "id": "7omYbW4eeTc",
+    "title_zh": "格局打开",
+    "title_vi": "Cách cục đả khai - Mở rộng tầm nhìn",
+    "youtube_url": "https://www.youtube.com/shorts/7omYbW4eeTc",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Học từ lóng Trung Quốc cực chuẩn: 精神内耗' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Học ngay '格局打开'' trong giao tiếp thực tế.",
     "order": 63
   },
   {
-    "id": "NQOWIgTaX9I",
-    "title_zh": "小",
-    "title_vi": "小趴菜 là gì? Giải mã từ lóng bá đạo của giới trẻ Trung Quốc!",
-    "youtube_url": "https://www.youtube.com/shorts/NQOWIgTaX9I",
+    "id": "3V2EUxO7oMQ",
+    "title_zh": "精神内耗",
+    "title_vi": "Tinh thần nội hao - Kiệt quệ tinh thần",
+    "youtube_url": "https://www.youtube.com/shorts/3V2EUxO7oMQ",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng '小趴菜 là gì? Giải mã từ lóng bá đạo của giới trẻ Trung Quốc!' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Học từ lóng Trung Quốc cực chuẩn: 精神内耗' trong giao tiếp thực tế.",
     "order": 62
   },
   {
+    "id": "NQOWIgTaX9I",
+    "title_zh": "小趴菜",
+    "title_vi": "Tiểu pha thái - Gà mờ, yếu đuối",
+    "youtube_url": "https://www.youtube.com/shorts/NQOWIgTaX9I",
+    "category": "Tiếng lóng",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng '小趴菜 là gì? Giải mã từ lóng bá đạo của giới trẻ Trung Quốc!' trong giao tiếp thực tế.",
+    "order": 61
+  },
+  {
     "id": "Jr4sOLRklSI",
-    "title_zh": "Công chúa xin mời lên xe",
-    "title_vi": "Trend cực dễ thương của giới trẻ Trung Quốc",
+    "title_zh": "公主请上车",
+    "title_vi": "Công chúa thỉnh thượng xa - Công chúa xin mời lên xe",
     "youtube_url": "https://www.youtube.com/shorts/Jr4sOLRklSI",
     "category": "Tiếng lóng",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Công chúa xin mời lên xe' trong giao tiếp thực tế.",
-    "order": 61
+    "order": 60
   },
   {
     "id": "Ug4kqY4TG_A",
     "title_zh": "白嫖",
-    "title_vi": "Từ lóng 'xem chùa' của Gen Z Trung Quốc bạn nhất định phải biết!",
+    "title_vi": "Bạch phiêu - Xem chùa, xài chùa",
     "youtube_url": "https://www.youtube.com/shorts/Ug4kqY4TG_A",
     "category": "Tiếng lóng",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng '白嫖' trong giao tiếp thực tế.",
-    "order": 60
+    "order": 59
   },
   {
     "id": "J5q3OU9-lyM",
     "title_zh": "小丑竟是我自己",
-    "title_vi": "Hóa ra chú hề lại chính là tôi! Từ lóng Trung Quốc hài hước!",
+    "title_vi": "Tiểu sửu cánh thị ngã tự kỷ - Hóa ra chú hề lại là tôi",
     "youtube_url": "https://www.youtube.com/shorts/J5q3OU9-lyM",
     "category": "Tiếng lóng",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng '小丑竟是我自己' trong giao tiếp thực tế.",
-    "order": 59
-  },
-  {
-    "id": "zx8tkeseDqk",
-    "title_zh": "Học từ lóng Trung Quốc: \"土豪\"",
-    "title_vi": "Khi giàu có đi kèm với sự... \"thiếu tinh tế\"! Cùng Lê Lê khám phá nhé",
-    "youtube_url": "https://www.youtube.com/shorts/zx8tkeseDqk",
-    "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Học từ lóng Trung Quốc: \"土豪\"' trong giao tiếp thực tế.",
     "order": 58
   },
   {
-    "id": "7hPkN-Y-MIo",
-    "title_zh": "吃",
-    "title_vi": "Ăn giấm là ghen? Tìm hiểu từ lóng '吃醋' cực hot của giới trẻ Trung Quốc!",
-    "youtube_url": "https://www.youtube.com/shorts/7hPkN-Y-MIo",
+    "id": "zx8tkeseDqk",
+    "title_zh": "土豪",
+    "title_vi": "Thổ hào - Trọc phú, giàu xổi",
+    "youtube_url": "https://www.youtube.com/shorts/zx8tkeseDqk",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Ăn giấm là ghen? Tìm hiểu từ lóng '吃醋' cực hot của giới trẻ Trung Quốc!' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Học từ lóng Trung Quốc: \"土豪\"' trong giao tiếp thực tế.",
     "order": 57
   },
   {
-    "id": "Q7ksMHP_sUM",
-    "title_zh": "",
-    "title_vi": "Bậc thầy lão luyện tiếng Trung mạng nói thế nào?",
-    "youtube_url": "https://www.youtube.com/shorts/Q7ksMHP_sUM",
+    "id": "7hPkN-Y-MIo",
+    "title_zh": "吃醋",
+    "title_vi": "Ăn giấm - Ghen tuông",
+    "youtube_url": "https://www.youtube.com/shorts/7hPkN-Y-MIo",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Bậc thầy lão luyện tiếng Trung mạng nói thế nào?' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Ăn giấm là ghen? Tìm hiểu từ lóng '吃醋' cực hot của giới trẻ Trung Quốc!' trong giao tiếp thực tế.",
     "order": 56
   },
   {
-    "id": "UabEqj-mdCE",
-    "title_zh": "",
-    "title_vi": "Giải mã từ lóng dìm hàng, bóc phốt của giới trẻ Trung Quốc",
-    "youtube_url": "https://www.youtube.com/shorts/UabEqj-mdCE",
+    "id": "Q7ksMHP_sUM",
+    "title_zh": "大佬",
+    "title_vi": "Đại lão - Bậc thầy mạng",
+    "youtube_url": "https://www.youtube.com/shorts/Q7ksMHP_sUM",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng dìm hàng, bóc phốt của giới trẻ Trung Quốc' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Bậc thầy lão luyện tiếng Trung mạng nói thế nào?' trong giao tiếp thực tế.",
     "order": 55
   },
   {
-    "id": "81lzmMS4WiU",
-    "title_zh": "",
-    "title_vi": "Từ lóng tiếng Trung: Sống cuộc đời 'như hack' là thế nào?",
-    "youtube_url": "https://www.youtube.com/shorts/81lzmMS4WiU",
+    "id": "UabEqj-mdCE",
+    "title_zh": "吐槽",
+    "title_vi": "Thổ tào - Dìm hàng, bóc phốt",
+    "youtube_url": "https://www.youtube.com/shorts/UabEqj-mdCE",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng tiếng Trung: Sống cuộc đời 'như hack' là thế nào?' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng dìm hàng, bóc phốt của giới trẻ Trung Quốc' trong giao tiếp thực tế.",
     "order": 54
   },
   {
-    "id": "gdGnJvQJzc4",
-    "title_zh": "划",
-    "title_vi": "Giải mã từ lóng mạng '划水' cực hài hước cùng Lê Lê",
-    "youtube_url": "https://www.youtube.com/shorts/gdGnJvQJzc4",
+    "id": "81lzmMS4WiU",
+    "title_zh": "开挂",
+    "title_vi": "Khai quái - Sống cuộc đời như hack",
+    "youtube_url": "https://www.youtube.com/shorts/81lzmMS4WiU",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng mạng '划水' cực hài hước cùng Lê Lê' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng tiếng Trung: Sống cuộc đời 'như hack' là thế nào?' trong giao tiếp thực tế.",
     "order": 53
   },
   {
-    "id": "So4rBcVHCeI",
-    "title_zh": "",
-    "title_vi": "Từ lóng 'Anh hùng bàn phím' trong tiếng Trung 💻🤐",
-    "youtube_url": "https://www.youtube.com/shorts/So4rBcVHCeI",
+    "id": "gdGnJvQJzc4",
+    "title_zh": "划水",
+    "title_vi": "Hóa thủy - Lười biếng, làm việc đối phó",
+    "youtube_url": "https://www.youtube.com/shorts/gdGnJvQJzc4",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng 'Anh hùng bàn phím' trong tiếng Trung 💻🤐' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng mạng '划水' cực hài hước cùng Lê Lê' trong giao tiếp thực tế.",
     "order": 52
   },
   {
-    "id": "ojdd7mO6QDI",
-    "title_zh": "",
-    "title_vi": "Thánh cãi trong tiếng Trung gọi là gì?",
-    "youtube_url": "https://www.youtube.com/shorts/ojdd7mO6QDI",
+    "id": "So4rBcVHCeI",
+    "title_zh": "键盘侠",
+    "title_vi": "Kiện bàn hiệp - Anh hùng bàn phím",
+    "youtube_url": "https://www.youtube.com/shorts/So4rBcVHCeI",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Thánh cãi trong tiếng Trung gọi là gì?' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng 'Anh hùng bàn phím' trong tiếng Trung 💻🤐' trong giao tiếp thực tế.",
     "order": 51
   },
   {
-    "id": "6Rzy7t98wl4",
-    "title_zh": "",
-    "title_vi": "Từ lóng siêu hài: Kiểu đàn ông khô khan nhất hệ mặt trời",
-    "youtube_url": "https://www.youtube.com/shorts/6Rzy7t98wl4",
+    "id": "ojdd7mO6QDI",
+    "title_zh": "杠精",
+    "title_vi": "Cống tinh - Thánh cãi, hay vặn vẹo",
+    "youtube_url": "https://www.youtube.com/shorts/ojdd7mO6QDI",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng siêu hài: Kiểu đàn ông khô khan nhất hệ mặt trời' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Thánh cãi trong tiếng Trung gọi là gì?' trong giao tiếp thực tế.",
     "order": 50
   },
   {
-    "id": "GboxU5JZkmk",
-    "title_zh": "",
-    "title_vi": "Từ lóng Trung Quốc cực hài: Chú chó cô đơn 🐶",
-    "youtube_url": "https://www.youtube.com/shorts/GboxU5JZkmk",
+    "id": "6Rzy7t98wl4",
+    "title_zh": "直男",
+    "title_vi": "Trực nam - Đàn ông khô khan, thẳng tính",
+    "youtube_url": "https://www.youtube.com/shorts/6Rzy7t98wl4",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng Trung Quốc cực hài: Chú chó cô đơn 🐶' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng siêu hài: Kiểu đàn ông khô khan nhất hệ mặt trời' trong giao tiếp thực tế.",
     "order": 49
   },
   {
-    "id": "2mRtu5OS2yk",
-    "title_zh": "",
-    "title_vi": "Từ lóng tự trào cực hot của học sinh Trung Quốc",
-    "youtube_url": "https://www.youtube.com/shorts/2mRtu5OS2yk",
+    "id": "GboxU5JZkmk",
+    "title_zh": "单身狗",
+    "title_vi": "Đơn thân cẩu - Chú chó độc thân",
+    "youtube_url": "https://www.youtube.com/shorts/GboxU5JZkmk",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng tự trào cực hot của học sinh Trung Quốc' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng Trung Quốc cực hài: Chú chó cô đơn 🐶' trong giao tiếp thực tế.",
     "order": 48
   },
   {
-    "id": "N-e2cISEfHY",
-    "title_zh": "",
-    "title_vi": "Kẻ Hủy Diệt Điểm Số Trong Tiếng Trung Là Gì? 🎓",
-    "youtube_url": "https://www.youtube.com/shorts/N-e2cISEfHY",
+    "id": "2mRtu5OS2yk",
+    "title_zh": "学渣",
+    "title_vi": "Học tra - Học sinh học lực kém",
+    "youtube_url": "https://www.youtube.com/shorts/2mRtu5OS2yk",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Kẻ Hủy Diệt Điểm Số Trong Tiếng Trung Là Gì? 🎓' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng tự trào cực hot của học sinh Trung Quốc' trong giao tiếp thực tế.",
     "order": 47
   },
   {
-    "id": "Lb2DUkZVHCQ",
-    "title_zh": "",
-    "title_vi": "Giải mã từ lóng siêu phổ biến của giới trẻ Trung Quốc",
-    "youtube_url": "https://www.youtube.com/shorts/Lb2DUkZVHCQ",
+    "id": "N-e2cISEfHY",
+    "title_zh": "学霸",
+    "title_vi": "Học bá - Bậc thầy học tập, học sinh xuất sắc",
+    "youtube_url": "https://www.youtube.com/shorts/N-e2cISEfHY",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng siêu phổ biến của giới trẻ Trung Quốc' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Kẻ Hủy Diệt Điểm Số Trong Tiếng Trung Là Gì? 🎓' trong giao tiếp thực tế.",
     "order": 46
   },
   {
-    "id": "gGWnBEqN5WM",
-    "title_zh": "",
-    "title_vi": "Khi ví tiền xẹp lép và bạn phải 'hít gió tây bắc' để sống 💨",
-    "youtube_url": "https://www.youtube.com/shorts/gGWnBEqN5WM",
+    "id": "Lb2DUkZVHCQ",
+    "title_zh": "小鲜肉",
+    "title_vi": "Tiểu thịt tươi - Trai trẻ đẹp mã",
+    "youtube_url": "https://www.youtube.com/shorts/Lb2DUkZVHCQ",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Khi ví tiền xẹp lép và bạn phải 'hít gió tây bắc' để sống 💨' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng siêu phổ biến của giới trẻ Trung Quốc' trong giao tiếp thực tế.",
     "order": 45
   },
   {
-    "id": "jc5MKo-uCmU",
-    "title_zh": "",
-    "title_vi": "Bạn có phải là một người nghiện hít mèo không?",
-    "youtube_url": "https://www.youtube.com/shorts/jc5MKo-uCmU",
+    "id": "gGWnBEqN5WM",
+    "title_zh": "喝西北风",
+    "title_vi": "Hát tây bắc phong - Hít gió tây bắc, ví tiền xẹp lép",
+    "youtube_url": "https://www.youtube.com/shorts/gGWnBEqN5WM",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Bạn có phải là một người nghiện hít mèo không?' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Khi ví tiền xẹp lép và bạn phải 'hít gió tây bắc' để sống 💨' trong giao tiếp thực tế.",
     "order": 44
   },
   {
-    "id": "5RYobSQxOEQ",
-    "title_zh": "",
-    "title_vi": "Ý nghĩa từ lóng \"Đi trên con đường hoa\" trong tiếng Trung là gì?",
-    "youtube_url": "https://www.youtube.com/shorts/5RYobSQxOEQ",
+    "id": "jc5MKo-uCmU",
+    "title_zh": "吸猫",
+    "title_vi": "Hấp miêu - Nghiện hít mèo",
+    "youtube_url": "https://www.youtube.com/shorts/jc5MKo-uCmU",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Ý nghĩa từ lóng \"Đi trên con đường hoa\" trong tiếng Trung là gì?' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Bạn có phải là một người nghiện hít mèo không?' trong giao tiếp thực tế.",
     "order": 43
   },
   {
-    "id": "CeTHniLonxw",
-    "title_zh": "",
-    "title_vi": "Giải mã từ lóng 'emo' cực hot của giới trẻ Trung Quốc!",
-    "youtube_url": "https://www.youtube.com/shorts/CeTHniLonxw",
+    "id": "5RYobSQxOEQ",
+    "title_zh": "走花路",
+    "title_vi": "Tẩu hoa lộ - Đi trên con đường hoa, gặp nhiều may mắn",
+    "youtube_url": "https://www.youtube.com/shorts/5RYobSQxOEQ",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng 'emo' cực hot của giới trẻ Trung Quốc!' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Ý nghĩa từ lóng \"Đi trên con đường hoa\" trong tiếng Trung là gì?' trong giao tiếp thực tế.",
     "order": 42
   },
   {
-    "id": "LXTInW8qOCI",
-    "title_zh": "",
-    "title_vi": "Từ lóng cực thú vị về tình yêu của giới trẻ Trung Quốc 💖",
-    "youtube_url": "https://www.youtube.com/shorts/LXTInW8qOCI",
+    "id": "CeTHniLonxw",
+    "title_zh": "emo",
+    "title_vi": "emo - Trạng thái buồn bã, tiêu cực",
+    "youtube_url": "https://www.youtube.com/shorts/CeTHniLonxw",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng cực thú vị về tình yêu của giới trẻ Trung Quốc 💖' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng 'emo' cực hot của giới trẻ Trung Quốc!' trong giao tiếp thực tế.",
     "order": 41
   },
   {
-    "id": "O3jxs1smwHA",
-    "title_zh": "酸",
-    "title_vi": "Giải mã '酸了': Khi bạn 'chua lòng' vì người khác quá hạnh phúc! 🍋😂",
-    "youtube_url": "https://www.youtube.com/shorts/O3jxs1smwHA",
+    "id": "LXTInW8qOCI",
+    "title_zh": "纯爱战士",
+    "title_vi": "Thuần ái chiến sĩ - Chiến sĩ thuần ái, yêu chân thành",
+    "youtube_url": "https://www.youtube.com/shorts/LXTInW8qOCI",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã '酸了': Khi bạn 'chua lòng' vì người khác quá hạnh phúc! 🍋😂' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng cực thú vị về tình yêu của giới trẻ Trung Quốc 💖' trong giao tiếp thực tế.",
     "order": 40
   },
   {
-    "id": "XHKBOzUhXjM",
-    "title_zh": "",
-    "title_vi": "Ý nghĩa hài hước của từ lóng 'Cõng Nồi' trong tiếng Trung 🍳",
-    "youtube_url": "https://www.youtube.com/shorts/XHKBOzUhXjM",
+    "id": "O3jxs1smwHA",
+    "title_zh": "酸了",
+    "title_vi": "Chua rồi - Ghen tị, chạnh lòng",
+    "youtube_url": "https://www.youtube.com/shorts/O3jxs1smwHA",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Ý nghĩa hài hước của từ lóng 'Cõng Nồi' trong tiếng Trung 🍳' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã '酸了': Khi bạn 'chua lòng' vì người khác quá hạnh phúc! 🍋😂' trong giao tiếp thực tế.",
     "order": 39
   },
   {
-    "id": "9DVHH-2PFmo",
-    "title_zh": "",
-    "title_vi": "Từ lóng 'Vả Mặt' trong tiếng Trung là gì? 🤣",
-    "youtube_url": "https://www.youtube.com/shorts/9DVHH-2PFmo",
+    "id": "XHKBOzUhXjM",
+    "title_zh": "背锅",
+    "title_vi": "Bối oa - Cõng nồi, gánh tội thay",
+    "youtube_url": "https://www.youtube.com/shorts/XHKBOzUhXjM",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng 'Vả Mặt' trong tiếng Trung là gì? 🤣' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Ý nghĩa hài hước của từ lóng 'Cõng Nồi' trong tiếng Trung 🍳' trong giao tiếp thực tế.",
     "order": 38
   },
   {
-    "id": "5qBh4a48vqw",
-    "title_zh": "",
-    "title_vi": "Quê độ muốn độn thổ tiếng Trung nói thế nào?",
-    "youtube_url": "https://www.youtube.com/shorts/5qBh4a48vqw",
+    "id": "9DVHH-2PFmo",
+    "title_zh": "打脸",
+    "title_vi": "Đả diện - Vả mặt, tự vả",
+    "youtube_url": "https://www.youtube.com/shorts/9DVHH-2PFmo",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Quê độ muốn độn thổ tiếng Trung nói thế nào?' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng 'Vả Mặt' trong tiếng Trung là gì? 🤣' trong giao tiếp thực tế.",
     "order": 37
   },
   {
-    "id": "nrnptdVzHfk",
-    "title_zh": "",
-    "title_vi": "Từ lóng chỉ cô gái vàng trong làng đầu thai cực hot",
-    "youtube_url": "https://www.youtube.com/shorts/nrnptdVzHfk",
+    "id": "5qBh4a48vqw",
+    "title_zh": "社死",
+    "title_vi": "Xã tử - Quê độ, xấu hổ trước đám đông",
+    "youtube_url": "https://www.youtube.com/shorts/5qBh4a48vqw",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng chỉ cô gái vàng trong làng đầu thai cực hot' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Quê độ muốn độn thổ tiếng Trung nói thế nào?' trong giao tiếp thực tế.",
     "order": 36
   },
   {
-    "id": "nVFdo8963E4",
-    "title_zh": "",
-    "title_vi": "Từ lóng miêu tả người đàn ông hoàn hảo của giới trẻ Trung Quốc",
-    "youtube_url": "https://www.youtube.com/shorts/nVFdo8963E4",
+    "id": "nrnptdVzHfk",
+    "title_zh": "白富美",
+    "title_vi": "Bạch phú mỹ - Cô gái trắng trẻo, giàu có, xinh đẹp",
+    "youtube_url": "https://www.youtube.com/shorts/nrnptdVzHfk",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng miêu tả người đàn ông hoàn hảo của giới trẻ Trung Quốc' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng chỉ cô gái vàng trong làng đầu thai cực hot' trong giao tiếp thực tế.",
     "order": 35
   },
   {
-    "id": "yJ7ax8lSNkM",
-    "title_zh": "",
-    "title_vi": "Từ lóng siêu hài hước của giới trẻ Trung Quốc về sự tưởng tượng",
-    "youtube_url": "https://www.youtube.com/shorts/yJ7ax8lSNkM",
+    "id": "nVFdo8963E4",
+    "title_zh": "高富帅",
+    "title_vi": "Cao phú soái - Chàng trai cao ráo, giàu có, đẹp trai",
+    "youtube_url": "https://www.youtube.com/shorts/nVFdo8963E4",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng siêu hài hước của giới trẻ Trung Quốc về sự tưởng tượng' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng miêu tả người đàn ông hoàn hảo của giới trẻ Trung Quốc' trong giao tiếp thực tế.",
     "order": 34
   },
   {
-    "id": "goLj9tow_Fo",
-    "title_zh": "",
-    "title_vi": "Khi bạn thề không bao giờ làm điều gì đó và cái kết... 😂",
-    "youtube_url": "https://www.youtube.com/shorts/goLj9tow_Fo",
+    "id": "yJ7ax8lSNkM",
+    "title_zh": "脑洞",
+    "title_vi": "Não động - Trí tưởng tượng bay xa",
+    "youtube_url": "https://www.youtube.com/shorts/yJ7ax8lSNkM",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Khi bạn thề không bao giờ làm điều gì đó và cái kết... 😂' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng siêu hài hước của giới trẻ Trung Quốc về sự tưởng tượng' trong giao tiếp thực tế.",
     "order": 33
   },
   {
-    "id": "4qSGLtQPtdo",
-    "title_zh": "",
-    "title_vi": "Tuyệt chiêu 'Quăng Nồi' đổ lỗi của giới trẻ Trung Quốc là gì?",
-    "youtube_url": "https://www.youtube.com/shorts/4qSGLtQPtdo",
+    "id": "goLj9tow_Fo",
+    "title_zh": "真香",
+    "title_vi": "Chân hương - Tự vả, nói một đằng làm một nẻo",
+    "youtube_url": "https://www.youtube.com/shorts/goLj9tow_Fo",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Tuyệt chiêu 'Quăng Nồi' đổ lỗi của giới trẻ Trung Quốc là gì?' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Khi bạn thề không bao giờ làm điều gì đó và cái kết... 😂' trong giao tiếp thực tế.",
     "order": 32
   },
   {
-    "id": "bOW4TZIRVtg",
-    "title_zh": "",
-    "title_vi": "Bí kíp 'sờ cá' của giới trẻ Trung Quốc",
-    "youtube_url": "https://www.youtube.com/shorts/bOW4TZIRVtg",
+    "id": "4qSGLtQPtdo",
+    "title_zh": "甩锅",
+    "title_vi": "Súai oa - Quăng nồi, đổ lỗi cho người khác",
+    "youtube_url": "https://www.youtube.com/shorts/4qSGLtQPtdo",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Bí kíp 'sờ cá' của giới trẻ Trung Quốc' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Tuyệt chiêu 'Quăng Nồi' đổ lỗi của giới trẻ Trung Quốc là gì?' trong giao tiếp thực tế.",
     "order": 31
   },
   {
-    "id": "IkzfqKj0Exc",
-    "title_zh": "",
-    "title_vi": "Giải mã từ lóng Trà Xanh trong tiếng Trung cực hài hước",
-    "youtube_url": "https://www.youtube.com/shorts/IkzfqKj0Exc",
+    "id": "bOW4TZIRVtg",
+    "title_zh": "摸鱼",
+    "title_vi": "Mạc ngư - Sờ cá, trốn việc làm việc riêng",
+    "youtube_url": "https://www.youtube.com/shorts/bOW4TZIRVtg",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng Trà Xanh trong tiếng Trung cực hài hước' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Bí kíp 'sờ cá' của giới trẻ Trung Quốc' trong giao tiếp thực tế.",
     "order": 30
   },
   {
-    "id": "bw3JXOGGysM",
-    "title_zh": "",
-    "title_vi": "Giải mã từ lóng giới thiệu nhiệt tình của giới trẻ Trung Quốc!",
-    "youtube_url": "https://www.youtube.com/shorts/bw3JXOGGysM",
+    "id": "IkzfqKj0Exc",
+    "title_zh": "绿茶",
+    "title_vi": "Lục trà - Trà xanh, giả tạo",
+    "youtube_url": "https://www.youtube.com/shorts/IkzfqKj0Exc",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng giới thiệu nhiệt tình của giới trẻ Trung Quốc!' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng Trà Xanh trong tiếng Trung cực hài hước' trong giao tiếp thực tế.",
     "order": 29
   },
   {
-    "id": "cy863byPyAo",
-    "title_zh": "躺",
-    "title_vi": "Nằm không cũng trúng đạn tiếng Trung là gì? Từ lóng 躺枪",
-    "youtube_url": "https://www.youtube.com/shorts/cy863byPyAo",
+    "id": "bw3JXOGGysM",
+    "title_zh": "安利",
+    "title_vi": "An lợi - Giới thiệu nhiệt tình, lôi kéo",
+    "youtube_url": "https://www.youtube.com/shorts/bw3JXOGGysM",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Nằm không cũng trúng đạn tiếng Trung là gì? Từ lóng 躺枪' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng giới thiệu nhiệt tình của giới trẻ Trung Quốc!' trong giao tiếp thực tế.",
     "order": 28
   },
   {
-    "id": "449f171J9Qg",
-    "title_zh": "",
-    "title_vi": "Trào lưu 'Chủ yếu là để...' của giới trẻ xứ Trung có gì vui?",
-    "youtube_url": "https://www.youtube.com/shorts/449f171J9Qg",
+    "id": "cy863byPyAo",
+    "title_zh": "躺枪",
+    "title_vi": "Thảng thương - Nằm không cũng trúng đạn",
+    "youtube_url": "https://www.youtube.com/shorts/cy863byPyAo",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Trào lưu 'Chủ yếu là để...' của giới trẻ xứ Trung có gì vui?' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Nằm không cũng trúng đạn tiếng Trung là gì? Từ lóng 躺枪' trong giao tiếp thực tế.",
     "order": 27
   },
   {
-    "id": "7-U4wmLoh_s",
-    "title_zh": "",
-    "title_vi": "Từ lóng tiếng Trung: Kẻ bắt cá nhiều tay",
-    "youtube_url": "https://www.youtube.com/shorts/7-U4wmLoh_s",
+    "id": "449f171J9Qg",
+    "title_zh": "主打一个",
+    "title_vi": "Chủ đả nhất cá - Tập trung vào một vibe chủ đạo",
+    "youtube_url": "https://www.youtube.com/shorts/449f171J9Qg",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng tiếng Trung: Kẻ bắt cá nhiều tay' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Trào lưu 'Chủ yếu là để...' của giới trẻ xứ Trung có gì vui?' trong giao tiếp thực tế.",
     "order": 26
   },
   {
-    "id": "ZuBt2Ccn2mU",
-    "title_zh": "Giải mã 'Ăn Cẩu Lương' (吃狗粮)",
-    "title_vi": "Tiếng lóng giới trẻ Trung Quốc",
-    "youtube_url": "https://www.youtube.com/shorts/ZuBt2Ccn2mU",
+    "id": "7-U4wmLoh_s",
+    "title_zh": "脚踩两条船",
+    "title_vi": "Cước thái lưỡng điều thuyền - Bắt cá hai tay",
+    "youtube_url": "https://www.youtube.com/shorts/7-U4wmLoh_s",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã 'Ăn Cẩu Lương' (吃狗粮)' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng tiếng Trung: Kẻ bắt cá nhiều tay' trong giao tiếp thực tế.",
     "order": 25
   },
   {
-    "id": "5uK20CshNXw",
-    "title_zh": "戏",
-    "title_vi": "Khi bạn gặp một '戏精' đích thực!",
-    "youtube_url": "https://www.youtube.com/shorts/5uK20CshNXw",
+    "id": "ZuBt2Ccn2mU",
+    "title_zh": "吃狗粮",
+    "title_vi": "Ăn cẩu lương - Hứng chịu cẩu lương",
+    "youtube_url": "https://www.youtube.com/shorts/ZuBt2Ccn2mU",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Khi bạn gặp một '戏精' đích thực! | Học tiếng Trung cùng Lê Lê' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã 'Ăn Cẩu Lương' (吃狗粮)' trong giao tiếp thực tế.",
     "order": 24
   },
   {
-    "id": "95_vOI3I-F8",
-    "title_zh": "工",
-    "title_vi": "Hóa ra tôi chỉ là 'người công cụ' của cô ấy... 💔 Học ngay từ lóng '工具人' của giới trẻ Trung Quốc để n",
-    "youtube_url": "https://www.youtube.com/shorts/95_vOI3I-F8",
+    "id": "5uK20CshNXw",
+    "title_zh": "戏精",
+    "title_vi": "Hí tinh - Kịch sĩ, làm màu, diễn sâu",
+    "youtube_url": "https://www.youtube.com/shorts/5uK20CshNXw",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Hóa ra tôi chỉ là 'người công cụ' của cô ấy... 💔 Học ngay từ lóng '工具人' của giới trẻ Trung Quốc để n' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Khi bạn gặp một '戏精' đích thực! | Học tiếng Trung cùng Lê Lê' trong giao tiếp thực tế.",
     "order": 23
   },
   {
-    "id": "CCXVtODYmPs",
-    "title_zh": "",
-    "title_vi": "Giải mã từ lóng 'Cắt Hẹ' (Lùa Gà) của giới trẻ Trung Quốc 🤣",
-    "youtube_url": "https://www.youtube.com/shorts/CCXVtODYmPs",
+    "id": "95_vOI3I-F8",
+    "title_zh": "工具人",
+    "title_vi": "Công cụ nhân - Người công cụ, kẻ bị lợi dụng",
+    "youtube_url": "https://www.youtube.com/shorts/95_vOI3I-F8",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng 'Cắt Hẹ' (Lùa Gà) của giới trẻ Trung Quốc 🤣' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Hóa ra tôi chỉ là 'người công cụ' của cô ấy... 💔 Học ngay từ lóng '工具人' của giới trẻ Trung Quốc để n' trong giao tiếp thực tế.",
     "order": 22
   },
   {
-    "id": "B9kleHjV4eU",
-    "title_zh": "种",
-    "title_vi": "种草 là gì mà giới trẻ Trung Quốc mê mẩn? Giải mã ngay!",
-    "youtube_url": "https://www.youtube.com/shorts/B9kleHjV4eU",
+    "id": "CCXVtODYmPs",
+    "title_zh": "割韭菜",
+    "title_vi": "Cát cửu thái - Cắt hẹ, lùa gà, trục lợi",
+    "youtube_url": "https://www.youtube.com/shorts/CCXVtODYmPs",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng '种草 là gì mà giới trẻ Trung Quốc mê mẩn? Giải mã ngay!' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng 'Cắt Hẹ' (Lùa Gà) của giới trẻ Trung Quốc 🤣' trong giao tiếp thực tế.",
     "order": 21
   },
   {
-    "id": "bmBhVNiEO_M",
-    "title_zh": "摆",
-    "title_vi": "Giải mã từ lóng 摆烂: Buông xuôi đến cùng!",
-    "youtube_url": "https://www.youtube.com/shorts/bmBhVNiEO_M",
+    "id": "B9kleHjV4eU",
+    "title_zh": "种草",
+    "title_vi": "Chủng thảo - Trồng cỏ, khơi gợi niềm đam mê",
+    "youtube_url": "https://www.youtube.com/shorts/B9kleHjV4eU",
     "category": "Tiếng lóng",
-    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng 摆烂: Buông xuôi đến cùng!' trong giao tiếp thực tế.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng '种草 là gì mà giới trẻ Trung Quốc mê mẩn? Giải mã ngay!' trong giao tiếp thực tế.",
     "order": 20
   },
   {
-    "id": "LPKHs2v7ar8",
-    "title_zh": "破釜沉舟",
-    "title_vi": "Đập nồi dìm thuyền - Quyết tâm không lùi bước",
-    "youtube_url": "https://www.youtube.com/shorts/LPKHs2v7ar8",
+    "id": "bmBhVNiEO_M",
+    "title_zh": "摆烂",
+    "title_vi": "Bải lạn - Buông xuôi đến cùng, mặc kệ đời",
+    "youtube_url": "https://www.youtube.com/shorts/bmBhVNiEO_M",
     "category": "Tiếng lóng",
-    "desc": "Thành ngữ chỉ ý chí quyết thắng, tự cắt đường lui để tiến lên phía trước.",
+    "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng 摆烂: Buông xuôi đến cùng!' trong giao tiếp thực tế.",
     "order": 19
   },
   {
@@ -1581,7 +1581,7 @@ const ALL_VIDEOS = [
   {
     "id": "AfZW2Guw1X8",
     "title_zh": "逆袭",
-    "title_vi": "Nghịch kích - Lội ngược dòng",
+    "title_vi": "Nghịch kích - Lội ngược dòng, bứt phá",
     "youtube_url": "https://www.youtube.com/shorts/AfZW2Guw1X8",
     "category": "Tiếng lóng",
     "desc": "Từ lóng mô tả việc bứt phá vươn lên thành công từ vị thế yếu thế.",
@@ -1590,7 +1590,7 @@ const ALL_VIDEOS = [
   {
     "id": "1kq16kDeasI",
     "title_zh": "尬聊",
-    "title_vi": "Gượng nói - Nói chuyện nhạt nhẽo",
+    "title_vi": "Gượng nói - Nói chuyện nhạt nhẽo, gượng gạo",
     "youtube_url": "https://www.youtube.com/shorts/1kq16kDeasI",
     "category": "Tiếng lóng",
     "desc": "Từ lóng miêu tả những cuộc nói chuyện gượng ép, thiếu chủ đề chung.",
@@ -1608,7 +1608,7 @@ const ALL_VIDEOS = [
   {
     "id": "pM9mY3c7aM0",
     "title_zh": "海王",
-    "title_vi": "Thả thính - Chúa tể đại dương, bắt cá nhiều tay",
+    "title_vi": "Hải vương - Thả thính, bắt cá nhiều tay",
     "youtube_url": "https://www.youtube.com/watch?v=pM9mY3c7aM0",
     "category": "Tiếng lóng",
     "desc": "Tìm hiểu từ lóng 海王 chỉ những kẻ lăng nhăng, thích tán tỉnh nhiều người cùng lúc.",
@@ -1618,7 +1618,7 @@ const ALL_VIDEOS = [
   {
     "id": "kLQ1e0Jb-1M",
     "title_zh": "割韭菜",
-    "title_vi": "Luộc rau (Cắt hẹ) - Trục lợi, lùa gà",
+    "title_vi": "Cát cửu thái - Cắt hẹ, trục lợi, lùa gà",
     "youtube_url": "https://www.youtube.com/watch?v=kLQ1e0Jb-1M",
     "category": "Tiếng lóng",
     "desc": "Tìm hiểu từ lóng 割韭菜 chỉ việc bị doanh nghiệp hoặc khóa học kém chất lượng trục lợi.",
@@ -1646,7 +1646,7 @@ const ALL_VIDEOS = [
   {
     "id": "M6En9Z-R_Ho",
     "title_zh": "社恐",
-    "title_vi": "Xã khủng - Hội chứng sợ giao tiếp xã hội",
+    "title_vi": "Xã khủng - Hội chứng sợ giao tiếp",
     "youtube_url": "https://www.youtube.com/shorts/M6En9Z-R_Ho",
     "category": "Tiếng lóng",
     "desc": "Tìm hiểu từ lóng 'Xã khủng' viết tắt của chứng sợ giao tiếp đám đông.",
