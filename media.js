@@ -815,7 +815,7 @@ const ALL_VIDEOS = [
   },
   {
     "id": "RTzRx0KwNkM",
-    "title_zh": "以",
+    "title_zh": "以为 / 认为",
     "title_vi": "Phân biệt 以为 và 认为: Tưởng là đúng nhưng lại sai VS. Phát biểu ý kiến!",
     "youtube_url": "https://www.youtube.com/shorts/RTzRx0KwNkM",
     "category": "Song đấu từ vựng",
@@ -824,7 +824,7 @@ const ALL_VIDEOS = [
   },
   {
     "id": "Vwmq5rcGr5w",
-    "title_zh": "合",
+    "title_zh": "合适 / 适合",
     "title_vi": "Học tiếng Trung: Phân biệt 合适 và 适合 cực dễ!",
     "youtube_url": "https://www.youtube.com/shorts/Vwmq5rcGr5w",
     "category": "Song đấu từ vựng",
@@ -833,7 +833,7 @@ const ALL_VIDEOS = [
   },
   {
     "id": "pKLR6T9kpkU",
-    "title_zh": "认",
+    "title_zh": "认识 / 知道",
     "title_vi": "Phân biệt 认识 và 知道: Khi nào dùng 'quen biết', khi nào dùng 'biết thông tin'?",
     "youtube_url": "https://www.youtube.com/shorts/pKLR6T9kpkU",
     "category": "Song đấu từ vựng",
@@ -842,7 +842,7 @@ const ALL_VIDEOS = [
   },
   {
     "id": "WDM3tD_h58Y",
-    "title_zh": "时",
+    "title_zh": "时间 / 时候",
     "title_vi": "Phân biệt Thời gian (时间) và Thời điểm (时候) trong tiếng Trung",
     "youtube_url": "https://www.youtube.com/shorts/WDM3tD_h58Y",
     "category": "Song đấu từ vựng",
@@ -851,7 +851,7 @@ const ALL_VIDEOS = [
   },
   {
     "id": "Wwlaa4hVBNs",
-    "title_zh": "不",
+    "title_zh": "不 / 没",
     "title_vi": "Phân biệt Không (不) và Chưa/Không (没) trong tiếng Trung",
     "youtube_url": "https://www.youtube.com/shorts/Wwlaa4hVBNs",
     "category": "Song đấu từ vựng",
@@ -905,7 +905,7 @@ const ALL_VIDEOS = [
   },
   {
     "id": "dPbXeQYc-4E",
-    "title_zh": "能 vs 会",
+    "title_zh": "能 / 会",
     "title_vi": "Phân biệt cách nói Có thể, Biết làm",
     "youtube_url": "https://www.youtube.com/shorts/dPbXeQYc-4E",
     "category": "Song đấu từ vựng",
@@ -914,7 +914,7 @@ const ALL_VIDEOS = [
   },
   {
     "id": "qAoS_7LxJe0",
-    "title_zh": "想 vs 觉得",
+    "title_zh": "想 / 觉得",
     "title_vi": "Phân biệt cách nói Nghĩ, Cảm thấy",
     "youtube_url": "https://www.youtube.com/shorts/qAoS_7LxJe0",
     "category": "Song đấu từ vựng",
@@ -923,7 +923,7 @@ const ALL_VIDEOS = [
   },
   {
     "id": "nRr3vt2G12s",
-    "title_zh": "刚 vs 刚才",
+    "title_zh": "刚 / 刚才",
     "title_vi": "Phân biệt phó từ Vừa và danh từ Vừa nãy",
     "youtube_url": "https://www.youtube.com/shorts/nRr3vt2G12s",
     "category": "Song đấu từ vựng",
@@ -932,7 +932,7 @@ const ALL_VIDEOS = [
   },
   {
     "id": "r-XLeTWWKao",
-    "title_zh": "二 vs 两",
+    "title_zh": "二 / 两",
     "title_vi": "Phân biệt cách dùng Nhị và Lưỡng khi đếm số",
     "youtube_url": "https://www.youtube.com/shorts/r-XLeTWWKao",
     "category": "Song đấu từ vựng",
@@ -941,7 +941,7 @@ const ALL_VIDEOS = [
   },
   {
     "id": "BoXL0hnHSZo",
-    "title_zh": "一点儿 vs 有点儿",
+    "title_zh": "一点儿 / 有点儿",
     "title_vi": "Phân biệt cách nói Một chút",
     "youtube_url": "https://www.youtube.com/shorts/BoXL0hnHSZo",
     "category": "Song đấu từ vựng",
