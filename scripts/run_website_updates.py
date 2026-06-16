@@ -14,13 +14,44 @@ import glob
 REPO_DIR = "/media/vpsg16gb/Workspace/lelehoctiengtrung/Website_lelehoctiengtrung"
 YOUTUBE_FEED_URL = "https://www.youtube.com/feeds/videos.xml?channel_id=UCGQfqOTElLYJ1-1OEDQJ8Cw"
 
+# Hán-Việt and title translation map for character story videos
+HAN_VIET_MAP = {
+    "y_G-fvofAM4": ("雨", "Vũ - Những hạt mưa rơi dưới đám mây"),
+    "CvkdL2Rt6eI": ("同", "Đồng - Mọi người cùng chung chí hướng dưới một mái nhà"),
+    "ZJqOZvdVeWg": ("喝", "Hát - Mở miệng uống nước dưới ánh mặt trời"),
+    "Q3OvNSVJPg0": ("语", "Ngữ - Dùng ngôn từ để nói lên tâm ý"),
+    "s7GQCeCQkD4": ("校", "Hiệu - Ngôi trường gỗ nơi hội tụ tri thức"),
+    "WVFZLgWtfRg": ("客", "Khách - Người phương xa đến dừng chân dưới mái nhà"),
+    "8fsY2N4lOks": ("钱", "Tiền - Cuộc tranh giành của cải bằng hai thanh kiếm"),
+    "N_egVdqwUtc": ("从", "Tòng - Người bước đi theo sau người khác"),
+    "7yWzxg_n9DA": ("狗", "Cẩu - Cách nhớ chữ Con Chó qua câu chuyện bộ thủ"),
+    "dPC0nm5_PW4": ("得", "Đắc - Bước đi từ lúc bình minh mới hé rạng, tay cầm thước đo"),
+    "0fcYChxFeic": ("很", "Hận - Bước đi với ánh mắt quyết tâm"),
+    "TP6ObgHZwQc": ("觉", "Giác - Học xong thấy ánh sáng tỉnh thức"),
+    "kBS0J5LkTbU": ("时", "Thời - Mặt trời đo từng tấc thời gian"),
+    "ym86dYdxUiM": ("冷", "Lãnh - Mệnh lệnh băng giá của thiên nhiên"),
+    "9r6x0U0RNfc": ("钟", "Chung - Ý nghĩa chữ Chuông dễ nhớ vô cùng"),
+    "2LFEepG_1Ys": ("岁", "Tuế - Giải mã chữ Tuổi qua câu chuyện cực hay"),
+    "gAsw8SkAUkU": ("下", "Hạ - Rễ cây cắm sâu dưới mặt đất"),
+    "jWbwcpqXsF4": ("果", "Quả - Nguồn gốc chữ Quả cực dễ nhớ"),
+    "wSugdlXjcjw": ("椅", "Ỷ - Chiếc ghế gỗ có tựa lưng lạ"),
+    "l4Rg9ukO8U4": ("话", "Thoại - Chiếc lưỡi uốn lượn tạo câu chuyện"),
+    "9Qi9jyMoS0A": ("什", "Thập - Người thắc mắc đứng trước mười món lạ"),
+    "-Lu6gR_ERx4": ("打", "Đả - Giải mã chữ Đả qua hình ảnh cực dễ nhớ"),
+    "mP6brE6xiUc": ("气", "Khí - Từ dải mây trời đến năng lượng sống")
+}
+
+
 def run_cmd(cmd):
     result = subprocess.run(cmd, shell=True, text=True, capture_output=True)
     return result.returncode, result.stdout.strip(), result.stderr.strip()
 
 def main():
     print("=== Starting Website Updates Script ===")
-    os.chdir(REPO_DIR)
+    if os.path.exists(REPO_DIR):
+        os.chdir(REPO_DIR)
+    else:
+        print(f"Info: REPO_DIR '{REPO_DIR}' not found. Using current working directory.")
     
     # 1. Git pull
     code, out, err = run_cmd("git pull")
@@ -98,33 +129,70 @@ def main():
                     
                 title = video['title']
                 
+                # Category logic
+                lower_title = title.lower()
+                category = "Tiếng Trung thực chiến"
+                if 'slang' in lower_title or 'tiếng lóng' in lower_title or 'lóng' in lower_title or 'bá đạo' in lower_title:
+                    category = "Tiếng lóng"
+                elif 'vs' in lower_title or 'phân biệt' in lower_title or 'song đấu' in lower_title:
+                    category = "Song đấu từ vựng"
+                elif 'thành ngữ' in lower_title or 'idiom' in lower_title:
+                    category = "Thành ngữ"
+                elif (
+                    "chữ" in lower_title or 
+                    "kể chữ" in lower_title or 
+                    "nhớ chữ" in lower_title or 
+                    "nguồn gốc chữ" in lower_title or 
+                    "giải mã chữ" in lower_title or
+                    v_id in HAN_VIET_MAP
+                ):
+                    category = "Lê Lê kể chữ"
+
                 # Parse title_zh and title_vi
                 title_zh = ""
                 title_vi = title
                 
-                # Try pattern: Câu chuyện chữ [zh] - [vi]
-                char_match = re.search(r'Câu chuyện chữ\s+([^\s\-]+)\s*[\-\:]\s*(.*)', title, re.IGNORECASE)
-                if char_match:
-                    title_zh = char_match.group(1).strip()
-                    title_vi = char_match.group(2).strip()
+                if category == "Lê Lê kể chữ":
+                    # Try to extract title_zh
+                    zh_chars = re.findall(r'[\u4e00-\u9fff]', title)
+                    if zh_chars:
+                        title_zh = zh_chars[0]
+                    
+                    if v_id in HAN_VIET_MAP:
+                        title_zh, title_vi = HAN_VIET_MAP[v_id]
+                    else:
+                        # Split safely (avoiding parenthesis content splitting)
+                        temp_title = title
+                        parentheses = re.findall(r'\([^)]+\)', title)
+                        for idx, p in enumerate(parentheses):
+                            temp_title = temp_title.replace(p, f"__PAR_{idx}__")
+                        
+                        parts = [p.strip() for p in temp_title.split('-', 1)]
+                        if len(parts) >= 2:
+                            vi_part = parts[1]
+                            for idx, p in enumerate(parentheses):
+                                vi_part = vi_part.replace(f"__PAR_{idx}__", p)
+                            title_vi = vi_part
+                            
+                        # Clean prefix words
+                        title_vi = re.sub(r'^(?:Giải mã chữ|Chữ|Cách nhớ chữ|Mẹo nhớ chữ|Ý nghĩa chữ|Nguồn gốc chữ|Ý nghĩa sâu sắc của chữ|Câu chuyện chữ)\s+[\u4e00-\u9fffA-ZĐa-zđÀ-Ỹà-ỹ\s()]{1,20}(?:trong tiếng Trung)?\s*[\:\-–—]?\s*', '', title_vi, flags=re.IGNORECASE).strip()
+                        if title_vi:
+                            title_vi = title_vi[0].upper() + title_vi[1:]
+                            
+                        # Check if title_vi starts with a Hán-Việt name
+                        if not re.match(r'^[A-ZĐĂÂÊÔƠƯÀ-Ỹ].*?\s*(-|—)\s*', title_vi):
+                            # Try to extract from original title
+                            m = re.search(r'\b([A-ZĐÁ-Ỹ]{2,})\b\s*' + re.escape(title_zh) if title_zh else '', title)
+                            if m:
+                                hv = m.group(1).capitalize()
+                                title_vi = f"{hv} - {title_vi}"
                 else:
                     # Try splitting by dash
                     parts = [p.strip() for p in title.split('-', 1)]
                     if len(parts) >= 2:
                         title_zh = parts[0]
                         title_vi = parts[1]
-                
-                # Category logic
-                lower_title = title.lower()
-                category = "Tiếng Trung thực chiến"
-                if 'kể chữ' in lower_title or 'câu chuyện chữ' in lower_title or 'bộ thủ' in lower_title:
-                    category = "Lê Lê kể chữ"
-                elif 'slang' in lower_title or 'tiếng lóng' in lower_title or 'lóng' in lower_title:
-                    category = "Tiếng lóng"
-                elif 'vs' in lower_title or 'phân biệt' in lower_title or 'song đấu' in lower_title:
-                    category = "Song đấu từ vựng"
-                elif 'thành ngữ' in lower_title or 'idiom' in lower_title:
-                    category = "Thành ngữ"
+
                     
                 # Find current max order for this category
                 cat_videos = [v for v in videos if v.get("category") == category]
