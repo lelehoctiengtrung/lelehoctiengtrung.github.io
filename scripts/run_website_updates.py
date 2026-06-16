@@ -203,8 +203,8 @@ def main():
                                 hv = m.group(1).capitalize()
                                 title_vi = f"{hv} - {title_vi}"
                 else:
-                    # Try splitting by dash
-                    parts = [p.strip() for p in title.split('-', 1)]
+                    # Try splitting by dash, colon, or vertical bar
+                    parts = [p.strip() for p in re.split(r'\s*[\-–—:|]\s*', title, 1)]
                     if len(parts) >= 2:
                         title_zh = parts[0]
                         title_vi = parts[1]

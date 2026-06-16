@@ -950,8 +950,8 @@ const ALL_VIDEOS = [
   },
   {
     "id": "4zbwWedN5so",
-    "title_zh": "入乡随俗 | Hòa nhập văn hóa",
-    "title_vi": "Học thành ngữ tiếng Trung hiệu quả với Lê Lê",
+    "title_zh": "入乡随俗",
+    "title_vi": "Nhập gia tùy tục - Hòa nhập văn hóa",
     "youtube_url": "https://www.youtube.com/shorts/4zbwWedN5so",
     "category": "Thành ngữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng '入乡随俗 | Hòa nhập văn hóa' trong giao tiếp thực tế.",
@@ -959,8 +959,8 @@ const ALL_VIDEOS = [
   },
   {
     "id": "7FqNFl8ky0g",
-    "title_zh": "班",
-    "title_vi": "班门弄斧: Cười ra nước mắt với câu chuyện 'múa rìu qua mắt thợ'!",
+    "title_zh": "班门弄斧",
+    "title_vi": "Ban môn lộng phủ - Múa rìu qua mắt thợ",
     "youtube_url": "https://www.youtube.com/shorts/7FqNFl8ky0g",
     "category": "Thành ngữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng '班门弄斧: Cười ra nước mắt với câu chuyện 'múa rìu qua mắt thợ'!' trong giao tiếp thực tế.",
