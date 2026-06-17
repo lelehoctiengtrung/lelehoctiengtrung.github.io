@@ -14,6 +14,9 @@ import glob
 REPO_DIR = "/media/vpsg16gb/Workspace/lelehoctiengtrung/Website_lelehoctiengtrung"
 YOUTUBE_FEED_URL = "https://www.youtube.com/feeds/videos.xml?channel_id=UCGQfqOTElLYJ1-1OEDQJ8Cw"
 
+# Video IDs that should be excluded/deleted from the website
+EXCLUDED_VIDEO_IDS = {"h7MSLsoYKEk"}
+
 # Hán-Việt and title translation map for character story videos
 HAN_VIET_MAP = {
     "y_G-fvofAM4": ("雨", "Vũ - Những hạt mưa rơi dưới đám mây"),
@@ -124,6 +127,8 @@ def main():
             # Process in reverse (oldest first) to maintain order
             for video in reversed(fetched_videos):
                 v_id = video['id']
+                if v_id in EXCLUDED_VIDEO_IDS:
+                    continue
                 if v_id in existing_ids:
                     continue
                     

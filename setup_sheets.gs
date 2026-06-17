@@ -1630,6 +1630,7 @@ function createAutoSyncTrigger() {
 }
 
 function syncYouTubeVideos() {
+  var EXCLUDED_VIDEO_IDS = ['h7MSLsoYKEk'];
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName('media');
   if (!sheet) {
@@ -1747,6 +1748,7 @@ function syncYouTubeVideos() {
   
   fetchedVideos.forEach(function(video) {
     var videoId = video.id;
+    if (EXCLUDED_VIDEO_IDS.indexOf(videoId) !== -1) return;
     if (existingIds[videoId]) return;
     
     var title = video.title;

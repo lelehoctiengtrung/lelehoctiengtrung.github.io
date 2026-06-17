@@ -1731,7 +1731,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/qod3Wjw4TaM",
     "category": "Tiếng Trung thực chiến",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Tiếng Trung Thực Chiến: Thuê nhà' trong giao tiếp thực tế.",
-    "order": 19
+    "order": 18
   },
   {
     "id": "vfxKxJHliP8",
@@ -1740,7 +1740,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/vfxKxJHliP8",
     "category": "Tiếng Trung thực chiến",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Tiếng Trung Thực Chiến: Đặt lịch cắt tóc' trong giao tiếp thực tế.",
-    "order": 18
+    "order": 17
   },
   {
     "id": "PFRaJZSWMg0",
@@ -1749,7 +1749,7 @@ const ALL_VIDEOS = [
     "youtube_url": "https://www.youtube.com/shorts/PFRaJZSWMg0",
     "category": "Tiếng Trung thực chiến",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng 'Tiếng Trung Thực Chiến: Gọi đồ ăn giao tận nơi' trong giao tiếp thực tế.",
-    "order": 17
+    "order": 16
   },
   {
     "id": "toswvKnlQGo",
@@ -1759,7 +1759,7 @@ const ALL_VIDEOS = [
     "category": "Tiếng Trung thực chiến",
     "desc": "Đoạn hội thoại mua vé xem phim suất tối và chọn vị trí ghế xem đẹp nhất.",
     "thumbnail": "POSTS/images/thuc_chien_xem_phim_thumbnail.png",
-    "order": 16
+    "order": 15
   },
   {
     "id": "CyVJhwGebXY",
@@ -1769,7 +1769,7 @@ const ALL_VIDEOS = [
     "category": "Tiếng Trung thực chiến",
     "desc": "Học cách động viên bạn bè bằng cách xoay chuyển góc nhìn lạc quan khi gặp thất bại.",
     "thumbnail": "POSTS/images/thuc_chien_chuyen_niem_thumbnail.png",
-    "order": 15
+    "order": 14
   },
   {
     "id": "jG5u_xrsIQE",
@@ -1779,16 +1779,6 @@ const ALL_VIDEOS = [
     "category": "Tiếng Trung thực chiến",
     "desc": "Đoạn hội thoại thực tế thanh toán hóa đơn bằng WeChat sau khi ăn xong tại nhà hàng.",
     "thumbnail": "POSTS/images/thuc_chien_thanh_toan_thumbnail.png",
-    "order": 14
-  },
-  {
-    "id": "h7MSLsoYKEk",
-    "title_zh": "预订餐桌",
-    "title_vi": "Giao tiếp Đặt bàn ở nhà hàng",
-    "youtube_url": "https://www.youtube.com/shorts/h7MSLsoYKEk",
-    "category": "Tiếng Trung thực chiến",
-    "desc": "Đoạn hội thoại thực tế gọi điện thoại đặt bàn trước cho 4 người vào tối nay.",
-    "thumbnail": "POSTS/images/thuc_chien_dat_ban_thumbnail.png",
     "order": 13
   },
   {
