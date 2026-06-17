@@ -2028,3 +2028,75 @@ function deleteDocById(id) {
   }
   return { error: 'Không tìm thấy tài liệu với ID ' + id };
 }
+
+/**
+ * Quét toàn bộ bảng tính 'books' để kiểm tra các link affiliate hỏng hoặc link nháp
+ * Tô đỏ các ô chứa link nháp, tô vàng các ô Shopee đang bị để trống.
+ */
+function checkAffiliateLinks() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('books');
+  if (!sheet) {
+    SpreadsheetApp.getUi().alert('Lỗi: Không tìm thấy tab "books"');
+    return;
+  }
+
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 3) {
+    SpreadsheetApp.getUi().alert('Không có dữ liệu sách để quét.');
+    return;
+  }
+
+  var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  
+  var colsToCheck = {
+    buy_shopee: headers.indexOf('buy_shopee') + 1,
+    buy_fahasa: headers.indexOf('buy_fahasa') + 1,
+    buy_tiki: headers.indexOf('buy_tiki') + 1,
+    buy_lazada: headers.indexOf('buy_lazada') + 1
+  };
+
+  var badCount = 0;
+
+  for (var r = 3; r <= lastRow; r++) {
+    for (var key in colsToCheck) {
+      var colIdx = colsToCheck[key];
+      if (colIdx <= 0) continue; // Cột không tồn tại
+
+      var range = sheet.getRange(r, colIdx);
+      var url = String(range.getValue()).trim();
+      
+      // Reset background màu về mặc định
+      range.setBackground(null);
+
+      if (url === "") {
+        // Nếu trống cột Shopee (nền tảng chính) thì cảnh báo vàng
+        if (key === 'buy_shopee') {
+          range.setBackground('#fff2cc'); // Vàng nhạt
+          badCount++;
+        }
+        continue;
+      }
+
+      var isPlaceholder = url.includes('LINK_AFFILIATE') || 
+                          url.includes('THAY_VAO_DAY') || 
+                          url.includes('undefined') ||
+                          url === '#';
+                          
+      var isValidFormat = url.startsWith('http://') || url.startsWith('https://');
+
+      if (isPlaceholder || !isValidFormat) {
+        range.setBackground('#f4cccc'); // Đỏ nhạt
+        badCount++;
+      }
+    }
+  }
+
+  var ui = SpreadsheetApp.getUi();
+  if (badCount > 0) {
+    ui.alert('Kết quả quét link Affiliate:\n- Phát hiện ' + badCount + ' ô chứa link lỗi hoặc link nháp (đã tô đỏ/vàng).\n- Vui lòng cập nhật các ô này để người dùng web click mua hàng được nhé!');
+  } else {
+    ui.alert('Kết quả quét link Affiliate:\n- Tất cả các link kiểm tra đều hợp lệ! Tuyệt vời! ✨');
+  }
+}
+

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png" />
+
+  <!-- SEO -->
+  <title data-i18n="bio_title_tab">Lê Lê học tiếng Trung | Bio Link</title>
+  <meta name="description" content="Tổng hợp tất cả liên kết học tiếng Trung của Lê Lê – Kênh TikTok, YouTube, Tải tài liệu PDF miễn phí và Bookstore khuyên dùng." />
+  <meta property="og:title" content="Lê Lê học tiếng Trung | Bio Link" />
+  <meta property="og:description" content="Tổng hợp tất cả liên kết học tiếng Trung của Lê Lê – Kênh TikTok, YouTube, Tải tài liệu PDF miễn phí và Bookstore khuyên dùng." />
+  <meta property="og:image" content="avatar.png" />
+  <meta property="og:type" content="profile" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css?v=1.0.8" />
+  
+  <style>
+    /* Bio Link Page Styles */
+    .bio-container {
+      max-width: 580px;
+      margin: 0 auto;
+      padding: 3rem 1.25rem 4rem 1.25rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Profile Header */
+    .bio-profile {
+      text-align: center;
+      margin-bottom: 2.25rem;
+      animation: fadeInDown 0.6s ease;
+    }
+
+    .bio-avatar-wrap {
+      position: relative;
+      width: 105px;
+      height: 105px;
+      margin: 0 auto 1.25rem auto;
+    }
+
+    .bio-avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--clr-gold);
+      box-shadow: 0 8px 25px rgba(212, 168, 67, 0.25);
+    }
+
+    .bio-avatar-badge {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: var(--clr-red);
+      color: white;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 20px;
+      font-weight: bold;
+      border: 2px solid var(--clr-bg);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .bio-name {
+      font-family: var(--font-chinese);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--clr-gold-light);
+      margin-bottom: 0.25rem;
+    }
+
+    .bio-sub-zh {
+      font-family: var(--font-chinese);
+      font-size: 1.1rem;
+      color: var(--clr-gold);
+      opacity: 0.85;
+      margin-bottom: 0.5rem;
+    }
+
+    .bio-bio {
+      font-size: 0.95rem;
+      color: var(--clr-cream);
+      opacity: 0.85;
+      max-width: 320px;
+      line-height: 1.5;
+      margin: 0 auto;
+    }
+
+    /* Social Icons Row */
+    .bio-socials {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+      width: 100%;
+      animation: fadeInUp 0.7s ease;
+    }
+
+    .bio-social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      color: var(--clr-cream);
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .bio-social-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .bio-social-btn:hover {
+      transform: translateY(-4px);
+      border-color: var(--clr-gold);
+      color: var(--clr-gold-light);
+      box-shadow: 0 4px 15px rgba(212, 168, 67, 0.2);
+    }
+
+    /* Action Links List */
+    .bio-links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      margin-bottom: 2.5rem;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .bio-link-card {
+      display: flex;
+      align-items: center;
+      padding: 1.1rem 1.25rem;
+      border-radius: var(--radius-card);
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      color: var(--clr-cream);
+      text-decoration: none;
+      transition: var(--transition);
+      backdrop-filter: blur(var(--blur-glass));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bio-link-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--clr-gold);
+      opacity: 0;
+      transition: var(--transition-fast);
+    }
+
+    .bio-link-card:hover {
+      transform: scale(1.02);
+      border-color: var(--clr-border-hover);
+      box-shadow: 0 6px 20px rgba(212,168,67,0.12);
+      background: var(--clr-surface-hover);
+    }
+
+    .bio-link-card:hover::before {
+      opacity: 1;
+    }
+
+    .bio-link-icon {
+      font-size: 1.5rem;
+      margin-right: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+    }
+
+    .bio-link-content {
+      flex: 1;
+    }
+
+    .bio-link-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--clr-gold-light);
+      margin-bottom: 0.15rem;
+    }
+
+    .bio-link-desc {
+      font-size: 0.85rem;
+      opacity: 0.65;
+      line-height: 1.3;
+    }
+
+    .bio-link-arrow {
+      opacity: 0.4;
+      transition: var(--transition-fast);
+    }
+
+    .bio-link-card:hover .bio-link-arrow {
+      opacity: 1;
+      transform: translateX(4px);
+    }
+
+    /* Featured Product Widget */
+    .bio-featured {
+      width: 100%;
+      background: linear-gradient(135deg, rgba(201, 69, 53, 0.08) 0%, rgba(212, 168, 67, 0.05) 100%);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--radius-card);
+      padding: 1.25rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      gap: 1.1rem;
+      align-items: center;
+      position: relative;
+      animation: fadeInUp 0.9s ease;
+      backdrop-filter: blur(var(--blur-glass));
+    }
+
+    .bio-featured-tag {
+      position: absolute;
+      top: -10px;
+      left: 15px;
+      background: var(--clr-red);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 10px rgba(201, 69, 53, 0.25);
+    }
+
+    .bio-featured-img {
+      width: 75px;
+      height: 95px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--clr-border);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      flex-shrink: 0;
+    }
+
+    .bio-featured-info {
+      flex: 1;
+    }
+
+    .bio-featured-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--clr-gold-light);
+      margin-bottom: 0.35rem;
+      line-height: 1.4;
+    }
+
+    .bio-featured-desc {
+      font-size: 0.8rem;
+      opacity: 0.75;
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .bio-featured-action {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--clr-gold);
+      text-decoration: none;
+      gap: 0.25rem;
+      transition: var(--transition-fast);
+    }
+
+    .bio-featured-action:hover {
+      color: var(--clr-gold-light);
+    }
+
+    .bio-featured-action svg {
+      width: 12px;
+      height: 12px;
+      fill: currentColor;
+    }
+
+    /* Back Home Footer */
+    .bio-footer {
+      margin-top: auto;
+      text-align: center;
+      width: 100%;
+      animation: fadeIn 1s ease;
+    }
+
+    .bio-footer-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--clr-cream-muted);
+      text-decoration: none;
+      margin-bottom: 1.5rem;
+      transition: var(--transition-fast);
+      border: 1px solid transparent;
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+    }
+
+    .bio-footer-home:hover {
+      color: var(--clr-gold-light);
+      border-color: var(--clr-border);
+      background: var(--clr-surface);
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 480px) {
+      .bio-container {
+        padding: 2rem 1rem 3rem 1rem;
+      }
+      .bio-avatar-wrap {
+        width: 90px;
+        height: 90px;
+      }
+      .bio-name {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Animated Background -->
+  <div class="bg-scene" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="hanzi" style="--x:10%;--y:15%;--s:1.8rem;--d:0s;--dur:14s">学</div>
+    <div class="hanzi" style="--x:85%;--y:12%;--s:1.3rem;--d:-3s;--dur:18s">中</div>
+    <div class="hanzi" style="--x:5%;--y:70%;--s:1.1rem;--d:-7s;--dur:20s">文</div>
+    <div class="hanzi" style="--x:90%;--y:60%;--s:1.6rem;--d:-11s;--dur:16s">字</div>
+  </div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <div class="bio-container">
+    
+    <!-- Profile -->
+    <header class="bio-profile">
+      <div class="bio-avatar-wrap">
+        <img src="avatar.png" alt="Lê Lê" class="bio-avatar" />
+        <span class="bio-avatar-badge">Online</span>
+      </div>
+      <h1 class="bio-name">Lê Lê học tiếng Trung</h1>
+      <p class="bio-sub-zh" lang="zh">乐乐学中文</p>
+      <p class="bio-bio">Chia sẻ lộ trình tự học tiếng Trung thực chiến & tài liệu PDF miễn phí! 🌸</p>
+    </header>
+
+    <!-- Social Row -->
+    <section class="bio-socials" aria-label="Mạng xã hội">
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@lelehoctiengtrung" class="bio-social-btn" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.09-1.46-.77-.55-1.42-1.28-1.88-2.12v8.66c-.05 1.89-.69 3.82-1.99 5.23-1.63 1.83-4.22 2.76-6.66 2.3-2.22-.38-4.32-1.89-5.18-4.02-.99-2.36-.61-5.22 1.03-7.19 1.53-1.89 4.04-2.82 6.45-2.43V12.7c-1.37-.18-2.84.22-3.76 1.25-.87.94-1.07 2.37-.58 3.51.52 1.25 1.88 2.06 3.22 1.95 1.35-.08 2.54-1.12 2.72-2.46.12-1.28.03-2.58.05-3.87V.02h.02z"/>
+        </svg>
+      </a>
+      <!-- YouTube -->
+      <a href="https://www.youtube.com/@lelehoctiengtrung" class="bio-social-btn" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.516 0-9.387.507A3.003 3.003 0 0 0 .502 6.163C0 8.07 0 12.07 0 12.07s0 3.999.502 5.906a3.003 3.003 0 0 0 2.11 2.11c1.871.507 9.387.507 9.387.507s7.517 0 9.387-.507a3.002 3.002 0 0 0 2.11-2.11c.502-1.907.502-5.906.502-5.906s0-3.999-.502-5.906zM9.545 15.568V8.568l6.136 3.5-6.136 3.5z"/>
+        </svg>
+      </a>
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/lelehoctiengtrung" class="bio-social-btn" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+      </a>
+      <!-- Threads -->
+      <a href="https://www.threads.net/@lelehoctiengtrung" class="bio-social-btn" target="_blank" rel="noopener" aria-label="Threads">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.176 15.112c-.378.854-.925 1.503-1.637 1.942-.714.437-1.57.659-2.56.659-.974 0-1.803-.23-2.483-.687-.678-.458-1.164-1.127-1.458-2.007l-.07-.225H9v2h-2V7h6v2.544l.07-.225c.294-.88.78-1.549 1.458-2.007.68-.457 1.509-.687 2.483-.687.99 0 1.846.222 2.56.659.712.439 1.259 1.088 1.637 1.942.38.855.57 1.884.57 3.088 0 1.205-.19 2.234-.57 3.088zm-3.176-6.112c-.417 0-.742.107-.978.322-.234.215-.353.518-.353.906v1.544c0 .388.119.691.353.906.236.215.561.322.978.322.418 0 .742-.107.978-.322.234-.215.353-.518.353-.906V10.23c0-.388-.119-.691-.353-.906-.236-.215-.56-.322-.978-.322z"/>
+        </svg>
+      </a>
+    </section>
+
+    <!-- Main Navigation List -->
+    <nav class="bio-links" aria-label="Liên kết chính">
+      
+      <!-- Bookstore -->
+      <a href="shop.html" class="bio-link-card">
+        <span class="bio-link-icon">📚</span>
+        <div class="bio-link-content">
+          <h2 class="bio-link-title">Lê Lê Bookstore</h2>
+          <p class="bio-link-desc">Tổng hợp các đầu sách tự học tiếng Trung hiệu quả nhất chị khuyên dùng.</p>
+        </div>
+        <span class="bio-link-arrow">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </span>
+      </a>
+
+      <!-- Free PDF Downloads -->
+      <a href="docs.html" class="bio-link-card">
+        <span class="bio-link-icon">🎁</span>
+        <div class="bio-link-content">
+          <h2 class="bio-link-title">Kho Tài Liệu PDF Miễn Phí</h2>
+          <p class="bio-link-desc">Tải trực tiếp lộ trình tự học, 500 từ vựng cốt lõi, bảng bộ thủ độc quyền.</p>
+        </div>
+        <span class="bio-link-arrow">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </span>
+      </a>
+
+      <!-- AI Pronunciation Practice -->
+      <a href="practice/index.html" class="bio-link-card">
+        <span class="bio-link-icon">🎙️</span>
+        <div class="bio-link-content">
+          <h2 class="bio-link-title">Luyện Phát Âm Trực Tuyến</h2>
+          <p class="bio-link-desc">Nhận diện giọng nói bằng AI giúp sửa phát âm pinyin và thanh điệu chuẩn xác.</p>
+        </div>
+        <span class="bio-link-arrow">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </span>
+      </a>
+
+      <!-- Handwriting Practice -->
+      <a href="write/index.html" class="bio-link-card">
+        <span class="bio-link-icon">✍️</span>
+        <div class="bio-link-content">
+          <h2 class="bio-link-title">Luyện Viết Chữ Hán Online</h2>
+          <p class="bio-link-desc">Học quy tắc bút thuận, vẽ nét trực tiếp trên màn hình, chấm điểm tự động.</p>
+        </div>
+        <span class="bio-link-arrow">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </span>
+      </a>
+
+    </nav>
+
+    <!-- Featured Product Widget -->
+    <article class="bio-featured">
+      <span class="bio-featured-tag">🔥 Khuyên dùng</span>
+      <img src="spe0001.png" alt="Sách Luyện Viết HSK 1" class="bio-featured-img" />
+      <div class="bio-featured-info">
+        <h3 class="bio-featured-title">Vở Tập Viết HSK 1 Thông Minh (Tự Bay Mực)</h3>
+        <p class="bio-featured-desc">Học nhanh 150 từ vựng HSK 1 cốt lõi. Viết xong mực tự bay trong 10 phút để viết lại nhiều lần cực tiết kiệm! ✨</p>
+        <a href="review/review.html?sku=SPE-0001" class="bio-featured-action">
+          Xem review chi tiết & link mua
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+      </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="bio-footer">
+      <a href="index.html" class="bio-footer-home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" style="margin-top:-2px" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span data-i18n="nav_home">Về trang chủ</span>
+      </a>
+
+      <!-- Page views counter -->
+      <p class="footer-counter" style="display:flex;justify-content:center;margin-bottom:1.5rem">
+        <span class="counter-badge" style="transform: scale(0.9)">
+          <span class="badge-left" data-i18n="footer_site_pv">Số lượng truy cập</span>
+          <span class="badge-right" id="vercount_value_site_pv">0</span>
+        </span>
+      </p>
+      
+      <p style="font-size:0.85rem;opacity:0.5;color:var(--clr-cream)">Lê Lê học tiếng Trung © 2026</p>
+    </footer>
+
+  </div>
+
+  <script src="i18n.js"></script>
+  <script>
+    // Ripple effect on click for card buttons
+    document.querySelectorAll('.bio-link-card, .bio-social-btn, .bio-featured').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect   = btn.getBoundingClientRect();
+        const size   = Math.max(rect.width, rect.height) * 1.5;
+        ripple.style.cssText = `
+          position:absolute;width:${size}px;height:${size}px;
+          left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px;
+          border-radius:50%;background:rgba(255,255,255,0.15);
+          transform:scale(0);animation:ripple-bio .5s ease-out forwards;
+          pointer-events:none;z-index:10;`;
+        btn.style.position = 'relative';
+        btn.style.overflow = 'hidden';
+        btn.appendChild(ripple);
+        ripple.addEventListener('animationend', () => ripple.remove());
+      });
+    });
+
+    // Add keyframe dynamic style
+    const styleEl = document.createElement('style');
+    styleEl.textContent = `@keyframes ripple-bio { to { transform:scale(1);opacity:0; } }`;
+    document.head.appendChild(styleEl);
+  </script>
+  <script defer src="https://events.vercount.one/js"></script>
+</body>
+</html>

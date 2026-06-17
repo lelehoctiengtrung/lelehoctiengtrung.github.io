@@ -451,6 +451,9 @@ function renderDoc(doc) {
   // Preview Gallery
   renderPreviewGallery(doc.preview_images, doc.category === 'infographics');
 
+  // Render cross-sell recommendation
+  renderRecommendation(doc);
+
   // Setup click listeners
   setupInteractions();
 
@@ -651,3 +654,112 @@ window.addEventListener('langChanged', () => {
   }
   loadDoc(docId);
 });
+
+// Map Document ID to Recommended Book SKU
+const DOC_BOOK_MAP = {
+  'DOC-500': 'SPE-0001',
+  'DOC-GRAMMAR': 'SACH-005',
+  'DOC-RADICALS': 'SACH-004',
+  'DOC-STREETFOOD': 'SACH-003',
+  'DOC-WORDORDERS': 'SACH-005',
+};
+
+// Render cross-sell book recommendation
+async function renderRecommendation(doc) {
+  const section = document.getElementById('doc-recommendation-section');
+  if (!section) return;
+
+  const sku = DOC_BOOK_MAP[doc.id];
+  if (!sku) {
+    section.classList.add('hidden');
+    return;
+  }
+
+  const booksUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=books&headers=2`;
+  
+  // Local fallbacks matching shop.js
+  const FALLBACK_BOOKS = {
+    'SACH-001': { title: 'Giáo Trình Hán Ngữ', desc: 'Standard Chinese textbook, complete with Pinyin and exercises.', cover_url: '../book1.png', buy_shopee: 'https://shope.ee/LINK_AFFILIATE_THAY_VAO_DAY', tags: 'Người mới, HSK 1–3' },
+    'SACH-002': { title: '3000 Từ Vựng HSK', desc: 'Toàn bộ từ vựng HSK 1–6 theo chủ đề, có câu ví dụ thực tế.', cover_url: '../book2.png', buy_shopee: 'https://shope.ee/LINK_AFFILIATE_THAY_VAO_DAY', tags: 'Luyện thi, HSK 1–6' },
+    'SACH-003': { title: 'Hội Thoại Tiếng Trung Thực Dụng', desc: 'Các tình huống giao tiếp thực tế hàng ngày, nói được ngay.', cover_url: '../book3.png', buy_shopee: 'https://shope.ee/LINK_AFFILIATE_THAY_VAO_DAY', tags: 'Giao tiếp, Thực dụng' },
+    'SACH-004': { title: 'Tập Viết Chữ Hán Căn Bản', desc: 'Sách tập viết chữ Hán có ô ly Mễ tự tiêu chuẩn giúp viết chữ chuẩn đẹp.', cover_url: '../book4.png', buy_shopee: 'https://shope.ee/LINK_AFFILIATE_THAY_VAO_DAY', tags: 'Luyện viết, Chữ Hán' },
+    'SACH-005': { title: 'Ngữ Pháp Tiếng Trung Dễ Hiểu', desc: 'Tổng hợp ngữ pháp từ cơ bản đến nâng cao bằng sơ đồ tư duy trực quan.', cover_url: '../book5.png', buy_shopee: 'https://shope.ee/LINK_AFFILIATE_THAY_VAO_DAY', tags: 'Ngữ pháp, Sơ đồ tư duy' },
+    'SPE-0001': { title: 'Vở Tập Viết HSK 1 Thông Minh (Tự Bay Mực)', desc: 'Ghi nhớ 150 từ vựng cốt lõi. Bút thông minh tự bay mực sau 10 phút để viết lại!', cover_url: '../spe0001.png', buy_shopee: 'https://s.shopee.vn/AUrLPSQfFo', tags: 'Luyện viết, HSK 1, Bộ thủ' }
+  };
+
+  let book = FALLBACK_BOOKS[sku];
+
+  try {
+    const res = await fetch(booksUrl);
+    const text = await res.text();
+    const match = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/);
+    if (match) {
+      const data = JSON.parse(match[1]);
+      const rows = data?.table?.rows;
+      if (rows) {
+        const skuColIndex = 0; // sku is col 0
+        const row = rows.find(r => {
+          const cell = r.c[skuColIndex];
+          return cell && String(cell.v).trim() === sku;
+        });
+        if (row) {
+          const colVal = (r, idx, fallback) => {
+            const c = r.c[idx];
+            const val = c && c.v !== null && c.v !== undefined ? String(c.v).trim() : '';
+            return val || fallback;
+          };
+          book = {
+            title: colVal(row, 2, book.title),
+            desc: colVal(row, 4, book.desc),
+            cover_url: colVal(row, 10, book.cover_url),
+            buy_shopee: colVal(row, 11, book.buy_shopee),
+            tags: colVal(row, 5, book.tags)
+          };
+        }
+      }
+    }
+  } catch (e) {
+    console.warn("Failed to fetch live book, using fallback:", e);
+  }
+
+  if (!book) return;
+
+  const tagsHtml = book.tags ? book.tags.split(',').map(t => `<span class="rec-book-tag">${t.trim()}</span>`).join('') : '';
+  const reviewUrl = `../review/review.html?sku=${encodeURIComponent(sku)}`;
+  
+  const lang = window.i18n ? window.i18n.currentLang : 'vi';
+  const isVi = lang === 'vi';
+  const recHeading = isVi ? "Lê Lê khuyên dùng kèm tài liệu này" : "Recommended for this document";
+  const readReviewTxt = isVi ? "Xem Review Chi Tiết" : "Read Review";
+  const buyTxt = isVi ? "Mua Tại Shopee" : "Buy on Shopee";
+
+  let coverSrc = book.cover_url;
+  if (coverSrc && !coverSrc.startsWith('http') && !coverSrc.startsWith('..')) {
+    coverSrc = `../${coverSrc}`;
+  }
+
+  // Check if Shopee URL is placeholder
+  const isRealShopee = book.buy_shopee && 
+    !book.buy_shopee.includes('LINK_AFFILIATE') && 
+    !book.buy_shopee.includes('THAY_VAO_DAY');
+
+  section.innerHTML = `
+    <div class="rec-title-wrap">
+      <span class="rec-badge">💡 Recommendation</span>
+      <h3 class="rec-heading" id="doc-rec-heading">${recHeading}</h3>
+    </div>
+    <div class="rec-book-card">
+      <img src="${coverSrc}" alt="${book.title}" class="rec-book-cover" />
+      <div class="rec-book-info">
+        <h4 class="rec-book-title">${book.title}</h4>
+        <p class="rec-book-desc">${book.desc}</p>
+        <div class="rec-book-meta">${tagsHtml}</div>
+        <div class="rec-book-actions">
+          <a href="${reviewUrl}" class="btn-rec-review">${readReviewTxt} →</a>
+          ${isRealShopee ? `<a href="${book.buy_shopee}" class="btn-rec-buy" target="_blank" rel="noopener sponsored">🛒 ${buyTxt}</a>` : ''}
+        </div>
+      </div>
+    </div>
+  `;
+  section.classList.remove('hidden');
+}
