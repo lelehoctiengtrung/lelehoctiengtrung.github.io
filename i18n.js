@@ -1177,3 +1177,31 @@ class I18nManager {
 // Instantiate and expose globally
 window.i18n = new I18nManager();
 window.i18n.init();
+
+// Visitor Counter Starting Offset (29981) & MutationObserver
+document.addEventListener('DOMContentLoaded', () => {
+  const OFFSET = 29981;
+  const ids = ['vercount_value_site_pv', 'vercount_value_site_uv'];
+  
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    
+    const observer = new MutationObserver(() => {
+      const val = parseInt(el.textContent.trim(), 10);
+      if (!isNaN(val) && val < OFFSET) {
+        observer.disconnect();
+        el.textContent = (val + OFFSET).toString();
+        observer.observe(el, { childList: true, characterData: true, subtree: true });
+      }
+    });
+    
+    observer.observe(el, { childList: true, characterData: true, subtree: true });
+    
+    // Initial check in case it loaded extremely fast before DOMContentLoaded
+    const initialVal = parseInt(el.textContent.trim(), 10);
+    if (!isNaN(initialVal) && initialVal < OFFSET) {
+      el.textContent = (initialVal + OFFSET).toString();
+    }
+  });
+});

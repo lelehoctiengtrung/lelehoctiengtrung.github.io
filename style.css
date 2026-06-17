@@ -1551,27 +1551,43 @@ img { display: block; max-width: 100%; }
   line-height: 1.5;
 }
 .footer-counter {
-  font-size: 0.68rem !important;
-  color: var(--clr-cream-muted);
-  opacity: 0.55;
-  margin-top: 0.4rem;
+  margin-top: 0.6rem;
+  margin-bottom: 0.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  transition: opacity 0.25s ease;
+  gap: 0.75rem;
+  font-size: 0.7rem !important;
+  opacity: 0.9;
+  width: 100%;
 }
-.footer-counter:hover {
-  opacity: 0.85;
-}
-.counter-item {
+.counter-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--clr-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.counter-value {
-  font-weight: 600;
-  color: var(--clr-gold);
+.counter-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(212, 168, 67, 0.15);
+}
+.badge-left {
+  background-color: var(--clr-red);
+  color: #ffffff;
+  padding: 4px 10px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.badge-right {
+  background-color: var(--clr-gold);
+  color: #120e0a;
+  padding: 4px 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
 }
 
 /* ===================================================
