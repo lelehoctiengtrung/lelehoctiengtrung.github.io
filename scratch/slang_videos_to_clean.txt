@@ -1,0 +1,65 @@
+01. ID: jHYuII4gbAE | ZH: 吃 | VI: Giải mã '吃货': Bạn có phải là tín đồ ẩm thực chính hiệu? | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã '吃货': Bạn có phải là tín đồ ẩm thực chính hiệu?' trong giao tiếp thực tế.
+02. ID: 7omYbW4eeTc | ZH: Học ngay '格局打开' | VI: Từ lóng Trung Quốc cực hay cho người thích nhìn xa trông rộng! | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Học ngay '格局打开'' trong giao tiếp thực tế.
+03. ID: 3V2EUxO7oMQ | ZH: 精 | VI: Học từ lóng Trung Quốc cực chuẩn: 精神内耗 | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Học từ lóng Trung Quốc cực chuẩn: 精神内耗' trong giao tiếp thực tế.
+04. ID: NQOWIgTaX9I | ZH: 小 | VI: 小趴菜 là gì? Giải mã từ lóng bá đạo của giới trẻ Trung Quốc! | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng '小趴菜 là gì? Giải mã từ lóng bá đạo của giới trẻ Trung Quốc!' trong giao tiếp thực tế.
+05. ID: Jr4sOLRklSI | ZH: Công chúa xin mời lên xe | VI: Trend cực dễ thương của giới trẻ Trung Quốc | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Công chúa xin mời lên xe' trong giao tiếp thực tế.
+06. ID: Ug4kqY4TG_A | ZH: 白嫖 | VI: Từ lóng 'xem chùa' của Gen Z Trung Quốc bạn nhất định phải biết! | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng '白嫖' trong giao tiếp thực tế.
+07. ID: J5q3OU9-lyM | ZH: 小丑竟是我自己 | VI: Hóa ra chú hề lại chính là tôi! Từ lóng Trung Quốc hài hước! | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng '小丑竟是我自己' trong giao tiếp thực tế.
+08. ID: zx8tkeseDqk | ZH: Học từ lóng Trung Quốc: "土豪" | VI: Khi giàu có đi kèm với sự... "thiếu tinh tế"! Cùng Lê Lê khám phá nhé | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Học từ lóng Trung Quốc: "土豪"' trong giao tiếp thực tế.
+09. ID: 7hPkN-Y-MIo | ZH: 吃 | VI: Ăn giấm là ghen? Tìm hiểu từ lóng '吃醋' cực hot của giới trẻ Trung Quốc! | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Ăn giấm là ghen? Tìm hiểu từ lóng '吃醋' cực hot của giới trẻ Trung Quốc!' trong giao tiếp thực tế.
+10. ID: Q7ksMHP_sUM | ZH:  | VI: Bậc thầy lão luyện tiếng Trung mạng nói thế nào? | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Bậc thầy lão luyện tiếng Trung mạng nói thế nào?' trong giao tiếp thực tế.
+11. ID: UabEqj-mdCE | ZH:  | VI: Giải mã từ lóng dìm hàng, bóc phốt của giới trẻ Trung Quốc | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng dìm hàng, bóc phốt của giới trẻ Trung Quốc' trong giao tiếp thực tế.
+12. ID: 81lzmMS4WiU | ZH:  | VI: Từ lóng tiếng Trung: Sống cuộc đời 'như hack' là thế nào? | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng tiếng Trung: Sống cuộc đời 'như hack' là thế nào?' trong giao tiếp thực tế.
+13. ID: gdGnJvQJzc4 | ZH: 划 | VI: Giải mã từ lóng mạng '划水' cực hài hước cùng Lê Lê | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng mạng '划水' cực hài hước cùng Lê Lê' trong giao tiếp thực tế.
+14. ID: So4rBcVHCeI | ZH:  | VI: Từ lóng 'Anh hùng bàn phím' trong tiếng Trung 💻🤐 | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng 'Anh hùng bàn phím' trong tiếng Trung 💻🤐' trong giao tiếp thực tế.
+15. ID: ojdd7mO6QDI | ZH:  | VI: Thánh cãi trong tiếng Trung gọi là gì? | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Thánh cãi trong tiếng Trung gọi là gì?' trong giao tiếp thực tế.
+16. ID: 6Rzy7t98wl4 | ZH:  | VI: Từ lóng siêu hài: Kiểu đàn ông khô khan nhất hệ mặt trời | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng siêu hài: Kiểu đàn ông khô khan nhất hệ mặt trời' trong giao tiếp thực tế.
+17. ID: GboxU5JZkmk | ZH:  | VI: Từ lóng Trung Quốc cực hài: Chú chó cô đơn 🐶 | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng Trung Quốc cực hài: Chú chó cô đơn 🐶' trong giao tiếp thực tế.
+18. ID: 2mRtu5OS2yk | ZH:  | VI: Từ lóng tự trào cực hot của học sinh Trung Quốc | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng tự trào cực hot của học sinh Trung Quốc' trong giao tiếp thực tế.
+19. ID: N-e2cISEfHY | ZH:  | VI: Kẻ Hủy Diệt Điểm Số Trong Tiếng Trung Là Gì? 🎓 | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Kẻ Hủy Diệt Điểm Số Trong Tiếng Trung Là Gì? 🎓' trong giao tiếp thực tế.
+20. ID: Lb2DUkZVHCQ | ZH:  | VI: Giải mã từ lóng siêu phổ biến của giới trẻ Trung Quốc | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng siêu phổ biến của giới trẻ Trung Quốc' trong giao tiếp thực tế.
+21. ID: gGWnBEqN5WM | ZH:  | VI: Khi ví tiền xẹp lép và bạn phải 'hít gió tây bắc' để sống 💨 | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Khi ví tiền xẹp lép và bạn phải 'hít gió tây bắc' để sống 💨' trong giao tiếp thực tế.
+22. ID: jc5MKo-uCmU | ZH:  | VI: Bạn có phải là một người nghiện hít mèo không? | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Bạn có phải là một người nghiện hít mèo không?' trong giao tiếp thực tế.
+23. ID: 5RYobSQxOEQ | ZH:  | VI: Ý nghĩa từ lóng "Đi trên con đường hoa" trong tiếng Trung là gì? | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Ý nghĩa từ lóng "Đi trên con đường hoa" trong tiếng Trung là gì?' trong giao tiếp thực tế.
+24. ID: CeTHniLonxw | ZH:  | VI: Giải mã từ lóng 'emo' cực hot của giới trẻ Trung Quốc! | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng 'emo' cực hot của giới trẻ Trung Quốc!' trong giao tiếp thực tế.
+25. ID: LXTInW8qOCI | ZH:  | VI: Từ lóng cực thú vị về tình yêu của giới trẻ Trung Quốc 💖 | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng cực thú vị về tình yêu của giới trẻ Trung Quốc 💖' trong giao tiếp thực tế.
+26. ID: O3jxs1smwHA | ZH: 酸 | VI: Giải mã '酸了': Khi bạn 'chua lòng' vì người khác quá hạnh phúc! 🍋😂 | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã '酸了': Khi bạn 'chua lòng' vì người khác quá hạnh phúc! 🍋😂' trong giao tiếp thực tế.
+27. ID: XHKBOzUhXjM | ZH:  | VI: Ý nghĩa hài hước của từ lóng 'Cõng Nồi' trong tiếng Trung 🍳 | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Ý nghĩa hài hước của từ lóng 'Cõng Nồi' trong tiếng Trung 🍳' trong giao tiếp thực tế.
+28. ID: 9DVHH-2PFmo | ZH:  | VI: Từ lóng 'Vả Mặt' trong tiếng Trung là gì? 🤣 | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng 'Vả Mặt' trong tiếng Trung là gì? 🤣' trong giao tiếp thực tế.
+29. ID: 5qBh4a48vqw | ZH:  | VI: Quê độ muốn độn thổ tiếng Trung nói thế nào? | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Quê độ muốn độn thổ tiếng Trung nói thế nào?' trong giao tiếp thực tế.
+30. ID: nrnptdVzHfk | ZH:  | VI: Từ lóng chỉ cô gái vàng trong làng đầu thai cực hot | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng chỉ cô gái vàng trong làng đầu thai cực hot' trong giao tiếp thực tế.
+31. ID: nVFdo8963E4 | ZH:  | VI: Từ lóng miêu tả người đàn ông hoàn hảo của giới trẻ Trung Quốc | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng miêu tả người đàn ông hoàn hảo của giới trẻ Trung Quốc' trong giao tiếp thực tế.
+32. ID: yJ7ax8lSNkM | ZH:  | VI: Từ lóng siêu hài hước của giới trẻ Trung Quốc về sự tưởng tượng | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng siêu hài hước của giới trẻ Trung Quốc về sự tưởng tượng' trong giao tiếp thực tế.
+33. ID: goLj9tow_Fo | ZH:  | VI: Khi bạn thề không bao giờ làm điều gì đó và cái kết... 😂 | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Khi bạn thề không bao giờ làm điều gì đó và cái kết... 😂' trong giao tiếp thực tế.
+34. ID: 4qSGLtQPtdo | ZH:  | VI: Tuyệt chiêu 'Quăng Nồi' đổ lỗi của giới trẻ Trung Quốc là gì? | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Tuyệt chiêu 'Quăng Nồi' đổ lỗi của giới trẻ Trung Quốc là gì?' trong giao tiếp thực tế.
+35. ID: bOW4TZIRVtg | ZH:  | VI: Bí kíp 'sờ cá' của giới trẻ Trung Quốc | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Bí kíp 'sờ cá' của giới trẻ Trung Quốc' trong giao tiếp thực tế.
+36. ID: IkzfqKj0Exc | ZH:  | VI: Giải mã từ lóng Trà Xanh trong tiếng Trung cực hài hước | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng Trà Xanh trong tiếng Trung cực hài hước' trong giao tiếp thực tế.
+37. ID: bw3JXOGGysM | ZH:  | VI: Giải mã từ lóng giới thiệu nhiệt tình của giới trẻ Trung Quốc! | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng giới thiệu nhiệt tình của giới trẻ Trung Quốc!' trong giao tiếp thực tế.
+38. ID: cy863byPyAo | ZH: 躺 | VI: Nằm không cũng trúng đạn tiếng Trung là gì? Từ lóng 躺枪 | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Nằm không cũng trúng đạn tiếng Trung là gì? Từ lóng 躺枪' trong giao tiếp thực tế.
+39. ID: 449f171J9Qg | ZH:  | VI: Trào lưu 'Chủ yếu là để...' của giới trẻ xứ Trung có gì vui? | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Trào lưu 'Chủ yếu là để...' của giới trẻ xứ Trung có gì vui?' trong giao tiếp thực tế.
+40. ID: 7-U4wmLoh_s | ZH:  | VI: Từ lóng tiếng Trung: Kẻ bắt cá nhiều tay | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Từ lóng tiếng Trung: Kẻ bắt cá nhiều tay' trong giao tiếp thực tế.
+41. ID: ZuBt2Ccn2mU | ZH: Giải mã 'Ăn Cẩu Lương' (吃狗粮) | VI: Tiếng lóng giới trẻ Trung Quốc | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã 'Ăn Cẩu Lương' (吃狗粮)' trong giao tiếp thực tế.
+42. ID: 5uK20CshNXw | ZH: 戏 | VI: Khi bạn gặp một '戏精' đích thực! | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Khi bạn gặp một '戏精' đích thực! | Học tiếng Trung cùng Lê Lê' trong giao tiếp thực tế.
+43. ID: 95_vOI3I-F8 | ZH: 工 | VI: Hóa ra tôi chỉ là 'người công cụ' của cô ấy... 💔 Học ngay từ lóng '工具人' của giới trẻ Trung Quốc để n | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Hóa ra tôi chỉ là 'người công cụ' của cô ấy... 💔 Học ngay từ lóng '工具人' của giới trẻ Trung Quốc để n' trong giao tiếp thực tế.
+44. ID: CCXVtODYmPs | ZH:  | VI: Giải mã từ lóng 'Cắt Hẹ' (Lùa Gà) của giới trẻ Trung Quốc 🤣 | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng 'Cắt Hẹ' (Lùa Gà) của giới trẻ Trung Quốc 🤣' trong giao tiếp thực tế.
+45. ID: B9kleHjV4eU | ZH: 种 | VI: 种草 là gì mà giới trẻ Trung Quốc mê mẩn? Giải mã ngay! | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng '种草 là gì mà giới trẻ Trung Quốc mê mẩn? Giải mã ngay!' trong giao tiếp thực tế.
+46. ID: bmBhVNiEO_M | ZH: 摆 | VI: Giải mã từ lóng 摆烂: Buông xuôi đến cùng! | DESC: Giải nghĩa và hướng dẫn sử dụng từ vựng 'Giải mã từ lóng 摆烂: Buông xuôi đến cùng!' trong giao tiếp thực tế.
+47. ID: LPKHs2v7ar8 | ZH: 破釜沉舟 | VI: Đập nồi dìm thuyền - Quyết tâm không lùi bước | DESC: Thành ngữ chỉ ý chí quyết thắng, tự cắt đường lui để tiến lên phía trước.
+48. ID: 7_fGQYFzSSs | ZH: 打工人 | VI: Đả công nhân - Người làm công ăn lương | DESC: Từ lóng tự trào đầy tinh thần lạc quan, kiên trì của người đi làm thuê.
+49. ID: SLWQwn4LcQI | ZH: YYDS | VI: Mãi đỉnh - Vị thần vĩnh cửu | DESC: Giải mã từ viết tắt bính âm của 'Mãi mãi là vị thần', tương đương G.O.A.T.
+50. ID: AfZW2Guw1X8 | ZH: 逆袭 | VI: Nghịch kích - Lội ngược dòng | DESC: Từ lóng mô tả việc bứt phá vươn lên thành công từ vị thế yếu thế.
+51. ID: 1kq16kDeasI | ZH: 尬聊 | VI: Gượng nói - Nói chuyện nhạt nhẽo | DESC: Từ lóng miêu tả những cuộc nói chuyện gượng ép, thiếu chủ đề chung.
+52. ID: ppv34AVHcuI | ZH: 秒杀 | VI: Miểu sát - Săn sale chớp nhoáng | DESC: Giải mã từ lóng chỉ việc săn sale chớp nhoáng (flash sale) trong thương mại điện tử.
+53. ID: pM9mY3c7aM0 | ZH: 海王 | VI: Thả thính - Chúa tể đại dương, bắt cá nhiều tay | DESC: Tìm hiểu từ lóng 海王 chỉ những kẻ lăng nhăng, thích tán tỉnh nhiều người cùng lúc.
+54. ID: kLQ1e0Jb-1M | ZH: 割韭菜 | VI: Luộc rau (Cắt hẹ) - Trục lợi, lùa gà | DESC: Tìm hiểu từ lóng 割韭菜 chỉ việc bị doanh nghiệp hoặc khóa học kém chất lượng trục lợi.
+55. ID: s_uES_h9c1I | ZH: 躺平 | VI: Thảng bình - Trào lưu nằm phẳng, mặc kệ đời | DESC: Giải thích từ lóng 'Thảng bình' thể hiện lối sống tối giản, từ chối áp lực xã hội.
+56. ID: 5NS9Pa7MvAU | ZH: 芭比Q了 | VI: Ba tỷ Q liễu - Toang rồi, xong đời | DESC: Nguồn gốc từ lóng mạng cực hot 'Barbecue le' chỉ sự bất lực, thất bại.
+57. ID: M6En9Z-R_Ho | ZH: 社恐 | VI: Xã khủng - Hội chứng sợ giao tiếp xã hội | DESC: Tìm hiểu từ lóng 'Xã khủng' viết tắt của chứng sợ giao tiếp đám đông.
+58. ID: wlhCQ54T-nY | ZH: 柠檬精 | VI: Chanh tinh - Kẻ hay ghen tị, chua ngoa | DESC: Giải thích từ lóng 'Chanh tinh' ví những người hay ghen tị với hạnh phúc của người khác.
+59. ID: 3FmBZdbRPOY | ZH: 带货 | VI: Đới hóa - Livestream bán hàng | DESC: Tìm hiểu từ lóng 'Đới hóa' chỉ trào lưu livestream bán hàng tại Trung Quốc.
+60. ID: E1H94KocfQo | ZH: 吃瓜 | VI: Ăn dưa - Hóng biến, hóng phốt mạng xã hội | DESC: Nguồn gốc từ lóng 'Ăn dưa quần chúng' chỉ những người hóng drama.
+61. ID: jSX5WKL2DQ8 | ZH: 剁手 | VI: Đoạt thủ - Chặt tay vì cuồng mua sắm online | DESC: Ý nghĩa từ lóng vui nhộn 'Chặt tay' tự hứa không mua sắm trực tuyến vô tội vạ nữa.
+62. ID: _sf7WsNAjvw | ZH: 凡尔赛 | VI: Phàm nhĩ sài - Khoe mẽ một cách khiêm tốn | DESC: Tìm hiểu phong cách từ lóng 'Phàm nhĩ sài' (Versailles) khoe khoang gián tiếp.
+63. ID: 2K3oyBG6K3A | ZH: 内卷 | VI: Nội quyển - Cạnh tranh khốc liệt vô nghĩa | DESC: Thuật ngữ lóng 'Nội quyển' chỉ sự cạnh tranh tiêu cực, tự bào mòn lẫn nhau.
+64. ID: IpskgDTghTI | ZH: 社牛 | VI: Xã ngưu - Hội chứng tự tin giao tiếp | DESC: Từ lóng khen người cực kỳ tự tin, hoạt bát chốn đông người.
+65. ID: K-vukz9rtow | ZH: 破防 | VI: Phá phòng - Phá vỡ phòng ngự tâm lý | DESC: Từ lóng chỉ trạng thái tâm lý bị tổn thương, sụp đổ.

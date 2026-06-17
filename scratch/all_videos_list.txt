@@ -1,0 +1,221 @@
+Total videos: 209
+
+=== CATEGORY: Lê Lê kể chữ (89 videos) ===
+01. ID: y_G-fvofAM4 | Title_ZH: 雨 | Title_VI: Vũ - Những hạt mưa rơi dưới đám mây | Order: 89
+02. ID: CvkdL2Rt6eI | Title_ZH: 同 | Title_VI: Đồng - Mọi người cùng chung chí hướng dưới một mái nhà | Order: 88
+03. ID: ZJqOZvdVeWg | Title_ZH: 喝 | Title_VI: Hát - Mở miệng uống nước dưới ánh mặt trời | Order: 87
+04. ID: Q3OvNSVJPg0 | Title_ZH: 语 | Title_VI: Ngữ - Dùng ngôn từ để nói lên tâm ý | Order: 86
+05. ID: s7GQCeCQkD4 | Title_ZH: 校 | Title_VI: Hiệu - Ngôi trường gỗ nơi hội tụ tri thức | Order: 85
+06. ID: WVFZLgWtfRg | Title_ZH: 客 | Title_VI: Khách - Người phương xa đến dừng chân dưới mái nhà | Order: 84
+07. ID: 8fsY2N4lOks | Title_ZH: 钱 | Title_VI: Tiền - Cuộc tranh giành của cải bằng hai thanh kiếm | Order: 83
+08. ID: N_egVdqwUtc | Title_ZH: 从 | Title_VI: Tòng - Người bước đi theo sau người khác | Order: 82
+09. ID: 9r6x0U0RNfc | Title_ZH: 钟 | Title_VI: Chung - Ý nghĩa chữ Chuông dễ nhớ vô cùng | Order: 81
+10. ID: jWbwcpqXsF4 | Title_ZH: 果 | Title_VI: Quả - Nguồn gốc chữ Quả cực dễ nhớ | Order: 80
+11. ID: wSugdlXjcjw | Title_ZH: 椅 | Title_VI: Ỷ - Chiếc ghế gỗ có tựa lưng lạ | Order: 79
+12. ID: l4Rg9ukO8U4 | Title_ZH: 话 | Title_VI: Thoại - Chiếc lưỡi uốn lượn tạo câu chuyện | Order: 78
+13. ID: 2LFEepG_1Ys | Title_ZH: 岁 | Title_VI: Tuế - Giải mã chữ Tuổi qua câu chuyện cực hay | Order: 77
+14. ID: gAsw8SkAUkU | Title_ZH: 下 | Title_VI: Hạ - Rễ cây cắm sâu dưới mặt đất | Order: 76
+15. ID: mP6brE6xiUc | Title_ZH: 气 | Title_VI: Khí - Từ dải mây trời đến năng lượng sống | Order: 75
+16. ID: -Lu6gR_ERx4 | Title_ZH: 打 | Title_VI: Đả - Giải mã chữ Đả qua hình ảnh cực dễ nhớ | Order: 74
+17. ID: 7yWzxg_n9DA | Title_ZH: 狗 | Title_VI: Cẩu - Cách nhớ chữ Con Chó qua câu chuyện bộ thủ | Order: 73
+18. ID: 9Qi9jyMoS0A | Title_ZH: 什 | Title_VI: Thập - Người thắc mắc đứng trước mười món lạ | Order: 72
+19. ID: sPFjgmSqyGg | Title_ZH: 得 | Title_VI: Tên Đắc Nhân tiếng Trung: 得人 hay 得仁? Giải mã ý nghĩa! | Order: 71
+20. ID: dPC0nm5_PW4 | Title_ZH: 得 | Title_VI: Đắc - Bước đi từ lúc bình minh mới hé rạng, tay cầm thước đo | Order: 70
+21. ID: 0fcYChxFeic | Title_ZH: 很 | Title_VI: Hận - Bước đi với ánh mắt quyết tâm | Order: 69
+22. ID: TP6ObgHZwQc | Title_ZH: 觉 | Title_VI: Giác - Học xong thấy ánh sáng tỉnh thức | Order: 68
+23. ID: kBS0J5LkTbU | Title_ZH: 时 | Title_VI: Thời - Mặt trời đo từng tấc thời gian | Order: 67
+24. ID: ZKFGnZu36C4 | Title_ZH: 作 | Title_VI: Tác - Người bắt tay sáng tạo cái mới | Order: 66
+25. ID: ycoBAmSHaIk | Title_ZH: 老 | Title_VI: Lão - Người già chống gậy bước đi | Order: 65
+26. ID: GRCVyX1NVKc | Title_ZH: 汉 | Title_VI: Hán - Đôi tay xây nghiệp bên dòng Hán | Order: 64
+27. ID: DrGtgLX5B38 | Title_ZH: 尖 | Title_VI: Tiêm - Đầu nhỏ thân to tạo mũi nhọn | Order: 63
+28. ID: yPB0kkFBfDA | Title_ZH: 喜 | Title_VI: Hỷ - Kẻ sĩ mở miệng ca hát mừng hỷ | Order: 62
+29. ID: LRSlWafLcdc | Title_ZH: 名 | Title_VI: Danh - Gọi tên nhau trong đêm tối | Order: 61
+30. ID: gcdxpViyblE | Title_ZH: 衣 | Title_VI: Y - Chiếc áo dài cổ xòe rộng tà | Order: 60
+31. ID: q_9fy1F5vbE | Title_ZH: 家 | Title_VI: Gia - Nuôi lợn dưới mái nhà ấm no | Order: 59
+32. ID: jMB51QqslDU | Title_ZH: 女 | Title_VI: Nữ - Người phụ nữ quỳ gối cung kính | Order: 58
+33. ID: OqhxB504-u8 | Title_ZH: 休 | Title_VI: Hưu - Người mệt mỏi tựa gốc cây nghỉ mát | Order: 57
+34. ID: tSqPD1uCg2Y | Title_ZH: 水 | Title_VI: Thủy - Dòng sông chảy xiết tung bọt trắng | Order: 56
+35. ID: s1WhwmGbo_s | Title_ZH: 不 | Title_VI: Bất - Rễ cây bị nhổ không thể mọc | Order: 55
+36. ID: 5i27wCursTA | Title_ZH: 东 | Title_VI: Đông - Mặt trời mọc sau bao tải hàng | Order: 54
+37. ID: Mx6Svocgil4 | Title_ZH: 车 | Title_VI: Xa - Chiếc xe cổ nhìn từ trên cao | Order: 53
+38. ID: DBvjz-UjKcs | Title_ZH: 对 | Title_VI: Đối - Dùng tay đo đạc chuẩn xác | Order: 52
+39. ID: lg4m_lqlQac | Title_ZH: 机 | Title_VI: Cơ - Cỗ máy gỗ vận hành thời cơ | Order: 51
+40. ID: yVobRj4s42M | Title_ZH: 会 | Title_VI: Hội - Mọi người tụ họp bàn luận kiến thức | Order: 50
+41. ID: sK3g_j5PN3A | Title_ZH: 服 | Title_VI: Phục - Đôi tay khoác áo cho người quỳ | Order: 49
+42. ID: GTXKMZugW-M | Title_ZH: 谁 | Title_VI: Thùy - Cất tiếng hỏi tên chú chim nhỏ | Order: 48
+43. ID: EXHGG43gVlk | Title_ZH: 馆 | Title_VI: Quán - Nơi quan dừng chân ăn uống | Order: 47
+44. ID: cJ7U9Olpx7U | Title_ZH: 晶 | Title_VI: Tinh - Ba mặt trời cùng tỏa sáng lấp lánh | Order: 46
+45. ID: 0vVPcmv9sZo | Title_ZH: 些 | Title_VI: Ta - Chỉ tay gom nhặt một vài thứ | Order: 45
+46. ID: XznUKXARWeA | Title_ZH: 人 | Title_VI: Nhân - Người đứng vững chãi trên mặt đất | Order: 44
+47. ID: ukbAYcmktm8 | Title_ZH: 他 | Title_VI: Tha - Người đàn ông khác cũng ở đó | Order: 43
+48. ID: zrRg18tXyxI | Title_ZH: 众 | Title_VI: Chúng - Ba người tụ họp thành đám đông | Order: 42
+49. ID: 5t9w_awJZUk | Title_ZH: 六 | Title_VI: Lục - Ngôi nhà nhỏ mang lại bình an | Order: 41
+50. ID: lCTp91wuBGA | Title_ZH: 几 | Title_VI: Kỷ - Chiếc bàn nhỏ kê sát vách tường | Order: 40
+51. ID: ErVxrJVrvXc | Title_ZH: 出 | Title_VI: Xuất - Mầm cây vượt hai ngọn núi | Order: 39
+52. ID: 3t8i3Zt-bKg | Title_ZH: 北 | Title_VI: Bắc - Hai người tựa lưng tránh gió lạnh | Order: 38
+53. ID: r--MW0Qj5H8 | Title_ZH: 卡 | Title_VI: Tạp - Vật bị kẹt giữa trên và dưới | Order: 37
+54. ID: CBXwISkgwHE | Title_ZH: 吗 | Title_VI: Ma - Dùng miệng hỏi thăm con ngựa | Order: 36
+55. ID: y_nLw3euYQk | Title_ZH: 和 | Title_VI: Hòa - Miệng có lúa ăn, đời thái bình | Order: 35
+56. ID: 8MEt2ZkrGMU | Title_ZH: 商 | Title_VI: Thương - Thương nhân đội mũ đi buôn khắp nơi | Order: 34
+57. ID: Kapx7qHDQzM | Title_ZH: 在 | Title_VI: Tại - Cánh tay cắm cọc định vị trên đất | Order: 33
+58. ID: OBu4HxmACaw | Title_ZH: 坐 | Title_VI: Tọa - Hai người ngồi đối diện trên gò đất | Order: 32
+59. ID: j2myKWgjbYI | Title_ZH: 太 | Title_VI: Thái - Đã to lớn còn thêm một điểm dư | Order: 31
+60. ID: jsj0YX3iTz0 | Title_ZH: 少 | Title_VI: Thiểu - Vật nhỏ bị cắt bớt thành ít | Order: 30
+61. ID: 4V2sohAIBbI | Title_ZH: 年 | Title_VI: Niên - Người vác bó lúa mừng mùa vụ | Order: 29
+62. ID: TcKDmAP-HVs | Title_ZH: 日 | Title_VI: Nhật - Mặt trời tỏa sáng giữa bầu trời | Order: 28
+63. ID: 2WaXAJrvP3c | Title_ZH: 日 | Title_VI: Nhật - Mặt trời tỏa sáng giữa bầu trời | Order: 27
+64. ID: q-TwRb12JxU | Title_ZH: 期 | Title_VI: Kỳ - Đợi trăng lên đúng kỳ hẹn ước | Order: 26
+65. ID: zH4vIE5vCU0 | Title_ZH: 杯 | Title_VI: Bôi - Chén gỗ mộc mạc không làm đổ | Order: 25
+66. ID: ddwbrAlJwbQ | Title_ZH: 样 | Title_VI: Dạng - Tạc tượng cừu gỗ làm khuôn mẫu | Order: 24
+67. ID: y3gX36hb-bQ | Title_ZH: 没 | Title_VI: Một - Vật rơi xuống nước biến mất hút | Order: 23
+68. ID: Pw8odtts1h4 | Title_ZH: 火 | Title_VI: Hỏa - Ngọn lửa bùng cháy rực rỡ | Order: 22
+69. ID: v7icfPBTn1k | Title_ZH: 爱 | Title_VI: Ái - Đôi tay che chở người tri kỷ | Order: 21
+70. ID: 24RscCfC5dM | Title_ZH: 米 | Title_VI: Mễ - Hạt gạo vãi ra từ bông lúa | Order: 20
+71. ID: v6-uJwe3GYY | Title_ZH: 菜 | Title_VI: Thái - Tay hái rau xanh trên cành cây | Order: 19
+72. ID: NF10Doada1g | Title_ZH: 见 | Title_VI: Kiến - Đôi mắt dõi theo bước chân đi | Order: 18
+73. ID: EWxYnBFH44s | Title_ZH: 里 | Title_VI: Lý - Dặm đường đất giữa cánh đồng | Order: 17
+74. ID: 1YH2H-HPPaQ | Title_ZH: 院 | Title_VI: Viện - Tường cao bao quanh viện học | Order: 16
+75. ID: p1cP_bUs41o | Title_ZH: 零 | Title_VI: Linh - Giọt mưa nhỏ rơi theo lệnh | Order: 15
+76. ID: ligtDefdack | Title_ZH: 面 | Title_VI: Diện - Ngũ quan hiện rõ trên mặt | Order: 14
+77. ID: KcpcsVDNOzg | Title_ZH: 飞 | Title_VI: Phi - Chim tung cánh vút lên trời | Order: 13
+78. ID: TaHKq_2wdNE | Title_ZH: 鸣 | Title_VI: Minh - Con chim mở miệng hót vang | Order: 12
+79. ID: Fj79PruA8j8 | Title_ZH: 好 | Title_VI: Hảo - Bí ẩn đằng sau chữ Hảo | Order: 11
+80. ID: 6BZutg5fb8s | Title_ZH: 友 | Title_VI: Hữu - Hai bàn tay nắm chặt đồng hành | Order: 10
+81. ID: zU7zXOXqcZE | Title_ZH: 个 | Title_VI: Cá - Nhánh tre đơn độc đếm từng vật | Order: 9
+82. ID: PGKzmpolLkE | Title_ZH: 午 | Title_VI: Ngọ - Mặt trời đứng bóng giữa trưa | Order: 8
+83. ID: jus9TjzjgXs | Title_ZH: 明 | Title_VI: Minh - Nhật nguyệt cùng tỏa sáng rõ ràng | Order: 7
+84. ID: 7joBUVu_k4c | Title_ZH: 亮 | Title_VI: Lượng - Ánh sáng rạng ngời chiếu qua lầu cao | Order: 6
+85. ID: GcFxUmA0POE | Title_ZH: 子 | Title_VI: Tử - Quan niệm người xưa về con cái | Order: 5
+86. ID: wjnNJDtH1p0 | Title_ZH: 我 | Title_VI: Ngã - Lịch sử chữ Tôi trong Trung Hoa | Order: 4
+87. ID: 4lOk_iySKhA | Title_ZH: 好 | Title_VI: Hảo - Quan niệm người xưa về sự tốt đẹp | Order: 3
+88. ID: _Y4KtpD4w-w | Title_ZH: 田 | Title_VI: Điền - Chữ ruộng thời thượng cổ | Order: 2
+89. ID: ym86dYdxUiM | Title_ZH: 冷 | Title_VI: Lãnh - Mệnh lệnh băng giá của thiên nhiên | Order: 1
+
+=== CATEGORY: Song đấu từ vựng (15 videos) ===
+01. ID: RTzRx0KwNkM | Title_ZH: 以 | Title_VI: Phân biệt 以为 và 认为: Tưởng là đúng nhưng lại sai VS. Phát biểu ý kiến! | Order: 15
+02. ID: Vwmq5rcGr5w | Title_ZH: 合 | Title_VI: Học tiếng Trung: Phân biệt 合适 và 适合 cực dễ! | Order: 14
+03. ID: pKLR6T9kpkU | Title_ZH: 认 | Title_VI: Phân biệt 认识 và 知道: Khi nào dùng 'quen biết', khi nào dùng 'biết thông tin'? | Order: 13
+04. ID: WDM3tD_h58Y | Title_ZH: 时 | Title_VI: Phân biệt Thời gian (时间) và Thời điểm (时候) trong tiếng Trung | Order: 12
+05. ID: Wwlaa4hVBNs | Title_ZH: 不 | Title_VI: Phân biệt Không (不) và Chưa/Không (没) trong tiếng Trung | Order: 11
+06. ID: 1zrczoa-3gc | Title_ZH: 看 / 看见 | Title_VI: Khán & Khán kiến - Nhìn xem và nhìn thấy | Order: 10
+07. ID: ObBKQUg3Ma4 | Title_ZH: 忽然 / 突然 | Title_VI: Đột nhiên & Hốt nhiên - Sự khác biệt tinh tế | Order: 9
+08. ID: jkOIuGDpDns | Title_ZH: 以后 / 后来 | Title_VI: Dĩ hậu & Hậu lai - Sau này và sau đó | Order: 8
+09. ID: U3dYr5EqQOA | Title_ZH: 还是 / 或者 | Title_VI: Hoàn thị & Hoặc giả - Hoặc là và hay là | Order: 7
+10. ID: SG4XEMgsEbE | Title_ZH: 怎么 / 怎么样 | Title_VI: Chẩm ma & Chẩm ma dạng - Như thế nào và ra sao | Order: 6
+11. ID: dPbXeQYc-4E | Title_ZH: 能 vs 会 | Title_VI: Phân biệt cách nói Có thể, Biết làm | Order: 5
+12. ID: qAoS_7LxJe0 | Title_ZH: 想 vs 觉得 | Title_VI: Phân biệt cách nói Nghĩ, Cảm thấy | Order: 4
+13. ID: nRr3vt2G12s | Title_ZH: 刚 vs 刚才 | Title_VI: Phân biệt phó từ Vừa và danh từ Vừa nãy | Order: 3
+14. ID: r-XLeTWWKao | Title_ZH: 二 vs 两 | Title_VI: Phân biệt cách dùng Nhị và Lưỡng khi đếm số | Order: 2
+15. ID: BoXL0hnHSZo | Title_ZH: 一点儿 vs 有点儿 | Title_VI: Phân biệt cách nói Một chút | Order: 1
+
+=== CATEGORY: Thành ngữ (21 videos) ===
+01. ID: 4zbwWedN5so | Title_ZH: 入乡随俗 | Hòa nhập văn hóa | Title_VI: Học thành ngữ tiếng Trung hiệu quả với Lê Lê | Order: 21
+02. ID: 7FqNFl8ky0g | Title_ZH: 班 | Title_VI: 班门弄斧: Cười ra nước mắt với câu chuyện 'múa rìu qua mắt thợ'! | Order: 20
+03. ID: BxC4vGPwt6s | Title_ZH: 胸有成竹 | Title_VI: Hung hữu thành trúc - Trong lòng đã có tre | Order: 19
+04. ID: lwiZmQ04gWI | Title_ZH: 叶公好龙 | Title_VI: Diệp Công hiếu long - Yêu thích giả tạo | Order: 18
+05. ID: E9XS8J52fjo | Title_ZH: 刻舟求剑 | Title_VI: Khắc chu cầu kiếm - Khắc thuyền tìm kiếm | Order: 17
+06. ID: ebPSABEdUMI | Title_ZH: 掩耳盗铃 | Title_VI: Yểm nhĩ đạo linh - Bịt tai trộm chuông | Order: 16
+07. ID: A0VwRz8IGno | Title_ZH: 自相矛盾 | Title_VI: Tự tương mâu thuẫn - Tự mâu thuẫn | Order: 15
+08. ID: Xxzo0rprdQc | Title_ZH: 井底之蛙 | Title_VI: Tỉnh để chi oa - Con ếch ngồi đáy giếng | Order: 14
+09. ID: eDap3fEhWrA | Title_ZH: 指鹿为马 | Title_VI: Chỉ lộc vi mã - Chỉ hươu bảo ngựa | Order: 13
+10. ID: 55PH0e1jm2w | Title_ZH: 愚公移山 | Title_VI: Ngu Công di sơn - Ngu Công dời núi | Order: 12
+11. ID: 2JoOBSlNib4 | Title_ZH: 狐假虎威 | Title_VI: Hồ giả hổ uy - Cáo mượn oai hùm | Order: 11
+12. ID: NLkHvt7Wu5A | Title_ZH: 亡羊补牢 | Title_VI: Mất cừu mới sửa chuồng - Sửa sai kịp thời | Order: 10
+13. ID: vtL-7_lONnM | Title_ZH: 塞翁失马 | Title_VI: Tái ông thất mã - Trong họa có phúc | Order: 9
+14. ID: BgmL-8aKnaA | Title_ZH: 守株待兔 | Title_VI: Ôm cây đợi thỏ - Siêng ăn nhác làm | Order: 8
+15. ID: M4VYa6BEsOY | Title_ZH: 对牛弹琴 | Title_VI: Đàn gảy tai trâu - Không đúng đối tượng | Order: 7
+16. ID: 4VE-eeXsCOE | Title_ZH: 画蛇添足 | Title_VI: Vẽ rắn thêm chân - Làm việc thừa thãi | Order: 6
+17. ID: xJwB52xBYwc | Title_ZH: 画龙点睛 | Title_VI: Vẽ rồng điểm mắt - Thêm nét quyết định | Order: 5
+18. ID: H3lmJfw8K3E | Title_ZH: 盲人摸象 | Title_VI: Thầy bói xem voi - Nhìn nhận phiến diện | Order: 4
+19. ID: rPLRT1uPd30 | Title_ZH: 舍己为人 | Title_VI: Xả thân vì người khác - Hy sinh lợi ích riêng | Order: 3
+20. ID: q90BrVJxBGg | Title_ZH: 拔苗助长 | Title_VI: Bạt miêu trợ trưởng - Nóng vội hỏng việc | Order: 2
+21. ID: fFQ7FpDxfaI | Title_ZH: 杯弓蛇影 | Title_VI: Bôi cung xà ảnh - Tự mình dọa mình | Order: 1
+
+=== CATEGORY: Tiếng Trung thực chiến (19 videos) ===
+01. ID: qod3Wjw4TaM | Title_ZH: 租房 | Title_VI: Giao tiếp Thuê nhà | Order: 19
+02. ID: vfxKxJHliP8 | Title_ZH: 理发 | Title_VI: Giao tiếp Đặt lịch cắt tóc | Order: 18
+03. ID: PFRaJZSWMg0 | Title_ZH: 点外卖 | Title_VI: Giao tiếp Gọi đồ ăn giao tận nơi | Order: 17
+04. ID: toswvKnlQGo | Title_ZH: 买电影票 | Title_VI: Giao tiếp Mua vé xem phim | Order: 16
+05. ID: CyVJhwGebXY | Title_ZH: 学会转念 | Title_VI: Giao tiếp Học cách chuyển niệm | Order: 15
+06. ID: jG5u_xrsIQE | Title_ZH: 买单 | Title_VI: Giao tiếp Thanh toán tiền ăn | Order: 14
+07. ID: h7MSLsoYKEk | Title_ZH: 预订餐桌 | Title_VI: Giao tiếp Đặt bàn ở nhà hàng | Order: 13
+08. ID: q4RitAE5OWI | Title_ZH: 砍价 | Title_VI: Giao tiếp Mặc cả khi mua quần áo | Order: 12
+09. ID: _saPWt75YKI | Title_ZH: 问路 | Title_VI: Giao tiếp Hỏi đường đi ga tàu | Order: 11
+10. ID: zcFH0pis5HU | Title_ZH: 点奶茶 | Title_VI: Giao tiếp Gọi trà sữa | Order: 10
+11. ID: S4v2kkTVGHk | Title_ZH: 预订酒店 | Title_VI: Giao tiếp Đặt phòng khách sạn | Order: 9
+12. ID: aUMowaLuS3Y | Title_ZH: 问候身体 | Title_VI: Giao tiếp Hỏi thăm sức khỏe | Order: 8
+13. ID: dxyWVUi7YdQ | Title_ZH: 遇到老朋友 | Title_VI: Giao tiếp Gặp gỡ bạn cũ lâu năm | Order: 7
+14. ID: Pkj1cLfuhGg | Title_ZH: 打车 | Title_VI: Giao tiếp Đón taxi trên đường | Order: 6
+15. ID: ys2Qxpz9cPM | Title_ZH: 帮忙拍照 | Title_VI: Giao tiếp Nhờ chụp ảnh giúp | Order: 5
+16. ID: hizk3Fro9JQ | Title_ZH: 退货退款 | Title_VI: Giao tiếp Trả hàng hoàn tiền | Order: 4
+17. ID: Kp1j5TqeI38 | Title_ZH: 请假 | Title_VI: Giao tiếp Xin nghỉ phép | Order: 3
+18. ID: 2QZ4Sw0hrUI | Title_ZH: 兑换外币 | Title_VI: Giao tiếp Đổi tiền ngoại tệ | Order: 2
+19. ID: IppkMx_ep6g | Title_ZH: 健身房登记 | Title_VI: Giao tiếp Đăng ký tập gym | Order: 1
+
+=== CATEGORY: Tiếng lóng (65 videos) ===
+01. ID: jHYuII4gbAE | Title_ZH: 吃 | Title_VI: Giải mã '吃货': Bạn có phải là tín đồ ẩm thực chính hiệu? | Order: 65
+02. ID: 7omYbW4eeTc | Title_ZH: Học ngay '格局打开' | Title_VI: Từ lóng Trung Quốc cực hay cho người thích nhìn xa trông rộng! | Order: 64
+03. ID: 3V2EUxO7oMQ | Title_ZH: 精 | Title_VI: Học từ lóng Trung Quốc cực chuẩn: 精神内耗 | Order: 63
+04. ID: NQOWIgTaX9I | Title_ZH: 小 | Title_VI: 小趴菜 là gì? Giải mã từ lóng bá đạo của giới trẻ Trung Quốc! | Order: 62
+05. ID: Jr4sOLRklSI | Title_ZH: Công chúa xin mời lên xe | Title_VI: Trend cực dễ thương của giới trẻ Trung Quốc | Order: 61
+06. ID: Ug4kqY4TG_A | Title_ZH: 白嫖 | Title_VI: Từ lóng 'xem chùa' của Gen Z Trung Quốc bạn nhất định phải biết! | Order: 60
+07. ID: J5q3OU9-lyM | Title_ZH: 小丑竟是我自己 | Title_VI: Hóa ra chú hề lại chính là tôi! Từ lóng Trung Quốc hài hước! | Order: 59
+08. ID: zx8tkeseDqk | Title_ZH: Học từ lóng Trung Quốc: "土豪" | Title_VI: Khi giàu có đi kèm với sự... "thiếu tinh tế"! Cùng Lê Lê khám phá nhé | Order: 58
+09. ID: 7hPkN-Y-MIo | Title_ZH: 吃 | Title_VI: Ăn giấm là ghen? Tìm hiểu từ lóng '吃醋' cực hot của giới trẻ Trung Quốc! | Order: 57
+10. ID: Q7ksMHP_sUM | Title_ZH:  | Title_VI: Bậc thầy lão luyện tiếng Trung mạng nói thế nào? | Order: 56
+11. ID: UabEqj-mdCE | Title_ZH:  | Title_VI: Giải mã từ lóng dìm hàng, bóc phốt của giới trẻ Trung Quốc | Order: 55
+12. ID: 81lzmMS4WiU | Title_ZH:  | Title_VI: Từ lóng tiếng Trung: Sống cuộc đời 'như hack' là thế nào? | Order: 54
+13. ID: gdGnJvQJzc4 | Title_ZH: 划 | Title_VI: Giải mã từ lóng mạng '划水' cực hài hước cùng Lê Lê | Order: 53
+14. ID: So4rBcVHCeI | Title_ZH:  | Title_VI: Từ lóng 'Anh hùng bàn phím' trong tiếng Trung 💻🤐 | Order: 52
+15. ID: ojdd7mO6QDI | Title_ZH:  | Title_VI: Thánh cãi trong tiếng Trung gọi là gì? | Order: 51
+16. ID: 6Rzy7t98wl4 | Title_ZH:  | Title_VI: Từ lóng siêu hài: Kiểu đàn ông khô khan nhất hệ mặt trời | Order: 50
+17. ID: GboxU5JZkmk | Title_ZH:  | Title_VI: Từ lóng Trung Quốc cực hài: Chú chó cô đơn 🐶 | Order: 49
+18. ID: 2mRtu5OS2yk | Title_ZH:  | Title_VI: Từ lóng tự trào cực hot của học sinh Trung Quốc | Order: 48
+19. ID: N-e2cISEfHY | Title_ZH:  | Title_VI: Kẻ Hủy Diệt Điểm Số Trong Tiếng Trung Là Gì? 🎓 | Order: 47
+20. ID: Lb2DUkZVHCQ | Title_ZH:  | Title_VI: Giải mã từ lóng siêu phổ biến của giới trẻ Trung Quốc | Order: 46
+21. ID: gGWnBEqN5WM | Title_ZH:  | Title_VI: Khi ví tiền xẹp lép và bạn phải 'hít gió tây bắc' để sống 💨 | Order: 45
+22. ID: jc5MKo-uCmU | Title_ZH:  | Title_VI: Bạn có phải là một người nghiện hít mèo không? | Order: 44
+23. ID: 5RYobSQxOEQ | Title_ZH:  | Title_VI: Ý nghĩa từ lóng "Đi trên con đường hoa" trong tiếng Trung là gì? | Order: 43
+24. ID: CeTHniLonxw | Title_ZH:  | Title_VI: Giải mã từ lóng 'emo' cực hot của giới trẻ Trung Quốc! | Order: 42
+25. ID: LXTInW8qOCI | Title_ZH:  | Title_VI: Từ lóng cực thú vị về tình yêu của giới trẻ Trung Quốc 💖 | Order: 41
+26. ID: O3jxs1smwHA | Title_ZH: 酸 | Title_VI: Giải mã '酸了': Khi bạn 'chua lòng' vì người khác quá hạnh phúc! 🍋😂 | Order: 40
+27. ID: XHKBOzUhXjM | Title_ZH:  | Title_VI: Ý nghĩa hài hước của từ lóng 'Cõng Nồi' trong tiếng Trung 🍳 | Order: 39
+28. ID: 9DVHH-2PFmo | Title_ZH:  | Title_VI: Từ lóng 'Vả Mặt' trong tiếng Trung là gì? 🤣 | Order: 38
+29. ID: 5qBh4a48vqw | Title_ZH:  | Title_VI: Quê độ muốn độn thổ tiếng Trung nói thế nào? | Order: 37
+30. ID: nrnptdVzHfk | Title_ZH:  | Title_VI: Từ lóng chỉ cô gái vàng trong làng đầu thai cực hot | Order: 36
+31. ID: nVFdo8963E4 | Title_ZH:  | Title_VI: Từ lóng miêu tả người đàn ông hoàn hảo của giới trẻ Trung Quốc | Order: 35
+32. ID: yJ7ax8lSNkM | Title_ZH:  | Title_VI: Từ lóng siêu hài hước của giới trẻ Trung Quốc về sự tưởng tượng | Order: 34
+33. ID: goLj9tow_Fo | Title_ZH:  | Title_VI: Khi bạn thề không bao giờ làm điều gì đó và cái kết... 😂 | Order: 33
+34. ID: 4qSGLtQPtdo | Title_ZH:  | Title_VI: Tuyệt chiêu 'Quăng Nồi' đổ lỗi của giới trẻ Trung Quốc là gì? | Order: 32
+35. ID: bOW4TZIRVtg | Title_ZH:  | Title_VI: Bí kíp 'sờ cá' của giới trẻ Trung Quốc | Order: 31
+36. ID: IkzfqKj0Exc | Title_ZH:  | Title_VI: Giải mã từ lóng Trà Xanh trong tiếng Trung cực hài hước | Order: 30
+37. ID: bw3JXOGGysM | Title_ZH:  | Title_VI: Giải mã từ lóng giới thiệu nhiệt tình của giới trẻ Trung Quốc! | Order: 29
+38. ID: cy863byPyAo | Title_ZH: 躺 | Title_VI: Nằm không cũng trúng đạn tiếng Trung là gì? Từ lóng 躺枪 | Order: 28
+39. ID: 449f171J9Qg | Title_ZH:  | Title_VI: Trào lưu 'Chủ yếu là để...' của giới trẻ xứ Trung có gì vui? | Order: 27
+40. ID: 7-U4wmLoh_s | Title_ZH:  | Title_VI: Từ lóng tiếng Trung: Kẻ bắt cá nhiều tay | Order: 26
+41. ID: ZuBt2Ccn2mU | Title_ZH: Giải mã 'Ăn Cẩu Lương' (吃狗粮) | Title_VI: Tiếng lóng giới trẻ Trung Quốc | Order: 25
+42. ID: 5uK20CshNXw | Title_ZH: 戏 | Title_VI: Khi bạn gặp một '戏精' đích thực! | Order: 24
+43. ID: 95_vOI3I-F8 | Title_ZH: 工 | Title_VI: Hóa ra tôi chỉ là 'người công cụ' của cô ấy... 💔 Học ngay từ lóng '工具人' của giới trẻ Trung Quốc để n | Order: 23
+44. ID: CCXVtODYmPs | Title_ZH:  | Title_VI: Giải mã từ lóng 'Cắt Hẹ' (Lùa Gà) của giới trẻ Trung Quốc 🤣 | Order: 22
+45. ID: B9kleHjV4eU | Title_ZH: 种 | Title_VI: 种草 là gì mà giới trẻ Trung Quốc mê mẩn? Giải mã ngay! | Order: 21
+46. ID: bmBhVNiEO_M | Title_ZH: 摆 | Title_VI: Giải mã từ lóng 摆烂: Buông xuôi đến cùng! | Order: 20
+47. ID: LPKHs2v7ar8 | Title_ZH: 破釜沉舟 | Title_VI: Đập nồi dìm thuyền - Quyết tâm không lùi bước | Order: 19
+48. ID: 7_fGQYFzSSs | Title_ZH: 打工人 | Title_VI: Đả công nhân - Người làm công ăn lương | Order: 18
+49. ID: SLWQwn4LcQI | Title_ZH: YYDS | Title_VI: Mãi đỉnh - Vị thần vĩnh cửu | Order: 17
+50. ID: AfZW2Guw1X8 | Title_ZH: 逆袭 | Title_VI: Nghịch kích - Lội ngược dòng | Order: 16
+51. ID: 1kq16kDeasI | Title_ZH: 尬聊 | Title_VI: Gượng nói - Nói chuyện nhạt nhẽo | Order: 15
+52. ID: ppv34AVHcuI | Title_ZH: 秒杀 | Title_VI: Miểu sát - Săn sale chớp nhoáng | Order: 14
+53. ID: pM9mY3c7aM0 | Title_ZH: 海王 | Title_VI: Thả thính - Chúa tể đại dương, bắt cá nhiều tay | Order: 13
+54. ID: kLQ1e0Jb-1M | Title_ZH: 割韭菜 | Title_VI: Luộc rau (Cắt hẹ) - Trục lợi, lùa gà | Order: 12
+55. ID: s_uES_h9c1I | Title_ZH: 躺平 | Title_VI: Thảng bình - Trào lưu nằm phẳng, mặc kệ đời | Order: 11
+56. ID: 5NS9Pa7MvAU | Title_ZH: 芭比Q了 | Title_VI: Ba tỷ Q liễu - Toang rồi, xong đời | Order: 10
+57. ID: M6En9Z-R_Ho | Title_ZH: 社恐 | Title_VI: Xã khủng - Hội chứng sợ giao tiếp xã hội | Order: 9
+58. ID: wlhCQ54T-nY | Title_ZH: 柠檬精 | Title_VI: Chanh tinh - Kẻ hay ghen tị, chua ngoa | Order: 8
+59. ID: 3FmBZdbRPOY | Title_ZH: 带货 | Title_VI: Đới hóa - Livestream bán hàng | Order: 7
+60. ID: E1H94KocfQo | Title_ZH: 吃瓜 | Title_VI: Ăn dưa - Hóng biến, hóng phốt mạng xã hội | Order: 6
+61. ID: jSX5WKL2DQ8 | Title_ZH: 剁手 | Title_VI: Đoạt thủ - Chặt tay vì cuồng mua sắm online | Order: 5
+62. ID: _sf7WsNAjvw | Title_ZH: 凡尔赛 | Title_VI: Phàm nhĩ sài - Khoe mẽ một cách khiêm tốn | Order: 4
+63. ID: 2K3oyBG6K3A | Title_ZH: 内卷 | Title_VI: Nội quyển - Cạnh tranh khốc liệt vô nghĩa | Order: 3
+64. ID: IpskgDTghTI | Title_ZH: 社牛 | Title_VI: Xã ngưu - Hội chứng tự tin giao tiếp | Order: 2
+65. ID: K-vukz9rtow | Title_ZH: 破防 | Title_VI: Phá phòng - Phá vỡ phòng ngự tâm lý | Order: 1
+

@@ -1550,6 +1550,29 @@ img { display: block; max-width: 100%; }
   max-width: 380px;
   line-height: 1.5;
 }
+.footer-counter {
+  font-size: 0.68rem !important;
+  color: var(--clr-cream-muted);
+  opacity: 0.55;
+  margin-top: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: opacity 0.25s ease;
+}
+.footer-counter:hover {
+  opacity: 0.85;
+}
+.counter-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.counter-value {
+  font-weight: 600;
+  color: var(--clr-gold);
+}
 
 /* ===================================================
    Document Request Form Styles
