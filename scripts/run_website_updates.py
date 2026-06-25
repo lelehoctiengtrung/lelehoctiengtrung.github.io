@@ -41,7 +41,14 @@ HAN_VIET_MAP = {
     "l4Rg9ukO8U4": ("话", "Thoại - Chiếc lưỡi uốn lượn tạo câu chuyện"),
     "9Qi9jyMoS0A": ("什", "Thập - Người thắc mắc đứng trước mười món lạ"),
     "-Lu6gR_ERx4": ("打", "Đả - Giải mã chữ Đả qua hình ảnh cực dễ nhớ"),
-    "mP6brE6xiUc": ("气", "Khí - Từ dải mây trời đến năng lượng sống")
+    "mP6brE6xiUc": ("气", "Khí - Từ dải mây trời đến năng lượng sống"),
+    "b48pSFI_LVE": ("草船借箭", "Thuyền cỏ mượn tên - Mưu kế thiên tài"),
+    "wZT3d09FXLs": ("程门立雪", "Trình môn lập tuyết - Tôn sư trọng đạo"),
+    "7yPK7c-s-yw": ("滥竽充数", "Lạm vu sung số - Trà trộn lấy tiếng"),
+    "ZHQ-mHHU78I": ("杞人忧天", "Kỷ nhân ưu thiên - Lo bò trắng răng"),
+    "B8LvifCK2BA": ("刻舟求剑", "Khắc chu cầu kiếm - Cố chấp cứng nhắc"),
+    "q7kFBDCssU8": ("叶公好龙", "Diệp Công hiếu long - Yêu thích giả tạo"),
+    "4Vl8LpQQUSs": ("胸有成竹", "Hung hữu thành trúc - Tự tin nắm chắc")
 }
 
 
@@ -150,7 +157,7 @@ def main():
                         'thành trúc', 'hiếu long', 'cầu kiếm', 'đạo linh', 'mâu thuẫn', 'chi oa',
                         'vi mã', 'di sơn', 'hổ uy', 'vị nhân', 'điểm mắt', 'bổ lao', 'đàn cầm',
                         'trầm chu', 'mạc tượng', 'đãi thỏ', 'thiêm túc', 'thất mã', 'lộng phủ',
-                        'trợ trưởng', 'xà ảnh', 'tùy tục'
+                        'trợ trưởng', 'xà ảnh', 'tùy tục', 'lập tuyết'
                     ])
                 ):
                     category = "Thành ngữ"
@@ -172,40 +179,39 @@ def main():
                 title_zh = ""
                 title_vi = title
                 
-                if category == "Lê Lê kể chữ":
+                if v_id in HAN_VIET_MAP:
+                    title_zh, title_vi = HAN_VIET_MAP[v_id]
+                elif category == "Lê Lê kể chữ":
                     # Try to extract title_zh
                     zh_chars = re.findall(r'[\u4e00-\u9fff]', title)
                     if zh_chars:
                         title_zh = zh_chars[0]
                     
-                    if v_id in HAN_VIET_MAP:
-                        title_zh, title_vi = HAN_VIET_MAP[v_id]
-                    else:
-                        # Split safely (avoiding parenthesis content splitting)
-                        temp_title = title
-                        parentheses = re.findall(r'\([^)]+\)', title)
+                    # Split safely (avoiding parenthesis content splitting)
+                    temp_title = title
+                    parentheses = re.findall(r'\([^)]+\)', title)
+                    for idx, p in enumerate(parentheses):
+                        temp_title = temp_title.replace(p, f"__PAR_{idx}__")
+                    
+                    parts = [p.strip() for p in temp_title.split('-', 1)]
+                    if len(parts) >= 2:
+                        vi_part = parts[1]
                         for idx, p in enumerate(parentheses):
-                            temp_title = temp_title.replace(p, f"__PAR_{idx}__")
+                            vi_part = vi_part.replace(f"__PAR_{idx}__", p)
+                        title_vi = vi_part
                         
-                        parts = [p.strip() for p in temp_title.split('-', 1)]
-                        if len(parts) >= 2:
-                            vi_part = parts[1]
-                            for idx, p in enumerate(parentheses):
-                                vi_part = vi_part.replace(f"__PAR_{idx}__", p)
-                            title_vi = vi_part
-                            
-                        # Clean prefix words
-                        title_vi = re.sub(r'^(?:Giải mã chữ|Chữ|Cách nhớ chữ|Mẹo nhớ chữ|Ý nghĩa chữ|Nguồn gốc chữ|Ý nghĩa sâu sắc của chữ|Câu chuyện chữ)\s+[\u4e00-\u9fffA-ZĐa-zđÀ-Ỹà-ỹ\s()]{1,20}(?:trong tiếng Trung)?\s*[\:\-–—]?\s*', '', title_vi, flags=re.IGNORECASE).strip()
-                        if title_vi:
-                            title_vi = title_vi[0].upper() + title_vi[1:]
-                            
-                        # Check if title_vi starts with a Hán-Việt name
-                        if not re.match(r'^[A-ZĐĂÂÊÔƠƯÀ-Ỹ].*?\s*(-|—)\s*', title_vi):
-                            # Try to extract from original title
-                            m = re.search(r'\b([A-ZĐÁ-Ỹ]{2,})\b\s*' + re.escape(title_zh) if title_zh else '', title)
-                            if m:
-                                hv = m.group(1).capitalize()
-                                title_vi = f"{hv} - {title_vi}"
+                    # Clean prefix words
+                    title_vi = re.sub(r'^(?:Giải mã chữ|Chữ|Cách nhớ chữ|Mẹo nhớ chữ|Ý nghĩa chữ|Nguồn gốc chữ|Ý nghĩa sâu sắc của chữ|Câu chuyện chữ)\s+[\u4e00-\u9fffA-ZĐa-zđÀ-Ỹà-ỹ\s()]{1,20}(?:trong tiếng Trung)?\s*[\:\-–—]?\s*', '', title_vi, flags=re.IGNORECASE).strip()
+                    if title_vi:
+                        title_vi = title_vi[0].upper() + title_vi[1:]
+                        
+                    # Check if title_vi starts with a Hán-Việt name
+                    if not re.match(r'^[A-ZĐĂÂÊÔƠƯÀ-Ỹ].*?\s*(-|—)\s*', title_vi):
+                        # Try to extract from original title
+                        m = re.search(r'\b([A-ZĐÁ-Ỹ]{2,})\b\s*' + re.escape(title_zh) if title_zh else '', title)
+                        if m:
+                            hv = m.group(1).capitalize()
+                            title_vi = f"{hv} - {title_vi}"
                 else:
                     # Try splitting by dash, colon, or vertical bar
                     parts = [p.strip() for p in re.split(r'\s*[\-–—:|]\s*', title, 1)]
