@@ -51,9 +51,9 @@ const ALL_VIDEOS = [
     "title_zh": "叶公好龙",
     "title_vi": "Diệp Công hiếu long - Yêu thích giả tạo",
     "youtube_url": "https://www.youtube.com/shorts/q7kFBDCssU8",
-    "category": "Lê Lê kể chữ",
+    "category": "Thành ngữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng '叶公好龙' trong giao tiếp thực tế.",
-    "order": 109
+    "order": 30
   },
   {
     "id": "7yPK7c-s-yw",
@@ -78,9 +78,9 @@ const ALL_VIDEOS = [
     "title_zh": "程门立雪",
     "title_vi": "Trình môn lập tuyết - Tôn sư trọng đạo",
     "youtube_url": "https://www.youtube.com/shorts/wZT3d09FXLs",
-    "category": "Lê Lê kể chữ",
+    "category": "Thành ngữ",
     "desc": "Giải nghĩa và hướng dẫn sử dụng từ vựng '程门立雪' trong giao tiếp thực tế.",
-    "order": 108
+    "order": 29
   },
   {
     "id": "b48pSFI_LVE",

@@ -17,6 +17,12 @@ YOUTUBE_FEED_URL = "https://www.youtube.com/feeds/videos.xml?channel_id=UCGQfqOT
 # Video IDs that should be excluded/deleted from the website
 EXCLUDED_VIDEO_IDS = {"h7MSLsoYKEk"}
 
+# Idiom Video IDs that are mapped in HAN_VIET_MAP but belong to 'Thành ngữ' tab
+KNOWN_IDIOM_IDS = {
+    "b48pSFI_LVE", "wZT3d09FXLs", "7yPK7c-s-yw", "ZHQ-mHHU78I",
+    "B8LvifCK2BA", "q7kFBDCssU8", "4Vl8LpQQUSs"
+}
+
 # Hán-Việt and title translation map for character story videos
 HAN_VIET_MAP = {
     "y_G-fvofAM4": ("雨", "Vũ - Những hạt mưa rơi dưới đám mây"),
@@ -153,6 +159,7 @@ def main():
                 # 3. Thành ngữ (Idioms)
                 elif (
                     'thành ngữ' in lower_title or 'idiom' in lower_title or 'thần thoại' in lower_title or 'cổ tích' in lower_title or
+                    v_id in KNOWN_IDIOM_IDS or
                     any(k in lower_title for k in [
                         'thành trúc', 'hiếu long', 'cầu kiếm', 'đạo linh', 'mâu thuẫn', 'chi oa',
                         'vi mã', 'di sơn', 'hổ uy', 'vị nhân', 'điểm mắt', 'bổ lao', 'đàn cầm',
@@ -168,7 +175,7 @@ def main():
                     "nhớ chữ" in lower_title or 
                     "nguồn gốc" in lower_title or 
                     "giải mã chữ" in lower_title or
-                    v_id in HAN_VIET_MAP
+                    (v_id in HAN_VIET_MAP and v_id not in KNOWN_IDIOM_IDS)
                 ):
                     category = "Lê Lê kể chữ"
                 # 5. Tiếng lóng (Slangs)
