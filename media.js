@@ -2220,7 +2220,12 @@ function normalizeCategory(cat, title, id) {
   if (resolved === 'Tiếng Trung thực chiến' || !cat) {
     const t = (title || '').toLowerCase();
     
-    // 1. Song đấu từ vựng
+    // 1. Tiếng Trung thực chiến (Situational conversations)
+    if (t.startsWith('giao tiếp') || t.includes('ngữ cảnh:') || t.includes('thực chiến') || t.includes('hội thoại')) {
+      return 'Tiếng Trung thực chiến';
+    }
+    
+    // 2. Song đấu từ vựng (Comparisons)
     const songDauIds = [
       "RTzRx0KwNkM", "Vwmq5rcGr5w", "pKLR6T9kpkU", "WDM3tD_h58Y", "Wwlaa4hVBNs",
       "qAoS_7LxJe0", "BoXL0hnHSZo", "r-XLeTWWKao", "dPbXeQYc-4E", "nRr3vt2G12s",
@@ -2231,13 +2236,13 @@ function normalizeCategory(cat, title, id) {
       return 'Song đấu từ vựng';
     }
     
-    // 2. Thành ngữ
+    // 3. Thành ngữ (Idioms)
     const idiomIds = [
       "BxC4vGPwt6s", "lwiZmQ04gWI", "E9XS8J52fjo", "ebPSABEdUMI", "A0VwRz8IGno",
       "Xxzo0rprdQc", "eDap3fEhWrA", "55PH0e1jm2w", "2JoOBSlNib4", "rPLRT1uPd30",
       "xJwB52xBYwc", "NLkHvt7Wu5A", "M4VYa6BEsOY", "LPKs2v7ar8", "H3lmJfw8K3E",
       "BgmL-8aKnaA", "4VE-eeXsCOE", "vtL-7_lONnM", "7FqNFl8ky0g", "q90BrVJxBGg",
-      "fFQ7FpDxfaI", "4zbwWedN5so"
+      "fFQ7FpDxfaI", "4zbwWedN5so", "q7kFBDCssU8", "wZT3d09FXLs"
     ];
     const idiomKeywords = [
       'thành ngữ', 'idiom', 'thần thoại', 'cổ tích',
@@ -2250,14 +2255,9 @@ function normalizeCategory(cat, title, id) {
       return 'Thành ngữ';
     }
     
-    // 3. Lê Lê kể chữ
+    // 4. Lê Lê kể chữ (Etymology)
     if (t.includes('chữ') || t.includes('kể chữ') || t.includes('nhớ chữ') || t.includes('nguồn gốc') || t.includes('giải mã chữ')) {
       return 'Lê Lê kể chữ';
-    }
-    
-    // 4. Situational conversations
-    if (t.startsWith('giao tiếp') || t.includes('ngữ cảnh:') || t.includes('thực chiến')) {
-      return 'Tiếng Trung thực chiến';
     }
     
     // 5. Fallback for others

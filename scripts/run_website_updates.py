@@ -150,12 +150,12 @@ def main():
                 # Category logic
                 lower_title = title.lower()
                 
-                # 1. Song đấu từ vựng (Comparisons)
-                if ' vs ' in lower_title or ' & ' in lower_title or 'phân biệt' in lower_title or 'song đấu' in lower_title or v_id == "sPFjgmSqyGg":
-                    category = "Song đấu từ vựng"
-                # 2. Tiếng Trung thực chiến (Situational conversations)
-                elif lower_title.startswith('giao tiếp') or 'ngữ cảnh:' in lower_title or 'thực chiến' in lower_title:
+                # 1. Tiếng Trung thực chiến (Situational conversations)
+                if lower_title.startswith('giao tiếp') or 'ngữ cảnh:' in lower_title or 'thực chiến' in lower_title or 'hội thoại' in lower_title:
                     category = "Tiếng Trung thực chiến"
+                # 2. Song đấu từ vựng (Comparisons)
+                elif ' vs ' in lower_title or ' & ' in lower_title or 'phân biệt' in lower_title or 'song đấu' in lower_title or v_id == "sPFjgmSqyGg":
+                    category = "Song đấu từ vựng"
                 # 3. Thành ngữ (Idioms)
                 elif (
                     'thành ngữ' in lower_title or 'idiom' in lower_title or 'thần thoại' in lower_title or 'cổ tích' in lower_title or
