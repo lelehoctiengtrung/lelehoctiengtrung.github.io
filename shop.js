@@ -2,7 +2,7 @@
 // shop.js — Fetch sách từ Google Sheets
 // ===================================================
 
-const SHEET_ID  = '1n62ZrrUJlnf8CDU2gSxW3jPCxdkwE1GFpBBDJQLEg0o';
+const SHEET_ID  = '1b6LNl7JHRiCsjK1w9VuD86GLqAfmSOtDUOm5whrGdH0';
 const BOOKS_API = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=books&headers=2`;
 
 // Columns (row 1 = keys, row 2 = labels, row 3+ = data)

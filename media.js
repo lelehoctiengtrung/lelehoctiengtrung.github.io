@@ -3,7 +3,7 @@
 // Predefined local video database, inline player & pagination
 // ============================================================
 
-const SHEET_ID   = '1n62ZrrUJlnf8CDU2gSxW3jPCxdkwE1GFpBBDJQLEg0o';
+const SHEET_ID   = '1b6LNl7JHRiCsjK1w9VuD86GLqAfmSOtDUOm5whrGdH0';
 const SHEET_NAME = 'media';
 const BLACKLISTED_YOUTUBE_IDS = ['Vz52s5wXhR4']; // Skip unavailable/broken videos (e.g. "chữ AN")
 const PAGE_SIZE = 8; // Số lượng video trên mỗi trang (2 hàng, mỗi hàng 4 video trên desktop)

@@ -40,6 +40,17 @@ var DOCS_FOLDER_ID = '1XdzdpnxPyPHp2PnEyIOPUnSwlTcIeTeN';
 // ID folder cho books review
 var BOOKS_FOLDER_ID = '14hhgqz03Ftbzy7bw4d8mWLnuIF4sQgMG';
 
+var MAIN_SPREADSHEET_ID = '1b6LNl7JHRiCsjK1w9VuD86GLqAfmSOtDUOm5whrGdH0';
+
+function getDocsSpreadsheet() {
+  try {
+    return SpreadsheetApp.openById(MAIN_SPREADSHEET_ID);
+  } catch (err) {
+    Logger.log('Could not open Main Spreadsheet by ID: ' + err.message);
+    return SpreadsheetApp.getActiveSpreadsheet();
+  }
+}
+
 // Columns in sheet 'docs'
 const COL = {
   id:             0,
@@ -65,7 +76,7 @@ const COL = {
 
 function loadConfigFromSheet() {
   try {
-    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var ss = getDocsSpreadsheet();
     var sheet = ss.getSheetByName('config');
     if (!sheet) return;
     
@@ -153,7 +164,7 @@ function getConfigJson() {
 }
 
 function saveConfigFromUI(configData) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('config');
   if (!sheet) {
     sheet = ss.insertSheet('config');
@@ -198,7 +209,7 @@ function advanceKeyIndex(poolSize) {
 }
 function resetKeyIndex() {
   PropertiesService.getScriptProperties().setProperty('KEY_INDEX', '0');
-  SpreadsheetApp.getActiveSpreadsheet().toast('Key index đã reset về 0!', 'Done', 3);
+  getDocsSpreadsheet().toast('Key index đã reset về 0!', 'Done', 3);
 }
 
 function openDashboardExternal() {
@@ -309,7 +320,7 @@ function doPost(e) {
 
 // --- Web App Helpers ---
 function getDataJson() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   
   var books = [];
   var bookSheet = ss.getSheetByName('books');
@@ -329,7 +340,7 @@ function getDataJson() {
   }
   
   var docs = [];
-  var docSheet = ss.getSheetByName('docs');
+  var docSheet = getDocsSpreadsheet().getSheetByName('docs');
   if (docSheet) {
     var lastRow = docSheet.getLastRow();
     if (lastRow >= 3) {
@@ -404,7 +415,7 @@ function getDataJson() {
 }
 
 function updateBookRow(postData) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('books');
   if (!sheet) return { error: 'Không tìm thấy tab books' };
   
@@ -445,7 +456,7 @@ function updateBookRow(postData) {
 }
 
 function updateDocRow(postData) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('docs');
   if (!sheet) return { error: 'Không tìm thấy tab docs' };
   
@@ -512,7 +523,7 @@ function updateDocRow(postData) {
 }
 
 function deleteDocRow(postData) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('docs');
   if (!sheet) return { error: 'Không tìm thấy tab docs' };
   
@@ -534,7 +545,7 @@ function deleteDocRow(postData) {
 }
 
 function generateReviewForSku(sku) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('books');
   if (!sheet) return { error: 'Không tìm thấy tab books' };
   
@@ -596,7 +607,7 @@ function generateReviewForSku(sku) {
 }
 
 function generateDocPostForId(id) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('docs');
   if (!sheet) return { error: 'Không tìm thấy tab docs' };
   
@@ -700,7 +711,7 @@ function uploadBase64Image(postData) {
   var imageUrl = 'https://lh3.googleusercontent.com/d/' + fileId;
   
   // Sync ngược vào sheet
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var isDoc = sku.indexOf('DOC-') === 0;
   
   if (isDoc) {
@@ -764,7 +775,7 @@ function uploadBase64Image(postData) {
 // ── MAIN: Fetch & Parse ───────────────────────────────────────────
 // ================================================================
 function fetchSelectedRows() {
-  var ss    = SpreadsheetApp.getActiveSpreadsheet();
+  var ss    = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('affiliate');
   if (!sheet) { SpreadsheetApp.getUi().alert('Không tìm thấy tab "affiliate". Chạy Setup trước!'); return; }
 
@@ -1009,7 +1020,7 @@ function checkAllKeys() {
 // ================================================================
 function createSkuFolders() {
   var ui   = SpreadsheetApp.getUi();
-  var ss   = SpreadsheetApp.getActiveSpreadsheet();
+  var ss   = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('books');
   if (!sheet) { ui.alert('Không tìm thấy tab books'); return; }
   
@@ -1054,7 +1065,7 @@ function createSkuFolders() {
 // ================================================================
 function syncDriveImages() {
   var ui   = SpreadsheetApp.getUi();
-  var ss   = SpreadsheetApp.getActiveSpreadsheet();
+  var ss   = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('books');
   if (!sheet) return;
 
@@ -1134,7 +1145,7 @@ function syncDriveImages() {
 // ================================================================
 function createDocFolders() {
   var ui   = SpreadsheetApp.getUi();
-  var ss   = SpreadsheetApp.getActiveSpreadsheet();
+  var ss   = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('docs');
   if (!sheet) { ui.alert('Không tìm thấy tab docs'); return; }
   
@@ -1187,7 +1198,7 @@ function createDocFolders() {
 // ================================================================
 function syncDocsDrive() {
   var ui   = SpreadsheetApp.getUi();
-  var ss   = SpreadsheetApp.getActiveSpreadsheet();
+  var ss   = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('docs');
   if (!sheet) return;
 
@@ -1311,7 +1322,7 @@ function syncDocsDrive() {
 // ================================================================
 function generateAIReviews() {
   var ui   = SpreadsheetApp.getUi();
-  var ss   = SpreadsheetApp.getActiveSpreadsheet();
+  var ss   = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('books');
   if (!sheet) return;
 
@@ -1380,7 +1391,7 @@ function generateAIReviews() {
 // ✍️ Viết bài viết giới thiệu tài liệu (AI)
 // ================================================================
 function generateAIDocPosts() {
-  var ss    = SpreadsheetApp.getActiveSpreadsheet();
+  var ss    = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('docs');
   if (!sheet) { SpreadsheetApp.getUi().alert('Không tìm thấy tab "docs". Chạy Setup trước!'); return; }
 
@@ -1448,7 +1459,7 @@ function generateAIDocPosts() {
 }
 
 function createPrewrittenDocPosts() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('docs');
   if (!sheet) {
     SpreadsheetApp.getUi().alert('Không tìm thấy tab "docs". Hãy chạy Setup trước!');
@@ -1498,7 +1509,7 @@ function createPrewrittenDocPosts() {
 
 // ── Kéo sách theo SKU ──────────────────────────────────────────
 function pullBySkuToBooks() {
-  var ss        = SpreadsheetApp.getActiveSpreadsheet();
+  var ss        = getDocsSpreadsheet();
   var affSheet  = ss.getSheetByName('affiliate');
   var bookSheet = ss.getSheetByName('books');
   if (!affSheet || !bookSheet) return;
@@ -1561,7 +1572,7 @@ function removeBySkuFromBooks() {
   var inputSkus = resp.getResponseText().split(',').map(function(s){ return s.trim(); }).filter(Boolean);
   if (!inputSkus.length) return;
 
-  var ss        = SpreadsheetApp.getActiveSpreadsheet();
+  var ss        = getDocsSpreadsheet();
   var bookSheet = ss.getSheetByName('books');
   var bookLast  = bookSheet.getLastRow();
   if (bookLast < 3) return;
@@ -1603,7 +1614,7 @@ function setupAllSheets() {
 }
 
 function setupMediaSheet() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('media');
   if (sheet) sheet.clear(); else sheet = ss.insertSheet('media');
   
@@ -1631,7 +1642,7 @@ function createAutoSyncTrigger() {
 
 function syncYouTubeVideos() {
   var EXCLUDED_VIDEO_IDS = ['h7MSLsoYKEk'];
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('media');
   if (!sheet) {
     setupMediaSheet();
@@ -1810,7 +1821,7 @@ function syncYouTubeVideos() {
 
 
 function setupConfigSheet() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('config');
   if (!sheet) {
     sheet = ss.insertSheet('config');
@@ -1836,7 +1847,7 @@ function setupConfigSheet() {
 }
 
 function setupAffiliateSheet() {
-  var ss    = SpreadsheetApp.getActiveSpreadsheet();
+  var ss    = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('affiliate');
   if (sheet) sheet.clear(); else sheet = ss.insertSheet('affiliate', 0);
 
@@ -1850,7 +1861,7 @@ function setupAffiliateSheet() {
 }
 
 function setupBooksSheet() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('books');
   if (sheet) sheet.clear(); else sheet = ss.insertSheet('books');
 
@@ -1864,7 +1875,7 @@ function setupBooksSheet() {
 }
 
 function setupDocsSheet() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('docs');
   if (sheet) sheet.clear(); else sheet = ss.insertSheet('docs');
   
@@ -1886,7 +1897,7 @@ function setupDocsSheet() {
 }
 
 function setupGuideSheet() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('huongdansudung');
   if (sheet) sheet.clear(); else sheet = ss.insertSheet('huongdansudung');
   var rows = [
@@ -1908,7 +1919,7 @@ function setupGuideSheet() {
 }
 
 function setupRequestsSheet() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('requests');
   if (sheet) sheet.clear(); else sheet = ss.insertSheet('requests');
   
@@ -1922,7 +1933,7 @@ function setupRequestsSheet() {
 }
 
 function submitReaderRequest(postData) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('requests');
   if (!sheet) {
     setupRequestsSheet();
@@ -1947,7 +1958,7 @@ function submitReaderRequest(postData) {
 // ================================================================
 
 function addAffiliateRow(sku, url) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('affiliate');
   if (!sheet) return { error: 'Không tìm thấy tab affiliate' };
   
@@ -1986,7 +1997,7 @@ function runPullToBooksFromUI() {
 }
 
 function clearLogsFromUI() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('log');
   if (sheet) {
     sheet.clear();
@@ -1998,7 +2009,7 @@ function clearLogsFromUI() {
 }
 
 function deleteBookBySku(sku) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('books');
   if (!sheet) return { error: 'Không tìm thấy tab books' };
   
@@ -2014,7 +2025,7 @@ function deleteBookBySku(sku) {
 }
 
 function deleteDocById(id) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('docs');
   if (!sheet) return { error: 'Không tìm thấy tab docs' };
   
@@ -2034,7 +2045,7 @@ function deleteDocById(id) {
  * Tô đỏ các ô chứa link nháp, tô vàng các ô Shopee đang bị để trống.
  */
 function checkAffiliateLinks() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = getDocsSpreadsheet();
   var sheet = ss.getSheetByName('books');
   if (!sheet) {
     SpreadsheetApp.getUi().alert('Lỗi: Không tìm thấy tab "books"');
