@@ -208,8 +208,9 @@ def main():
                     # Check if title_vi starts with a Hán-Việt name
                     if not re.match(r'^[A-ZĐĂÂÊÔƠƯÀ-Ỹ].*?\s*(-|—)\s*', title_vi):
                         # Try to extract from original title
-                        m = re.search(r'\b([A-ZĐÁ-Ỹ]{2,})\b\s*' + re.escape(title_zh) if title_zh else '', title)
-                        if m:
+                        pattern = r'\b([A-ZĐÁ-Ỹ]{2,})\b\s*' + re.escape(title_zh) if title_zh else r'\b([A-ZĐÁ-Ỹ]{2,})\b'
+                        m = re.search(pattern, title)
+                        if m and len(m.groups()) >= 1:
                             hv = m.group(1).capitalize()
                             title_vi = f"{hv} - {title_vi}"
                 else:
