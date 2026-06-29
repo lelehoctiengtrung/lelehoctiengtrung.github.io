@@ -2173,7 +2173,6 @@ let activePlayingCard = null; // Store currently playing inline card
 document.addEventListener('DOMContentLoaded', () => {
   setupTabs();
   renderGrid();
-  loadVideosFromSheet(); // Sync from Sheet in background
 
   window.addEventListener('langChanged', () => {
     setupTabs();
@@ -2305,84 +2304,7 @@ function parseTitle(rawTitle) {
   return { zh, vi: title };
 }
 
-// --- Fetch from Google Sheets dynamically ──────────────────
-async function loadVideosFromSheet() {
-  try {
-    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}&headers=2`;
-    const res = await fetch(url);
-    const raw = await res.text();
 
-    const match = raw.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/);
-    if (!match) throw new Error('Invalid response format');
-    const data = JSON.parse(match[1]);
-
-    const rows = data.table.rows;
-    if (!rows || rows.length === 0) return;
-
-    const cols = data.table.cols || [];
-    const colMap = { id: 0, title: 1, youtube_url: 2, category: 3, desc: 4, order: 5 };
-
-    cols.forEach((col, index) => {
-      const label = (col.label || '').toLowerCase();
-      if (label.includes('id')) colMap.id = index;
-      else if (label.includes('title') || label.includes('tiêu đề')) colMap.title = index;
-      else if (label.includes('youtube') || label.includes('đường dẫn')) colMap.youtube_url = index;
-      else if (label.includes('category') || label.includes('chủ đề')) colMap.category = index;
-      else if (label.includes('desc') || label.includes('mô tả')) colMap.desc = index;
-      else if (label.includes('order') || label.includes('thứ tự')) colMap.order = index;
-    });
-
-    const sheetVideos = rows.map((r, rowIndex) => {
-      const getVal = (colIdx, fallbackVal = '') => {
-        if (colIdx === undefined || colIdx < 0 || !r.c) return fallbackVal;
-        const cell = r.c[colIdx];
-        const val = (cell && cell.v != null) ? String(cell.v).trim() : '';
-        return val || fallbackVal;
-      };
-
-      const title = getVal(colMap.title);
-      if (!title) return null;
-
-      const id = getVal(colMap.id, `VID-ROW-${rowIndex}`);
-      const youtube_url = getVal(colMap.youtube_url);
-      const rawCategory = getVal(colMap.category, 'Tiếng Trung thực chiến');
-      const category = normalizeCategory(rawCategory, title, id);
-      const desc = getVal(colMap.desc);
-      const order = parseInt(getVal(colMap.order, String(rowIndex))) || rowIndex;
-
-      return { id, title, youtube_url, category, desc, order };
-    }).filter(v => {
-      if (!v) return false;
-      const ytId = getYouTubeId(v.youtube_url);
-      return !BLACKLISTED_YOUTUBE_IDS.includes(ytId);
-    });
-
-    if (sheetVideos.length > 0) {
-      // Merge sheet videos with the predefined local database by youtube_url
-      sheetVideos.forEach(sv => {
-        const svId = getYouTubeId(sv.youtube_url);
-        if (!svId) return;
-        const idx = ALL_VIDEOS.findIndex(v => getYouTubeId(v.youtube_url) === svId);
-        if (idx !== -1) {
-          // Update keeping the local details if sheet has placeholders
-          ALL_VIDEOS[idx] = { ...ALL_VIDEOS[idx], ...sv };
-        } else {
-          ALL_VIDEOS.push(sv);
-        }
-      });
-      
-      const categoriesPresent = [...new Set(ALL_VIDEOS.map(v => v.category))];
-      if (!categoriesPresent.includes(currentCategory) && categoriesPresent.length > 0) {
-        currentCategory = categoriesPresent[0];
-      }
-      
-      setupTabs();
-      renderGrid();
-    }
-  } catch (err) {
-    console.warn('Could not sync latest videos from Google Sheets, using offline video database.', err);
-  }
-}
 
 // --- Helper to extract YouTube ID ────────────────────────
 function getYouTubeId(url) {
