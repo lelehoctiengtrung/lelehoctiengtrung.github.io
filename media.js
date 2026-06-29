@@ -1416,24 +1416,7 @@ const ALL_VIDEOS = [
     "desc": "Câu chuyện thành ngữ 'Xả thân cứu người', quên đi lợi ích bản thân.",
     "order": 3
   },
-  {
-    "id": "q90BrVJxBGg",
-    "title_zh": "拔苗助长",
-    "title_vi": "Bạt miêu trợ trưởng - Nóng vội hỏng việc",
-    "youtube_url": "https://www.youtube.com/shorts/q90BrVJxBGg",
-    "category": "Thành ngữ",
-    "desc": "Thành ngữ phê phán việc nóng vội, đốt cháy giai đoạn dẫn đến hỏng việc.",
-    "order": 2
-  },
-  {
-    "id": "fFQ7FpDxfaI",
-    "title_zh": "杯弓蛇影",
-    "title_vi": "Bôi cung xà ảnh - Tự mình dọa mình",
-    "youtube_url": "https://www.youtube.com/shorts/fFQ7FpDxfaI",
-    "category": "Thành ngữ",
-    "desc": "Bài học phê phán những người đa nghi, lo sợ vô căn cứ tự mình hại mình.",
-    "order": 1
-  },
+
   {
     "id": "jHYuII4gbAE",
     "title_zh": "吃货",
@@ -2241,8 +2224,8 @@ function normalizeCategory(cat, title, id) {
       "BxC4vGPwt6s", "lwiZmQ04gWI", "E9XS8J52fjo", "ebPSABEdUMI", "A0VwRz8IGno",
       "Xxzo0rprdQc", "eDap3fEhWrA", "55PH0e1jm2w", "2JoOBSlNib4", "rPLRT1uPd30",
       "xJwB52xBYwc", "NLkHvt7Wu5A", "M4VYa6BEsOY", "LPKs2v7ar8", "H3lmJfw8K3E",
-      "BgmL-8aKnaA", "4VE-eeXsCOE", "vtL-7_lONnM", "7FqNFl8ky0g", "q90BrVJxBGg",
-      "fFQ7FpDxfaI", "4zbwWedN5so", "q7kFBDCssU8", "wZT3d09FXLs"
+      "BgmL-8aKnaA", "4VE-eeXsCOE", "vtL-7_lONnM", "7FqNFl8ky0g",
+      "4zbwWedN5so", "q7kFBDCssU8", "wZT3d09FXLs"
     ];
     const idiomKeywords = [
       'thành ngữ', 'idiom', 'thần thoại', 'cổ tích',

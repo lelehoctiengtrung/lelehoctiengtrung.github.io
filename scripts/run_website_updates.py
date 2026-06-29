@@ -15,7 +15,7 @@ REPO_DIR = "/media/vpsg16gb/Workspace/lelehoctiengtrung/Website_lelehoctiengtrun
 YOUTUBE_FEED_URL = "https://www.youtube.com/feeds/videos.xml?channel_id=UCGQfqOTElLYJ1-1OEDQJ8Cw"
 
 # Video IDs that should be excluded/deleted from the website
-EXCLUDED_VIDEO_IDS = {"h7MSLsoYKEk"}
+EXCLUDED_VIDEO_IDS = {"h7MSLsoYKEk", "q90BrVJxBGg", "fFQ7FpDxfaI"}
 
 # Idiom Video IDs that are mapped in HAN_VIET_MAP but belong to 'Thành ngữ' tab
 KNOWN_IDIOM_IDS = {
